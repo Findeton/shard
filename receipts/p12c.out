@@ -1,0 +1,26 @@
+== (i) cosmological redshift on the 1+1 FRW record lattice ==
+  n =   512: omega_late/omega_early = 0.646150   a(t_early)/a(t_late) = 0.647059   err = 9.08e-04
+  n =  1024: omega_late/omega_early = 0.646726   a(t_early)/a(t_late) = 0.647059   err = 3.33e-04
+  n =  2048: omega_late/omega_early = 0.647268   a(t_early)/a(t_late) = 0.647059   err = 2.09e-04
+  -> omega(t) a(t) = const measured from record evolution; error
+     falls with refinement: the FRW redshift law is a (C)-docket
+     convergence statement, verified.
+
+== (ii) the first genuinely 3+1 curved record instance (32^3 FRW) ==
+  32^3 expanding lattice, k = (4,0,0), phase-quadrature measurement:
+  omega ratio = 0.65463   prediction a(early)/a(late) = 0.64706   err = 7.57e-03
+  -> the 3+1 time-dependent record geometry carries the cosmological
+     redshift with the full 3H friction: gate (C)'s docket now
+     contains a genuinely 3+1 curved instance.
+
+== (iii) one lattice, one coordinate clock, two lapses ==
+  cavity at N = 1.0: omega = 18.849364
+  cavity at N = 0.7: omega = 13.194554
+  measured ratio = 0.700000    lapse ratio = 0.700000    err = 3.66e-08
+  -> gravitational time dilation from record dynamics: identical
+     cavities tick at the LAPSE-WEIGHTED rate in one coordinate clock.
+     The lapse enters the record operator A = -N d(N d) precisely as
+     the normal-sector boost weight - the Z_perp datum of Paper 5
+     Section 11, here OPERATIONAL: the frequency ratio between the
+     two worldlines IS the normal boost holonomy connecting them.
+== p12c done ==

@@ -1,0 +1,31 @@
+== (i) record presentation: positivity iff trivial JW strings ==
+  open NN chain (trivial strings)      min transfer entry = +0.000000   POSITIVE (record presentation)
+  ring (wraparound JW string)          min transfer entry = -0.952151   SIGNED (wrong presentation)
+  -> fermionic sectors are record-presentable exactly where the JW
+     strings are trivial; signs mark the wrong presentation, exactly
+     as the wrong-statistics sectors of Part II are signed.
+
+== (ii) the CAR tower: Fock structure from the record spectrum ==
+  open chain L = 6: min record-transfer entry = +0.00e+00  (positive)
+  reconstructed many-body spectrum vs Fock subset-sums of eps_k:
+    max gap over all 64 levels = 7.55e-15   (E = sum n_k eps_k EXACTLY)
+    particle-number multiplicities = binomial [1, 6, 15, 20, 15, 6, 1] (fermionic, not bosonic)
+  single-particle energies from the 1-particle record sector: max |eps_rec - eps| = 8.33e-16
+  CAR on the record space: max |{a_i,a_j+} - delta| = 8.88e-16, |{a_i,a_j}| = 0.00e+00
+  quadratic reconstruction: ||e^(-tau sum eps_rec a+a) - T_record|| = 2.44e-15
+  -> the anticommuting kinematics and the quadratic Hamiltonian are
+     recovered from the sealed record transfer: the fermionic mirror
+     of Part I's CCR reconstruction.
+
+== (iii) bottom-up meets top-down: the 1d record GW dispersion ==
+  1d GW relation residual (analytic blocked operator): 4.44e-16
+  cone: E_gw(k)/|k| at k = 0.05: 0.9999  (target 1)
+   K(modes)   max |eps_rec(k_j) - E_gw(k_j)|     dispersion-curve gap
+        8     0.00e+00                     0.1460
+       16     0.00e+00                     0.0481
+       32     0.00e+00                     0.0006
+  -> the record tower's reconstructed dispersion converges to the
+     blocked (top-down) GW dispersion as the mode resolution grows:
+     the fermionic L3 reconstruction and the record-RG fixed point of
+     Paper 10 Section 4.5 are two faces of one object.
+== p11d done ==

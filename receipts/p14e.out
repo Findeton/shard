@@ -1,0 +1,30 @@
+== (ii) minimal genuinely chiral anomaly-free record spectra ==
+  stack size n_L = n_R = 1, charges <= 12: 0 genuinely chiral solutions
+  stack size n_L = n_R = 2, charges <= 12: 0 genuinely chiral solutions
+  stack size n_L = n_R = 3, charges <= 12: 32 genuinely chiral solutions
+     L = [1, 4, 4]  R = [2, 2, 5]   (sum q = 9, sum q^2 = 33)
+     L = [2, 5, 5]  R = [3, 3, 6]   (sum q = 12, sum q^2 = 54)
+     L = [1, 5, 6]  R = [2, 3, 7]   (sum q = 12, sum q^2 = 62)
+     L = [3, 6, 6]  R = [4, 4, 7]   (sum q = 15, sum q^2 = 81)
+  -> sizes 1 and 2 admit NO genuinely chiral solution (the
+     constraints force equal multisets); size 3 is the minimal
+     chiral record matter content - anomaly freedom is a strong
+     structure theorem on the code characters.
+
+== (i) lattice grounding: total index of L-stack = R-stack ==
+  solution L = [1, 5, 6], R = [2, 3, 7], flux Q = 1:
+  L-stack indices = ['+1.00000', '+5.00000', '+6.00000']  total = +12.00000
+  R-stack indices = ['+2.00000', '+3.00000', '+7.00000']  total = +12.00000
+  |total_L - total_R| = 1.4e-14
+  -> the MIXED predicate is realized on the record lattice: the
+     L- and R-stacks acquire EQUAL total index in every flux
+     sector - the anomaly inflow balances exactly.
+
+== (iii) selectivity of the filter ==
+  n = 3, charges <= 8: pass rate = 0.0100, genuinely chiral pass rate = 0.0003
+  n = 4, charges <= 8: pass rate = 0.0062, genuinely chiral pass rate = 0.0021
+  -> the anomaly filter prunes the (M) candidate space by ~2-3
+     orders of magnitude per gauge factor before any dynamics is
+     computed: the first theorem-grade screen for the SM inverse
+     search, exported from this campaign.
+== p14e done ==

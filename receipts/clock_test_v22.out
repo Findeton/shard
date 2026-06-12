@@ -1,0 +1,93 @@
+== THE CLOCK TEST ON REAL SURFACE-CODE SYNDROME DATA ==
+   (Google 2023 memory experiment, Zenodo 6804040;
+    50,000 shots per folder; bulk rounds; m = 3 Hankel)
+
+--- surface_code_bX_d3_r25_center_3_5: 8 stabilizers ---
+  stab (1.0, 4.0): rate 0.1266  round-drift 0.0179  lam_min -1.50e-03  CI [-1.61e-03, -1.38e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 207  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (2.0, 5.0): rate 0.1997  round-drift 0.0264  lam_min -1.41e-03  CI [-1.56e-03, -1.26e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 383  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (2.0, 7.0): rate 0.1213  round-drift 0.0149  lam_min -2.79e-03  CI [-2.92e-03, -2.64e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 237  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (3.0, 4.0): rate 0.1670  round-drift 0.0201  lam_min -8.05e-04  CI [-9.14e-04, -6.98e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 210  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (3.0, 6.0): rate 0.2015  round-drift 0.0134  lam_min -9.07e-04  CI [-1.04e-03, -7.65e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 249  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 3.0): rate 0.1037  round-drift 0.0065  lam_min -3.78e-03  CI [-3.92e-03, -3.64e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 46  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 5.0): rate 0.1790  round-drift 0.0084  lam_min -1.55e-03  CI [-1.71e-03, -1.38e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 77  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (5.0, 6.0): rate 0.1200  round-drift 0.0034  lam_min -2.04e-03  CI [-2.16e-03, -1.92e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 34  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+
+--- surface_code_bX_d3_r25_center_5_3: 8 stabilizers ---
+  stab (3.0, 2.0): rate 0.0986  round-drift 0.0047  lam_min -2.02e-03  CI [-2.13e-03, -1.90e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 73  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 3.0): rate 0.1554  round-drift 0.0068  lam_min -2.03e-03  CI [-2.18e-03, -1.88e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 90  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 5.0): rate 0.1201  round-drift 0.0027  lam_min -5.06e-03  CI [-5.20e-03, -4.91e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 80  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (5.0, 2.0): rate 0.2019  round-drift 0.0176  lam_min -2.35e-03  CI [-2.54e-03, -2.16e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 159  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (5.0, 4.0): rate 0.1794  round-drift 0.0066  lam_min -1.43e-04  CI [-2.12e-04, -6.41e-05]  poles: rank 1 |Im|/|p| 0.000  top-runs 129  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (6.0, 1.0): rate 0.1141  round-drift 0.0026  lam_min -2.02e-03  CI [-2.14e-03, -1.89e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 28  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (6.0, 3.0): rate 0.1892  round-drift 0.0059  lam_min -2.74e-04  CI [-3.63e-04, -1.73e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 88  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (7.0, 4.0): rate 0.1311  round-drift 0.0043  lam_min -2.03e-03  CI [-2.15e-03, -1.89e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 87  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+
+--- surface_code_bX_d3_r25_center_5_7: 8 stabilizers ---
+  stab (3.0, 6.0): rate 0.1194  round-drift 0.0050  lam_min -1.51e-03  CI [-1.63e-03, -1.39e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 70  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 7.0): rate 0.1655  round-drift 0.0076  lam_min -7.76e-04  CI [-9.11e-04, -6.32e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 47  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 9.0): rate 0.1249  round-drift 0.0051  lam_min -3.42e-03  CI [-3.56e-03, -3.28e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 62  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (5.0, 6.0): rate 0.1646  round-drift 0.0146  lam_min -3.48e-04  CI [-4.40e-04, -2.51e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 96  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (5.0, 8.0): rate 0.1724  round-drift 0.0098  lam_min -1.44e-03  CI [-1.60e-03, -1.29e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 87  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (6.0, 5.0): rate 0.1081  round-drift 0.0083  lam_min -2.10e-03  CI [-2.22e-03, -1.97e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 69  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (6.0, 7.0): rate 0.1549  round-drift 0.0078  lam_min -5.40e-04  CI [-6.44e-04, -4.27e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 84  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (7.0, 8.0): rate 0.1121  round-drift 0.0072  lam_min -2.61e-03  CI [-2.72e-03, -2.49e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 2  cx-scan: r3: stab 0.68 dom 0.83 phase 0.79pi  -> SIGNED (no reversible Moore-form HMM)
+
+--- surface_code_bX_d3_r25_center_7_5: 8 stabilizers ---
+  stab (5.0, 4.0): rate 0.1168  round-drift 0.0064  lam_min -3.05e-04  CI [-3.73e-04, -2.35e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 43  cx-scan: r3: stab 0.90 dom 0.55 phase 0.31pi  -> SIGNED (no reversible Moore-form HMM)
+  stab (6.0, 5.0): rate 0.1696  round-drift 0.0061  lam_min -6.43e-04  CI [-7.54e-04, -5.20e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 140  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (6.0, 7.0): rate 0.1111  round-drift 0.0037  lam_min -3.23e-03  CI [-3.36e-03, -3.10e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 30  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (7.0, 4.0): rate 0.1814  round-drift 0.0043  lam_min -1.83e-03  CI [-1.99e-03, -1.67e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 95  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (7.0, 6.0): rate 0.1531  round-drift 0.0070  lam_min -9.34e-04  CI [-1.06e-03, -8.06e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 102  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (8.0, 3.0): rate 0.1135  round-drift 0.0058  lam_min -3.62e-03  CI [-3.76e-03, -3.48e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 60  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (8.0, 5.0): rate 0.1537  round-drift 0.0085  lam_min -4.57e-04  CI [-5.53e-04, -3.54e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 120  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (9.0, 6.0): rate 0.1030  round-drift 0.0050  lam_min -1.20e-03  CI [-1.29e-03, -1.09e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 79  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+
+--- surface_code_bX_d5_r25_center_5_5: 24 stabilizers ---
+  stab (1.0, 4.0): rate 0.1346  round-drift 0.0276  lam_min -1.48e-03  CI [-1.60e-03, -1.36e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 202  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (2.0, 5.0): rate 0.2046  round-drift 0.0252  lam_min -1.32e-03  CI [-1.46e-03, -1.17e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 399  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (2.0, 7.0): rate 0.1327  round-drift 0.0172  lam_min -2.83e-03  CI [-2.97e-03, -2.69e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 383  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (3.0, 2.0): rate 0.0974  round-drift 0.0056  lam_min -2.29e-03  CI [-2.41e-03, -2.17e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 75  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (3.0, 4.0): rate 0.1745  round-drift 0.0244  lam_min -8.41e-04  CI [-9.50e-04, -7.20e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 300  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (3.0, 6.0): rate 0.2022  round-drift 0.0186  lam_min -6.01e-04  CI [-7.14e-04, -4.81e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 256  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 3.0): rate 0.1678  round-drift 0.0089  lam_min -1.86e-03  CI [-2.01e-03, -1.70e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 147  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 5.0): rate 0.2047  round-drift 0.0086  lam_min -2.34e-03  CI [-2.52e-03, -2.15e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 101  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 7.0): rate 0.1744  round-drift 0.0115  lam_min -7.94e-04  CI [-9.16e-04, -6.64e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 124  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 9.0): rate 0.1275  round-drift 0.0039  lam_min -3.60e-03  CI [-3.74e-03, -3.46e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 47  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (5.0, 2.0): rate 0.2063  round-drift 0.0078  lam_min -3.15e-03  CI [-3.34e-03, -2.95e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 233  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (5.0, 4.0): rate 0.2113  round-drift 0.0135  lam_min -3.74e-04  CI [-4.89e-04, -2.41e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 176  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (5.0, 6.0): rate 0.1873  round-drift 0.0146  lam_min -2.92e-04  CI [-4.00e-04, -1.71e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 86  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (5.0, 8.0): rate 0.1744  round-drift 0.0116  lam_min -1.55e-03  CI [-1.70e-03, -1.39e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 103  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (6.0, 1.0): rate 0.1119  round-drift 0.0023  lam_min -1.62e-03  CI [-1.74e-03, -1.51e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 22  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (6.0, 3.0): rate 0.1962  round-drift 0.0040  lam_min -7.29e-04  CI [-8.61e-04, -5.82e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 114  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (6.0, 5.0): rate 0.1913  round-drift 0.0096  lam_min -4.48e-04  CI [-5.52e-04, -3.30e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 170  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (6.0, 7.0): rate 0.1613  round-drift 0.0053  lam_min -4.83e-04  CI [-5.95e-04, -3.58e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 54  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (7.0, 4.0): rate 0.1936  round-drift 0.0032  lam_min -1.82e-03  CI [-1.98e-03, -1.65e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 159  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (7.0, 6.0): rate 0.1646  round-drift 0.0122  lam_min -1.03e-03  CI [-1.16e-03, -8.93e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 125  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (7.0, 8.0): rate 0.1147  round-drift 0.0034  lam_min -2.74e-03  CI [-2.86e-03, -2.62e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 16  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (8.0, 3.0): rate 0.1175  round-drift 0.0044  lam_min -4.00e-03  CI [-4.14e-03, -3.86e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 35  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (8.0, 5.0): rate 0.1551  round-drift 0.0097  lam_min -5.15e-04  CI [-6.15e-04, -4.11e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 133  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (9.0, 6.0): rate 0.1040  round-drift 0.0054  lam_min -1.19e-03  CI [-1.30e-03, -1.09e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 94  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+
+--- surface_code_bZ_d3_r25_center_3_5: 8 stabilizers ---
+  stab (1.0, 4.0): rate 0.1270  round-drift 0.0166  lam_min -1.31e-03  CI [-1.42e-03, -1.20e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 178  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (2.0, 5.0): rate 0.2027  round-drift 0.0189  lam_min -1.28e-03  CI [-1.41e-03, -1.14e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 389  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (2.0, 7.0): rate 0.1226  round-drift 0.0176  lam_min -2.76e-03  CI [-2.89e-03, -2.62e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 344  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (3.0, 4.0): rate 0.1697  round-drift 0.0166  lam_min -8.82e-04  CI [-9.98e-04, -7.60e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 239  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (3.0, 6.0): rate 0.2025  round-drift 0.0161  lam_min -7.64e-04  CI [-8.97e-04, -6.20e-04]  poles: rank 1 |Im|/|p| 0.000  top-runs 236  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 3.0): rate 0.1066  round-drift 0.0044  lam_min -4.12e-03  CI [-4.25e-03, -3.99e-03]  poles: rank 2 |Im|/|p| 0.000  top-runs 48  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (4.0, 5.0): rate 0.1802  round-drift 0.0050  lam_min -1.51e-03  CI [-1.66e-03, -1.36e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 96  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+  stab (5.0, 6.0): rate 0.1215  round-drift 0.0033  lam_min -1.99e-03  CI [-2.11e-03, -1.86e-03]  poles: rank 1 |Im|/|p| 0.000  top-runs 27  cx-scan: none stable  -> SIGNED (no reversible Moore-form HMM)
+
+== AGGREGATE: 0 PASS, 64 SIGNED of 64 stabilizer streams ==
+   rank-scan: 2/64 streams show a resample-stable complex pair at any order <= 3; 0/64 show a stable pair that is also DOMINANT (median |z|/rho >= 0.95) - the clock signature (the oscillatory control shows dom 1.00)
+   Bonferroni(64 tests, 5% family, x1.6 margins): ALL SIGNED SURVIVE (worst inflated upper bound -1.67e-05)
+   top-moment run counts p(1^7): min 2, median 96, max 399
+
+== controls ==
+  iid control (rate 0.153):       lam_min -1.53e-05  CI [-2.92e-05, +5.33e-05]  cx-scan: none stable  -> PASS (moment-compatible)
+  oscillatory control (same rate):    lam_min -9.40e-04  CI [-1.03e-03, -8.47e-04]  poles: rank 1 |Im|/|p| 0.000  cx-scan: r2: stab 0.90 dom 1.00 phase 0.08pi; r3: stab 1.00 dom 1.00 phase 0.29pi  -> SIGNED (no reversible Moore-form HMM)
+
+  (the instrument: a hidden irrational rotation SIGNS the
+   Hankel at matched rate and statistics, while iid passes -
+   whatever the device data shows is therefore a statement
+   about the device, not about the test's power)

@@ -1,0 +1,21 @@
+== setup: uniform-flux record gauge sector ==
+  12x12, Q = 1: plaquette phase uniform to 1.5e-15; total flux / 2pi = 1.0000000000
+
+== (i) the GW relation, gauge-coupled ==
+  ||g5 D + D g5 - D g5 D||_max = 4.00e-15
+  -> the record-chirality law holds EXACTLY in the gauge sector.
+
+== (ii) gauge covariance ==
+  ||D(U^g) - G D(U) G^dag||_max = 1.12e-15
+  -> the record operator transforms covariantly: chirality data
+     rides the relation code, as the P8/P10 gauge mechanism demands.
+
+== (iii) locality in the gauge sector ==
+   distance:  2  3  4  5  6  7  8
+   max |D| :  1.2e-01  2.0e-02  1.1e-02  3.9e-03  1.4e-03  6.1e-04  2.9e-04
+  fitted decay rate = 0.966 per lattice unit   (range/unit = 1.036)
+  -> the gauge-coupled record GW operator is exponentially local:
+     a collar operator with O(1) record range, not an all-to-all
+     kernel.  Preconditions (i)-(iii) PASS; the discriminating
+     receipts are p14b (index), p14c (anomaly), p14d (blocking).
+== p14a done ==

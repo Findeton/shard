@@ -1,0 +1,60 @@
+== D1. silent sign: -1 under 2*pi is sealed-marginal-silent, ==
+==     interference-observable with 4*pi period ==
+  200 random (state, processing): max sealed-marginal change under R(2pi) = -1: 4.44e-16   (theorem: 0)
+  interference record P(phi), m = 1/2:
+    phi = 0*pi : P = 1.000000000000
+    phi = 2*pi : P = 0.000000000000
+    phi = 4*pi : P = 1.000000000000
+  -> P(2pi) != P(0) (the sign is OBSERVABLE, and carries evidence:
+     a path-difference record); P(4pi) = P(0) exactly: 4pi periodicity.
+
+== D4. univalence superselection from the silent-seam principle ==
+  cross-sector superposition: interference record before = [1. 0.]
+  after GLOBAL 2pi rotation (a closed, evidence-free motion): [0. 1.]
+  record change = 1.000000 under an identity motion
+  -> an evidence-free closed motion altering a sealed record is a SILENT
+     SEAM: excluded.  Within a sector the same motion changes nothing
+     (max change 4.4e-16).  Hence coherent boson/fermion superpositions
+     are excluded: univalence superselection is DERIVED, not postulated.
+
+== D2. symmetry lifts to dilations are projective; both Z2 classes real ==
+  intertwiner space, FULL-algebra intertwining: dimension = 1  (lift unique up to phase)
+  intertwiner space, RECORD-data-only intertwining: dimension = 2  (the record-relabeling torus of P7 Theorem D3: NOT unique up to phase)
+  -> the hypothesis is load-bearing: phase-uniqueness needs full-
+     algebra (minimal/multiplicity-free) intertwining; record-level
+     symmetry leaves the diagonal torus, and exact fiber degeneracy
+     enlarges the gauge further to U(k) (P7 Theorem 10.3).  At record
+     level the class datum that survives is the Bargmann LOOP class
+     (P7 Theorem D3 + P4 s40), not the naive multiplier.
+  Pauli lift of V4: commutator phase c(X,Z) = omega(x,z)/omega(z,x) = -1
+  invariance of c under 100 random phase redefinitions: max change = 1.11e-16
+  -> the class is NONTRIVIAL (c = -1): no phase choice de-projectivizes;
+     trivial class realized by diagonal signs: c(X,Z) = +1.  Both H^2(V4,U(1)) = Z2 classes
+     exist as record-law lifts; the class is a gauge-invariant record datum.
+  record covariance: z-record of rho = [0.7 0.3], after x-flip = [0.3 0.7] (label swap exactly): the symmetry IS a record symmetry,
+     and its dilation lift is forced projective by the 1-dim intertwiner.
+
+== D3. the 2pi lift is open, the 4pi loop is contractible (machine) ==
+  2pi rotation lift: start = [1. 0. 0. 0.], end = [-1.  0.  0.  0.]
+   -> OPEN path in SU(2) ending at -1: R(2pi) = -1 is a homotopy invariant.
+  4pi loop (perturbed): closure gap = 2.45e-16, min distance to -1 = 0.150
+  explicit homotopy H(s,t) = exp((1-s) log q(t)): every slice closed (max gap 2.45e-16),
+  continuous (max step 0.105 -> 0 with grid), H(1,.) = identity (gap 0.00e+00): 4pi loop CONTRACTIBLE.
+  Holonomy of a defect-free fiber connection is homotopy-invariant (the
+  silent-seam principle on the rotation manifold), so R(4pi) = 1:
+   quantization  e^{4pi i m} = 1  =>  2m in Z:
+    m = 0.000:  |e^(4pi i m) - 1| = 0.000000   ALLOWED
+    m = 0.500:  |e^(4pi i m) - 1| = 0.000000   ALLOWED
+    m = 1.000:  |e^(4pi i m) - 1| = 0.000000   ALLOWED
+    m = 0.333:  |e^(4pi i m) - 1| = 1.732051   EXCLUDED in (1,3)
+
+  pure-screen (2+1) corollary - record anyons: rotation manifold SO(2),
+  universal cover R, no 4pi constraint; m = 1/3 fiber interference:
+    phi = 0*pi : P = 1.000000000000
+    phi = 2*pi : P = 0.250000000000
+    phi = 4*pi : P = 0.250000000000
+    phi = 6*pi : P = 1.000000000000
+  -> 6pi-periodic: consistent on a pure screen, excluded by the derived
+     (1,3) embedding.  Spin quantization is a CONSEQUENCE of the
+     signature theorem: 3d space => belt trick => 2m in Z.
+== p9a done ==

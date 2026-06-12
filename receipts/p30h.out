@@ -1,0 +1,49 @@
+== (i) can letters reach the exact triple? (validity OFF) ==
+   W = 001011   : best (spread, im) = (0.0185, 0.033);  runner-up spread 0.0304
+   W = 00011101 : best (spread, im) = (0.0015, 0.212);  runner-up spread 0.0040
+  best modulus spread reached: 0.0015
+  -> the exact triple IS kinematically reachable.
+
+== (ii) where letter near-triples live in (G, beta) ==
+   dist(G, I)   spread    im      block
+     0.502      0.001   0.212   00011101
+     0.694      0.018   0.033   001011
+     0.735      0.047   0.029   001011
+     0.798      0.004   0.426   00011101
+     0.861      0.005   0.118   00011101
+     0.937      0.030   0.057   001011
+
+== (iii) the pinch ==
+  letter cloud: minimum Gram distance from the normal point
+  among near-triple chiral blocks: 0.502
+  tower band: all-depth-candidate region measured at dist
+  0.054-0.147 (p30e/p30f; the 64-phase survivor at 0.147)
+  -> PINCHED at this budget: the letter-reachable
+     near-triple cloud and the deep-feasible band are
+     DISJOINT by a factor >= 2 in the shared coordinate:
+     a counterexample must either drag the letter cloud
+     toward normality (the NR wall says it costs O(1))
+     or widen the band (the deep adversary squeezes it).
+     The corridor, if it exists, is not visible at any
+     budget this corpus has reached - quantified CPE
+     evidence of a new kind: TWO independent walls with
+     no overlap.
+
+== (iv) the wall curve ND_min(im) ==
+   W = 00011101, d = 4:
+   im_min     ND_min
+    0.01      0.1708
+    0.02      inf
+    0.05      0.4656
+    0.10      0.4034
+  smallest measured floor: ND >= 0.17 already at im = 0.01
+  (1 row(s) found no qualifying optimum at this budget: inf,
+   and the curve is non-monotone - search-bounded,
+   reported as-is)
+  -> the data supports a hard floor, not a slope: every
+     measured demanded-oscillation level - down to one
+     percent - costs an O(0.2-0.5) normality defect.  The
+     letter wall does not soften near the normal point at
+     any budget reached here, consistent with the pinch
+     of (iii).
+== p30h done ==

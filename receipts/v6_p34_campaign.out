@@ -1,0 +1,92 @@
+== TARGET ==
+  C_needed = 0.97924 +- 0.01433 (today)  +- 0.00370 (JUNO-class)
+  bare point C = 1: +1.45 sigma today, +5.62 sigma at JUNO (centrals held)
+
+== N1: no-universal-dressing (numeric demo) ==
+  common dressing e^g, g=-1.984: m2/m3 = 0.178326 = sqrt(eps) exactly (0.0e+00)
+  common dressing e^g, g=+1.489: m2/m3 = 0.178326 = sqrt(eps) exactly (0.0e+00)
+  common dressing e^g, g=-1.029: m2/m3 = 0.178326 = sqrt(eps) exactly (2.8e-17)
+
+== A: ladder-seesaw enumeration ==
+  textures on the sqrt(eps) rung (C in [0.5,2]): 161644
+  ... with LARGE 2-3 mixing (35-55 deg, as observed): 8504
+  distinct C values (1e-4 grid) with large mixing: 50
+  minimality = fewest seams, then cheapest: 8 minimal textures, C in [1.0]
+     C = 1.0000  theta = 45.0 deg  cost 0.5  seams 6  Y-expo (0.0,0.0,0.0,0.0) M-expo (0.0,0.5,None) signs (1,-1,1)
+     C = 1.0000  theta = 45.0 deg  cost 0.5  seams 6  Y-expo (0.0,0.0,0.0,0.0) M-expo (0.0,0.5,None) signs (1,-1,-1)
+     C = 1.0000  theta = 45.0 deg  cost 0.5  seams 6  Y-expo (0.0,0.0,0.0,0.0) M-expo (0.0,0.5,None) signs (-1,1,1)
+     C = 1.0000  theta = 45.0 deg  cost 0.5  seams 6  Y-expo (0.0,0.0,0.0,0.0) M-expo (0.0,0.5,None) signs (-1,1,-1)
+  minimality = cheapest total exponent: 8 minimal textures, C in [1.0]
+     C = 1.0000  theta = 45.0 deg  cost 0.5  seams 6  Y-expo (0.0,0.0,0.0,0.0) M-expo (0.0,0.5,None) signs (1,-1,1)
+     C = 1.0000  theta = 45.0 deg  cost 0.5  seams 6  Y-expo (0.0,0.0,0.0,0.0) M-expo (0.0,0.5,None) signs (1,-1,-1)
+     C = 1.0000  theta = 45.0 deg  cost 0.5  seams 6  Y-expo (0.0,0.0,0.0,0.0) M-expo (0.0,0.5,None) signs (-1,1,1)
+     C = 1.0000  theta = 45.0 deg  cost 0.5  seams 6  Y-expo (0.0,0.0,0.0,0.0) M-expo (0.0,0.5,None) signs (-1,1,-1)
+  menu coverage of C in [0.5,2] within 2 sigma(today): 56%  (within 2 sigma(JUNO): 25%)
+  attainable C within 3 sigma(today) of C_needed: 3 values
+     C = 0.9919: +0.88 sigma today, +3.42 sigma JUNO; min seams 7, min cost 1.5
+     C = 0.9997: +1.43 sigma today, +5.53 sigma JUNO; min seams 7, min cost 2.0
+     C = 1.0000: +1.45 sigma today, +5.62 sigma JUNO; min seams 6, min cost 0.5
+  anchor sqrt(1-0eps) = 1.00000: +1.45 sigma today, +5.62 sigma JUNO; nearest attainable 0.0000 away
+  anchor sqrt(1-1eps) = 0.98397: +0.33 sigma today, +1.28 sigma JUNO; nearest attainable 0.0079 away
+  anchor sqrt(1-2eps) = 0.96768: -0.81 sigma today, -3.13 sigma JUNO; nearest attainable 0.0242 away
+  anchor sqrt(1-3eps) = 0.95110: -1.96 sigma today, -7.61 sigma JUNO; nearest attainable 0.0408 away
+  five attainable C closest to C_needed:
+     C = 0.9919: +0.88 s(today), +3.42 s(JUNO); seams 7 cost 1.5  Y (0.0,0.0,0.0,0.0) M (0.0,0.5,1.0) signs (1,-1,-1)
+     C = 0.9997: +1.43 s(today), +5.53 s(JUNO); seams 7 cost 2.0  Y (0.0,0.0,0.0,0.0) M (0.0,0.5,1.5) signs (1,-1,1)
+     C = 1.0000: +1.45 s(today), +5.62 s(JUNO); seams 6 cost 0.5  Y (0.0,0.0,0.0,0.0) M (0.0,0.5,None) signs (1,-1,1)
+     C = 1.1048: +8.76 s(today), +33.96 s(JUNO); seams 7 cost 2.0  Y (0.0,1.0,0.5,0.0) M (0.5,0.0,0.0) signs (1,1,-1)
+     C = 0.8393: -9.77 s(today), -37.85 s(JUNO); seams 7 cost 1.5  Y (0.0,0.5,0.5,0.0) M (0.5,0.0,0.0) signs (1,1,-1)
+  attainable values within 2 sigma(JUNO) of C_needed: 0
+  -> if JUNO confirms today's centrals, the texture class is EXCLUDED: no attainable C within 2 sigma
+
+== B: charged-sector dressing requirement ==
+  m_e/m_mu: x = 1.546; vs rung 1.5: C_req = 0.8529 (sqrt(1-k eps) k = +8.6); nearest attainable 0.8393 (off by 1.6%)
+  m_mu/m_tau: x = 0.818; vs rung 0.5: C_req = 0.3335 (sqrt(1-k eps) k = +27.9); nearest attainable 0.6746 (off by 102.3%)
+  m_mu/m_tau: x = 0.818; vs rung 1.0: C_req = 1.8699 (sqrt(1-k eps) k = -78.5); nearest attainable 1.9015 (off by 1.7%)
+  charged masses are measured to <1e-4 relative, so a texture
+  'hit' must match C_req essentially exactly; the gaps above are
+  percent-level or worse -> within this texture class (2x2,
+  exponents <= 2, unit coefficients) the charged steps are NOT
+  reproduced.  The sector criterion is therefore a NAMED
+  HYPOTHESIS, not a derivation: charged masses pass through EWSB
+  seams (additional uncomputed dressing); the seesaw step is
+  pre-EWSB ('D-shield').  Until the EWSB dressing is computed,
+  the charged sector neither confirms nor calibrates the
+  mechanism - counted against the program, not for it.
+
+== C: JUNO separability ==
+  bare C=1 vs sqrt(1-eps): |dC| = 0.0160 = 4.3 JUNO sigma
+  bare C=1 vs sqrt(1-2eps): |dC| = 0.0323 = 8.7 JUNO sigma
+  sqrt(1-eps) vs sqrt(1-2eps): |dC| = 0.0163 = 4.4 JUNO sigma
+  S_pred[bare C=1] = 0.17556  (today: +1.45 sigma)
+  S_pred[sqrt(1-eps)] = 0.17265  (today: +0.33 sigma)
+  S_pred[sqrt(1-2eps)] = 0.16969  (today: -0.81 sigma)
+
+== D: m1-coefficient smearing of the JUNO exclusion ==
+  C1 = 0.0: S(C=1) = 0.17833  shift +1.58% = +4.13 JUNO sigma
+  C1 = 0.5: S(C=1) = 0.17764  shift +1.19% = +3.10 JUNO sigma
+  C1 = 1.0: S(C=1) = 0.17556  shift +0.00% = +0.00 JUNO sigma
+  C1 = 1.5: S(C=1) = 0.17202  shift -2.01% = -5.27 JUNO sigma
+  C1 = 2.0: S(C=1) = 0.16694  shift -4.91% = -12.85 JUNO sigma
+  C1 in [0,2] smears the inferred 2-3 coefficient by +-0.0475
+  attainable C within (2 sigma_JUNO + smear) of C_needed: 3
+  -> the JUNO-era class exclusion is CONDITIONAL on pinning C1;
+     the full 3x3 enumeration is the named next receipt.
+
+== E: 3x3 joint (C, C1) sampled campaign ==
+  draws 2,000,000; PMNS-compatible NO-spectrum textures on the rung: 1,120
+  consistent with S today (2 sigma): 47
+  would SURVIVE a confirmed-central JUNO (2 sigma_JUNO): 13
+  cheapest today-consistent: C = 1.0104 C1 = 1.2191 S_pred = 0.17609 (+1.65 s today) th23 40 th12 33 |Ue3| 0.05 seams 11 cost 9.0
+  cheapest JUNO survivor: C = 0.9973 C1 = 1.3053 S_pred = 0.17309 (+0.50 s today) th23 50 th12 39 |Ue3| 0.07 seams 13 cost 11.0
+  textures realizing the bare-rung + heavy-m1 degeneracy (C ~ 1, C1 in [1.3, 1.7]): 8
+     cheapest: C = 0.9827 C1 = 1.6956 S_pred = 0.16698 (-1.85 s today, -7.17 s JUNO) seams 12 cost 12.0
+
+== F: JUNO-first-data update ==
+  S = 0.17283 +- 0.00167  (was 0.17179 +- 0.00260)
+  registered point 0.17556: +1.64 sigma  (was +1.45); needed dm21 = 7.739e-5 -> +1.99 sigma from JUNO's value
+  C_needed = 0.98494 +- 0.00918  (was 0.97924 +- 0.01433)
+    bare C=1 (minimal texture): C = 1.0000 -> +1.64 sigma vs JUNO-now
+    nearest attainable 2x2: C = 0.9919 -> +0.76 sigma vs JUNO-now
+    sqrt(1-eps) anchor (NOT attainable): C = 0.9840 -> -0.11 sigma vs JUNO-now
+  C1 reconciling bare rung with JUNO-now central: C1 = 1.403  (was ~1.52 against the old central)

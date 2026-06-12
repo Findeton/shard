@@ -1,0 +1,39 @@
+== (i) sealed-epsilon screening: the lattice computation ==
+  Z^2 / <(3,0),(0,2)> = 6 classes = Z_3 x Z_2 (tau, sigma): [(0, 0), (0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]
+  charge functionals Y6 = p a + q b vanishing on the seal
+  direction (3,2): the covector lattice Z x (-2, 3)
+  minimal generator = (-2, 3), i.e. Y6 = 3b - 2a: PASS
+  Z6 congruence violations with this Y: 0
+  -> hypothesis (E) [sealed epsilons screen their charges]
+     forces: discrete data (tau, sigma), continuous data the
+     single ray Y6 = 3b - 2a - the (Y-det) structure DERIVED,
+     and with it the Z6 lattice as an identity.
+
+== (ii) the seam system: kernel dim 1, generator = SM ==
+  seam + anomaly system: rank = 6, kernel dimension = 1
+   field:         Q   u^c   d^c     L   e^c  nu^c     H
+   kernel gen:    1    -4     2    -3     6     0    -3
+   SM (Y6):       1    -4     2    -3     6     0    -3
+  residual |A v| = 0.0e+00;  generator = SM: PASS
+  -> given the shells, the four seams + Majorana seal, and
+     the three Y-linear anomaly conditions (grav, SU(3)^2-Y,
+     SU(2)^2-Y), the hypercharge assignment is UNIQUE up to
+     scale and the minimal integer point is the Standard
+     Model - the P20 invariant-tensor receipts re-derived at
+     lattice level.  (Without the two gauge-squared rows the
+     kernel is 2-dimensional: they are load-bearing and so
+     imported, named, as in P14.)
+
+== (iii) what the seams do NOT do (honest negative) ==
+  the SM ray ALSO satisfies the residue pattern of the
+  WRONG-class formula Y6 = a (pure color-det): Y ≡ tau mod 3 on all fields: True
+  -> the seam + anomaly system does NOT select the residue
+     class (alpha, beta): it fixes the RAY, not the class.
+     Residue selection - the actual content of the Z6
+     quotient - comes from hypothesis (E) alone in this
+     campaign.  (E) is therefore the single load-bearing new
+     identification, stated as such; its promotion to a
+     theorem (condensed seals trivialize sector classes, in
+     the record DR category) is the named residue of
+     (Z6-int).
+== p31b done ==

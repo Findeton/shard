@@ -1,0 +1,56 @@
+== the cascade: exhaustive enumeration over cyclic codes ==
+   N    k   raw spectra   F1 anomaly   F2 chiral   F3 closure   F4 generations
+    5   3         400          22          2           2            0
+    6   3        1225          37          2           2            0
+    7   3        3136          60          4           4            0
+    8   3        7056          88          4           4            0
+    9   3       14400         128          8           8            0
+   10   3       27225         179         14           8            0
+   11   3       48400         244         24          12            0
+   12   3       81796         320         34          24            0
+  (k = 3 per chirality: the P14 minimal chiral stack size;
+   F4 at k = 3 demands the base spectrum replicated 3x, i.e.
+   L = {q,q,q}: maximal degeneracy)
+
+== the factorization theorem ==
+  k = 6 exhaustion (Z_6): raw 44100 -> F1 282 -> F2 72 -> F3 72 -> F4 0
+  ZERO three-generation survivors at k = 3 and k = 6, at every
+  code tested - and this is a THEOREM, not an accident:
+  replicating a base spectrum 3x multiplies every anomaly sum by
+  3, so F4-spectra pass F1 iff their BASE passes F1; F2 likewise.
+  By Paper 14's exhaustion theorem no base below size 3 is
+  anomaly-free and chiral.  COROLLARY (minimal generation
+  structure): the minimal three-generation chiral record matter
+  content is 9 + 9 Weyl entries - base size 3, replicated.
+  (The SM's base is 15 >= 3, replicated 3x: consistent.)
+
+== the base-spectrum closure search ==
+  P14 minimal chiral bases (size 3, charges <= 8) and the codes
+  Z_N (N <= 12) in which BOTH stacks baryon-close (a triple sums
+  to 0 mod N):
+  bases found: 6
+    L = [1, 4, 4]  R = [2, 2, 5]   closing codes: [3, 4, 6, 9, 12]
+    L = [1, 5, 6]  R = [2, 3, 7]   closing codes: [3, 4, 6, 7, 8, 9, 11, 12]
+    L = [2, 5, 5]  R = [3, 3, 6]   closing codes: [3, 4, 5, 6, 9, 12]
+    L = [2, 6, 7]  R = [3, 4, 8]   closing codes: [3, 4, 5, 6, 7, 8, 9, 10, 11]
+    L = [3, 6, 6]  R = [4, 4, 7]   closing codes: [3, 4, 5, 6, 9, 12]
+    L = [4, 7, 7]  R = [5, 5, 8]   closing codes: [3, 4, 5, 6, 7, 9, 12]
+  closure census over all bases: Z_3: 6/6, Z_4: 6/6, Z_5: 4/6, Z_6: 6/6, Z_7: 3/6, Z_8: 2/6, Z_9: 6/6
+  total stack sums of the six bases: [9, 12, 12, 15, 15, 18] - ALL divisible by 3
+  -> Z_3 is the SMALLEST code closing every minimal chiral base
+     (Z_4, Z_6, Z_9 also close all six at this scope), and the
+     mechanism is visible: every minimal base's total charge is
+     divisible by 3, so the full stack itself is the closing
+     triple.  A triality-flavored hint (QCD's center is Z_3),
+     reported as a Phase-I observation at stated scope, NOT a
+     derivation.
+
+== verdict accounting ==
+  Z_6, k = 6: raw 44100 -> anomaly 282 -> chiral 72 -> closure 72 -> generations 0
+  -> Phase I outputs three structure theorems for (M):
+     (1) no chiral matter below base size 3 (P14, used);
+     (2) generations factorize through the anomaly filter:
+         minimal 3-generation chiral content = 9 + 9;
+     (3) the closure census selects small triality-friendly
+         codes.  The search is a bounded enumeration now.
+== p17a done ==

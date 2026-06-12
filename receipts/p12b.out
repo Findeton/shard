@@ -1,0 +1,19 @@
+== (i) 2d tensor metric: spectral convergence ==
+  metric: rotated eigenframe, l1 = 1.3, l2 = 0.7, varying angle
+  max rel err n=16: 1.6362e-02
+  max rel err n=24: 7.4856e-03   ratio = 2.19   [O(1/n^2): (24/16)^2 = 2.25]
+
+== (ii) uniform audit over the anisotropic class ==
+  class: theta in [0, pi), l1 in [0.9, 1.5], l2 in [0.6, 0.9],
+  modulation eps in [0.05, 0.3]; 12 random metrics x n in
+  {16, 24, 32} x modes 1..8:
+  sup |lam_k(n) - lam_k| / (h^2 lam_k^2) = 0.1267  at (1, 32, 1)
+  AUDITED PROPOSITION: C* = 0.25 holds with margin 2.0x - the anisotropic (C1) analogue of P8 Proposition 7.1.
+
+== (iii) 3d tensor metric: the first 3-metric record instance ==
+  max rel err n=8 : 5.0426e-02
+  max rel err n=12: 2.2660e-02   ratio = 2.23   [O(1/n^2): (12/8)^2 = 2.25]
+  -> genuine 3-metrics (full symmetric tensor fields) converge at
+     second order: sub-gate (C1) now covers the actual Riemannian
+     data of a spatial slice, not only conformal classes.
+== p12b done ==

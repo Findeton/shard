@@ -1,0 +1,91 @@
+== PRE-REGISTRATION (written before computation) ==
+  PHASE 1 (theorem): in the RP form (paper-II Thm 2.1), define a
+  SEALED binary seam = rank-one PSD letters A0 = p uu*, A1 = (1-p)
+  vv* (S-atomicity: a sealed distinction has no internal
+  multiplicity - NAMED IDENTIFICATION).  Claims to prove: (L-A)
+  ||sqrt(A0) sqrt(A1)|| = sqrt(p(1-p)) |<u,v>| <= sqrt(p(1-p));
+  (L-B) lam_max(A0+A1) = 1 iff |<u,v>| = 1 (for p not 0,1); (T-C)
+  a stationary state (T omega = omega) overlapping the seam FORCES
+  alignment, hence saturation: the factor is eps(1-eps) EXACTLY,
+  derived from stationarity - no new principle.  (R-D) the seam
+  phase is rephasing gauge (axiom-S silent); the O35.1 object
+  ("sealed in modulus, silent in phase") exists constructively.
+  KILL: if stationarity forces MISalignment or a different factor,
+  the dressed base dies by the program's own axioms.
+  PHASE 2 (consequences, fixed in advance - no additions after
+  checking data): (P-MIX) atmospheric mixing maximal, sin^2(th23)
+  = 1/2 (provenance: P34 minimal texture, derived BEFORE this
+  framing); (P-CPV) seam phases silent => mass matrices real-
+  equivalent => Jarlskog J = 0, delta_CP in {0, pi}; (P-SPEC) the
+  full dressed spectrum with NO free coefficient (C = C1 = 1 on
+  eps_eff), hence S, Sum(m), and the DISCRETE m_bb menu under
+  Majorana signs.  Each carries its current-data status, stated
+  even where it hurts.
+
+  eps = 0.0317686364465818   eps_eff = 0.0307593901849067
+
+== L-A: the intertwiner-norm identity (random sealed seams) ==
+  ||sqrt(A0) sqrt(A1)|| = sqrt(p(1-p)) |<u,v>| : worst dev 2.78e-16 over 200 random seams (d = 2..5, complex)
+  bound sqrt(p(1-p)) saturated iff |<u,v>| = 1: by the identity
+
+== L-B: lam_max(A0+A1) = 1 iff aligned ==
+  closed form verified: worst dev 3.33e-16
+  strict gap for misaligned seams: 1 - lam_max >= 1.000 * p(1-p)(1-|c|^2)  (> 0 whenever |c| < 1)
+
+== T-C: stationarity forces saturation ==
+  T omega = omega requires omega to be a 1-eigenvector of T; on
+  the seam span, lam_max < 1 STRICTLY unless |<u,v>| = 1 (L-B), so
+  any stationary state overlapping the seam forces alignment, and
+  the intertwiner norm is then sqrt(p(1-p)) EXACTLY (L-A).  With
+  p = eps: per-seam factor eps(1-eps) = eps_eff - the dressed
+  base, DERIVED from (i) S-atomicity [identification], (ii) the
+  RP form's own stationarity [theorem 2.1 machinery].
+  demo (p = eps, |c| = 0.9): lam_max = 0.994116 < 1 -> ||T w - w|| >= 5.88e-03 ||w_seam||: no stationary overlap
+  aligned seam: A0 A1 - A1 A0 = 0.0e+00 -> the saturated seam
+  is CLASSICAL (commuting letters): sealed = aligned = classical;
+  the 'coherence' bound is met by the definite record, exactly
+  as a record-first ontology would have it.
+  R-D (phase): u -> e^(i phi) u changes no letter and no weight:
+  the seam phase is rephasing gauge = axiom-S silent; modulus
+  physical.  The O35.1 object EXISTS, constructively.
+
+== BRIDGE STATUS after T-C ==
+  DERIVED: the per-seam factor eps(1-eps) (given S-atomicity +
+  stationarity).  REMAINING IDENTIFICATION (O35.1b): rung index =
+  number of seam insertions in amplitude (half-rung = one factor
+  sqrt(eps(1-eps))).  The bridge gap has shrunk from 'derive the
+  factor' to 'derive the count' - smaller, but still open and
+  graded as such.
+
+== P-SPEC: the full dressed spectrum (no free coefficient) ==
+  m = (1.542, 8.793, 50.134) meV;  S = 0.1727469  (JUNO-now 0.17283 +- 0.00167: -0.05 sigma)
+  Sum(m) = 60.468 meV
+
+== P-MIX: maximal atmospheric mixing (registered with eyes open) ==
+  claim: sin^2(th23) = 1/2 exactly (provenance: P34 minimal
+  texture, derived before this framing).  Current global fit
+  ~ 0.572 +0.018/-0.023: tension ~ 3.1 sigma,
+  with KNOWN octant instability across fit releases - registered
+  anyway; resolving data: JUNO + atmospheric (DUNE/HK).
+
+== P-CPV: silent seam phases => J = 0, delta in {0, pi} ==
+  claim: leptonic Dirac CP violation vanishes (J = 0); current
+  fit delta ~ 197.0 +- 27.0 deg: distance from 180 deg ~ 0.6 sigma - COMPATIBLE today.
+  KILL: DUNE/HK excluding both CP-conserving values at 5 sigma
+  kills the silent-phase mechanism outright.
+
+== P-BB: the discrete m_bb menu (Majorana signs +-1) ==
+  (eta2, eta3) = (+1, +1):  m_bb = 4.771 meV
+  (eta2, eta3) = (+1, -1):  m_bb = 2.540 meV
+  (eta2, eta3) = (-1, +1):  m_bb = 0.438 meV
+  (eta2, eta3) = (-1, -1):  m_bb = 2.669 meV
+  -> a DISCRETE four-value menu (phases frozen at 0/pi by the
+     mechanism); all ~1-4 meV: below next-generation 0vbb
+     sensitivity - a consistency statement, honestly labeled.
+
+== KILL TABLE (assembled) ==
+  K1  stationarity forcing fails on inspection      -> withdrawn
+  K2  sin^2(th23) = 1/2 excluded at 5 sigma         -> P-MIX dead
+  K3  CP conservation excluded at 5 sigma (DUNE/HK) -> mechanism dead
+  K4  S = 0.17275 excluded at 5 sigma (JUNO-final)  -> dressed base dead
+  K5  O35.1b shown impossible (rung != seam count)  -> bridge dead

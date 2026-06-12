@@ -1,0 +1,39 @@
+== D5a. frame winding of exchange paths (machine path-integration) ==
+  exchange path 1 (0 extra loop): single winding = +1.000000 pi  double = +2.000000 pi
+  exchange path 2 (0 extra loop): single winding = +1.000000 pi  double = +2.000000 pi
+  exchange path 3 (1 extra loop): single winding = +3.000000 pi  double = +6.000000 pi
+  -> single exchange winds the relative frame by an ODD multiple of pi;
+     double exchange by an even multiple (2 pi mod 4 pi): the frame
+     content of exchange is a THEOREM of screen geometry.
+
+== D5b. statistics under axiom (X): E = e^(2 pi i m) SWAP ==
+  integer (m=0)         : E^2 = 1 (0.0e+00), physical sector dim = 10 (symmetric, d(d+1)/2 = 10)
+    max double-occupancy weight in physical sector = 1.00e+00   (occupancy allowed)
+  half-integer (m=1/2)  : E^2 = 1 (2.4e-16), physical sector dim = 6 (antisymmetric, d(d-1)/2 = 6)
+    max double-occupancy weight in physical sector = 0.00e+00   (PAULI EXCLUSION)
+  boson bunching: mean enhancement 1.6340 over 2000 random
+  pairs; exact law 2/(1+|<a|b>|^2) matched per pair to 2.2e-15;
+  orthogonal amplitudes -> factor 2 exactly (machine: diag check passes)
+
+== D5c. kinematic no-go: frame-blind exchange is equally consistent ==
+  E' = SWAP on m=1/2 cells: E'^2 = 1 (0.0e+00), all sealed single-cell marginals unchanged (permutation-invariant)
+  -> both E and E' are kinematically admissible: statistics is NOT forced
+     by kinematics alone (consistent with the Berry-Robbins literature);
+     axiom (X) - exchange is the FRAMED no-twist transport - is the named,
+     load-bearing record-native choice; its derivation from P4 s20-21/s34
+     transport structure is OPEN (the route is named in the paper).
+
+== D6. record CAR algebra (Jordan-Wigner) and exclusion capacity ==
+  4 record modes, Jordan-Wigner construction: max CAR violation |{a_i,a_j^+} - delta| , |{a_i,a_j}| = 0.00e+00
+  double creation (a_0^+)^2 = 0: max entry = 0.00e+00   (exclusion at the operator level)
+
+  exclusion tightens record-Bekenstein (pair-cell capacity, nats):
+    d    distinguishable 2 ln d   bosonic ln C(d+1,2)   fermionic ln C(d,2)
+    2      1.386294             1.098612             0.000000
+    3      2.197225             1.791759             1.098612
+    4      2.772589             2.302585             1.791759
+    5      3.218876             2.708050             2.302585
+  -> fermionic pair cells carry strictly less capacity: statistics is a
+     RECORD-CAPACITY datum, feeding the (M) spectrum through Theorem 6.2
+     of Paper 7 (m_hat <= cell capacity).
+== p9b done ==

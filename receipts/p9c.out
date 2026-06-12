@@ -1,0 +1,33 @@
+== D7. chirality wiring: fiber handedness x ledger orientation ==
+  triangle ledger: m_hat(sigma=+1) = 0.459889495499, m_hat(sigma=-1) = 0.266653365180
+  chiral coupling g = 0.3: commitment rates per cycle:
+    L(+1/2) x frustrated     0.023998802866
+    R(-1/2) x oriented       0.041390054595
+  parity image swaps the pairings: rate asymmetry = 0.017391251729  (PARITY VIOLATED)
+  achiral control: relation-free ledger (defect = 0 exactly, one class):
+    L and R rates equal by Theorem (P8 Cor 5.2): asymmetry = 0
+  -> a parity-violating record coupling requires BOTH ingredients:
+     a signed fiber weight (this paper) and a relation-carrying
+     oriented ledger (Paper 8).  This is the record Weyl seed, and it
+     sharpens clause (vi) of the SM inverse problem.
+
+== D8. 1+1 lattice Dirac: convergence, doubling, Wilson term ==
+   dx        |omega_naive(k) - |k||     ratio
+   0.2000   2.284427e-03        -
+   0.1000   5.715266e-04         4.00
+   0.0500   1.429079e-04         4.00
+   0.0250   3.572862e-05         4.00
+   [O(dx^2) predicts 4.00]
+  naive-fermion zeros at k dx/pi = ['-1.00', '+0.00', '+1.00']  (+-1 identified: 2 distinct zone points)
+  -> 1 doubler per dimension (zeros at 0 and pi): 2^D species in D
+     dimensions: the doubling problem is PRESENT on the record lattice.
+   dx       doubler mass 2r/dx     chiral-breaking at k=0.7 (Wilson term)
+   0.200          10.00              4.892002e-02   (~ r k^2 dx/2 = 4.900000e-02)
+   0.100          20.00              2.449000e-02   (~ r k^2 dx/2 = 2.450000e-02)
+   0.050          40.00              1.224875e-02   (~ r k^2 dx/2 = 1.225000e-02)
+  -> the Wilson cure gaps the doublers (mass -> infinity in the limit)
+     at the cost of EXPLICIT chiral breaking that vanishes only as O(dx):
+     the Nielsen-Ninomiya obstruction is hereby REGISTERED for the
+     record lattice; clause (vi) of the SM inverse problem (chiral
+     fermions) inherits it, exactly as lattice QCD does.
+== p9c done ==

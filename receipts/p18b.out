@@ -1,0 +1,39 @@
+== (i) the transport commutant on V x V ==
+  d = 2: dim of commutant of {U x U} = 2   (span{1, P}: 2)
+  d = 3: dim of commutant of {U x U} = 2   (span{1, P}: 2)
+  d = 4: dim of commutant of {U x U} = 2   (span{1, P}: 2)
+  -> eps = a 1 + b P; with eps^2 = 1 and unitarity:
+     (a,b) solves a^2 + b^2 = 1, 2ab = 0  =>
+     eps in { +1, -1, +P, -P }: FOUR candidates.
+
+== (ii) the ledger clash: +-1 contradict sealed entries ==
+   candidate     |<w'| eps |w>|     sealed cross-record modulus
+     +1            0.0                  1.0
+     -1            0.0                  1.0
+     +P            1.0                  1.0
+     -P            1.0                  1.0
+  -> the exchanged configuration of DISTINGUISHABLE labels is a
+     different ledger word whose cross-record the eventless seam
+     SEALS with modulus 1 (the transport value; the SIGN on
+     distinguishable words is word-phase gauge).  Candidates +-1
+     predict ABSENCE (modulus 0) - no phase convention repairs an
+     absent record: they contradict a sealed entry and are
+     EXCLUDED by the ledger (a silent label-spectation is a
+     silent seam: P4's exclusion principle).  Surviving: +-P.
+
+== (iii) the sign: D9a computes it - exchange IS transport ==
+  By P11 Part III (D9a discharged), record exchange of identical
+  excitations IS eventless transport along the exchange path,
+  which carries a relative 2pi frame rotation (P9's frame-winding
+  theorem).  The projective layer therefore CONTRIBUTES the phase
+  of a 2pi rotation on the spin-m fiber - computed, not chosen:
+   m = 0.5: exp(2 pi i Jz) = -1 * 1   [(-1)^(2m) = -1]
+   m = 1.0: exp(2 pi i Jz) = +1 * 1   [(-1)^(2m) = +1]
+   m = 1.5: exp(2 pi i Jz) = -1 * 1   [(-1)^(2m) = -1]
+  -> eps = (-1)^(2m) P: THEOREM R2.  The record exchange is the
+     fiber PERMUTATION times the computed projective sign; the
+     +-P 'freedom' of (i)-(ii) was apparent only before D9a.
+     Record-Pauli (P11 Part II) is then a CONSEQUENCE, and
+     statistics never carries fiber structure of its own:
+     PARASTATISTICS IS NOT FUNDAMENTAL in the record ontology.
+== p18b done ==

@@ -1,0 +1,48 @@
+== R1. least-record-work uniqueness (P4 s20 mechanism) ==
+  Frobenius orthogonality <S, A> = 0.00e+00  (symmetric _|_ skew)
+    record-work W(a=0.0) = 11.224714
+    record-work W(a=0.3) = 12.009491
+    record-work W(a=1.0) = 19.944464
+  -> W(a) = ||S||^2 + a^2 ||A||^2: the eventless connection is the
+     UNIQUE zero-circulation one (P4 s20); twist costs record work
+     that nothing eventless can pay.
+
+== R2. sealed positivity quantizes any extra twist: a in {0, pi} ==
+    a/pi     max |Im(sealed weight)|   min Re(weight), best sector
+    0.00     0.000000                 +0.000000
+    0.25     0.707107                 +0.000000
+    0.50     1.000000                 +0.000000
+    0.75     0.707107                 +0.000000
+    1.00     0.000000                 +0.000000
+  -> sealed weights are real only at a/pi in {0, 1}: an independent
+     twist is quantized to Z2 BEFORE any exclusion (independently
+     recovering the (1,3) quantization of P9 s6); the remaining Z2
+     choice is exactly 'winding rep' vs 'winding rep x silent pi'.
+
+== R3. the Z2 decision: the extra pi is a silent circulation ==
+  relative record work of the candidate connections on the exchange
+  path (geometric reference = the frame-winding representation):
+    associated (twist = winding rep)       relative work = 0.0000
+    winding rep x extra pi circulation     relative work = 9.8696
+  -> the extra pi is oriented circulation sourced by NO record-
+     geometric datum: silent, hence excluded by the no-silent-
+     circulation principle (P4 s20: 'nonzero twist = exchange-defect
+     holonomy source, not a free connection').  If a record DID
+     source it, the source carries evidence: the sector is driven,
+     not eventless (P10 Part I) - either way, the eventless exchange
+     twist equals the frame-winding representation:
+        E = (-1)^(2m) SWAP,   DERIVED (D9a discharged).
+
+== R4. the closed spin-statistics chain (no remaining axiom) ==
+  m = 0  : forced sector = symmetric;  P(coincident records) = 4.03e-01
+  m = 1/2: forced sector = antisymmetric;  P(coincident records) = 0.00e+00   (PAULI: derived, exact zero)
+
+  CHAIN:  frame winding (P9 7.1, proved)  ->  association (R1-R3,
+  P4 s20 instantiated)  ->  sector forcing (P11 Part II, proved):
+  STATISTICS = (-1)^(2m) is a THEOREM of eventless record transport.
+  Axiom (X): DISCHARGED at stated scope.  Premise ledger: P1 (exchange
+  is eventless transport - architecture), P2 (no-silent-circulation on
+  the pair fiber - the P4 s20 principle, instance-identified on an
+  internal fiber: the single contestable step, named), P3 (sealed
+  positivity).  Fermions in SHARD: FORCED, at this scope.
+== p11c done ==

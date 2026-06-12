@@ -1,0 +1,21 @@
+== (i) clustering: the seal reaches every background ==
+  20 valid processes (d = 4), seal word '0110', separation n = 32:
+  max |p(u gap^n w)/(p(u) p(w)) - 1| over ALL backgrounds
+  |u| <= 6: 3.7e-03
+  second transfer eigenvalue (rate): median 0.648
+  -> clustering holds at the spectral-gap rate: the seal's
+     action is nonvanishing on EVERY background of the
+     sector - (E-bg) receipted.  The proof needs only
+     primitivity of the sector transfer (the DEFINITION of a
+     sector, via P16's Frobenius structure) + p(w_seal) > 0
+     (P18 R4).
+
+== (ii) the control: wrong-sector backgrounds give zero ==
+  reducible ledger (sector 1: only 1s; sector 2: only 0s):
+  background u = '00' (sector 2), seal w = '11' (sector 1):
+  p(u gap^n w) at n = 1, 4, 16: [0.0, 0.0, 0.0]
+  -> ZERO identically: no separation rescues a seal whose
+     sector the background excludes.  (E-bg) is a per-sector
+     statement - exactly the scope at which the collapse
+     lemma operates (sectors are where superselection lives).
+== p31e done ==

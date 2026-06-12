@@ -1,0 +1,67 @@
+== (i) the root of the number chain ==
+  refinement cubic root:      theta = 0.543689012692
+  commitment-law root:        eta   = 0.609377863436
+  identity theta = e^(-eta):  |theta - e^-eta| = 0.0e+00
+  algebraic check (t = e^-eta in tanh eta = e^-eta):
+   tanh eta = (1 - t^2)/(1 + t^2) = t  <=>  t^3 + t^2 + t = 1:
+   |(1 - t^2)/(1 + t^2) - t| = 1.1e-16   (SAME equation)
+  MK b = 2 identity: tanh(eta/2) = 0.295597743  vs theta^2 = 0.295597743   (|diff| = 5.6e-17)
+  -> the commitment law, the refinement cubic, and the b = 2
+     fixed point are ONE transcendental number with three faces:
+     axiom C (refinement self-consistency) owns the corpus'
+     entire dimensionless content at the root level.
+
+== (ii) measured record-ladder exponents ==
+   step                value      exponent x      nearest
+                                   = ln/ln(eps)    half-int
+   m_u / m_c            0.00170     1.8492        2.00   [QCD-running, scheme]
+   m_c / m_t            0.00735     1.4246        1.50   [QCD-running, scheme]
+   m_d / m_s            0.05000     0.8688        1.00   [QCD-running, scheme]
+   m_s / m_b            0.02234     1.1023        1.00   [QCD-running, scheme]
+   m_e / m_mu           0.00484     1.5462        1.50   [clean-ish (QED small)]
+   m_mu / m_tau         0.05946     0.8185        1.00   [clean-ish]
+   lambda_Cabibbo       0.22450     0.4332        0.50   [mixing, O(1) Clebsch]
+   S_nu = m2/m3         0.17179     0.5108        0.50   [RG-CLEAN (oscillation)]
+
+  the neutrino exponent with errors: x_nu = 0.5108 +- 0.0044
+  distance from exactly 1/2: 2.5 sigma
+  -> ONE step in nature sits on the half-integer lattice within
+     a few percent - and it is exactly the RG-clean one: ratios
+     of fundamental parameters, no running, no scheme.  The
+     charged steps carry QCD/scheme dressing and unconstrained
+     O(1)s: their exponents scatter (0.43-0.93), as the ladder
+     with free O(1) coefficients predicts.
+
+== (iii) right-handed charges cancel in the seesaw ==
+   algebraic identity m_nu = D_L (B A^-1 B^T) D_L  (qR-free),
+   checked against brute-force inversion at small qR:
+   qR = [0, 0, 0] : ||m_brute - m_factored||/||m|| = 4.1e-17
+   qR = [1, 0, 0] : ||m_brute - m_factored||/||m|| = 4.1e-17
+   qR = [1, 1, 0] : ||m_brute - m_factored||/||m|| = 3.3e-16
+   light exponents from the factored (qR-free) form: x2 = 0.650, x3 = 1.025
+   lattice prediction at qL = (1, 1/2, 0), unit sqrt(eps):
+   x2 = 1/2, x3 = 1  (+ O(1) scatter)
+  -> the right-handed charges cancel EXACTLY (identity + brute-
+     force receipts): the light spectrum reads only the lepton-
+     doublet lattice - the exponent claim is well-posed, and it
+     carries a FREE CONSEQUENCE: m1/m3 = eps (the full spectrum
+     m1 : m2 : m3 = eps : sqrt(eps) : 1, i.e. m1 ~ 1.6 meV for
+     m3 ~ 50 meV - a second testable rung).
+
+== (iv) the O(1) coefficient is not structural ==
+  4000 random O(1) seam textures (coefficients in [0.5, 2]),
+  lattice charges fixed at qL = (1, 1/2, 0), unit sqrt(eps):
+  C = S_nu / sqrt(eps): median 0.644,  68% band [0.216, 1.257]
+  fraction inside the registered band [0.80, 1.25]: 0.23
+  induced exponent scatter: x = 1/2 + ln C / ln eps: 68% band [0.434, 0.945]
+  -> two honest conclusions.  (1) NO corpus structure pins C:
+     under unconstrained O(1) textures it spreads over a factor
+     of several - the coefficient is TEXTURE; the derived
+     content is the LATTICE RUNG (exponent 1/2), not the
+     coefficient.  (2) Nature's value C = 0.963 (|ln C| = 0.04)
+     is unusually central: the O(1)s of the realized texture
+     are mild.  That mildness is NOT explained here and is
+     stated as such - the exponent is the claim, the
+     coefficient's proximity to 1 is unearned good fortune
+     until a texture principle exists.
+== p29a done ==

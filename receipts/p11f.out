@@ -1,0 +1,35 @@
+== F1. the observable process: non-Markov, yet process-RP ==
+  P(o3=1 | o2=0, o1=0) = 0.428001   P(o3=1 | o2=0, o1=1) = 0.445371
+  memory gap = 0.017370  (NON-Markov observable)
+  observable OS Gram (8x8, blocks of 3): min eig = -1.32e-17  (process-RP)
+  -> reflection positivity does NOT require Markovianity: hidden
+     reversibility suffices, exactly as P10 T3/T4 predict.
+
+== F2. the record data determine the reversible presentation ==
+  rank of the observable OS Gram = 4  (hidden dimension = 4)
+  reconstructed transfer spectrum: [-0.159812  0.018581  0.219967  1.      ]
+  hidden reversible transfer spec: [-0.159812  0.018581  0.219967  1.      ]
+  max gap = 1.22e-11
+  -> the OS reconstruction of the OBSERVABLE data recovers the hidden
+     reversible transfer exactly: the reversible presentation is
+     determined by the sealed record law, up to gauge.
+
+== F3. infinite-memory reversible process: cylinder approximability ==
+   d(compressed)   max length-3 cylinder gap to d = 64 reference
+         4            0.128871
+         8            0.086695
+        16            0.010407
+        32            0.001823
+  -> finite reversible presentations reproduce the joint law of the
+     continuous-spectrum process with errors -> 0: approximability
+     holds for the accessible infinite-memory class.
+
+== F4. driven hidden chain: process-RP fails ==
+  observable OS Gram of the driven unicycle: min eig = -1.614e-02  (FAILS)
+  -> the process-level boundary is once more the eventlessness
+     boundary.  STATUS of process-O6: 'every stationary process-RP law
+     = weak limit of finite hidden-REVERSIBLE presentations' - verified
+     on the accessible classes (F1-F3); the general statement is the
+     positive-realization problem (Jaeger; Benvenuti-Farina;
+     Vidyasagar), named as the kernel's final mathematical identity.
+== p11f done ==

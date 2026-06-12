@@ -1,0 +1,125 @@
+== constants ==
+eta_hist = 0.609377863436006  theta_hist = 0.543689012692076
+D1 = m_hat(P1) = 0.156109200157240
+kappa = eta(1-th^2)/(1-th^2+th) = 0.343922878815527   3*kappa = 1.031768636446582
+first-order sign boundary 1/kappa = 2.907628603959139  (w=3 is marginal)
+
+== A. anchor values (must match Papers 6.3-6.4) ==
+  triangle {x,y,xy}                defect = +0.008438104972  (ref +0.008438105)  res=1.1e-16
+  {x,y,z,xyz} single w4            defect = -0.016839123523  (ref -0.016839124)  res=1.1e-16
+  3-spin pairwise (6 modes)        defect = +0.060894615327  (ref +0.060894615)  res=1.1e-16
+  3-spin full (7 modes)            defect = +0.120139064573  (ref +0.120139065)  res=1.1e-16
+  {x,y,z,w,xyzw} single w5         defect = -0.023567123904  (ref -0.023567124)  res=1.8e-14
+  plaquette {xy,yz,zw,wx}          defect = -0.016839123523  (ref -0.016839124)  res=2.2e-16
+
+== B. decomposition theorem and v6.4 probe forensics ==
+  {x,y,xy,z,w} (triangle + two FREE modes):   +0.008438104972   [decomposition predicts +0.008438104972]  gap=2.22e-16
+  {x,y,xy}+{z,w,zw} (two disjoint triangles): +0.016876209945   [2 x triangle = +0.016876209945]  gap=4.44e-16   [v6.4 printed +0.016876309 labeled 'triangle + free pair']
+  {x,y,xy,xyzw,zw} code weights = [3, 3, 4]  -> contains TWO triangles ({x,y,xy} and {xy,zw,xyzw}), one w4 word;
+     defect = +0.020844970391   [v6.4 printed +0.020844986 labeled 'triangle + 4-relation']
+
+== C. disjoint triangle (+) and single w4 relation (-) at n=5 ==
+  S* = {x,y,xy, z,w,u,zwu}: m=7, code weights [3, 4, 7], contains a triangle: True
+  defect(S*) = -0.008401018551   decomposition prediction = -0.008401018551   gap = 1.11e-16   res = 2.2e-16
+  VERDICT: contains a triangle yet defect < 0  -> GLOBAL TRIANGLE LAW REFUTED
+  triangle + disjoint w5 (n=6, m=8): defect = -0.015129018931   [prediction -0.015129018931]  res=3.3e-16
+
+== D. single-relation defect(w), 40-digit fixed point ==
+   w   defect(w)              first-order theta^w(1-w*kappa)   ratio
+    3  +0.008438104972291   -0.005105640645752   -1.652702
+    4  -0.016839123523194   -0.032827182757183   +0.512963
+    5  -0.023567123903722   -0.034186341316418   +0.689373
+    6  -0.021780633113267   -0.027469835199371   +0.792893
+    7  -0.017082659728768   -0.019764689838498   +0.864302
+    8  -0.012214241830450   -0.013371668136528   +0.913442
+    9  -0.008229289101060   -0.008697660396481   +0.946150
+   10  -0.005324306049683   -0.005505009872475   +0.967175
+   11  -0.003347753665742   -0.003415017986429   +0.980303
+   12  -0.002061783361279   -0.002086147023869   +0.988321
+   16  -0.000262122892964   -0.000262475207817   +0.998658
+   20  -0.000029937235728   -0.000029941566526   +0.999855
+   24  -0.000003228444384   -0.000003228492885   +0.999985
+   30  -0.000000107108657   -0.000000107108709   +1.000000
+  sign(defect): w=3 POSITIVE; w>=4 NEGATIVE for all computed w; |defect| max at w=5; asymptotic ratio->1 (dev at w>=16: 0.001)
+  NOTE first-order coefficient at w=3 is NEGATIVE (-0.005106): triangle binding is a second-order effect (3*kappa-1 = +0.031769).
+
+== E. exhaustive scan: all 32767 statistic sets on 4 spins ==
+  scanned 32767 sets in 27.5s
+  relation-free: 1380  (max |defect| = 1.22e-15; theorem: 0)
+  triangle-bearing: 29719   min defect = -0.008284544219  at masks [2, 4, 6, 7, 9, 10]
+  relations-no-triangle: 1668   max defect = +0.012439836169  at masks [2, 3, 6, 7, 8, 9, 12, 13]
+  GLOBAL law violations: triangle-but-antibinds = 1680, no-triangle-but-binds = 15
+  component-additivity max gap (ALL sets): 1.55e-15
+  CONNECTED (indecomposable) violating codes: triangle-anti = 1680, no-tri-bind = 15
+    minimal connected triangle-anti example: masks [1, 2, 3, 4, 8, 13] m=6 code weights [3, 4, 5] defect = -0.008284544219
+    minimal connected no-tri-bind example:   masks [1, 2, 4, 7, 8, 11, 13, 14] m=8 code weights [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 8] defect = +0.012439836169
+
+  distinct connected codes solved: 24967
+  weight-enumerator classes among connected components: 35; classes with MULTIPLE defect values: 0
+  connected-class table (enumerator -> defect):
+    [3                             ]  defect = +0.008438105
+    [4                             ]  defect = -0.016839124
+    [5                             ]  defect = -0.023567124
+    [3,4,5                         ]  defect = -0.008284544
+    [3^2,4                         ]  defect = +0.020844970
+    [3^2,6                         ]  defect = +0.016876210
+    [4^3                           ]  defect = -0.026351161
+    [3^2,4^3,5^2                   ]  defect = +0.013117622
+    [3^3,4^2,5,6                   ]  defect = +0.033961746
+    [3^3,4^3,7                     ]  defect = +0.037610325
+    [3^4,4^3                       ]  defect = +0.060894615
+    [4^7                           ]  defect = -0.017060290
+    [3^3,4^7,5^4,7                 ]  defect = +0.045945404
+    [3^4,4^5,5^4,6^2               ]  defect = +0.059371669
+    [3^4,4^6,5^4,8                 ]  defect = +0.060852814
+    [3^5,4^5,5^2,6^2,7             ]  defect = +0.078351024
+    [3^7,4^7,7                     ]  defect = +0.120139065
+    [4^14,8                        ]  defect = +0.012439836
+    [3^4,4^14,5^8,7^4,8            ]  defect = +0.091859202
+    [3^6,4^9,5^9,6^6,9             ]  defect = +0.111016691
+    [3^6,4^10,5^8,6^4,7^2,8        ]  defect = +0.112519007
+    [3^7,4^9,5^6,6^6,7^3           ]  defect = +0.125683655
+    [3^8,4^10,5^4,6^4,7^4,8        ]  defect = +0.141082689
+    [3^8,4^18,5^16,6^8,7^8,8^5     ]  defect = +0.173250516
+    [3^9,4^16,5^15,6^12,7^7,8^3,9  ]  defect = +0.181921547
+    [3^10,4^15,5^12,6^15,7^10,10   ]  defect = +0.192478880
+    [3^10,4^16,5^12,6^12,7^10,8^3  ]  defect = +0.192865132
+    [3^12,4^26,5^28,6^24,7^20,8^13,9^4]  defect = +0.256149548
+    [3^13,4^25,5^25,6^27,7^23,8^10,9^3,10]  defect = +0.263939374
+    [3^13,4^26,5^24,6^24,7^26,8^13,11]  defect = +0.264571490
+    [3^16,4^39,5^48,6^48,7^48,8^39,9^16,12]  defect = +0.342071800
+    [3^17,4^38,5^44,6^52,7^54,8^33,9^12,10^4,11]  defect = +0.348245204
+    [3^22,4^55,5^72,6^96,7^116,8^87,9^40,10^16,11^6,12]  defect = +0.441696524
+    [3^28,4^77,5^112,6^168,7^232,8^203,9^112,10^56,11^28,12^7]  defect = +0.542149834
+    [3^35,4^105,5^168,6^280,7^435,8^435,9^280,10^168,11^105,12^35,15]  defect = +0.648143165
+
+  monotonicity of defect under adding one mode to a triangle-bearing set:
+    extensions tested: 213810; min increment = -1.672e-02; strict decreases: 10920  -> monotone-above-triangle conjecture REFUTED
+
+== F. n=5 structured probes and random sample ==
+  random relation-carrying sets checked: 861 (0.8s)
+  component-additivity max gap: 1.44e-15
+  GLOBAL-law violations: 138   CONNECTED-law violations: 138
+
+== F2. sign-classification robustness ==
+  min |defect| over relation-carrying CONNECTED classes at n<=4: 0.008284544000
+  (six orders above the 1e-9 classification threshold and the 1e-13
+   solver residual: the n=4 exhaustive classification is robust.)
+  near-cancellation composite (2 triangles + w4, n=7, m=10):
+    defect = +0.000037086421   prediction 2*tri + w4 = +0.000037086421   gap = 1.1e-16   res = 2.2e-16
+  -> TOTAL defects of decomposable ledgers approach zero (here +3.7e-5);
+     sign classification is only meaningful PER COMPONENT - one more
+     reason the component law, not any global sign rule, is the physics.
+
+== G. families: binding density (item 2 / stable species) ==
+  family                                               defect   defect/mode
+  full set n=3 (m=7)                            +0.120139065 +0.017162724   res=1e-16
+  full set n=4 (m=15)                           +0.648143165 +0.043209544   res=5e-14
+  full set n=5 (m=31)                           +2.287722188 +0.073797490   res=2e-16
+  singles+pairs n=3 (m=6)                       +0.060894615 +0.010149103   res=1e-16
+  singles+pairs n=4 (m=10)                      +0.192478880 +0.019247888   res=2e-16
+  singles+pairs n=5 (m=15)                      +0.429040990 +0.028602733   res=2e-16
+  pairs-only (Curie-Weiss-type) n=4 (m=6)       +0.060894615 +0.010149103   res=0e+00
+  pairs-only (Curie-Weiss-type) n=5 (m=10)      +0.192478880 +0.019247888   res=4e-16
+
+== p8a done ==

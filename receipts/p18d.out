@@ -1,0 +1,46 @@
+== (i) the center of the reconstructed group acts by triality ==
+  Lambda^1 (fundamental (quark)): center phase = omega^1 = -0.500+0.866i
+  Lambda^2 (Lambda^2 (diquark)): center phase = omega^2 = -0.500-0.866i
+  Lambda^3 (Lambda^3 (baryon)): center phase = omega^3 = +1.000-0.000i  -> TRIVIAL (singlet-capable)
+  machine: det(omega 1_3) = +1.000-0.000i  (= 1: omega 1 is IN SU(3))
+
+== (ii) P17's closure predicate is center neutrality ==
+   base (L | R)            charges mod 3        center-neutral triple?
+   [1, 4, 4]   |[2, 2, 5]     (1, 1, 1) |(2, 2, 2)    True
+   [1, 5, 6]   |[2, 3, 7]     (1, 2, 0) |(2, 0, 1)    True
+   [2, 5, 5]   |[3, 3, 6]     (2, 2, 2) |(0, 0, 0)    True
+   [2, 6, 7]   |[3, 4, 8]     (2, 0, 1) |(0, 1, 2)    True
+   [3, 6, 6]   |[4, 4, 7]     (0, 0, 0) |(1, 1, 1)    True
+   [4, 7, 7]   |[5, 5, 8]     (1, 1, 1) |(2, 2, 2)    True
+  -> every minimal chiral base is center-neutral as a whole (the
+     P17 divisibility observation), so each closes in Z_3: the
+     closure census IS the SU(3) singlet rule seen abelianly -
+     as Doplicher-Roberts predicts, the abelian search detects
+     exactly the CENTER of the reconstructed group.
+
+== (iii) the lift dictionary for the multiplicity-3 spectra ==
+  P17 4d minimal solutions with multiplicity-3 charges:
+   {-5,-1,-1,-1, 4, 4}:  (-1)x3  ->  ONE fundamental of U(3)
+                         with determinant charge -3 (= -1 each)
+   {-4,-4, 1, 1, 1, 5}:  (+1)x3  ->  ONE fundamental of U(3)
+                         with determinant charge +3
+  -> by R3 (statistics order = fiber dimension), a multiplicity-3
+     abelian charge is the SHADOW of one fiber-3 excitation; the
+     abelian charge itself rides det U(3) - the hypercharge slot,
+     exactly where the baryon receipt (p18c) put it.
+
+== (iv) the representation search target ==
+   SU(3) irrep   dim   triality (center charge)
+     3            3        1
+     3bar         3        2
+     6            6        2
+     8            8        0
+     10          10        0
+  -> (M) Phase II is now POSED: search representation contents of
+     the reconstructed U(d) fibers (with their determinant U(1)s)
+     against the nonabelian anomaly/seam predicates, with Phase
+     I's abelian data as the CENTER boundary condition.  The gate
+     D10 is DISCHARGED at stated scope: nonabelian gauge-charged
+     matter exists in SHARD exactly as fiber-dimension >= 2
+     sectors with eps = (-1)^(2m) P statistics.
+== p18d done ==

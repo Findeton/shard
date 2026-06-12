@@ -1,0 +1,35 @@
+== (i) greybody factor: record scattering vs the closed form ==
+  profile N^2 = 1/(1+e^(-2 kappa y)), m_perp = 1.0, kappa = 0.5  (T_H = kappa/2pi = 0.07958)
+   omega     R_record        R_exact         |diff|
+    1.05   0.01753891    0.01753891    1.5e-14
+    1.20   0.00022365    0.00022365    5.4e-16
+    1.50   0.00000065    0.00000065    4.7e-17
+    2.00   0.00000000    0.00000000    4.2e-19
+  -> the record mode reflects off the lapse-squared barrier at
+     exactly the closed-form greybody factor.
+
+== (ii) sharp-step limit = P12's impedance law; adiabatic limit ==
+   kappa =   2.0:  R_exact = 0.006275
+   kappa =   8.0:  R_exact = 0.019543
+   kappa =  32.0:  R_exact = 0.021172
+   sharp-interface impedance law ((k-q)/(k+q))^2 = 0.021286
+   kappa = 0.125: R_exact = 3.92e-25  (adiabatic: transparent)
+  -> the greybody filter interpolates the P12 interface physics:
+     it is the impedance mismatch smoothed over the thermal record
+     width 1/(4 pi T_H); hot horizons scatter like sharp seams,
+     cold ones are transparent.
+
+== (iii) record lattice packet vs R(omega_0) ==
+  packet omega_0 = 1.2, bandwidth 1/sigma = 0.083:
+  reflected energy fraction = 0.05079
+  bandwidth-averaged R      = 0.05080   (monochromatic R = 0.04507)
+  |diff| = 1.7e-05
+  -> the record dynamics itself realizes the greybody filter.
+
+== (iv) below the barrier: total reflection ==
+   omega = 0.5: |R - 1| = 2.2e-16   (evanescent transmitted channel: unitarity forces R = 1)
+   omega = 0.9: |R - 1| = 0.0e+00   (evanescent transmitted channel: unitarity forces R = 1)
+  -> massive record modes below the barrier top cannot escape to
+     the flat region: the horizon's emission in each massive
+     channel opens only above m_perp - the greybody gap.
+== p13d done ==

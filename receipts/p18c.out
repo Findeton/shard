@@ -1,0 +1,38 @@
+== (i) the fiber dimension truncates the statistics algebra ==
+  d = 3, n = 2: dim span(S_n on V^n) = 2   FULL
+  d = 3, n = 3: dim span(S_n on V^n) = 6   FULL
+  d = 3, n = 4: dim span(S_n on V^n) = 23   TRUNCATED (n! = 24)
+  d = 2, n = 3: dim span(S_n on V^n) = 5   TRUNCATED (n! = 6)
+  -> once n exceeds d the symmetric-group algebra acts with a
+     KERNEL: Young components with more than d rows are absent.
+     'Parastatistics of order d' is the shadow of a d-dim fiber.
+
+== (ii) the gauge algebra = commutant of the record statistics ==
+  dim commutant of S_3 on (C^3)^3 = 165   [sum dim^2 of GL(3) irreps: 100 + 64 + 1 = 165]
+  dim span{U x U x U : U in U(3)} = 165
+  -> EQUAL: the span of gauge transports IS the full commutant of
+     the record statistics.  At record scope this is the
+     Doplicher-Roberts reconstruction: THE GAUGE GROUP IS NOT AN
+     INPUT - it is recovered as the symmetry of the exchange
+     structure (Schur-Weyl duality as the record receipt).
+
+== (iii) the collapse bookkeeping ==
+  n = 3: sum dim S_lambda(C^3) x f_lambda = 10*1 + 8*2 + 1*1 = 27 = 3^3
+  n = 4: 15*1 + 15*3 + 6*2 + 3*3 = 81 = 3^4
+  -> the 'para-order-3' sector state count IS that of ordinary
+     Fermi/Bose excitations carrying the 3-dim fiber: nothing is
+     gained or lost by unhiding the fiber - the collapse is exact.
+
+== (iv) color receipts: baryon, Pauli-for-color, center ==
+  rank A_3 on (C^3)^3 = 1   (the unique baryon singlet)
+  ||A_4 on (C^3)^4||_max = 0.0e+00   (EXACT ZERO: Pauli for color)
+  ||U^3 b - det(U) b|| = 2.4e-16   (the baryon sees ONLY det(U): the abelian/center shadow)
+
+== (v) statistics order = fiber dimension, forced ==
+  generic sealed 3-excitation record: baryon-channel weight = 0.00964 > 0
+  para-order-2 hosting (Young columns <= 2) deletes the (1,1,1)
+  channel: predicted weight 0 - CONTRADICTS the sealed entry.
+  -> order < d clashes with the ledger; order = d hosts every
+     channel; order > d adds nothing (the truncation of (i) is
+     automatic).  THE STATISTICS ORDER IS THE FIBER DIMENSION.
+== p18c done ==

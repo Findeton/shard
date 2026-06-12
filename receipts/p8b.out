@@ -1,0 +1,70 @@
+code/v6_p8b_chirality_campaign.py:66: RuntimeWarning: overflow encountered in exp
+  if np.abs(chi.T @ p2 - np.exp(-h2)).max() < r:
+== A. orientation classes = characters of the relation code ==
+  triangle {x,y,xy}                          |K| =   2  orbit count =   2  MATCH
+  {x,y,z,xyz} (single w4)                    |K| =   2  orbit count =   2  MATCH
+  relation-free {x,y,z}                      |K| =   1  orbit count =   1  MATCH
+  two glued triangles {x,y,xy,zw,xyzw}       |K| =   4  orbit count =   4  MATCH
+  3-spin full set                            |K| =  16  orbit count =  16  MATCH
+  relation-free {x,y,z,w}: all 16 sign patterns -> defect values [-0.0] (achiral)
+
+== B. enantiomer spectra: single weight-w relation, sigma = +-1 ==
+   w   defect(sigma=+1)      defect(sigma=-1)      splitting        h(-) - eta
+    3  +0.008438104972   +0.201674235292   -0.193236130320   +0.504764
+    4  -0.016839123523   +0.105877085870   -0.122716209393   +0.171745
+    5  -0.023567123904   +0.061267877568   -0.084835001472   +0.071691
+    6  -0.021780633113   +0.037705561769   -0.059486194882   +0.033506
+    7  -0.017082659729   +0.023639779354   -0.040722439083   +0.016666
+    8  -0.012214241830   +0.014826223488   -0.027040465318   +0.008591
+  frustrated triangle (sigma=-1): h = 1.114142135492 > eta = 0.609377863436 -> the h_a <= eta_hist mechanism of the gap proof FAILS for frustrated classes
+  first-order theory with signs: sigma*theta^3*(1-3kappa) = +0.005105641 for sigma=-1 (actual +0.201674235)
+  cross-check full solver {x,y,-xy}: defect = +0.201674235292  res=0.0e+00
+
+== C. chiral multiplets: defect over all orientation classes ==
+  two glued triangles {x,y,xy,zw,xyzw} (dim 2): 4 orientation classes
+    sigma(basis)=(-1, 1)  defect = +0.2900693619  m_hat = 0.4904766389  res=3e-16  label-ok=True
+    sigma(basis)=(1, -1)  defect = +0.2400306447  m_hat = 0.5405153561  res=1e-16  label-ok=True
+    sigma(basis)=(-1, -1)  defect = +0.2400306447  m_hat = 0.5405153561  res=1e-16  label-ok=True
+    sigma(basis)=(1, 1)  defect = +0.0208449704  m_hat = 0.7597010304  res=1e-16  label-ok=True
+    distinct defect values: 3
+  3-spin full set (dim 4): 16 orientation classes
+    sigma(basis)=(-1, -1, -1, 1)  defect = +0.9592334190  m_hat = 0.1335309821  res=3e-17  label-ok=True
+    sigma(basis)=(1, -1, -1, -1)  defect = +0.4969939626  m_hat = 0.5957704385  res=6e-15  label-ok=True
+    sigma(basis)=(-1, 1, 1, 1)  defect = +0.4969939626  m_hat = 0.5957704385  res=6e-15  label-ok=True
+    sigma(basis)=(1, -1, 1, 1)  defect = +0.4969939626  m_hat = 0.5957704385  res=5e-15  label-ok=True
+    sigma(basis)=(1, 1, 1, -1)  defect = +0.4969939626  m_hat = 0.5957704385  res=5e-15  label-ok=True
+    sigma(basis)=(-1, 1, -1, -1)  defect = +0.4969939626  m_hat = 0.5957704385  res=5e-15  label-ok=True
+    sigma(basis)=(1, 1, -1, 1)  defect = +0.4969939626  m_hat = 0.5957704385  res=5e-15  label-ok=True
+    sigma(basis)=(-1, -1, 1, -1)  defect = +0.4969939626  m_hat = 0.5957704385  res=6e-15  label-ok=True
+    sigma(basis)=(-1, 1, -1, 1)  defect = +0.4162445803  m_hat = 0.6765198208  res=3e-16  label-ok=True
+    sigma(basis)=(-1, -1, -1, -1)  defect = +0.4162445803  m_hat = 0.6765198208  res=1e-16  label-ok=True
+    sigma(basis)=(1, -1, -1, 1)  defect = +0.4162445803  m_hat = 0.6765198208  res=1e-16  label-ok=True
+    sigma(basis)=(1, -1, 1, -1)  defect = +0.4162445803  m_hat = 0.6765198208  res=6e-17  label-ok=True
+    sigma(basis)=(1, 1, -1, -1)  defect = +0.4162445803  m_hat = 0.6765198208  res=1e-16  label-ok=True
+    sigma(basis)=(-1, -1, 1, 1)  defect = +0.4162445803  m_hat = 0.6765198208  res=1e-16  label-ok=True
+    sigma(basis)=(-1, 1, 1, -1)  defect = +0.4162445803  m_hat = 0.6765198208  res=4e-16  label-ok=True
+    sigma(basis)=(1, 1, 1, 1)  defect = +0.1201390646  m_hat = 0.9726253365  res=1e-16  label-ok=True
+    distinct defect values: 4
+
+== D. signed gap test: does m_hat >= m_hat(P1) survive orientation? ==
+  exhaustive signed n=3: 2186 oriented ledgers in 0.7s
+  min m_hat = 0.133530982072  at masks [1, 2, 3, 4, 5, 6, 7] eps [-1, -1, -1, 1, 1, 1, 1]
+  gap bound m_hat(P1) = 0.156109200157   ->  gap VIOLATED (signed)
+  max fixed-point coefficient h_a = 1.984035345 (eta = 0.609377863); h<=eta violated for frustrated classes
+  random signed n=4 sample (4000): min m_hat = 0.266653365180  >= gap
+
+== D2. oriented gap frontier: frustrated classes of dense ledgers ==
+  full n=4 ledger (m=15): all 2048 orientation classes solved in 1.0s; distinct m_hat values: 14
+  min m_hat = 0.064538521138   (n=3 min was 0.133530982072; unoriented gap 0.156109200157)
+  [8,4,4]-type code, 16 classes: min m_hat = 0.871216010487
+  full n=5 ledger (m=31): 803 classes sampled; min m_hat = 0.031748698315
+  full n=6 ledger (m=63): 122 classes sampled; min m_hat = 0.015748356968
+  oriented-gap trend (full ledgers): n=3: 0.133531  n=4: 0.064539  n=5(sample): 0.031749  n=6(sample): 0.015748
+  -> the oriented (chiral) commitment spectrum is NOT gapped by m_hat(P1):
+     maximal frustration of dense ledgers drives m_hat toward zero (lightness mechanism)
+
+== E. physical reading ==
+  oriented triangle:   defect = +0.008438104972  (binds)
+  frustrated triangle: defect = +0.201674235292  (binds MORE)
+  enantiomer mass splitting Delta m_hat = +0.193236130320 nats/cycle
+== p8b done ==

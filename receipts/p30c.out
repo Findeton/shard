@@ -1,0 +1,56 @@
+== (i) validation of the peripheral reduction ==
+  biorthogonality  |G H - 1|        = 1.8e-14
+  alpha = G^-1 beta                 = 3.1e-15
+  brute vs reduced (3- and 4-seg)   = 1.1e-11
+  consistency F3(x,0,z) = F1(x+z)   = 3.7e-14
+  -> the reduction is EXACT: every (W, W-tilde)-word value of
+     a peripheral-triple process is a torus evaluation of the
+     reduced data (G, beta); validity forces torus positivity
+     (theta-free, by Weyl equidistribution).
+
+== (ii) the depth tower: max clock strength r = 2|c+|/c0 ==
+   A: diagonal only        r_max = 0.9889
+   B: + two-segment        r_max = 0.9961
+   C: + three-segment      r_max = 0.9882
+   D: + four-segment       r_max = 0.9335
+   E: + five-segment       r_max = 0.9045
+
+== (iii) receipts at the deepest optimum ==
+  witness r = 0.9045   (c0-normalized margins:)
+     D1  : +9.550e-02
+     F2u : +8.716e-02
+     F2v : +7.640e-02
+     F3  : +6.213e-02
+     F4  : +4.508e-02
+     F5  : +1.953e-02
+  (N1) alpha_0^2 >= 2|alpha_+|^2 (1+|delta|): 5.7166 >= 5.2442  (PASS)
+  witness params (gamma, Re delta, Im delta, beta0, Re beta+, Im beta+):
+     [-1.1650e-01  9.0000e-04  1.4800e-02  2.0503e+00  1.1944e+00  6.8960e-01]
+  realness identity check max|Im| = 4.4e-16
+
+  THE CURVE: r_max by depth = 0.989, 0.996, 0.988, 0.933, 0.904
+
+== (iv) the normal escape: an all-depth witness at r = 1 ==
+  witness: G = I, beta = (sqrt(2)(1+eps), 1, 1):  r = 0.999998
+  c0-normalized margins:
+     D1  : +2.000e-06
+     F2u : +2.000e-06
+     F2v : +2.000e-06
+     F3  : +2.000e-06
+     F4  : +2.000e-06
+     F5  : +2.000e-06
+  -> ALL margins >= 0 at r = 1 - eps, at every implemented
+     depth.  THEOREM (normal escape): the (W, W-tilde)-word
+     torus-positivity tower is FEASIBLE at full clock strength
+     for normal-block reduced data, at ALL depths (one-line
+     proof: G = I collapses every chain to a single-frequency
+     Fejer form).  CONSEQUENCE: no proof of CPE can come from
+     the (B, B-dagger) subalgebra alone - the obstruction, if
+     CPE is true, lives in words that LEAVE the block algebra
+     (other letters, rotations of W) or in the letter
+     embedding itself.  Equivalently: the sharpest remaining
+     counterexample target is an RP process whose chiral block
+     is (proportional to) a ROTATION - B B^dag = c^2 I - with
+     the state coupled at r <= 1.  The embedding question
+     decides, and p30d attacks it.
+== p30c done ==

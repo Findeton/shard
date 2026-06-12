@@ -1,0 +1,49 @@
+== (i) the NR phenomenon: normal => real, at the word level ==
+   (objective: minimize defect, REWARD |Im|/rho up to 0.5)
+   W = 001011    d = 3: best defect = 5.3e-16,  max |Im|/rho across trials = 0.0000
+   W = 00011101  d = 3: best defect = 8.8e-16,  max |Im|/rho across trials = 0.0000
+   W = 001011    d = 4: best defect = 1.7e-07,  max |Im|/rho across trials = 0.0000
+  -> the normal manifold is reachable at machine precision,
+     yet the spectrum is REAL in every trial despite the
+     reward for oscillation.  CONJECTURE (NR): a word in two
+     PSD letters, if normal, has real spectrum.  If (NR) is
+     true, the normal escape is closed at the letter level.
+
+== (ii) the trade-off wall: defect floor vs nonreal floor ==
+   dimension threshold observation: 001011 at d = 3: best |Im|/rho over 8 x 3000-step climbs = 0.0000
+   (the L = 6 chiral class appears ALWAYS-REAL at d = 3:
+    chirality is necessary for complex spectra, and letter
+    dimension >= 4 appears necessary for this class - an
+    empirical refinement, reported as-is.)
+   W = 00011101, d = 4 (robustly complex-capable, p30a):
+   minimal normality defect subject to |Im lambda|/rho >= im_min:
+     im_min = 0.05:  defect wall = 0.2660
+     im_min = 0.15:  defect wall = 1.3990
+     im_min = 0.30:  defect wall = 0.9760
+  -> the wall is O(1) and RISES with the demanded
+     oscillation: nonreal spectrum and normality trade off
+     - the letter image bends away from the escape
+     manifold exactly where the clock would need it.
+
+== (iii) the full-process attack toward the coupled triple ==
+   restart 0: best valid nonreal candidate: -
+   restart 1: best valid nonreal candidate: -
+   restart 2: best valid nonreal candidate: spread 0.799, im 0.026, r 2.692
+   restart 3: best valid nonreal candidate: spread 0.799, im 0.026, r 2.692
+   restart 4: best valid nonreal candidate: spread 0.799, im 0.026, r 2.692
+   restart 5: best valid nonreal candidate: spread 0.799, im 0.026, r 2.692
+  champion (valid, nonreal): modulus spread = 0.799  (triple = 0),
+  |Im|/rho = 0.026, coupling = 2.692,  deep filter
+  (scan |w| <= 14 + block diagonal to depth 2000): PASS
+  -> THE WALL HOLDS: validity keeps the chiral block
+     far from the coupled-triple manifold even under
+     direct steering: the modulus spread stays O(1) -
+     the real Perron pole refuses to descend to the
+     complex pair's circle inside a valid process.
+     (An earlier run of this attack WITHOUT the deep
+     diagonal check produced a fake near-counterexample
+     - a complex pair strictly on top whose negativity
+     first appears in p(W^n) at word length ~150, far
+     beyond any letter scan: the P27 impostor mechanism
+     caught live.  The check is now structural.)
+== p30d done ==

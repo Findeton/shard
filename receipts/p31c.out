@@ -1,0 +1,62 @@
+== (i) the (3,2) seal: invariant tensors and arithmetic ==
+  dim Inv_SU(3)(3 x 3 x 3)   = 1   (epsilon_3: the color contraction of QQQ)
+  dim Inv_SU(2)(2^x4)        = 2   (two epsilon_2 pairings of QQQL's four doublets)
+  charge arithmetic: 3x Q(1,1) + L(0,-1) = (3,2);  fermion number F = 4 (EVEN)
+  the QQQL seal: nonabelian singlet, univalence-even, charge (3,2): PASS
+  -> L2 receipted: the ledger's own dim-6 row (P25, B-L = 0)
+     is a sealed univalence-even singlet generating the
+     (3,2) direction.
+
+== (ii) candidate screeners and their blockers ==
+   candidate        (a,b)   F par.  singlet?  verdict
+   epsilon_3 (QQQ)  (3,3)*  odd     no(weak)  BLOCKED: no weak
+                                              singlet in 2^x3 AND
+                                              univalence-odd (P9)
+   bare baryon ch.  (3,0)   odd     yes       BLOCKED: univalence-
+                                              odd (P9 theorem)
+   H-tilde          (0,1)   even    no        BLOCKED: weak doublet
+                                              (recorded nonabelian
+                                              data changes)
+   eps_2(H,H)       (0,2)   even    yes       VANISHES identically
+                                              (antisym of identical
+                                              bosons)
+   e^c nu^c         (0,2)   even    yes       EXCLUDED by L3 given
+                                              L2 (rank bound) - see
+                                              (iv); not in the P25
+                                              ledger
+   QQQL             (3,2)   even    yes       SEALS (L2)
+  receipt for row 1: dim Inv_SU(2)(2^x3) = 0 (no weak singlet of three doublets)
+  receipt for eps_2(H,H): antisymmetrization of identical
+  bosonic doublets is identically zero (epsilon symmetry).
+
+== (iii) the screening lattice = Z.(3,2) ==
+  if screening contained [(3, 2), (0, 2)]: surviving functionals = NONE
+  if screening contained [(3, 2), (3, 0)]: surviving functionals = NONE
+  -> rank-2 screening kills ALL continuous charge,
+     contradicting P8's screen-U(1): rank <= 1  (L3).
+  (3,2) is primitive (gcd = 1): a rank-1 lattice
+  containing it is exactly Z.(3,2).
+  completeness: (tau, sigma, Y6) separates (a,b) mod (3,2)Z
+  exactly: mismatches over [-6,6]^4 = 0
+  -> THEOREM (E), conditional form: given L1 (collapse), L2
+     (the QQQL receipt), L3 (P8 rank bound): the screening
+     lattice is Z.(3,2); recordable charge data = (a,b) mod
+     (3,2)Z with complete invariants (tau, sigma, Y6 = 3b-2a)
+     - the S(U(3) x U(2)) structure, hence (Y-det), hence the
+     Z6 lattice.  The only unproved piece is L1 at record
+     scope: (E-coll), strictly smaller than the old (E-cond).
+
+== (iv) the alternative rank-1 world (honest exhibit) ==
+  a ledger certifying a (0,2)-seal instead (e^c nu^c-type)
+  would screen Z.(0,2): surviving functionals = Z.(-1, 0):
+  hypercharge would be Y = a (pure color-determinant).
+  That world is mathematically consistent at this level; it
+  is excluded by the LEDGER RECEIPTS - nature's sealed set
+  contains baryon-lepton seals (B-L = 0 rows, P25) and no
+  charged-lepton-pair seal - and by nothing else offered
+  here.  The selection between the two rank-1 worlds is an
+  empirical/dynamical fact (a candidate (M)-dynamics target),
+  stated as such; what the conditional theorem removes is the
+  TARGET-CALIBRATION: no congruence is copied from the SM
+  anywhere in the chain.
+== p31c done ==

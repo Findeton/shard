@@ -1,0 +1,81 @@
+== (0) reflection is exhausted ==
+  an RP-form sample engineered to break word positivity: min p(w) over |w| <= 10 = -4.638e-03  (INVALID process)
+  yet its reflected Gram (24 words, |w| <= 4) has eig_min = -1.8e-17 >= 0: PSD
+  -> within the RP-form, EVERY reflected Gram is a Gram of
+     vectors B_w Omega (B_rev(w) = B_w^dagger): automatically
+     PSD.  Reflection positivity is EXHAUSTED by the form;
+     the entire remaining content of (PR-RP+) is WORD
+     POSITIVITY of the non-commutative form.
+
+== (i) the necklace census and the two-palindrome lemma ==
+   L   classes  achiral  chiral  lemma(<=>)
+   1       2        2       0    PASS
+   2       3        3       0    PASS
+   3       4        4       0    PASS
+   4       6        6       0    PASS
+   5       8        8       0    PASS
+   6      14       12       2    PASS
+   7      20       16       4    PASS
+   8      36       24      12    PASS
+   9      60       32      28    PASS
+  10     108       48      60    PASS
+  11     188       64     124    PASS
+  12     352       96     256    PASS
+  all classes of length <= 5 are ACHIRAL: PASS
+  first chiral pair (L = 6): ['001011', '001101']
+  chiral classes at L = 7:   ['0001011', '0001101', '0010111', '0011101']
+  the P27 witness 00011101: canonical 00011101, CHIRAL
+  -> the two-palindrome lemma is verified in BOTH directions
+     at every length <= 12: a class is achiral exactly when
+     some rotation splits into two palindromes.
+
+== (ii) palindrome factorization in integer arithmetic ==
+  even palindrome 0110:  |B - C C^T|      = 0  (exact)
+  odd  palindrome 00100: |B - C A_1 C^T|  = 0  (exact)
+  two-palindrome word 0101 = (010)(1): eigenvalues [1373.783    6.791    5.426]  max|Im| = 0.0e+00
+  -> palindromic blocks are PSD exactly; two-palindrome
+     blocks are products of two PSDs: real nonneg spectrum.
+
+== (iii) spectral sweep: reality is a necklace invariant ==
+   random sweep (60 trials/class, dims 3-5):
+   L    achiral max|Im|/rho     chiral max|Im|/rho  (worst class)
+   6      0.00e+00              0.000        -
+   7      0.00e+00              0.000        -
+   8      0.00e+00              0.052        00111101
+   9      0.00e+00              0.000        000101011
+  10      1.03e-15              0.908        0000101111
+   targeted hill-climb (9 restarts x 2500 steps, dims 3-5),
+   chiral classes at L = 6, 7 and the P27 witness class:
+     001011      best |Im|/rho = 0.2980   COMPLEX-CAPABLE
+     001101      best |Im|/rho = 0.0732   COMPLEX-CAPABLE
+     0001011     best |Im|/rho = 1.0000   COMPLEX-CAPABLE
+     0001101     best |Im|/rho = 0.9999   COMPLEX-CAPABLE
+     0010111     best |Im|/rho = 1.0000   COMPLEX-CAPABLE
+     0011101     best |Im|/rho = 1.0000   COMPLEX-CAPABLE
+     00011101    best |Im|/rho = 1.0000   COMPLEX-CAPABLE
+  classes complex-capable under search: 7/7
+  -> ACHIRAL classes: imaginary parts at machine zero in every
+     trial (the theorem; no search can break it).  CHIRAL
+     classes: complex spectra realized under targeted search,
+     INCLUDING the very first chiral pair at L = 6 - this
+     CORRECTS the P27 empirical map (which placed the first
+     complex spectra at length 7 under a weaker search):
+     complex spectra appear exactly where chirality first
+     appears.  Reality of block spectra follows the necklace
+     chirality invariant exactly as Theorem 4.5 states;
+     chirality is NECESSARY (theorem) and empirically
+     sufficient at every length probed.
+
+== (iv) valid processes: exact Stieltjes at palindromic phase ==
+  valid samples: 40 accepted from 41 tries (word scan |w| <= 12)
+  palindromic-phase Hankels (both Stieltjes forms), all valid
+  samples, blocks 0110 / 00100 / 010010:
+    relative eig_min over all Hankels = -1.3e-16  (PSD: PASS)
+  rotated phase (e.g. 1100): coupled poles max |Im|/|pole| = 0.0e+00
+    most negative coupled residue (relative) = -0.322
+  -> the palindromic-phase diagonal is an EXACT Stieltjes
+     moment sequence (Theorem 5.1); rotations keep real
+     nonnegative poles but residues genuinely change sign
+     (signed-Stieltjes, Theorem 5.2): the exactness is
+     phase-specific, the REALITY is phase-invariant.
+== p30a done ==

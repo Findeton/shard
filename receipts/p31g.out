@@ -1,0 +1,42 @@
+== (i) the 4d record index: quadratic in the flux ==
+   charge  (f1,f2)   index   c^2 f1 f2
+     1     ( 1, 1)     +1.0     +1
+     1     ( 1, 2)     +2.0     +2
+     1     ( 2, 1)     +2.0     +2
+     1     (-1, 1)     -1.0     -1
+     1     ( 2, 2)     +4.0     +4
+     2     ( 1, 1)     +4.0     +4
+  4d index = c^2 f1 f2: PASS
+  -> the QUADRATIC anomaly coefficient, invisible to the 2d
+     index theorem (P14), is measured on the 4d record
+     lattice: the q^2 import has a lattice ground.
+
+== (ii) the mixed receipt: two U(1)s, two planes ==
+   (qa,qb)  (fa,fb)   index   qa qb fa fb
+    (1,1)   ( 1, 1)     +1.0      +1
+    (1,2)   ( 1, 1)     +2.0      +2
+    (2,1)   ( 1,-1)     -2.0      -2
+  index = qa qb fa fb: PASS
+  -> the MIXED current-current coefficient is a lattice
+     observable: exactly the structure of the gauge^2-Y rows.
+
+== (iii) T(R) from Cartan weight sums ==
+  adjoint SU(2), Cartan flux (1,1): summed index = +2.0   (T(adj) m1 m2 = 2)
+  fundamental SU(2), even flux (2,2): summed index = +2.0   (T(fund) m1 m2 = (1/2)(4) = 2)
+  -> T(R) emerges as a SUM OF MEASURED INDICES over the
+     weight system: the Cartan-abelianized face of the
+     SU(N)^2-Y coefficient (the standard anomaly-matching
+     locus); half-integer weights need even fluxes - the
+     quotient/twist structure of Paper 31, met again.
+
+== (iv) the gauge^2-Y rows as lattice sums ==
+  SU(2)^2-Y row:  sum_i y_i x [color mult] x T(2)
+      = (1/2)(3 y_Q + y_L):   3 y_Q + y_L = 0
+  SU(3)^2-Y row:  sum_i y_i x [weak mult] x T(3)
+      = (1/2)(2 y_Q + y_u + y_d):   2 y_Q + y_u + y_d = 0
+  with every T(R) above now a sum of measured 4d record-lattice
+  indices ((i)-(iii)), not a continuum citation.  Paper 31's
+  kernel system (6.1) is rebuilt from lattice data at abelianized
+  scope; the full nonabelian background (instanton sectors on the
+  record lattice) is the named next receipt.
+== p31g done ==

@@ -1,0 +1,41 @@
+== (i)+(ii) clamped vs free record towers across the lapse family ==
+   beta   x_min     lam1_clamped   lam1_free    lam1_c*Y^2   lam1_f*Y^2      Y
+   0.50   1e-02       3.046174      0.761543      9.8696       2.4674       1.800
+   0.50   1e-03       2.631180      0.657795      9.8696       2.4674       1.937
+   0.50   1e-04       2.517498      0.629374      9.8696       2.4674       1.980
+   0.75   1e-02       1.319340      0.329835      9.8696       2.4674       2.735
+   0.75   1e-03       0.912545      0.228136      9.8696       2.4674       3.289
+   0.75   1e-04       0.761543      0.190386      9.8696       2.4674       3.600
+   1.00   1e-02       0.465381      0.116345      9.8696       2.4674       4.605
+   1.00   1e-03       0.206836      0.051709      9.8696       2.4674       6.908
+   1.00   1e-04       0.116345      0.029086      9.8696       2.4674       9.210
+   2.00   1e-02       0.001007      0.000252      9.8696       2.4674      99.000
+   2.00   1e-03       0.000010      0.000002      9.8696       2.4674     999.000
+   2.00   1e-04       0.000000      0.000000      9.8696       2.4674    9999.000
+  exact free-Laplacian targets: clamped (D-D) lam1*Y^2 = pi^2 = 9.8696;
+  free (N-D) lam1*Y^2 = pi^2/4 = 2.4674.
+  reading:
+   beta < 1 (Y finite): lam_1 converges to TWO DIFFERENT finite
+     limits - e.g. beta = 0.5: clamped -> pi^2/4 = 2.4674, free ->
+     pi^2/16 = 0.6169 (Y -> 2): the locus is a regular endpoint at
+     FINITE record distance; the continuum theory is undetermined
+     until a boundary record decides: NAKED.
+   beta >= 1 (Y infinite): both towers collapse onto the SAME free
+     record geometry (lam1*Y^2 pinned at pi^2 and pi^2/4 while
+     lam_1 -> 0): the clamped/free label rides at infinite record
+     distance, invisible to every finite sealed diamond: CENSORED.
+   beta = 1 is marginal (Y ~ ln(1/x_min), the P12 log threshold);
+   beta = 2 censors at power rate (Y ~ 1/x_min): extremal-fast.
+
+== (iii) extremal coldness: the smooth period tracks 1/N'(0) ==
+    a     kappa_a = a/(1+a)   beta tested        tip exponent
+   0.50       0.3333        2pi/kappa_a         0.9926
+   0.50       0.3333        2pi (naive)         2.9779
+   0.25       0.2000        2pi/kappa_a         0.9853
+   0.25       0.2000        2pi (naive)         4.9269
+  -> the tip is smooth (exponent 1) only at beta = 2pi/N'(0):
+     T = N'(0)/2pi.  As a -> 0 (extremal limit, N ~ x^2) the
+     smooth period diverges: EXTREMAL RECORD HORIZONS ARE COLD
+     (T -> 0); the Euclidean tip degenerates to a cusp that no
+     finite period closes.
+== p13c done ==

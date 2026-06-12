@@ -1,0 +1,31 @@
+== (i) calibration: the adversary vs the normal witness ==
+  normal witness r = 0.9070; exact Fejer bound = 0.09297
+   depth:   1   2   3   4   5   8  12  16
+   margin: 0.093  0.093  0.093  0.093  0.093  0.093  0.093  0.093
+  max |margin - Fejer bound| over depths = 4.0e-16
+  -> the adversary recovers the exact single-frequency bound
+     at every depth: calibrated.  (And the escape is re-
+     receipted to depth 16: G = I never goes negative.)
+
+== (ii) the p30c depth-5 witness at depths 6-16 ==
+  witness r = 0.9045
+   depth:   1   2   3   4   5   8  12  16
+   margin: +0.096  +0.087  +0.062  +0.045  +0.018  -0.055  -0.195  -0.338
+  -> the depth-5 survivor DIES at depth 8: the
+     grid plateau was an artifact of shallow alternation -
+     deep chains keep squeezing non-normal data.
+
+== (iii) the band: clock strength vs distance from normal ==
+   eps (distance from G = I)   max feasible r (depths <= 12)
+     0.05                      0.8433
+  the normal point itself (eps = 0): r = 1 at all depths
+  (the escape theorem).
+  -> at FIXED depth (<= 12), a near-normal BAND carries
+     strong clock coupling: the squeeze that killed the
+     depth-5 witness has not yet reached eps = 0.05 by depth
+     12.  Whether the band survives ALL depths (an open
+     all-depth band) or every eps > 0 dies at a finite,
+     eps-dependent depth (ISOLATION of the normal point) is
+     the decisive question - measured next by the death-depth
+     scaling and the deepening trend (v6_p30f).
+== p30e done ==

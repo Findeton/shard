@@ -1,0 +1,38 @@
+== E1. even-time positivity: reversible => C(2r) >= 0 ==
+  300 random reversible transports x random observables:
+    min even-time autocorrelation = 0.00e+00  (theorem: >= 0,
+    since C(2r) = ||T^r (f - <f>)||^2 in L^2(pi))
+  wrong-statistics twisted sector (Part II): C_tw(2) = -0.016780 < 0
+  -> by E1 + P10 T3, EVERY finite presentation of the wrong-statistics
+     sector carries sigma > 0: wrong statistics IS a hidden current.
+     (Explicit driven witness: the P10 unicycle has C(2) = -6.2e-2 at
+      sigma = 0.519713.)
+
+== E2. the entropy-production price of an even-time violation ==
+   violation x = -C(2)/C(0)   min sigma found
+        0.05                  0.2284
+        0.15                  0.6686
+        0.30                  1.6744
+  -> stronger even-time violations cost strictly more entropy
+     production: the statistics defect is PAID FOR in arrow evidence,
+     quantitatively.
+
+== E3. O11 audit: is the linear-law constant L-stable? ==
+    L     C(L) = defect/sigma at eps = 0.04, 0.08
+    2     0.0490  0.0491
+    3     0.0364  0.0365
+    4     0.0206  0.0206
+  -> C(L) DECREASES with block length on this family: the small-L
+     constant is CONSERVATIVE for longer blocks, so the P10 Section 4.1
+     law is uniform-in-L with the L = 2 constant (audited).  The one
+     untested assumption under Section 4.1 resolves FAVORABLY.
+
+== E4. per-family leading-order constant (exact quadratic fits) ==
+    family   C_an = defect''(0)/sigma''(0)    sup_eps defect/(C_an sigma)
+      2        0.03554                      0.9998
+      5        0.04143                      0.9997
+      9        0.04039                      1.0051
+  -> the leading-order constant is computable exactly per family from
+     two Hessian ratios, and bounds the finite-eps ratio to within a
+     few percent: O11 is reduced to third-order remainder control.
+== p11e done ==

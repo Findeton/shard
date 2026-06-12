@@ -1,0 +1,28 @@
+== (i) record blocking preserves GW exactly (gauge-coupled) ==
+  random smooth Q = 0 sector; sigma_min(D_f) = 1.26e-02  (the operator is MASSLESS: generic sectors are near-critical;
+   roundoff in the receipt scales as eps * cond)
+  ||B B^dag - 1||_max = 2.2e-16   (orthonormal, link-transported kernel)
+  ||{g5, D_c^-1} - (1 + 2/alpha) g5||_max = 9.10e-13   (alpha = 3.0)
+  -> the coarse record propagator obeys the GW relation with the
+     COMPUTED R_c = 1 + 2/alpha, exactly, with gauge fields on:
+     record coarse-graining is form-invariant on the chirality law.
+
+== (ii) the topological ledger entry survives decimation ==
+    Q    Q_coarse (flux of decimated links)    index(D(U_c))
+    1        +1.0000000000                    +1.00000
+    2        +2.0000000000                    +2.00000
+    3        +3.0000000000                    +3.00000
+  -> decimating the gauge RECORD (coarse link = transport product)
+     preserves the flux sector exactly, and the coarse record GW
+     operator reads the SAME index: topology is blocking-invariant
+     ledger data.
+
+== (iii) naive record kinematics doubles; GW does not ==
+  Brillouin scan 64x64: zeros of the naive symbol = 4   (corners (0,0),(pi,0),(0,pi),(pi,pi))
+  zeros of the record GW symbol = 1 (only k = 0; next-smallest |D(k)| off origin = 0.098)
+  -> 2d naive record kinematics carries FOUR species; the record
+     GW operator carries ONE: P10's decimation dichotomy holds in
+     2d, and (i)-(ii) show the GW side survives gauge coupling
+     and blocking EXACTLY - the record RG has a chirality-exact
+     channel; the naive channel is excluded.
+== p14d done ==

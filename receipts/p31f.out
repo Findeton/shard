@@ -1,0 +1,27 @@
+== (i) RP removes the clustering pathologies ==
+  RP process: clustering ratio |r_n - 1| decreasing (n >= 4): True;  min r_n = 1.0013 > 0
+  non-RP counterpoint (complex transfer spectrum): the
+  separated two-point value changes sign 11 times in
+  n <= 40 - 'background eclipses': separations where the
+  seal's placement amplitude vanishes or flips.
+  -> with RP, T is SELF-ADJOINT: real spectrum, monotone
+     T^n -> P_1, no eclipses possible: (E-bg) at RP scope
+     needs only per-sector simplicity of eigenvalue 1 -
+     no spectral gap, no aperiodicity assumption.  The
+     time-symmetry of the ledger is itself what guarantees
+     the seal can always be placed.
+
+== (ii) GNS sectors = Frobenius components (receipt) ==
+  reducible ledger: top transfer eigenvalues: 1.000000, 1.000000 (double Perron = two components)
+  word-Gram splits exactly into component Grams: |G - G1 - G2| = 4.3e-19
+  component GNS ranks: 2 and 2 (= the two Frobenius
+  components' dimensions)
+  -> the GNS decomposition of the word functional and the
+     Frobenius decomposition of the transfer agree exactly:
+     'sector' means the same thing in the collapse lemma
+     (5.3), the clustering theorem (5.6), and P16's cone
+     frame - the identification receipted at finite scope.
+     Remaining boundary: infinite rank / the tame class -
+     the corpus' standard stated-scope frontier, nothing
+     specific to (E) survives.
+== p31f done ==

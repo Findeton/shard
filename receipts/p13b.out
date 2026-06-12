@@ -1,0 +1,36 @@
+== (i) Euclidean cone: smoothness at the tip selects beta = 2pi/kappa ==
+   kappa*beta/2pi    nu = 2pi/(kappa beta)   sqrt(lam_1)   j_nu1      tip slope
+       0.80            1.250               4.16532    4.16543    1.2497
+       1.00            1.000               3.83161    3.83171    0.9997
+       1.25            0.800               3.55969    3.55978    0.7997
+  -> the m = 1 spectrum is j_{nu,1}^2 with nu = 2pi/(kappa beta):
+     the tip carries a defect (mode exponent nu != 1) for every
+     period EXCEPT beta = 2pi/kappa, where the record geometry is
+     the smooth disk (exponent exactly 1, analytic tip: no boundary
+     record demanded).  Temperature = smoothness = no-extra-record.
+  smooth period, full check: lam_1..3(m=1) vs j_(1,k)^2 rel errs: 5.0e-05, 5.0e-05, 5.0e-05
+  -> with the OS bridge (P12), the Euclidean record law at this
+     unique period reconstructs the wedge dynamics: the wedge state
+     is KMS at T = kappa/2pi = 0.159155 (kappa = 1).
+
+== (ii) the record vacuum, reduced to a wedge, is BOOST-thermal ==
+  chain n = 3000, mass = 0.02, wedge = last 600 sites (single cut, far wall at 600 sites = 12 xi):
+   k    eps_k (modular)    2pi omega_k (boost)    ratio/2pi
+   1       1.64727             1.64731          0.999975
+   2       4.94181             4.94194          0.999975
+   3       8.23635             8.23656          0.999975
+   4      11.53089            11.53118          0.999975
+   5      14.82544            14.82581          0.999975
+   6      18.11998            18.12043          0.999975
+   7      21.41452            21.41505          0.999975
+   8      24.70911            24.70968          0.999977
+  -> the wedge record state is thermal in the BOOST modes at
+     T = 1/2pi per unit surface gravity: Bisognano-Wichmann
+     realized on the record lattice, uniform to 2.5e-5 across the
+     entire double-precision-resolvable modular spectrum (levels
+     beyond eps ~ 33 saturate round-off: nu - 1/2 ~ 1e-14).  The
+     residual 2.5e-5 is LEVEL-INDEPENDENT - a single cut-placement
+     systematic, i.e. the half-site ambiguity in where x = 0 sits:
+     exactly the boundary-record ambiguity P12 assigns to the
+     alpha = 1 threshold operator, which the boost generator IS.
+== p13b done ==

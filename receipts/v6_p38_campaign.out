@@ -1,0 +1,92 @@
+== PRE-REGISTRATION (written before computation) ==
+  PHASE A (the count): prove the SELECTION RULE - in a record
+  algebra carrying a graded family charge Q in (1/2)Z, with all
+  sealed generators Q-neutral EXCEPT one charged seam S, any
+  transition amplitude between sectors x and x' vanishes unless
+  the word's seam count balances the charge difference, and the
+  leading balanced amplitude scales as ||S||^(2|x'-x|) with
+  ||S|| = sqrt(eps(1-eps)) from the Seam Theorem.  Receipts on
+  explicit systems: (A1) exact zeros for unbalanced words; (A2)
+  exact superselection when the seam is removed (no mixing at
+  all - oscillations REQUIRE the breaking seam); (A3) the
+  FN-record seesaw: charges on the RH/seal sector ONLY, so large
+  PMNS mixing survives superselection (the knot resolved by the
+  same structure P34's minimal texture already had); verify exact
+  rung eigenvalues under orthogonal neutral Y.  HONESTY: the
+  mechanism class is Froggatt-Nielsen (1979) - credited; novelty
+  = derived suppression + superselection pedigree.  Premises
+  graded: family grading with silent inter-sector phases (the
+  univalence argument pattern), seam uniqueness.
+  PHASE B (p = eps): referent scan - every natural exact
+  candidate for 'the commit weight of the marginal triangle',
+  tested against eps at 25 digits.  Expected and acceptable
+  outcomes: a derivation (unlikely), a sharpened one-line
+  premise, or across-the-board exclusion COUNTED AGAINST the
+  mechanism.  No candidate added after seeing its value.
+
+  eps = 0.0317686364465818; seam amplitude sqrt(eps_eff) = 0.175383551637
+
+== A1: selection rule (exact zeros + scaling) ==
+  unbalanced matrix elements nonzero: 0 / 27000 (exact selection rule)
+  max one-unit amplitude = 0.175384  (||S|| = 0.175384)
+  max two-unit amplitude = 0.030759  (||S||^2 = 0.030759)
+  -> leading balanced amplitudes saturate ||S||^(units): the
+     count theorem's scaling, with neutral dressing only able
+     to suppress (neutral letters are contractions).
+
+== A2: no seam => exact superselection ==
+  max inter-sector amplitude over 5000 seamless words: 0.0e+00
+  -> sectors disconnect exactly: family charge is superselected
+     UNLESS the seam exists; oscillations REQUIRE the breaking
+     seam - the mechanism predicts its own necessity.
+
+== A3: FN-record seesaw - rungs from charges, mixing free ==
+  light ratios: m1/m3 = 0.0307593902 (eps_eff = 0.0307593902)
+                m2/m3 = 0.1753835516 (sqrt = 0.1753835516)
+  -> EXACT rungs for ANY orthogonal neutral Y (seesaw =
+     conjugation): the spectrum comes from the CHARGES alone;
+     mixing comes from the neutral sector - large PMNS mixing
+     coexists with the superselected grading because the
+     charges live on the sealed RH sector (exactly the
+     structure P34's minimal texture already used).  Maximal
+     theta23 remains MINIMALITY-selected (P34), not
+     charge-forced: graded honestly.
+
+== B1: p = eps referent scan (25 digits) ==
+  codeword expectation at triangle fixed point: 0.0877652951381  (diff 0.056)
+  codeword expectation at free point: 0.138460765833  (diff 0.107)
+  commit-prob excess (1+<c>)/2 - 1/2: 0.0438826475691  (diff 0.0121)
+  amplitude shift (theta^3 - t^3(h*))/theta^3: 0.401361619046  (diff 0.37)
+  occupation shift (e^-h* - theta)/theta: 0.12111597907  (diff 0.0893)
+  deficit of the boundary: 3 - 1/kappa: 0.0923713960409  (diff 0.0606)
+  (3 - 1/kappa) * kappa  [= eps, definitional]: 0.0317686364466  (diff -6.46e-42)  <-- EXACT MATCH
+  defect(3)/theta^3 (exact, sign flipped): 0.0525041043352  (diff 0.0207)
+  theta^6/(1+theta^6): 0.0251784200081  (diff -0.00659)
+  eta - theta: 0.0656888507439  (diff 0.0339)
+  exact matches: 1 - and every match is DEFINITIONAL
+  (the eps-defining combination itself).  VERDICT B1: no
+  independent fixed-point referent equals eps; p = eps stands
+  as a sharpened one-line premise - 'the seam weight is the
+  normalized first-order binding deficit of the marginal
+  triangle' - NOT as a derived quantity.  Counted as stated in
+  the pre-registration: this is the sharpened-premise outcome,
+  not the derivation outcome.
+
+== ASSEMBLED BRIDGE LEDGER (after Phases A and B) ==
+  THEOREM:    selection rule (count = charge difference; A1)
+  THEOREM:    per-seam factor sqrt(eps(1-eps)) at stationarity (P37)
+  THEOREM:    spectrum = eps_eff rungs for any neutral orthogonal
+              Dirac sector (A3, exact)
+  PREMISE:    family grading with silent inter-sector phases
+              (univalence argument pattern; superselection)
+  PREMISE:    seam uniqueness (the one charged sealed object)
+  PREMISE:    S-atomicity; seam-block decoupling (P37)
+  PREMISE:    p = eps (sharpened, B1; not derived)
+  SELECTED:   theta23 = 45 deg (P34 minimality, unchanged)
+  CREDIT:     Froggatt-Nielsen (1979) - the mechanism class;
+              novelty = derived suppression + superselection
+              pedigree + the registered consequence set (P37).
+  NEW KILLS:  K6 silent-phase argument fails for the family
+              grading -> superselection pedigree lost;
+              K7 a second charged sealed object exists -> count
+              theorem's uniqueness premise dead.

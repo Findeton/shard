@@ -1,0 +1,25 @@
+== A. the OS bridge: Euclidean record data -> Lorentzian propagator ==
+  Euclidean kernel: min entry = 2.69e-40  (positive within round-off: a record law; all 64 modes resolved)
+  generator reconstruction: ||A_rec - A|| = 3.64e-11
+   dt        max |u_leapfrog(t) - u_OS(t)|      ratio
+   0.0020   1.309215e-03                  -
+   0.0010   3.264783e-04                   4.01
+   0.0005   8.156816e-05                   4.00
+  -> the EUCLIDEAN record law alone determines the LORENTZIAN wave
+     evolution (phases included), and the direct Lorentzian leapfrog
+     converges to it at O(dt^2): Wick rotation as an operational
+     record procedure, grounded in P10's RP theorem rather than in an
+     analytic-continuation axiom.  This is sub-gate (C2), instantiated.
+
+== B. (C4) preconditions: uniform two-sided heat-kernel bounds ==
+  15 random class members x t in {0.005, 0.02, 0.08}:
+    sup over class of  sqrt(t) K_t(x,y) exp(+d^2/5t)  = 0.4915
+    inf over class of  sqrt(t) K_t(x,x)               = 0.2569
+  -> two-sided sub-Gaussian bounds hold with CLASS-UNIFORM constants:
+     exactly the hypotheses under which the imported Dirichlet-form
+     machinery (Mosco/Kuwae-Shioya) yields spectral PRECOMPACTNESS of
+     the controlled refinement class - sub-gate (C4)'s precondition,
+     audited.  (The compactness CONTENT - what the limit points are -
+     is p12d's subject: they include non-classical, homogenized
+     geometries: the synthetic stratum.)
+== p12a done ==

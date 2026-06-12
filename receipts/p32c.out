@@ -1,0 +1,25 @@
+== (i) 2d calibration ==
+  constant c = 1.4: floor 1.3e-04, 6.4e-06
+  smooth c: rate = 0.880  (graded law: 1.0)
+
+== (ii) the graded law on the 2-torus ==
+   alpha    rate     predicted
+   0.5     0.197     0.25
+   1.0     0.452     0.50
+  -> the graded forward law ports to 2d.
+
+== (iii) the 2d impostor: geometric-mean effective medium ==
+  symmetric two-phase checkerboard (c1, c2) = (0.5, 2.0):
+  arithmetic mean 1.205, geometric mean 1.0000,
+  kernel-reported effective c = 1.0057  (0.6% from geometric)
+  below the cell scale: sup|r~| = 0.52 (O(1) break)
+  -> the 2d impostor reads as the DYKHNE/KELLER geometric-
+     mean medium - dimension-specific exact homogenization,
+     correctly reproduced - and remains scale-bounded: the
+     corrected (all-scale) converse is the right statement
+     in 2d exactly as in 1d.
+
+== (iv) position recovery on the 2-torus ==
+  4 random cusps: max location error = 0.015  (kernel width sqrt(t) = 0.035)
+  -> the inversion is local in 2d as in 1d.
+== p32c done ==

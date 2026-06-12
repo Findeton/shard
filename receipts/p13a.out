@@ -1,0 +1,28 @@
+== (i)+(ii) the lapse operator IS the free record Laplacian ==
+  x_min = 1e-02: lattice record distance Y = 4.605170   exact (1/kappa) ln(1/x_min) = 4.605170   rel err = 5.52e-08
+  x_min = 1e-04: lattice record distance Y = 9.210342   exact (1/kappa) ln(1/x_min) = 9.210340   rel err = 2.21e-07
+  n = 2000: max rel err of lam_1..4 vs (k pi / Y)^2 = 4.781e-06
+  n = 4000: max rel err of lam_1..4 vs (k pi / Y)^2 = 1.195e-06
+  ratio = 4.00   [O(h^2): 4.00]
+  -> A_N = -N d(N d) is EXACTLY -d^2/dy^2 in the record (tortoise)
+     coordinate, for the lattice as for the continuum: the horizon
+     sits at infinite record distance behind a free geometry.
+
+== (iii) mode pileup: the spectral signature of infinite distance ==
+   x_min     modes below Lambda = 400    predicted (sqrt(L)/pi) Y
+   1e-02          29                          29.32
+   1e-03          43                          43.98
+   1e-04          58                          58.63
+   1e-05          73                          73.29
+  increments per decade: [14, 15, 15]   predicted 14.66
+  -> the counting function grows WITHOUT BOUND as the lattice
+     approaches the locus - log-many modes per decade: the record
+     spectrum piles up at the horizon (infinite record volume).
+
+== (iv) infall: x_peak(t) = x_0 exp(-kappa t) ==
+  kappa = 1.0: fitted d ln x_c / dt = -1.0000   target -kappa = -1.0   err = 1.6e-06
+  kappa = 0.5: fitted d ln x_c / dt = -0.5000   target -kappa = -0.5   err = 2.7e-06
+  -> infalling record packets approach the locus exponentially in
+     coordinate time at exactly the surface-gravity rate: the locus
+     is never reached at finite record time - a horizon.
+== p13a done ==

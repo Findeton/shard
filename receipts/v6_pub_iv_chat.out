@@ -1,0 +1,10 @@
+N=512: ratio detector (lam=4), c_hat used only in lattice correction
+  alpha=0.5: rates=['0.226', '0.225', '0.225']  (target 0.25)
+  alpha=1.0: rates=['0.489', '0.492', '0.495']  (target 0.50)
+  smooth control: rate=0.944  (target ~1)
+  N-refinement (true-c detector): alpha=0.5/1.0/smooth rates = 0.232/0.494/0.969
+N=768: ratio detector (lam=4), c_hat used only in lattice correction
+  alpha=0.5: rates=['0.229', '0.237', '0.224']  (target 0.25)
+  alpha=1.0: rates=['0.493', '0.490', '0.495']  (target 0.50)
+  smooth control: rate=0.945  (target ~1)
+  N-refinement (true-c detector): alpha=0.5/1.0/smooth rates = 0.232/0.494/0.970

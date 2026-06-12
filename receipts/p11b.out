@@ -1,0 +1,37 @@
+== record-Pauli: sealed spectral weights on the exchange collar ==
+  closing operator E = eps * SWAP, eps = (-1)^(2m); sealed weight of a
+  pair mode = (lam_a lam_b)^M * eps * swap_parity   (M = 3 periods)
+
+  integer fiber (m = 0)  : sym weights (6): min = +1.94e-11, all >= 0;  antisym (3): min = -1.36e-05, all NEGATIVE
+     -> positivity of sealed weights FORCES the SYMMETRIC (bosonic) sector:
+        statistics = (-1)^(2m).  The wrong sector carries strictly
+        negative sealed event weights: excluded (P7 7.6 family).
+
+  half-integer (m = 1/2) : sym weights (6): min = -1.00e+00, all NEGATIVE;  antisym (3): min = +6.00e-11, all >= 0
+     -> positivity of sealed weights FORCES the ANTISYMMETRIC (fermionic) sector:
+        statistics = (-1)^(2m).  The wrong sector carries strictly
+        negative sealed event weights: excluded (P7 7.6 family).
+
+== consequences in the FORCED sectors ==
+  coincidence probability P(a = b):
+    forced half-integer sector: 0.00e+00   (PAULI EXCLUSION:
+      an EXACT zero, derived from the sealed collar, not imposed)
+    forced integer sector:      0.342986  > 0  (occupancy allowed;
+      the sharp bunching law 2/(1+|<a|b>|^2) is Paper 9 Section 8)
+
+== the wrong sector is signed: the P8/P10 failure signature ==
+  half-integer twisted correlations, unprojected: site-Hankel min eig
+  (N = 6) = -2.329342   SIGNED: fails the moment test -
+  the wrong-statistics sector sits with the driven/non-moment sectors of
+  Papers 8 and 10; projecting onto Fix(E) restores positivity:
+  projected (forced) sector: site-Hankel min eig (N = 6) = -3.70e-31   (moment-class: RP)
+
+== what this does to axiom (X) ==
+  The single-valuedness clause of (X) is REPLACED by a theorem: sealed
+  positivity on the exchange collar selects Fix(E).  (X) reduces to its
+  association clause alone (D9a: the fiber transport is tied to the
+  frame bundle).  Fermions are now AVAILABLE + POSITIVITY-RIGID: given
+  a genuinely spinning fiber, wrong statistics is not merely unaesthetic
+  - it assigns negative sealed event weights, the same exclusion that
+  killed split-signature phases (P7 7.6) and silent arrows (P10 T3).
+== p11b done ==

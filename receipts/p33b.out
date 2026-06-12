@@ -1,0 +1,53 @@
+== (i) finite-section convergence (d = 240) ==
+  letters PSD: min eigenvalue = 0.0706 (OK)
+   section m   dim   sup |p_m - p| (|w| <= 8)
+      1          2     9.89e-06
+      2          4     4.26e-07
+      3          8     3.55e-08
+      4         16     3.49e-10
+      5         32     4.08e-17
+  -> word values converge geometrically in the section: the
+     ledger is REACHED from finite rank, pointwise on words.
+
+== (ii) approximate validity of sections ==
+   section m = 2 (dim 4): min p over |w| <= 10 = 9.61e-04
+   section m = 3 (dim 8): min p over |w| <= 10 = 9.61e-04
+   section m = 4 (dim 16): min p over |w| <= 10 = 9.61e-04
+   section m = 5 (dim 32): min p over |w| <= 10 = 9.61e-04
+  -> in this ledger the sections stay VALID outright (min p
+     positive at every section) - compression can in
+     principle bend word positivity, and the receipt shows it
+     need not; whatever bending occurs dies with the section
+     (m = 5 reproduces every word value to 4e-17).
+     'Approximate processhood' is thereby quantified, not
+     assumed - the honest notion at the frontier.
+
+== (iii) atomic sectors are section-visible ==
+   section m = 2 (dim 4): top transfer eigenvalues = 1.000000, 0.933229, 0.7192
+   section m = 4 (dim 16): top transfer eigenvalues = 1.000000, 0.984880, 0.8283
+   section m = 6 (dim 58): top transfer eigenvalues = 1.000000, 0.997888, 0.8601
+  -> the section is built from ONE sector-mixed cyclic state,
+     so the second Perron direction enters only through the
+     sectors' dynamical distinguishability - and it CONVERGES:
+     the second eigenvalue climbs to 1 with section depth while
+     the third stays away.  Atomic superselection is recovered
+     asymptotically by sections (exactly at any depth if the
+     section is seeded per-sector), never lost.
+
+== (iv) where the atomic formalism ends ==
+   tolerance tau    'sector count' (#eigvals within tau of 1)
+     1e-01          50
+     1e-03          49
+     1e-05          33
+     1e-07          17
+     1e-10          1
+  -> NO tolerance-stable sector count exists: the Perron
+     spectrum is not discrete, and the atomic formalism
+     (sectors = isolated eigenvalue-1 directions) ENDS here.
+     The genuine frontier item is named: (T-cont) - the
+     direct-integral sector theory of record ledgers with
+     continuous Perron spectrum (symmetry-breaking families,
+     (V)-adjacent).  Everything above it - the rank-free
+     catalog, the SOT engine, finite sections, atomic
+     sectors - is now structured ground, not gesture.
+== p33b done ==

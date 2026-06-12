@@ -1,0 +1,93 @@
+== P0: exact constants (50 dps) ==
+  theta   = 0.54368901269207636157
+  kappa   = 0.34392287881552727191  (P8: 0.343922878815527)
+  eps     = 0.03176863644658181572
+  eps_eff = 0.030759390184906729225
+  g = ln(1-eps) = -0.0322842083290128
+
+== P1: precision pinning (rounded 0.0318 vs exact eps) ==
+  bare, eps = 0.0318 (as registered): S = 0.17555605  (1.63 s now, 7.37 s at JUNO-final)
+  bare, eps exact   : S = 0.17547212  (1.58 s now, 7.14 s at JUNO-final)
+  dressed, eps(1-eps): S = 0.17274688  (-0.0498 s now, -0.225 s at JUNO-final)
+  ROUNDING SHIFT of the registered point: 8.39e-5 = 0.227 sigma at JUNO-final -> the registration must pin eps to >= 10 digits
+
+== P2: P8's exact defect table, reproduced from the functional ==
+  all 9 printed weights reproduced; worst |diff| = 4.86e-16
+  (the functional is therefore the corpus object, exactly)
+
+== P3: second-order self-interaction, exact ==
+  d1(w) = theta^w(1 - w kappa) verified, w = 3..12: worst 1.4e-38
+  CLOSED-FORM d2(w) (derived, second-order perturbation of the
+  corpus fixed point): verified against numerics, w = 3..12:
+  worst |d2_num - d2_formula| = 1.9e-26
+  structure: d2(w)/theta^(2w) = -1/2 + b w + c w^2, with the
+  w^2 coefficient c = eta (1-theta^2)^3 / (theta^2 Delta^2)
+    c = 0.46254616774249620623
+    numeric fit: a = -0.5 (exact -1/2: 8.5e-25),
+                 c matches closed form at 2.1e-26
+    b = -0.87755242177457519539 (closed form assembled inside
+    d2_formula; b alone = kappa-weighted mix of the h2 pieces)
+
+== P3b: does second order renormalize eps toward eps(1-eps)? ==
+  eps (registered, first order) = 0.0317686364466
+  two-order: -(d1+d2)/theta^3 = -0.133807508972
+  exact: -defect(3)/theta^3 = -0.0525041043352
+  TARGET eps(1-eps) = 0.0307593901849
+  d2(3)/d1(3) = -5.2119374307  (the self-interaction
+  flips the sign of the w=3 defect: binding is second order,
+  exactly as P8 states; no two-order reading lands at eps(1-eps))
+  VERDICT P3b: the single-relation second order does NOT produce
+  the (1-eps) factor; if the dressed base is real, it must come
+  from the LADDER bridge (rung composition), not from the defect
+  expansion of one relation.  This is a constraint, not a defeat:
+  it eliminates the most obvious derivation route.
+
+== P4: which dressing law does the data select? ==
+  bare (D=1)                     : S = 0.175472  (1.58 s now, 7.141 s final)
+  geometric leakage (1-eps)^x    : S = 0.172747  (-0.0498 s now, -0.2247 s final)
+  capacity (1-eps)^(x(x-1)/2)    : S = 0.176205  (2.02 s now, 9.121 s final)
+  normalized evidence 4^x factor : S = 0.330995  (94.7 s now, 427.5 s final)
+  two-sided (1-eps)^(2x)         : S = 0.170061  (-1.66 s now, -7.483 s final)
+
+== P5: the pretty-form menu (look-elsewhere, counted) ==
+  eps(1-eps): S = 0.172747 (-0.0498 s now, -0.225 s final)
+  eps/(1+eps): S = 0.172832 (0.000906 s now, 0.00409 s final)
+  eps e^-eps: S = 0.17279 (-0.0239 s now, -0.108 s final)
+  eps(1-eps)^2: S = 0.170061 (-1.66 s now, -7.48 s final)
+  eps(1-2eps): S = 0.169972 (-1.71 s now, -7.72 s final)
+  eps(1-eps/2): S = 0.174115 (0.77 s now, 3.47 s final)
+  eps/(1+2eps): S = 0.170307 (-1.51 s now, -6.82 s final)
+  eps(1-eps^2): S = 0.175386 (1.53 s now, 6.91 s final)
+  eps cos(eps): S = 0.175429 (1.56 s now, 7.02 s final)
+  eps(1-kappa eps): S = 0.17454 (1.02 s now, 4.62 s final)
+  eps(1-theta eps): S = 0.173996 (0.698 s now, 3.15 s final)
+  eps(1-eta eps): S = 0.173817 (0.591 s now, 2.67 s final)
+  forms within 1 sigma NOW: 6/12 -> a 'hit' today is cheap; at JUNO-final: 3/12 ->
+  even the final dataset cannot pick WITHIN the surviving cluster;
+  the selection burden is entirely on the derivation.
+
+== P6: adjacent charged steps vs the bracket, both bases ==
+  adjacent steps inside [base^2, sqrt(base)]: 6/6 with eps, 6/6 with eps_eff
+  -> the charged bracket claim is ROBUST under the dressing
+
+== P7: oscillation-equivalent worlds ==
+  bare point        (C=1,    C1=1)   : S = 0.175472  m1 = 1.593 meV  Sum = 60.664 meV
+  dressed base      (eps_eff ladder) : S = 0.172747  m1 = 1.542 meV  Sum = 60.468 meV
+  texture survivor  (C=.9973,C1=1.305): S = 0.173003  m1 = 2.079 meV  Sum = 61.147 meV
+  m1 anomaly        (C=1,    C1=1.40): S = 0.17277  m1 = 2.231 meV  Sum = 61.331 meV
+  -> Sum(m_nu) spread ~ 2 meV: below near-term cosmology; the
+     scenarios are OSCILLATION-DEGENERATE; only a derivation or
+     precision cosmology separates them.
+
+== P8s: algebraic status (PSLQ + symbolic verification) ==
+  kappa (eta-linear): [11, 0, 0, 0, -7, 2, -1]  residual 5.3e-51
+  eps (eta-linear): [-11, -11, 0, 0, 21, -6, 3]  residual 2.7e-51
+  eps_eff (needs eta^2): [11, 22, 0, 0, -63, 18, -9, 36, -18, 18]  residual 5.5e-50
+  (kappa: 11 kappa = eta(7 - 2 theta + theta^2) -- the defining
+   relation in reduced form, verified symbolically via
+   (7-2t+t^2)(2+t^2) = 11(1+t^2) mod the cubic; eps and eps_eff
+   relations follow by substitution.  All residuals ~ 1e-40+:
+   these are exact, NOT numerology.)
+  kappa in Q(theta) (height 1e8)? None -> kappa is NOT
+   algebraic in theta at low height: P7's 'transcendental-form'
+   grading is receipted; eps_eff inherits it.

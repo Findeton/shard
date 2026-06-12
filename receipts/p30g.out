@@ -1,0 +1,36 @@
+== (i) the detector scan: NR as per-class theorems ==
+   L =  6: NR proved for 0/2 chiral classes
+   L =  7: NR proved for 0/4 chiral classes
+   L =  8: NR proved for 0/12 chiral classes
+   L =  9: NR proved for 0/28 chiral classes
+   L = 10: NR proved for 0/60 chiral classes
+  TOTAL: NR proved for 0/106 chiral classes (lengths 6-10, block words up to 8 blocks)
+  -> THE ROUTE IS CLOSED, and provably so: see (ii).  The
+     scan's zero is not bad luck - it is a theorem.
+
+== (ii) the obstruction theorem ==
+  PROPOSITION (detector obstruction).  For W whose copies
+  cannot straddle block boundaries (boundary-clean W; generic),
+  define on cyclic words  I(X) = occ_W(X) - occ_Wt(X)  (cyclic
+  factor occurrences).  I is rotation-invariant and reversal flips
+  it: I(rev X) = -I(X).  An achiral X therefore has I(X) = 0 - but
+  a block word with m = #W - #Wt != 0 has I(X) = m != 0.  So NO
+  unbalanced block word is achiral: the chirality of W propagates
+  to every unbalanced word in {W, W-tilde}, and the ANT-detector
+  route to (NR) is structurally closed.
+  receipt (W = 001011, X = W Wt W):  I(X) = +1,  I(rev X) = -1,
+  I constant over all 18 letter-rotations: True
+  -> the invariant is real and the scan's 0/106 is its
+     corollary.  (NR) cannot be reduced to (ANT) through the
+     block algebra; its support remains the direct receipts
+     (p30d: machine-zero defects with always-real spectra,
+     and the O(1) trade-off wall).
+
+== (iii) the d = 2 reality test ==
+  best |Im|/rho over words (length 10, letters varied) in
+  two 2x2 PD letters, 8 x 3000-step climbs: 0.0000
+  -> the d = 2 floor appears ALWAYS-REAL: complex word
+     spectra (and hence the whole NR question) live at
+     d >= 3; a hyperbolic-geometry proof (two-axis boost
+     words are never elliptic) is the named route.
+== p30g done ==

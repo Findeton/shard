@@ -1,0 +1,75 @@
+== 1. Majorana (RH-charge) realization: even-power obstruction ==
+  diagonal insertions n_ii = 4 x_i are EVEN -> diagonal magnitudes
+  are integer powers of s^2 = eps_eff: the diagonal-dominated
+  spectrum is (eps^2, eps, 1)-spaced, NEVER (eps, sqrt(eps), 1).
+  exhaustive unit-coefficient scan (729 textures):
+  best max-deviation from the rungs = 0.0727 -> the rung
+  spectrum is UNREACHABLE in the Majorana realization.
+  (P38 Sec. 3's M_R = diag(1, e^-1/2, e^-1) had M_22 ~ s^1: an
+  ODD power on a Majorana diagonal - forbidden by the rule it
+  claimed to follow.  The A3 receipt verified a hand-built M.)
+
+== 2. The repair: LH half-charges on the Weinberg operator ==
+  allowed entries: {'m11': 'lam^2', 'm12': 'FORBIDDEN', 'm13': 'lam^1', 'm22': 'lam^1', 'm23': 'FORBIDDEN', 'm33': 'lam^0'}
+  full-rank unit-coefficient outcomes: 12
+    ratios (0.000000, 0.175384, 1)  entries 2 insertions 1  S = 0.175384  (+1.53 s JUNO-now)
+    ratios (0.000000, 1.000000, 1)  entries 1 insertions 1  S = 1.000000  (+495.31 s JUNO-now)
+    ratios (0.000000, 0.029001, 1)  entries 2 insertions 1  S = 0.029001  (-86.13 s JUNO-now)
+    ratios (1.000000, 1.000000, 1)  entries 2 insertions 2  S undefined (degenerate)
+    ratios (0.029001, 0.170297, 1)  entries 3 insertions 2  S = 0.167880  (-2.96 s JUNO-now)
+    ratios (0.000000, 0.030759, 1)  entries 2 insertions 2  S = 0.030759  (-85.07 s JUNO-now)
+    ratios (0.030759, 0.175384, 1)  entries 3 insertions 3  S = 0.172747  (-0.05 s JUNO-now)
+    ratios (0.000000, 0.839323, 1)  entries 2 insertions 3  S = 0.839323  (+399.10 s JUNO-now)
+    ratios (0.000000, 0.058097, 1)  entries 3 insertions 3  S = 0.058097  (-68.70 s JUNO-now)
+    ratios (0.839323, 0.916146, 1)  entries 3 insertions 4  S = 0.675516  (+301.01 s JUNO-now)
+    ratios (0.000000, 0.170150, 1)  entries 4 insertions 4  S = 0.170150  (-1.60 s JUNO-now)
+    ratios (0.058097, 0.170437, 1)  entries 4 insertions 4  S = 0.160500  (-7.38 s JUNO-now)
+  -> FULL-RANK NONDEGENERATE members (m1 > 0, all distinct):
+     exactly FOUR - S = 0.172747 (rung point, -0.05 s),
+     0.167880 (cheap texture, -3.0 s), 0.160500 (-7.4 s, dead),
+     0.675516 (~300 s, dead); rank-deficient outcomes (m1 = 0)
+     are listed above for completeness and excluded by the
+     full-rank requirement.  The two live members differ by
+     7.3 sigma at JUNO-final: adjudicable.  MINIMALITY (fewest
+     insertions) favors the CHEAP TEXTURE - currently the
+     worse-fitting live member.  (An earlier printing of this
+     block said TWO-MEMBER and -1.7 sigma: the first missed
+     the two data-dead members, the second was the 0.169993
+     closed-form transcription error - both corrected.)
+
+== 3. integer RH charges: exhaustive scan, Dirac-consistent ==
+  exact rung hits over q in {0..3}^3 x unit +-: 0
+  best max-ratio deviation: 0.0144  at q = (3, 2, 3), ratios (0.01634, 0.16617, 1.0)
+  METRIC, pinned: max over the two independent ratio deviations
+  |m1/m3 - eps_eff| and |m2/m3 - sqrt(eps_eff)|, computed on the
+  SEESAW-INVERTED (light) spectrum: the charges sit on M_R and
+  the rung target is for the light masses, m_i ~ 1/mu_i with
+  mu_i the eigenvalue magnitudes of the scanned texture
+  (equivalently: |mu1/mu3 - eps_eff| and |mu1/mu2 - sqrt(e)|).
+  WITNESS (so the figure is checkable from one matrix):
+  q = (3,2,3), coefficient pattern {11:+1, 12:+1, 13:+1, 22:-1,
+  23:+1, 33:0} on magnitudes lam^(q_i+q_j); component deviations
+  (0.0144, 0.0092).  Applying the metric to the heavy spectrum
+  UNINVERTED gives (0.0144, 0.0770) on this same witness; an
+  earlier printing attributed that 0.077 to 'a less complete
+  scan variant' - it is the witness's own uninverted second
+  component; inversion convention now pinned (caught in review).
+  -> integer charges never reach the rungs (scan receipt);
+     half-odd charges reach them on the Majorana side (e.g.
+     q = (1, 1/2, 0): diag(lam^2, lam, 1) is rule-allowed) but
+     die via the Dirac column: charge 1/2 balances no integer
+     seam count -> exact zero -> light-mass rank collapse.
+     THE OBSTRUCTION IS THE CONJUNCTION, stated as such.
+
+== 4. integer doublet charges, Weinberg operator (direct) ==
+  full-rank nondegenerate textures: 30624
+  exact rung hits: 0
+  best max-ratio deviation (DIRECT metric): 0.0770
+  witness: q = (1, 1, 0), coefficients (1, 1, 1, 0, 1, -1),
+  ratios (0.0163, 0.0984, 1)
+  -> integer doublet charges never reach the rungs either; and
+     the rung DIAGONAL diag(lam^2, lam, 1) forces 2q1 = 2,
+     2q2 = 1, q3 = 0 (common shift fixed by q3 = 0; a shift
+     rescales the spectrum, not the ratios): q_L = (1, 1/2, 0)
+     is the UNIQUE normalized assignment realizing it.  The
+     surviving realization is SELECTED, not chosen.

@@ -1,0 +1,40 @@
+== (i) the Z6 congruence as an identity ==
+  Y6 = 3b - 2a:  congruence violations over (a,b) in [-9,9]^2: 0  (IDENTITY: 2a + 3b + Y6 = 6b)
+  surjectivity: Z6-allowed triples (|Y6| <= 12) not realized by any (a,b): 0
+  residue classes (alpha, beta) mod 6 with the congruence identical: [(4, 3)]
+  = the class of (-2, 3): PASS
+  -> the Z6 lattice is EQUIVALENT to one statement: Y is the
+     relative determinant character of the {3,2} tower.  The
+     five calibrated congruences of P17 reduce to a single
+     structural identification, named (Y-det).
+
+== (ii) the SM multiplets from minimal (a, b) ==
+   field        (a, b)    Y6 = 3b - 2a    SM    congruence
+   Q  (3,2)     ( 1, 1)       +1         +1     0  PASS
+   L  (1,2)     ( 0,-1)       -3         -3     0  PASS
+   u^c (3b,1)   ( 2, 0)       -4         -4     0  PASS
+   d^c (3b,1)   (-1, 0)       +2         +2     0  PASS
+   e^c (1,1)    ( 0, 2)       +6         +6     0  PASS
+   nu^c (1,1)   ( 0, 0)       +0         +0     0  PASS
+  all six multiplets: PASS
+  -> the P17 five-row table is reproduced as OUTPUT of the
+     det-character assignment - including nu^c at zero.
+
+== (iii) the weak fiber reconstructs as U(2), det included ==
+   n = 2: span(U^xn) rank = 10,  commutant dim = 10,  expected = 10: PASS
+   n = 3: span(U^xn) rank = 20,  commutant dim = 20,  expected = 20: PASS
+  -> double commutant equality for the 2-fiber: the weak
+     gauge structure reconstructed from exchange is the FULL
+     U(2) - determinant slot included - mirroring P18 R3's
+     165 = 165 for color.
+
+== (iv) center directions unseen by realized sectors ==
+  realized sectors [-4, -2, 0, 2, 6]: rho(phi + pi) = rho(phi) exactly: max diff = 7.9e-15
+  generated character lattice index in Z: 2  (reconstruction sees U(1)/Z_2)
+  -> a central element trivial on every realized sector is
+     invisible: Doplicher-Roberts reconstruction returns the
+     QUOTIENT.  The record question 'why the Z6 quotient?'
+     becomes 'why does the ledger realize only det-locked
+     sectors?' - answered by (Y-det) + the seam receipts of
+     p31b.
+== p31a done ==

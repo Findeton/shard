@@ -1,0 +1,22 @@
+== (i) the axes cross: boundary fixed points interleave ==
+  interleaving holds in 500/500 random PD pairs
+  -> symmetric PD axes all pass through the basepoint, so
+     distinct axes cross and their endpoints alternate -
+     the geometric premise, receipted.
+
+== (ii) the invariant arc J ==
+  J-invariance violations over 300 pairs x 25 boundary
+  points x both letters: 0
+  -> A(J) and B(J) stay inside J: every positive word maps J
+     into itself; the interval fixed point is forced.
+
+== (iii) words: real spectra with eigendirection in J ==
+  words tested: 400;  nonreal spectra: 0;
+  max |Im|/rho seen: 0.0e+00;
+  real eigendirection found inside J: failures = 0
+  -> THE THEOREM, live: every positive word in two PD 2x2
+     letters has real spectrum, with the fixed direction in
+     the invariant arc exactly where the proof puts it.  The
+     complex-spectrum phenomenon - and (NR) - begins at
+     d >= 3.
+== p30i done ==

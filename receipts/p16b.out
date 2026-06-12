@@ -1,0 +1,21 @@
+== (i) a non-Markov reversible process that IS a record law ==
+  |P(1|x,1) - P(1|y,1)| = 0.01229,  order-2: 0.00013   (both > 0: genuinely non-Markov at low order)
+  record rank = 4   (sv: 2.113, 4.24e-01, 1.95e-03, 2.06e-05, then 5.5e-16)
+  Heller cone certificate: tau_x(rays of K) >= 0 entrywise: True   omega in K: True   1^T >= 0 on K: True
+  reflection Gram min eigenvalue = -3.718e-16   (RP: PASSES, as P10 T4 demands)
+  diagonal Hankel min eigenvalue = -3.818e-18   (moment test: PASSES)
+  -> the function-of-Markov process is non-Markov, finite-rank,
+     RP, and carries an EXPLICIT Heller cone - it IS a record law,
+     with the cone's rays as the sealed ledger states.
+
+== (ii) the boundary, stated ==
+  record law      <=>  finite invariant cone (Heller; Theorem A)
+  record clock:   rank 3, reversible, valid - diagonal Hankel
+     FAILS the moment test (p16a: -9.96e-03), no invariant cone
+     can exist at ANY dimension (Theorem B), NOT a record law.
+  this process:   rank 4-class, non-Markov, RP - simplex cone
+     certifies it at capacity 4.
+  -> process-O6's content is CONE GEOMETRY, not rank: the ledger
+     is the cone, and matter sectors divide into cone-finite
+     (sealable) and cone-infinite (approximable only).
+== p16b done ==

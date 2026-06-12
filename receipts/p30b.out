@@ -1,0 +1,42 @@
+== (i) coupled-subordination audit over valid processes ==
+  valid samples: 120 accepted from 120 tries (scan |w| <= 12, mixing 0.45-0.70)
+   block       n    frac s>0    max s
+   001011     120    0.00       0.000
+   001101     120    0.00       0.000
+   0001011    120    0.00       0.000
+   0001101    120    0.00       0.000
+   0010111    120    0.00       0.000
+   0011101    120    0.00       0.000
+   00011101   120    0.00       0.000
+  THE AUDIT WALL: max coupled subordination s = 0.000
+  -> in RANDOM valid samples, complex poles do not couple to
+     chiral-block diagonals AT ALL (s = 0 throughout): generic
+     validity sits far from the wall.  Coupled complex poles
+     in valid processes exist but must be ENGINEERED - the
+     targeted attack below produces them - and even then they
+     stay strictly inside the coupled circle.
+
+== (ii) inverse-design attack on the wall (block 00011101) ==
+   restart 0: best valid s = 0.1313   (best invalid s seen = 0.0000)
+   restart 1: best valid s = 0.0000   (best invalid s seen = 1.0000)
+   restart 2: best valid s = 0.1866   (best invalid s seen = 1.0000)
+   restart 3: best valid s = 0.0000   (best invalid s seen = -1.0000)
+   restart 4: best valid s = 0.0000   (best invalid s seen = 1.0000)
+   restart 5: best valid s = 0.0000   (best invalid s seen = 1.0000)
+  champion: s = 0.1866;  post-hoc deep filter (scan |w| <= 14 + all chiral diagonals to depth 2000): PASS
+  beyond the wall: invalid candidate at s = 1.000 has witness p(w) = -4.02e-06 < 0 at w = 101010100000
+  -> the wall is real: subordination can be pushed by design,
+     but the coupled circle is never reached by a valid
+     process in this search - candidates above the wall break
+     word positivity at finite witness words.
+
+== (iii) the mechanism: peripheral lift goes negative ==
+  champion block poles: |lambda|/rho = [1.    0.187 0.187 0.   ]
+  coupled complex pair at s = 0.1866, phase theta/pi = 0.037571 (irrational-looking)
+  lifting the pair to the coupled circle (residues fixed): h_lift(n) < 0 first at n = 32
+  -> the Weyl mechanism in one receipt: peripheral nonreal
+     poles with these residues are INCOMPATIBLE with diagonal
+     positivity at finite, computable n.  What (PR-RP++) must
+     prove: no valid process can rearrange residues to evade
+     this - the audit and the attack above are the evidence.
+== p30b done ==

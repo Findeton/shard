@@ -1,0 +1,52 @@
+== T2/T3. the Gaussian tower: spectrum and the unbounded ladder ==
+   d     E1-E0 err     E2-E1 err     E3-E2 err     E4-E3 err
+    20   1.864e-04   6.874e-04   2.825e-03   3.325e-03
+    40   4.885e-15   4.441e-15   2.665e-15   2.665e-15
+    80   4.441e-16   6.661e-15   6.217e-15   6.217e-15
+   160   1.998e-15   7.327e-15   3.997e-15   3.997e-15
+
+  reconstructed position operator in the reconstructed eigenbasis:
+   n    |<n|x|n+1>|      target sqrt((n+1)/2w)   err
+    0   0.707106781    0.707106781       4.44e-16
+    1   1.000000000    1.000000000       1.11e-15
+    2   1.224744871    1.224744871       1.78e-15
+    3   1.414213562    1.414213562       1.55e-15
+    4   1.581138830    1.581138830       4.00e-15
+   10   2.345207875    2.345207880       5.08e-09
+   20   3.232258233    3.240370349       8.11e-03
+  max off-ladder element |<n|x|m>|, |n-m| != 1, n,m < 8: 1.80e-14
+  growth: |<20|x|21>| / |<0|x|1>| = 4.5711  (sqrt(21) = 4.5826): the operator is UNBOUNDED in the limit
+  -> spectrum, ladder algebra, selection rules, and unboundedness are
+     all RECONSTRUCTED from binned record data, with quantified rates.
+
+== T1. reflection positivity passes to projective limits ==
+  binned towers d = 20..160: worst site-Hankel min eig = -1.62e-18
+  LEMMA (2 lines): each Gram entry of the limit is a limit of entries
+  of PSD matrices; the PSD cone is closed; hence RP survives every
+  pointwise limit of correlations.  COROLLARY: any sector APPROXIMABLE
+  by eventless finitely-presented sectors is RP - O6 sharpens to
+  'sectors not even approximable by eventless presentations'.
+
+== T4. the Weyl algebra reconstructed from record data ==
+   d    K(levels)   |<0|e^{isX}|0> - e^{-s^2/4}|   ||GC - e^{-isr} I|| (6x6)
+    40      12         6.260335e-16               6.967065e-02
+    80      24         1.238288e-15               4.519329e-11
+   160      36         1.139359e-15               7.197238e-11
+  P-ladder check at d=160, K=36: | |<0|P|1>| - sqrt(1/2) | = 3.33e-16
+  Bargmann-loop gauge invariance (random diagonal phases): 4.21e-17
+  -> the reconstructed X and P = i[H,X] satisfy the WEYL RELATION
+     e^{isX} e^{irP} e^{-isX} e^{-irP} = e^{-isr}: the canonical
+     commutation relations - the continuum quantum kinematics - are
+     recovered from finite ledger truncations, against the EXACT
+     infinite-dimensional targets, with quantified convergence.
+
+== T5. dilation towers: per-level exactness + projective consistency ==
+  level 160 -> 80: dilation isometry gap = 4.44e-16, law reproduction gap = 2.78e-17
+     coarse stationary vs block-summed fine: max gap = 1.91e-16  (projective consistency)
+  level 160 -> 40: dilation isometry gap = 2.22e-16, law reproduction gap = 2.78e-17
+     coarse stationary vs block-summed fine: max gap = 1.18e-15  (projective consistency)
+  -> every level carries its exact D1 dilation, and the levels cohere:
+     the inductive system exists; the imported unbounded Naimark/
+     Stinespring theory (with Nelson/Kato self-adjointness criteria on
+     the tame class) completes it to the separable-Hilbert-space limit.
+== p11a done ==

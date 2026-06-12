@@ -1,0 +1,45 @@
+== (i) validity: analytic margin + exhaustive scan ==
+  analytic run margin v3(1-kappa) - A(1+kappa) = 0.3165 > 0   (Lemma W: validity at ALL orders)
+  stationary state omega = [0.036477 0.021028 0.942495]   (min component 0.0210 >= 0)
+  exhaustive scan, all 2^16 words to length 16: min p(w) = 7.333e-06  (>= 0)
+  -> the clock is a VALID stationary process, proven analytically
+     and scanned exhaustively.
+
+== (ii) the record (Hankel) rank is exactly 3 ==
+  Hankel (63x63) singular values: 1.9705, 0.0433, 0.0142, then 4.6e-16
+  -> rank 3: the process has a FINITE record dimension.
+
+== (iii) p(1^n)/kappa^n = a + b cos(n theta + c), exactly ==
+  fit residual = 3.33e-16   a = 0.942495   |b| = 0.059545  (b != 0)
+  best periodicity over P <= 12: min_P max_n |p_n - p_(n+P)| = 0.0168  (bounded away from 0)
+  -> the normalized diagonal sequence oscillates at theta = 1 rad
+     (theta/2pi irrational) ON the decay circle and fits NO
+     rational period: exactly the structure Theorem B forbids for
+     finite positive realizations.
+
+== (iv) reversibility ==
+  max |p(w) - p(reverse w)| over all words to length 12 = 8.33e-17
+  -> the clock is REVERSIBLE (stationary renewal: iid blocks):
+     the separation lands INSIDE the corpus' eventless-compatible
+     class.
+
+== (v) RP status: reversible but NOT reflection-positive ==
+  reflection Gram on words to length 4 (31x31): min eigenvalue = -4.137e-02  (FAILS PSD)
+  diagonal Hankel [p(1^(i+j))] 8x8: min eigenvalue = -9.958e-03  (FAILS the moment test)
+  -> the clock is reversible yet NOT RP - and P8's typed theorem
+     says it CANNOT be: site-RP forces the diagonal to be a
+     Hamburger moment sequence (real spectrum); oscillation on
+     the decay circle requires complex eigenvalues kappa e^(+-i),
+     which the failed Hankel PSD test detects.  Consistency note:
+     reversibility does NOT imply RP without a Markov
+     presentation - exactly P10 T4's hypothesis, here sharp.
+  THE SEPARATION (Theorem B + this witness):
+       { finite record laws }  STRICTLY INSIDE
+       { reversible, valid, finite-record-rank processes }.
+  THE RESIDUE (named (PR-RP)): whether RP + finite rank implies
+     a finite record law - the clock mechanism is EXCLUDED from
+     that class by the moment theorem, so the separation witness
+     must be different there if it exists at all (Anderson's
+     positive-realization theorem suggests strictly-dominant RP
+     processes are realizable, possibly at higher dimension).
+== p16a done ==

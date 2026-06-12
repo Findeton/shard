@@ -1,0 +1,23 @@
+== (i) record index density = F(x)/2pi, pointwise ==
+  L = 12, ripple a = 0.3: max |q(x) - F(x)/2pi| = 6.40e-03   (mean |F|/2pi = 1.61e-02; total q = +1.000000)
+  L = 16, ripple a = 0.3: max |q(x) - F(x)/2pi| = 3.63e-03   (mean |F|/2pi = 1.20e-02; total q = +1.000000)
+  L = 20, ripple a = 0.3: max |q(x) - F(x)/2pi| = 2.34e-03   (mean |F|/2pi = 9.58e-03; total q = +1.000000)
+  -> the record index density tracks the field strength pointwise
+     at the continuum anomaly coefficient 1/2pi (Schwinger e/pi for
+     the axial current), with the deviation falling under
+     refinement; the INTEGRAL is exactly integer at every L.
+
+== (ii) index of a charge-q record fermion = q Q ==
+    q   Q    index   qQ   match
+    1   1   +1.00000   1   PASS
+    1   2   +2.00000   2   PASS
+    2   1   +2.00000   2   PASS
+    2   2   +4.00000   4   PASS
+    3   1   +3.00000   3   PASS
+    3   2   +6.00000   6   PASS
+  -> the axial/mixed anomaly coefficient is LINEAR in the record
+     charge (index = qQ exactly): the q-linear anomaly predicate
+     of the (M) filter (p14e) is machine-verified.  The q^2 GAUGE
+     anomaly coefficient (chiral bubble) is a NAMED IMPORT from
+     the continuum Weyl calculation - stated, not derived here.
+== p14c done ==

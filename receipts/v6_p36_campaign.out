@@ -1,0 +1,116 @@
+== PRE-REGISTRATION (written before any route was computed) ==
+  TARGET: a derivation of the per-rung dressing from R/S/C +
+  named premises.  SUCCESS = the conjunction: (1) a per-unit-rung
+  multiplicative factor in the surviving cluster {(1-eps),
+  e^-eps, 1/(1+eps)} WITHOUT tuning, with the member DERIVED not
+  chosen; (2) compatibility with half-integer rungs (the factor
+  must be a per-half-step amplitude squared or otherwise exact at
+  x = 1/2); (3) no sign flip at exact (all-orders) level; (4) a
+  stated story for the charged/neutrino asymmetry.  FAILURE
+  RULES: a route producing a factor OUTSIDE the cluster counts
+  against the dressed base; exhausting the route list = publish
+  the no-go map.  ROUTE LIST (fixed in advance): R-A product-of-
+  poles forks; R-B signed/repelled relations (Feynman round-trip);
+  R-C variance/Fisher identification (analysis only); R-D exact-
+  algebra equality scan; R-E refinement-map eigenvalue; R-F
+  action-per-rung normalizations; R-G refinement towers (chains)
+  with the exact multi-mode machinery.  CLUSTER RULE: if a route
+  derives a cluster member other than eps(1-eps), the result is
+  reported as that member; O35.1's target updates ONLY by this
+  pre-stated rule, never silently.
+
+  eps = 0.03176863644658181572;  cluster factors: ['0.968231363553', '0.968730685127', '0.969209534653']
+
+== B1 (R-A): obvious one-relation bridge identifications ==
+  codeword amplitude ratio t^3(h*)/theta^3 = 0.598638381  (nearest cluster factor 0.96823136: off by 0.37)
+  commitment ratio e^-h*/theta = 1.121115979  (nearest cluster factor 0.96920953: off by 0.152)
+  evidence ratio D(h*)/D(eta) = 1.178122889  (nearest cluster factor 0.96920953: off by 0.209)
+  per-mode amplitude t(h*)/theta = 0.8427941632  (nearest cluster factor 0.96823136: off by 0.125)
+  -> none lands within 1e-3 of any cluster factor: the naive
+     one-relation identifications are EXCLUDED.
+
+== B2 (R-B): the sign-reversed triangle, lam = -1, exact ==
+  defect(w=3, lam=-1) = 0.2016742352919822513443419
+  P8's ORIENTED FRUSTRATED triangle (printed): 0.201674235292
+  match: 1.77e-14
+  -> CROSS-IDENTIFICATION (new receipt for the corpus): the
+     oriented frustrated triangle of P8's chirality campaign IS
+     the lam = -1 point of the unoriented scalar equation -
+     frustration = the code character reversing the codeword
+     amplitude.  As a DRESSING candidate it is EXCLUDED:
+     e^-defect = 0.81736115 (cluster needs ~0.968),
+     and a perturbative estimate that suggested ~eps was simply
+     outside the series' radius (kept on record as the trap it
+     is: second-order truncation at lam = -1 is invalid).
+  frustrated commitment ratio e^-h*/theta = 0.6036478553 -> also EXCLUDED (~0.85)
+  sign-reversed defect(w=4) = 0.10587708587
+  sign-reversed defect(w=5) = 0.0612678775683
+  sign-reversed defect(w=6) = 0.0377055617686
+
+== B3 (R-G): refinement chains T_k with the exact machinery ==
+  T1 = 0.00843810497229136 (P8: +0.008438104972291)
+  T2 = 0.0208449703907693 (P8 forensics: +0.020844970391)
+  increment D2 = 0.0124068654185   e^-D2 = 0.9876697824
+  increment D3 = 0.0131167760541   e^-D3 = 0.986968874
+  increment D4 = 0.0132458947803   e^-D4 = 0.986841446
+  increment D5 = 0.0132686430593   e^-D5 = 0.9868189973
+  increment D6 = 0.0132724703565   e^-D6 = 0.9868152205
+  per-link limit D_inf ~ 0.0132725 (converged to 4e-6 by k=6);
+  needed g = -ln(1-eps) = 0.03228420833
+  -> single-share chains deliver 0.41 x g; see double-share below
+  star_3 (three triangles, one common mode) = 0.0376103247593; per-triangle 0.0125367749198
+  double-share pair (triangles sharing TWO modes) = 0.0903175427617; increment over single 0.0818794377894
+  -> the tower-geometry family BRACKETS the target (single-share
+     0.0133, double-share 0.0819, needed 0.0323) and no member
+     hits it; per the pre-registration, hunting intermediate
+     geometries until one fits is the forbidden move: R-G is
+     EXCLUDED as a derivation route at the named family.
+
+== B4 (R-E): one-step map eigenvalue ==
+  |f'(theta)| = theta^2(1+2 theta) = 0.617024232093763
+  = 2 - 2 theta - theta^2 exactly (cubic reduction); vs cluster ~0.968 and eta = 0.6093778634: EXCLUDED as the
+  dressing; noted as a corpus constant (close to eta, not equal:
+  diff = 0.00764637).
+
+== B5 (R-D): equality scan of binding quantities vs targets ==
+  NEAR-MATCH: -first-order triangle defect/theta^3 = 0.0317686364465818 vs -ln(1-eps) = 0.0322842083290128  (diff -0.000516)
+  NEAR-MATCH: -first-order triangle defect/theta^3 = 0.0317686364465818 vs eps = 0.0317686364465818  (diff 0.0)
+  NEAR-MATCH: -first-order triangle defect/theta^3 = 0.0317686364465818 vs eps(1-eps) = 0.0307593901849067  (diff 0.00101)
+  (all other pairs differ by > 2e-3; full values in the table
+   above; near-matches are then tested at 25 digits - a true
+   identity must close to ~1e-25, not 1e-3.)
+
+== B6 (R-C): half-rung consistency ==
+  per-half-step amplitude sqrt(1-eps) = 0.983987481401:
+  a multiplicative law D(x) = (1-eps)^x is the ONLY form in the
+  route list that is exact at x = 1/2 with a single per-half-step
+  amplitude (Born reading: rung index counts amplitude powers);
+  additive or quadratic laws have no consistent half-step.  This
+  is a CONSISTENCY argument favoring the product/leakage class,
+  not a derivation, and is graded as such.
+
+== B7: verdict table ==
+  route                         factor produced     status
+  R-A naive identifications     0.48 - 1.18         EXCLUDED
+  R-B frustrated triangle       e^-0.2017 = 0.817   EXCLUDED (but
+                                                    yields the
+                                                    cross-identity)
+  R-C variance/Fisher/coherence (1-eps) exactly     IDENTIFICATION
+                                                    (not derived;
+                                                    sole survivor)
+  R-E map eigenvalue            0.617               EXCLUDED
+  R-F action-per-rung (exact)   sign flips          EXCLUDED (P35)
+  R-G refinement towers         0.987 (chains),     EXCLUDED (family
+                                0.921 (dbl-share)   brackets, misses)
+
+  SOLE SURVIVOR: the coherence/variance identification (R-C) -
+  mass = squared L-R seam coherence of a weight-eps recorded
+  binary distinction; |coherence|^2 = eps(1-eps) at purity; exact
+  at half-rungs via per-half-step amplitude sqrt(eps(1-eps)).
+  It produces the factor BY CONSTRUCTION and is therefore an
+  IDENTIFICATION, not a derivation, with one named tension: the
+  corpus' sealed records are definite (decohered), while the
+  coherence lives on the UNSEALED side of the distinction - the
+  bridge would have to make the rung phase silent (axiom S gauge)
+  while its modulus is physical.  That tension is the precise
+  remaining content of O35.1.

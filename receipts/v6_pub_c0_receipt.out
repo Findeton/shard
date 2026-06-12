@@ -1,0 +1,44 @@
+code/v6_pub_c0_receipt.py:89: RuntimeWarning: invalid value encountered in double_scalars
+  out[a] = t[a] + (1 - t[a]**2)*lam*Pa/(1 + lam*P) - np.exp(-h[a])
+== 1. constants and closed forms ==
+  theta = 0.543689012692076361570855971802
+  eta   = 0.609377863436006231536803371168
+  kappa form 1 (eta(1-th^2)/(1-th^2+th)) = 0.34392287881552727190666419813
+  kappa form 2 (eta(1+th^2)/(2+th^2))    = 0.34392287881552727190666419813
+  |form1 - form2| = 3.89e-62
+  eps = 3 kappa - 1 = 0.031768636446581815719992594391
+  1/kappa = 2.90763
+  11 kappa - eta(7 - 2 theta + theta^2) = 3.11e-61
+
+== 2. Lemma 1.1: scan, term bound, h >= 6 exclusion ==
+  20001-point scan on (0,6), w = 3..40, lambda = +-1:
+  cases with root count != 1: 0  (every case: exactly one sign change)
+  lambda=-1 term vs 2/w over 20000-point t-sweep, w = 3..40:
+  max (sup f - 2/w) = 0.000e+00  (<= 0: the 2/w bound holds)
+  h >= 6 exclusion margins: lambda=+1 side tanh6 - e^-6 = 0.997509;
+  lambda=-1 worst margin (w=3): tanh6 - 2/3 - e^-6 = 0.3308
+
+== 3. 300-start asymmetric multi-start search ==
+  w=3 lam=+1: 249/300 converged, 1 distinct solution(s), max |h_a - h_sym| = 4.33e-09
+  w=3 lam=-1: 262/300 converged, 1 distinct solution(s), max |h_a - h_sym| = 4.51e-09
+  w=4 lam=+1: 260/300 converged, 1 distinct solution(s), max |h_a - h_sym| = 4.66e-09
+  w=4 lam=-1: 278/300 converged, 1 distinct solution(s), max |h_a - h_sym| = 3.78e-09
+
+== 4. Theorem 4.2: second order, closed forms ==
+  c (closed form eta(1-th^2)^3/(th^2 Delta^2)) = 0.462546167742
+  b extracted at w = [4, 8, 16, 30]: -0.8775524217745752
+  b spread across w (constancy check): 3.31e-21
+
+== 5. Corollary 3.2: remainder vs bound ==
+    w     |r_w|        |d2/d1|      bound 2cw^2 th^w/(w kappa-1)   |r_w|<=bound
+     6       0.2071       0.2644         0.8088                  True
+    12      0.01168      0.01186        0.02842                  True
+    40     1.433e-9     1.433e-9        3.01e-9                  True
+    60    1.085e-14    1.085e-14      2.241e-14                  True
+    80    7.335e-20    7.335e-20      1.503e-19                  True
+   100    4.658e-25    4.658e-25      9.497e-25                  True
+  (|r_w| <= |d2/d1| for every listed w: the factor-2 domination
+   is generous; graded a verified-numerics bound in the paper.)
+
+== 6. frustration identity (cross-check vs p8b / v6_p36) ==
+  defect(3, lam=-1) = 0.20167423529198225   h* = 1.11414213549198

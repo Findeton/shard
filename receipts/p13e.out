@@ -1,0 +1,35 @@
+== (i) the 1+1 horizon cut: S = (1/6) ln L + const ==
+    L      S(L)        S - (1/6) ln(chord)   [chord = (2n/pi) sin(pi L/n)]
+      64   0.780091        -0.028510
+     128   0.894754        -0.029161
+     256   1.009108        -0.029488
+     512   1.121075        -0.029654
+    1024   1.222661        -0.029737
+  fitted coefficient of ln(record depth) = 0.16622   target c/6 = 0.16667   err = 4.4e-04
+  -> S - (1/6) ln(depth) is CONSTANT (drift ~1e-3 over 16x in L):
+     the ledger capacity sealed behind a single horizon seam grows
+     by exactly ONE SIXTH OF A NAT PER E-FOLD of record depth.
+
+== (ii) 2d record lattice: wedge entropy is extensive in cut area ==
+   n = 12: cut length 12, S = 0.71263
+   n = 16: cut length 16, S = 0.99701
+   n = 20: cut length 20, S = 1.28525
+   n = 24: cut length 24, S = 1.57573
+   n = 28: cut length 28, S = 1.86758
+  linear fit S = 0.07222 * n + -0.15667; max residual = 2.7e-03
+  -> the sealed capacity is EXTENSIVE IN THE CUT AREA (the record
+     area law): entropy per unit horizon area is a lattice constant
+     (nonuniversal), the LAW is the linearity.
+
+== (iii) capacity quanta: the modular ledger is discrete ==
+    L     eps_1     eps_2     eps_3     spacing   2pi^2/ln(cL)
+    128   1.31706   4.01510   6.85455    2.84249
+    512   1.11440   3.37710   5.71901    2.34528
+  one-constant log law: c fixed at L = 128 gives c = 8.104;
+  predicted spacing at L = 512: 2.36947   measured: 2.34528   err = 2.4e-02
+  -> the modular ledger behind the seam is DISCRETE (capacity
+     quanta), with spacing closing only logarithmically in record
+     depth: Delta eps = 2 pi^2 / ln(c L) - the boost log-box of
+     p13b.  This is P7's C5 discreteness direction, realized at
+     finite record scope.
+== p13e done ==

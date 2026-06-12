@@ -1,0 +1,35 @@
+== the candidate pool: 16 multiplets on the Z_6 lattice (|Y6| <= 8) ==
+
+== exhaustive search, content size <= 5 multiplets ==
+  size 1: 0 genuinely chiral anomaly-free contents
+  size 2: 0 genuinely chiral anomaly-free contents
+  size 3: 0 genuinely chiral anomaly-free contents
+  size 4: 0 genuinely chiral anomaly-free contents
+  size 5: 2 genuinely chiral anomaly-free contents
+
+== the minimal survivors, by Weyl count ==
+   15 Weyl: (1,1,-6) + (1,2,+3) + (3,1,-2) + (3,1,+4) + (3b,2,-1)   <-- the SM conjugate
+   15 Weyl: (1,1,+6) + (1,2,-3) + (3,2,+1) + (3b,1,-4) + (3b,1,+2)   <-- THE STANDARD MODEL GENERATION
+
+  Weyl counts present: [15]
+  Standard Model generation found: True   (15 Weyl, 5 multiplets)
+  distinct solutions below 15 Weyl: 0; at 15 Weyl: 2
+
+== robustness: the hypercharge bound ==
+  |Y6| <= 10 (pool 20): 2 solutions - unchanged (the SM generation and its conjugate)
+  |Y6| <= 12 (pool 24): 2 solutions - unchanged (the SM generation and its conjugate)
+
+  -> THE VERDICT AT STATED SCOPE: with color reps up to the
+     fundamental, weak reps up to the doublet, the Z_6 quotient
+     lattice, and at most five multiplets, the STANDARD MODEL
+     GENERATION IS THE UNIQUE genuinely chiral anomaly-free
+     matter content (up to conjugation) - nothing exists below
+     its 15 Weyl fermions, and nothing else exists at 15.  The
+     uniqueness is stable under raising the hypercharge bound
+     (8 -> 10 -> 12).  Scope honesty: larger color/weak reps
+     (6, 8, triplets...) and more multiplets are NOT searched
+     here - run 2's job.  Phase II run 1: the record filter
+     stack, executed on representations of the reconstructed
+     fibers, RECOVERS THE STANDARD MODEL GENERATION AS ITS
+     MINIMAL SOLUTION.
+== p18f done ==

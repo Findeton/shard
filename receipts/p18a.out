@@ -1,0 +1,28 @@
+== (i) d = 3, eventless: exchange^2 holonomy = identity ==
+  contraction stage s = 1.0: ||holonomy - 1||_max = 2.15e-14
+  contraction stage s = 0.6: ||holonomy - 1||_max = 1.16e-14
+  contraction stage s = 0.3: ||holonomy - 1||_max = 7.34e-15
+  -> for EVENTLESS (flat = pure-gauge) fiber transport the
+     exchange-squared loop carries NO holonomy, at every stage of
+     the contraction: eps^2 = 1 is FORCED in d = 3 - braid
+     statistics collapses to the symmetric group (Theorem R1).
+
+== (ii) d = 3, eventful: holonomy lives on enclosed events ==
+  s = 1.00: ||holonomy - 1||_max = 1.987e+00
+  s = 0.50: ||holonomy - 1||_max = 1.962e+00
+  s = 0.25: ||holonomy - 1||_max = 6.988e-01
+  s = 0.10: ||holonomy - 1||_max = 1.153e-01
+  -> with curvature (events) present the loop holonomy is O(1) at
+     full size and vanishes as the contraction empties the loop:
+     exchange-squared holonomy measures ENCLOSED EVENTS, never
+     statistics.  Eventless exchange-squared = 1, always.
+
+== (iii) d = 2: the flat modulus survives ==
+  flat connection on S^1: A = X dtheta, holonomy of the
+  exchange-squared (winding-1) loop = exp(2 pi i X):
+  ||holonomy - 1||_max = 1.025   (an ARBITRARY U(3) element)
+  -> pi_1(S^1) = Z: flat connections carry a modulus; the braid
+     group survives ONLY in d = 2 - Paper 9's record-anyon window
+     recovered as the unique exception, now from the same theorem
+     that forces eps^2 = 1 everywhere else.
+== p18a done ==

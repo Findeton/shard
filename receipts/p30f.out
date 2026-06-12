@@ -1,0 +1,33 @@
+== (i/ii) band winners and their death depths ==
+   eps    dist     r(<=12)   death depth k*
+   0.05   0.054    0.9802        16
+   0.15   0.147    0.9711       >64
+   0.30   -        none feasible at depth 12
+  -> MIXED: some winners die at finite depth, at least
+     one survives the deepest adversary probe (64 phases,
+     8 restarts).  Either the local adversary misses the
+     killing phase pattern at this budget, or the
+     all-depth feasible set is genuinely a band off the
+     normal point: (ISO) is OPEN, evidence mixed -
+     reported exactly as measured.
+
+== (iii) the deepening trend at eps = 0.05 (warm-started at the band winner) ==
+   constraint depth K     max feasible r
+     12                    0.9723
+     32                    0.9767
+     56                    0.8431
+  (the specific eps = 0.05 winner above died at k* = 16;
+   the trend re-optimizes within the shell at each K, so it
+   measures the SHELL's best survivor, not that one point)
+  trend: 0.972 -> 0.977 -> 0.843
+  -> r_max declines only mildly through K = 56: the shell
+     retains strong feasible coupling at every depth this
+     search reaches.  Combined with the mixed death-depth
+     table: the reduced-level evidence does NOT settle
+     (ISO).  If the band is real, the spectral half of
+     (CPE) rests entirely on the letter-level exclusion
+     (NR + the trade-off wall), which is independently
+     receipted; if the adversary is the bottleneck, a
+     global phase-optimization (SOS over the torus) is
+     the named next tool.  Reported exactly as measured.
+== p30f done ==
