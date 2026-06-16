@@ -1,0 +1,255 @@
+
+==============================================================================
+PART 1.  ONE-DIAMOND CONSTANTS from KL=Fisher self-consistency (paper4 s5)
+==============================================================================
+
+  Single-diamond law (paper4 s5): the idempotent contrast q in {-1,+1} carries the
+  exponential tilt of the count-dual eventless base mu_D=(1/2,1/2):
+
+        P_eta(q) = e^{eta q} / (2 cosh eta).
+
+  KL content of the committed event vs its eventless repair Pi_0 P_eta = mu_D:
+        D(P_eta || mu_D) = eta tanh eta - log cosh eta.       (= eta E[q] - psi)
+  Fisher capacity of the same holonomy contrast (log-partition Hessian):
+        J(eta) = Var_{P_eta}(q) = d^2 psi/d eta^2 = 1 - tanh^2 eta.
+
+  SELF-CONSISTENCY PRINCIPLE (the independent law, NOT an FDT identity):
+        KL content accumulated  ==  Fisher capacity of the contrast
+        D(P_eta || mu_D) = J(eta)
+  <=>   eta tanh eta - log cosh eta  =  1 - tanh^2 eta.
+
+  psi(eta) = log(2 cosh eta) - log 2                  
+  E_eta[q] = psi'(eta)                               tanh(eta) 
+  D(P_eta||mu) = eta tanh eta - log cosh eta         (KL content) 
+  J(eta) = psi''(eta) = Var(q)                       cosh(eta)**(-2) (Fisher capacity)
+  FDT check  d E[q]/d eta - Var(q)                   0 (0 = automatic; NOT the principle)
+
+  eta_*   (root of balance)                          1.090344354879492196220507708350949953358 
+  theta_* = tanh eta_*                               0.7970037941628782721430141071269845103404 
+  W_* = J_* = 1 - tanh^2 eta_*                       0.3647849520899763622571771605122480456575 
+  W_* via KL (independent formula)                   0.3647849520899763622571771605122480456575 
+  residual  balance(eta_*)                           -9.68148e-122 
+  residual  W_*(Fisher) - W_*(KL)                    9.68148e-122 
+
+  -- comparison to quoted digits --
+  eta_* - quoted                                     1.96221e-16 
+  theta_* - quoted                                   2.72143e-16 
+  W_* - quoted                                       3.62257e-16 
+  PART 1 reproduces the quoted constants to <1e-15 ? True 
+  balance(0) (eta=0 is the degenerate branch)        -1.0 (<0: no nonzero-content event)
+  sign changes of balance on (0,3]                   1 (unique nonzero root)
+
+==============================================================================
+PART 2.  TWO-DIAMOND SEALING: refinement-consistency setup (pre-geometric)
+==============================================================================
+
+  Object: one sealed diamond D1 has committed (eta_*, theta_*, W_* fixed).  The
+  question is the law for the NEXT seal D2.  Between D1 and D2 the record carries
+  an UNSEALED retained holonomy (paper4 s8: linear retained-holonomy composition,
+  amplitudes add c0, c1=e^{i phi} c0; the q=2 screen-isometry packet).  No seal
+  has committed the relative phase yet.
+
+  DECOHERENCE-FUNCTIONAL BRIDGE (paper56 s4.2, the Tier-1 functor at kinematic
+  level).  Coarse-grain the inter-seal history into record/pointer alternatives
+  alpha=(a_1,...,a_n).  The Gell-Mann--Hartle decoherence functional is
+
+      D(alpha, alpha') = Tr[ P_{a_n}...P_{a_1} rho P_{a'_1}...P_{a'_n} ]
+
+  with projectors evolved by the inter-seal holonomy U_k.  A SEAL is the place
+  where D DIAGONALIZES (medium decoherence: off-diagonal interference -> 0).  The
+  biconditional (a THEOREM of consistent-histories consistency):
+
+     Chapman-Kolmogorov composes across t'  (Gamma(t2,t0)=Gamma(t2,t')Gamma(t',t0))
+       <=>  off-diagonal (interference) part of D vanishes at t'  (medium decoherence)
+       <=>  t' is a SEAL (a refinement point of the seal order).
+
+  This is EXACTLY the self-consistency-under-refinement condition for sealing:
+  "inserting an intermediate diamond must compose consistently" = "the inserted
+  point is a place where D is diagonal" = "Chapman-Kolmogorov holds there".
+
+  The record-internal state variable is the ACCUMULATED HOLONOMY CONTENT
+      chi  =  total committed entropy content along the commit order
+           =  int (rate of D(P_AB||P_BA) accrual)        (paper10 T2; F4 sibling)
+  a weight-0 PURE NUMBER (a KL divergence), NOT a length or a proper time.  The
+  SURVIVAL functional of the unsealed coherence between seals is
+      S(chi)  =  |off-diagonal of D|  =  |retained holonomy overlap|  in [0,1],
+  with S(0)=1 (no content committed yet => fully coherent => fully refinable) and
+  S decreasing in chi (committing content seals the holonomy).  The SEAL-RATE /
+  hazard functional is the chi-derivative of -log S:
+      lambda(chi) := -d log S / d chi      (the seal hazard per unit content).
+
+
+==============================================================================
+PART 2b.  THE REFINEMENT-COMPOSITION CONSTRAINT (Chapman-Kolmogorov on S)
+==============================================================================
+
+  Insert an intermediate diamond D' splitting the content interval chi = chi1 + chi2
+  (chi1 = D1->D', chi2 = D'->D2).  Self-consistency under refinement DEMANDS:
+  inserting the intermediate seal must COMPOSE -- the diagonalized decoherence
+  functional must factor through the intermediate diagonal record.  In transition-
+  matrix language (paper56 s4.2) this is Chapman-Kolmogorov:
+
+      Gamma(chi1+chi2)  =  Gamma(chi2) . Gamma(chi1)      across the inserted seal.
+
+  On the surviving OFF-DIAGONAL coherence content the composed contraction is the
+  product of the two sub-contractions (the cross-terms vanish at the inserted
+  diagonal point -- that is what "it is a seal" means).  Hence on S:
+
+      S(chi1 + chi2)  =  S(chi1) . S(chi2)        for ALL chi1, chi2 >= 0.    (*)
+
+  (*) is the Cauchy MULTIPLICATIVE functional equation.  With S(0)=1, S in [0,1]
+  monotone (and measurable -- S is a physical contraction), the ONLY solutions are
+
+      S(chi) = exp(- kappa chi),     kappa >= 0  a constant.
+
+  Therefore the SEAL HAZARD PER UNIT CONTENT is FORCED CONSTANT in chi:
+      lambda(chi) = -d log S/d chi = kappa = const.
+  The seal law is LINEAR-IN-CONTENT: the committed entropy content seals the
+  holonomy at a CONSTANT rate per unit content.  This is the Tier-A click-law
+  SHAPE, and it is forced up to the one constant kappa (the no-go scale).
+
+  S=exp(-kappa chi) satisfies S(x+y)=S(x)S(y) ? residual 0 
+  lambda(chi) = -d log S/d chi                       kappa (CONSTANT in content chi -- FORCED)
+  uniqueness: g:=log S satisfies g(x+y)=g(x)+g(y) (Cauchy additive);
+  with monotone/measurable S the only solution is g(chi) = -kappa chi.
+
+  EXP survival  S(c1+c2)-S(c1)S(c2)                  0.0 (=0: refinement-consistent)
+  GAUSS-in-chi  S(c1+c2)-S(c1)S(c2)                  -0.105692 (!=0: FAILS refinement in chi)
+
+==============================================================================
+PART 3.  WHAT IS FORCED vs FREE  (the decisive question, honest)
+==============================================================================
+
+  FORCED by two-diamond refinement-consistency (Tier-A click-law SHAPE):
+
+  [FORCED-1]  The survival content is MULTIPLICATIVE in the accumulated holonomy
+              content chi:  S(chi1+chi2)=S(chi1)S(chi2)  =>  S = exp(-kappa chi).
+              Equivalently the seal hazard PER UNIT CONTENT is CONSTANT:
+              lambda(chi) = kappa.  The whole-history seal law is the constant-
+              hazard-in-content (Poisson-in-content) law.  This is the unique
+              self-consistent SHAPE: it is forced, not chosen.
+
+  [FORCED-2]  Monotonicity:  kappa >= 0  (a committed seal can only CONTRACT the
+              unsealed holonomy -- S non-increasing).  This is the same
+              seal-irreversibility / CP-divisibility floor the F4 sibling found:
+              int K >= 0  <=>  lambda >= 0  <=>  no revivals.  Refinement-
+              consistency in content and CP-divisibility are the SAME condition.
+
+  [FORCED-3]  Additivity of content over independent composition: chi(D1 x D2)=
+              chi(D1)+chi(D2) (paper4 s34: A_{D1xD2}=A_{D1}+A_{D2}), consistent
+              with (FORCED-1).  The content chi is the RIGHT clock variable; the
+              law is local-in-content.
+
+  FREE (modulo nothing record-internal can fix it -- the ONE no-go scale):
+
+  [FREE-1]    The single constant kappa.  Refinement fixes the FUNCTIONAL FORM
+              (exponential-in-content) but NOT the absolute rate.  kappa is the
+              content->commit-order conversion: how much commit-order "ticks" one
+              unit of weight-0 content buys.  This is exactly the F4 / paper-XI
+              one-free-scale no-go: chi (a KL divergence) is weight-0 and
+              record-internal, but turning it into a RATE needs one unit that the
+              records do not carry (do-delete C6).
+
+  [FREE-2 -> RESOLVED]  The chi-PROFILE of the content itself, chi(tau) as a
+              function of the *external* parameter the records do NOT see, is NOT
+              constrained by Tier A and MUST NOT be (pre-geometric: there is no
+              tau).  In the commit-order/content variable chi -- the ONLY intrinsic
+              succession -- the hazard is forced constant.  Any non-constant
+              hazard 'lambda(tau)' is purely an artifact of a Tier-B reparam
+              chi=chi(tau); it carries NO Tier-A content.  See PART 4.
+
+  VERDICT (honest):  F3 FORCES the Tier-A click-law SHAPE in the intrinsic
+  content variable -- uniquely, as exp(-kappa chi) / constant-hazard-in-content --
+  up to the single no-go scale kappa.  It does NOT, and pre-geometrically MUST
+  NOT, force a profile in any external parameter (none exists at Tier A).  This is
+  the best possible Tier-A outcome: unique-modulo-one-no-go-scale.
+
+  -- power-law survival family S=exp(-kappa chi^p): which p is refinement-consistent? --
+  log S(c1+c2) - log S(c1) - log S(c2)               kappa*(chi1**p + chi2**p - (chi1 + chi2)**p) 
+     p=0.5:  (c1+c2)^p - c1^p - c2^p                 -0.367387960485 
+     p=1.0:  (c1+c2)^p - c1^p - c2^p                 0.0   <- REFINEMENT-CONSISTENT (p=1)
+     p=1.5:  (c1+c2)^p - c1^p - c2^p                 0.211453594828 
+     p=2.0:  (c1+c2)^p - c1^p - c2^p                 0.33 
+
+==============================================================================
+PART 4.  RECOVERY LIMITS -- does self-consistency pick exp or gauss?
+==============================================================================
+
+  The corpus knows two seal-hazard regimes (paper56, F4):
+    (A) CONSTANT hazard lambda_0  ->  exponential coherence   |rho01| = e^{-lambda_0 T}
+    (B) RAMP hazard a t           ->  Gaussian onset          |rho01| = e^{-a T^2/2}
+  where T is an EXTERNAL (Tier-B) commit-order parameter.  The Tier-A law forced a
+  CONSTANT hazard in the INTRINSIC content variable chi:  S = e^{-kappa chi}.
+  The two regimes are then NOT two different Tier-A laws -- they are the SAME
+  Tier-A law read through two different Tier-B content profiles chi(T):
+
+  (A) profile chi(T)=lambda_0 T/kappa  => S=e^{-kappa chi} exp(-T*lambda_0) = e^{-lambda_0 T}  EXPONENTIAL
+  (B) profile chi(T)=a T^2/(2 kappa)  => S=e^{-kappa chi} exp(-T**2*a/2) = e^{-a T^2/2}  GAUSSIAN ONSET
+
+  So the constant-hazard (exponential) and accumulating-hazard (Gaussian-onset)
+  cases are BOTH self-consistent: they are ONE Tier-A law (constant hazard in chi,
+  S=e^{-kappa chi}) composed with two Tier-B content PROFILES chi(T):
+       chi(T) linear     -> exponential   (content accrues at constant rate)
+       chi(T) quadratic   -> Gaussian onset (content accrues at a ramping rate).
+  REFINEMENT-CONSISTENCY DOES NOT PICK ONE OUT.  It cannot: the profile chi(T)
+  lives in T, an external (Tier-B) parameter the records do not carry, and Tier A
+  is pre-geometric (there is no T).  What Tier A DOES force is the SHAPE in chi:
+  constant hazard per unit content, monotone (kappa>=0).  The 'choice' between
+  exponential and Gaussian is the Tier-B choice of how content is laid down along
+  an emergent parameter -- exactly the F4 result (the toys are constraint choices
+  on the profile), now seen as ONE forced Tier-A law under reparametrization.
+
+  T=0.5: |S_A - e^-lam0 T|                           0.0 
+  T=0.5: |S_B - e^-aT^2/2|                           0.0 
+  T=1.3: |S_A - e^-lam0 T|                           0.0 
+  T=1.3: |S_B - e^-aT^2/2|                           0.0 
+  T=2.7: |S_A - e^-lam0 T|                           4.84074e-122 
+  T=2.7: |S_B - e^-aT^2/2|                           1.81528e-122 
+
+  Tier-A monotonicity gate: kappa>=0 forces S non-increasing (no revival) = F4 int K>=0 = CP-divisible
+
+  A revival (S increasing on a sub-interval) would mean S(chi1+chi2) > S(chi1)S(chi2)
+  for some split, i.e. a FAILURE of refinement-multiplicativity (*) -- inserting an
+  intermediate seal would not compose.  So at Tier A a revival is exactly an
+  unrefinable, non-composing inserted point: NOT a seal.  Refinement-consistency
+  therefore re-derives the F4 / paper56 no-revival no-go as a structural Tier-A
+  statement, with NO appeal to geometry, spectra, or s^2.
+
+
+==============================================================================
+CANONICAL OUTPUT BLOCK  (F3 self-consistency receipt)
+==============================================================================
+
+  one-diamond constants (reproduced, dps=120):
+    eta_*   = 1.090344354879492196220508
+    theta_* = 0.7970037941628782721430141
+    W_*=J_* = 0.3647849520899763622571772
+    residual |balance(eta_*)|          = 9.681e-122
+    residual |W_Fisher - W_KL|         = 9.681e-122
+    max |const - quoted|               = 3.623e-16
+
+  two-diamond refinement-consistency:
+    constraint  S(chi1+chi2) = S(chi1) S(chi2)   (Chapman-Kolmogorov / D diagonalizes)
+    FORCED      S(chi) = exp(-kappa chi),  hazard lambda(chi) = kappa = const-in-content
+    FORCED      kappa >= 0  (monotone / CP-divisible / no-revival)
+    UNIQUE p    only p=1 in S=exp(-kappa chi^p) is refinement-consistent
+    FREE        the single scale kappa (one no-go scale; chi is weight-0)
+
+  recovery limits (both are ONE Tier-A law under a Tier-B profile chi(T)):
+    chi(T) linear     -> S=e^{-lambda_0 T}   exponential      (residuals ~ 0)
+    chi(T) quadratic  -> S=e^{-a T^2/2}      Gaussian onset   (residuals ~ 0)
+    refinement does NOT pick one: the profile is Tier-B; Tier-A forces only the
+    constant-hazard-in-chi SHAPE.
+
+  STATUS: F3 FORCES the Tier-A click-law SHAPE (constant hazard in the intrinsic
+  holonomy-content variable, S=exp(-kappa chi)) UNIQUELY up to the one no-go scale
+  kappa.  Pre-geometric throughout: chi is a record-internal KL pure number; no
+  spacetime, metric, light cone, or s^2 was used.  The open Tier-A residue is the
+  single scale kappa (provably record-free) and -- pushed upstream by paper4 s34-42
+  -- the intrinsic supply of the content rate d chi (the complete closed-holonomy
+  cochain), which sets chi but not its commit-order conversion kappa.
+
+
+==============================================================================
+DONE.
+==============================================================================

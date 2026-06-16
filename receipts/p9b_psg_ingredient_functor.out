@@ -1,0 +1,39 @@
+
+==============================================================================
+(1) the orientation-class group assembles (owned, finite-group-exact)
+==============================================================================
+  triangle {x,y,xy}          |K-hat|=  2  |Aut(K)|=    6  action well-defined: True  |PSG|<=12
+  single w4 {x,y,z,xyz}      |K-hat|=  2  |Aut(K)|=   24  action well-defined: True  |PSG|<=48
+  two glued triangles        |K-hat|=  4  |Aut(K)|=    8  action well-defined: True  |PSG|<=32
+  3-spin full set            |K-hat|= 16  |Aut(K)|=  168  action well-defined: True  |PSG|<=2688
+  [8,4,4]-type               |K-hat|= 16  |Aut(K)|= 1344  action well-defined: True  |PSG|<=21504
+
+==============================================================================
+(2) signature: the full 3-spin ledger gives |Aut(K)| = 168 = |GL(3,2)|
+==============================================================================
+  |GL(3,2)| = (2^3-1)(2^3-2)(2^3-4) = 168
+  |Aut(K)| for the 3-spin full set    = 168
+  => reproduces Paper 8's GL(3,2) orientation symmetry (the 1+7+7+1 multiplet)
+
+==============================================================================
+(3) NO-GO: the extension is SPLIT -- no record-internal 2-cocycle (not Wen's PSG)
+==============================================================================
+  orientation classes K-hat are Z2^dimK (character signs); Aut(K) acts by permutation
+  => the assembled extension K-hat (x) Aut(K) is the SPLIT semidirect product
+  => no record-internal U(1) 2-cocycle is forced from K alone
+
+==============================================================================
+MACHINE CHECKS
+==============================================================================
+  [PASS] (1) Aut(K) acts on K-hat by a well-defined permutation rep (all 5 ledgers)
+  [PASS] (2) |Aut(K)| = 168 = |GL(3,2)| for the full 3-spin ledger
+  [PASS] (3) orientation data is Z2-valued + permutation action => SPLIT extension (no forced cocycle)
+  [PASS] (4) NO-GO: Aut(K) carries no space-group structure (no translations) => Wen-PSG H^2(SG,IGG) content needs emergent geometry (l_step-walled); the record group is the PSG-INGREDIENT only
+
+  ALL CHECKS PASS
+==============================================================================
+DONE.  The record orientation-class group K-hat (x) Aut(K) BUILDS (168=GL(3,2) at n=3),
+       but it is the PSG-INGREDIENT group: the extension is split, and Wen's PSG
+       cohomological content H^2(space group, IGG) needs emergent geometry (l_step-walled).
+       => no Wen-PSG without geometry [NO-GO].
+==============================================================================

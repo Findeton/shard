@@ -1,0 +1,172 @@
+
+==========================================================================
+TEST A.  LOCAL-TOMOGRAPHY DIMENSION COUNT (the decisive structural test)
+==========================================================================
+
+  A GPT system has 'information dimension' K = # real parameters fixing a state.
+  The COMPOSITION rule for K is the fork between theories:
+
+     classical bit:        d=2 outcomes,  K = d        = 2   (a probability vector, sum=1 => 1 free, +... )
+     complex qubit (QT):    K = d^2        = 4   (Bloch ball: I, X, Y, Z coeffs)
+     real-vector qubit:     K = d(d+1)/2   = 3   (rebit: I, X, Z only -- NO Y)
+     quaternionic:          K = d(2d-1)    = 6
+
+  LOCAL TOMOGRAPHY  <=>  K_AB = K_A * K_B.
+  Only the COMPLEX qubit satisfies it with composites: 4 = 2*2 at the EFFECT
+  count level (K_qubit=4 => K_2qubit = 4*4 = 16 = (d_AB)^2 = 4^2).  The REAL
+  (rebit) theory does NOT: K_rebit=3 but K_2rebit = 10 != 3*3 = 9 (limited
+  holism deficit), and the complex tensor of two rebits has hidden Y-like joint
+  parameters NOT seen by local (rebit) measurements.
+
+  K_classical (bit, outcome count)                                      2  
+  K_complex  qubit  = d^2                                               4  
+  K_real     rebit  = d(d+1)/2                                          3  
+  K_quat     qubit  = d(2d-1)                                           6  
+
+  K_AB complex 2-qubit  = (d_AB)^2                                     16  
+    local-tomography K_A*K_B (complex)                                 16  MATCH => local tomography HOLDS
+  K_AB real 2-rebit (sym 4x4)                                          10  
+    local-tomography K_A*K_B (real)                                     9  MISMATCH => local tomography FAILS
+  real-QT limited-holism deficit K_AB - K_A K_B                         1  (>0: joint params invisible to local meas.)
+
+  READ: complex QT satisfies K_AB = K_A*K_B (local tomography); real QT does NOT
+  (deficit = +1 hidden joint parameter per pair).  The SHARD forced skeleton
+  gives a per-diamond seal+phase; nothing proven so far computes the COMPOSITE
+  K_AB for two sealed diamonds.  So the skeleton does not yet TELL US which
+  branch (complex K_AB=K_A*K_B, or real K_AB=K_A*K_B + deficit) the 2-diamond
+  ledger lives in -- and THAT branch IS the value of chi_AB's quantum-ness.
+
+
+==========================================================================
+TEST B.  REAL vs COMPLEX ENTANGLING FOIL at FIXED marginals & no-signaling
+==========================================================================
+
+  Build two 2x2-outcome JOINT ledgers (joint click probabilities p(ab)) with
+  IDENTICAL local marginals p_A=p_B=(1/2,1/2) and IDENTICAL no-signaling, but
+  DIFFERENT mutual content I_sigma = chi_AB.  This makes concrete that the
+  single-chain (marginal) data + no-signaling do NOT pin chi_AB, so any axiom
+  that fails to see the JOINT (composite) structure cannot pin it either.
+
+  ledger 1 correlator C                                      0.7071067812  
+  ledger 2 correlator C                                               0.5  
+  marginal gap (both = (1/2,1/2))                                     0.0  =0 => IDENTICAL marginals
+  chi_AB = I_sigma  ledger 1                                0.27665164986  
+  chi_AB = I_sigma  ledger 2                               0.130812035941  
+  |chi_AB(1) - chi_AB(2)|                                  0.145839613919  >0 => chi_AB FREE at fixed marginals
+
+  => Two no-signaling ledgers, SAME marginals, DIFFERENT chi_AB.  Reproduces the
+  p4a FREE-direction result.  Anything that pins chi_AB must read the JOINT
+  (composite screen) structure, NOT just marginals + no-signaling.
+
+
+==========================================================================
+TEST C.  Does the q=2 single-screen forcing supply LOCAL TOMOGRAPHY?
+==========================================================================
+
+  The forced skeleton gives (f1_born_projection_q2): on a SINGLE diamond screen,
+  Banach-Lamperti forces the l^2 (Hilbert) norm and the seal E=E^*=E^2 (ortho-
+  projection).  Local tomography is a TWO-diamond statement: the joint state is
+  fixed by PRODUCTS of local effects, equivalently the composite screen is the
+  COMPLEX tensor product C^{n} (x) C^{m}, NOT the real tensor R^{n}(x)R^{m}.
+
+  KEY ALGEBRAIC FACT (why q=2-per-screen does NOT settle real vs complex):
+  the l^2 norm and orthogonal-projection seal hold IDENTICALLY in a REAL Hilbert
+  space (rebit) and a COMPLEX one.  The Banach-Lamperti / q=2 argument uses the
+  norm only; it is field-blind.  So the single-screen forcing is consistent with
+  BOTH the complex tensor (local tomography, chi_AB quantum) and the real tensor
+  (limited holism, chi_AB a real-QT foil).  We verify the field-blindness:
+
+  REAL seal  E=E^2 ?                                                 True  
+  REAL seal  E=E^* ?                                                 True  
+  REAL seal  q^2=I ?                                                 True  
+  COMPLEX seal E=E^2 ?                                               True  
+  COMPLEX seal E=E^* ?                                               True  
+  COMPLEX seal q^2=I ?                                               True  
+
+  => The q=2 / orthogonal-projection seal holds IDENTICALLY over R and over C.
+  The single-screen forcing is FIELD-BLIND.  Therefore it does NOT, by itself,
+  select the complex tensor product on the 2-diamond composite, i.e. it does NOT
+  supply local tomography.  Purification-uniqueness rides on the seal; local
+  tomography (the complex tensor) is the SEPARATE conjunct, and it is the one
+  that fixes chi_AB.  Not supplied by anything proven so far.
+
+
+==========================================================================
+TEST D.  Tsirelson ceiling does NOT separate real from complex
+==========================================================================
+
+  CHSH ceilings:
+     local hidden variable :  2
+     Tsirelson (quantum)   :  2*sqrt(2) = 2.8284271...   (BOTH real & complex QT)
+     no-signaling (PR box) :  4
+  Real QT and complex QT both saturate 2*sqrt(2): Tsirelson is field-blind too.
+  So neither no-signaling (=>4) NOR Tsirelson (=>2sqrt2) separates the real foil
+  from complex QT.  chi_AB is NOT pinned by either.  The separator is local
+  tomography (the K_AB=K_A*K_B / complex-tensor count), absent here.
+
+  LHV ceiling                                                           2  
+  Tsirelson ceiling 2*sqrt(2)                            2.82842712474619  
+  no-signaling (PR) ceiling                                             4  
+  explicit complex-QT CHSH (pi/8 settings)               2.82842712474619  = 2sqrt2
+  real-QT (rebit) also reaches                           2.82842712474619  Tsirelson is FIELD-BLIND
+
+  => Tsirelson = quantum ceiling shared by real & complex QT.  It bounds chi_AB
+  from above (rules out PR-box / super-quantum content) but does NOT pin it:
+  the real foil sits at the same ceiling with a DIFFERENT entangling sector
+  (no Y-correlations).  Confirms purification+Tsirelson, WITHOUT local
+  tomography, leave a real-vs-complex degeneracy band.
+
+
+==========================================================================
+OVERALL T2 VERDICT
+==========================================================================
+
+  Does SHARD's forced skeleton imply a CDP-PURIFICATION uniqueness that PINS
+  chi_AB beyond no-signaling + Tsirelson?
+
+  PARTIAL -- and the partiality is PRECISELY LOCALIZED.
+
+  Literature lever (Hardy 2001; CDP 2011; Masanes-Mueller 2011):
+    purification forces the COMPLEX-quantum entangling sector (=> chi_AB) ONLY
+    in conjunction with LOCAL TOMOGRAPHY (K_AB = K_A*K_B).  Local tomography,
+    NOT purification, is the axiom that selects complex over real/quaternionic.
+    Real-vector-space QT satisfies (pure-state) purification but FAILS local
+    tomography; it is a Q-tilde-class foil with the SAME marginals and SAME
+    Tsirelson ceiling, but a DIFFERENT chi_AB (TEST A deficit=+1; TESTS B,D).
+
+  What the SHARD forced skeleton SUPPLIES:
+    [YES, plausibly]  a purification-like uniqueness INGREDIENT: the orthogonal-
+      projection seal E=E^*=E^2 in a per-diamond l^2 screen gives each sealed
+      record a pure-state extension structure (the seal IS the pure idempotent).
+    [NO, not from anything proven]  LOCAL TOMOGRAPHY on the 2-diamond composite:
+      the q=2 single-screen forcing (Banach-Lamperti) is FIELD-BLIND (TEST C) --
+      it holds identically over R and C -- so it does NOT select the complex
+      tensor product / K_AB=K_A*K_B on two diamonds.  The eventless collar fixes
+      a classical (real, stochastic) base transport L=D-A; it carries NO complex
+      tensor structure.  The retained-holonomy PHASE enters composition but the
+      proven content (p4a) is exactly that chi_AB is a FREE no-signaling
+      direction.
+
+  THEREFORE:
+    chi_AB is NOT forced by purification as the skeleton currently stands,
+    because the skeleton does NOT carry the local-tomography conjunct that
+    purification needs.  Purification would pin chi_AB IF AND ONLY IF SHARD
+    additionally derives local tomography -- i.e. derives that the 2-diamond
+    composite screen is the COMPLEX tensor product (K_AB=K_A*K_B), ruling out
+    the real/Q-tilde foil.
+
+  THE EXTRA STRUCTURE PURIFICATION WOULD NEED (the open lever):
+    a 2-diamond receipt that the retained-holonomy composition forces
+    K_AB = K_A*K_B (complex tensor), e.g. by exhibiting a sealed-record effect
+    that DISTINGUISHES the complex-tensor joint from the real-tensor joint at
+    fixed marginals (a 'Y-like' joint observable the eventless collar cannot
+    host).  Equivalently: derive that the screen field is C, not R, from the
+    sealed process -- which f1_born_projection_q2 explicitly does NOT do
+    (field-blind).  Until then chi_AB stays in the FORCED-SKELETON/FREE-
+    COMPLEMENT status of p4a, now sharpened: the free complement is exactly
+    the real-vs-complex (local-tomography) gap.
+
+
+==========================================================================
+DONE.
+==========================================================================

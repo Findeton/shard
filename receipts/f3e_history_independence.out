@@ -1,0 +1,24 @@
+==========================================================================
+F3e  dense-step premises (b1) single-channel + (b2) stationarity   [dps=120]
+==========================================================================
+(0) single stationary channel:  S(n1+n2) - S(n1)S(n2) = -2.42e-122  (multiplicative)
+(b1) multi-channel survival of same 4-step stretch: A=0.618975  B=0.30215
+     history-dependence gap = 0.3168  => NOT content-only without a single channel
+(b2) single NON-stationary channel: S(1)*S(1)=0.81 vs S(2)=0.63,  gap = 0.18
+     => even ONE channel breaks multiplicativity if the contraction varies with location
+(prod) f=1/(1+x) (non-exponential): (f(chi/m))^m for m=10,100,1000,1e5:
+        m=10      -> 0.38554329
+        m=100     -> 0.36971121
+        m=1000    -> 0.3680633
+        m=100000  -> 0.36788128
+        target exp(-chi) = 0.36787944   |limit - exp| ~ 1.84e-6
+
+CONCLUSION:
+ (b1) the SINGLE-channel (matrix->scalar) half IS forced by the q=2 one-contrast
+      screen of section 3.1 (gap 0.317 above for a multi-channel screen);
+ (b2) the STATIONARITY half is a SEPARATE premise (gap 0.18 for a non-stationary
+      single channel), supplied by the screen being the same q=2 contrast at each seal;
+ given (a)+(b1)+(b2), the product limit forces exp for ANY stationary per-step law.
+==========================================================================
+DONE.  (no spacetime / metric / s^2 used)
+==========================================================================

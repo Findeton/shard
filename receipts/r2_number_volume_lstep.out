@@ -1,0 +1,66 @@
+
+==============================================================================
+(1) MYRHEIM-MEYER cardinality: E[N] = V / l_step^d  (number is an unbiased volume counter)
+==============================================================================
+  d (spacetime dim, 2d Minkowski)                2   
+  diamond diagonal T                             10.0   
+  continuum volume V (l_step=1 units)            50.0   (= T^2/2)
+  density rho = 1/l_step^d                       1.0   
+  E[N] = rho*V (Myrheim-Meyer)                   50.0   
+  empirical mean N over 400 sprinkles            49.73   
+  |mean_N - E[N]| / E[N]                         0.0054   (unbiased: -> 0)
+  Var[N] / E[N]   (Poisson: =1)                  0.97044   (Poisson signature)
+  V inferred = <N>*l_step^d                      49.73   (recovers V to ~1/sqrt(N))
+
+==============================================================================
+(2) THE l_step RESIDUE: rescale l_step -> mu*l_step => COUNT invariant, PHYSICAL volume scales
+==============================================================================
+  observed count N (a weight-0 integer)          49   (unchanged by relabeling l_step)
+    l_step -> 1.0 : V = N*l_step^d               49.0   (scales as mu^d = 1.0)
+    l_step -> 2.0 : V = N*l_step^d               196.0   (scales as mu^d = 4.0)
+    l_step -> 3.3 : V = N*l_step^d               533.61   (scales as mu^d = 10.89)
+  V(mu=3.3)/V(mu=1)                              10.89   (= mu^d = 10.89: weight +d, absolute scale FREE)
+
+==============================================================================
+(3) MYRHEIM-MEYER DIMENSION: the ORDER (relation fraction) fixes d, scale-free
+==============================================================================
+  Myrheim-Meyer f(d) at d=2 (formula)            0.5   (= 1/2 exactly)
+  Myrheim-Meyer f(d) at d=4 (formula)            0.1   (= 1/10 exactly)
+  empirical relation fraction <r>/C(N,2)         0.49979696   (tracks f_2 = 1/2)
+  Myrheim-Meyer dimension estimate               2.00054   (recovers d~2 from ORDER alone)
+
+==============================================================================
+(4) VOLUME RATIOS are l_step-INVARIANT (weight-0): the RELATIVE volume is owned, exactly
+==============================================================================
+  true volume ratio V(T2)/V(T) = (T2/T)^d        0.36   
+  count-ratio estimate <N2>/<N1>                 0.35471736   (-> V2/V1, l_step CANCELS)
+  |ratio_est - true| / true                      0.01467   (volume RATIO owned exactly, scale-free)
+
+==============================================================================
+(5) THE ROUTE-2 LEDGER: order x number = (d + conformal) x (volume/l_step^d) -- up to l_step
+==============================================================================
+  weight(causal order (relation))                +0   (OWNED, weight-0)
+  weight(Myrheim-Meyer dimension d)              +0   (OWNED, weight-0)
+  weight(seal count N)                           +0   (OWNED, weight-0)
+  weight(volume in l_step^d units (= N))         +0   (OWNED, weight-0)
+  weight(ABSOLUTE physical volume V = N*l_step^d) +2   (WALLED: needs l_step)
+  weight(ABSOLUTE metric (conformal x V^{1/d}) length) +1   (WALLED: needs l_step)
+
+==============================================================================
+MACHINE CHECKS
+==============================================================================
+  [PASS] (1) number is an UNBIASED volume counter: E[N]=V/l_step^d, mean tracks it, Var/E~1 (Poisson)
+  [PASS] (2) l_step residue: count N is l_step-INVARIANT (weight-0); physical volume V=N*l_step^d is weight +d
+  [PASS] (3a) Myrheim-Meyer formula exact: f(2) = 1/2, f(4) = 1/10 (scale-free dimension meter)
+  [PASS] (3b) ORDER fixes the dimension d (scale-free): empirical fraction -> d_est ~ 2 via Myrheim-Meyer
+  [PASS] (4) volume RATIO V2/V1 = N2/N1 is l_step-INVARIANT (weight-0): relative volume owned, absolute not
+  [PASS] (5) Route-2 ledger: order(0)+dimension(0)+count(0)+volume-in-units(0) OWNED; absolute volume(+d)/l_step WALLED
+
+  ALL CHECKS PASS
+==============================================================================
+DONE.  Order+Number = Geometry on a sprinkled causal set: the ORDER fixes the
+       conformal structure + the dimension d (weight-0, Route 1 / Myrheim-Meyer),
+       the seal NUMBER fixes the VOLUME in l_step^d UNITS (weight-0, unbiased count).
+       The metric continuum is buildable UP TO the single absolute scale l_step --
+       a recurrence of the one scale wall (behind d, G, c_m, the metric), on the volume axis.
+==============================================================================

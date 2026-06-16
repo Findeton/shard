@@ -1,0 +1,65 @@
+
+==============================================================================
+(1) EVIDENCE CLOCK  I ~ Exp(1)  (firing axis: irreducibly random)
+==============================================================================
+  E[I]  = int_0^inf I e^{-I} dI                  1.0   (mean firing evidence)
+  Var[I] = E[I^2] - E[I]^2                       1.0   (Exp(1): mean 1, var 1)
+
+==============================================================================
+(2) d-STATUS NUMBERS: content is mode-dependent and strictly < W_*
+==============================================================================
+  eta_A (C=J, capacity root)                     1.0903443548794922   
+  W_*   = J(eta_A) = C(eta_A)  [the CEILING]     0.364784952089976362   
+  eta_B (one-mode parity seal)                   0.609377863436006232   
+  C(eta_B)  [one-mode content]                   0.156109200157240117   /W_* = 0.42794857
+  h_*   (coupled {x,y,xy} seal)                  0.4950532643315466   
+  C(h_*)  [coupled content]                      0.109004107832912106   /W_* = 0.29881745
+  1/eta_B (1d mass-gap length, weight-0 thread)  1.64101792992848832   
+
+==============================================================================
+(3) WEIGHT GRADING is a linear grading form; dimensionless=0 is exhaustive
+==============================================================================
+  weight(W^a kappa^b l^c sigma^e)                2*b + c - 2*e   
+  dimensionless (=0) forces c =                  -2*b + 2*e   (even; length carried by kappa/sigma, cancels)
+
+==============================================================================
+(4) TRIBONACCI algebraicity kills the numerology (theta_B^2 != Srednicki a)
+==============================================================================
+  theta_B = tanh(eta_B) = exp(-eta_B)            0.543689012692076362   
+  theta_B root of t^3+t^2+t-1 ? residual         -2.62417e-141   
+  e^{eta_B} (tribonacci constant)                1.83928675521416113   x^3-x^2-x-1 res 2.62417e-141
+  theta_B^2                                      0.295597742522084771   s^3+s^2+3s-1 res -2.62417e-141
+  Srednicki a (transcendental)                   0.295417   gap theta_B^2 - a = 0.000180743
+
+==============================================================================
+(5) SPECTRAL collar moments differ by 2pi (which carries the EH coeff is convention-dependent; no-go independent)
+==============================================================================
+  M0 = int e^{-2pi u} du   (zeroth moment)       0.159154943091895336   = 1/(2pi)
+  M1 = int u e^{-2pi u} du (first moment)        0.0253302959105844429   = 1/(2pi)^2
+  M0 / M1                                        6.28318530717958648   (= 2pi; the two moments differ by 2pi)
+
+==============================================================================
+(6) SIGMA-SPLIT: G*sigma_A=1/4 and kappa*sigma_A=2pi invariant under record gauge
+==============================================================================
+  record gauge mu=1.0: G*sigma_A                 0.25   kappa*sigma_A=6.283185307
+  record gauge mu=1.7: G*sigma_A                 0.25   kappa*sigma_A=6.283185307
+  record gauge mu=3.0: G*sigma_A                 0.25   kappa*sigma_A=6.283185307
+
+==============================================================================
+MACHINE CHECKS
+==============================================================================
+  [PASS] (1) evidence clock E[I]=1, Var[I]=1 (random firing axis)
+  [PASS] (2) content mode-dependent: C(eta_B)!=C(h_*), both < W_*
+  [PASS] (3a) weight is an additive grading homomorphism
+  [PASS] (3b) dimensionless => c=2(e-b): no surviving absolute length (BIN trichotomy exhaustive)
+  [PASS] (3c) irrational-weight leak closed: a+b*sqrt2=0 (a,b in Z) => a=b=0
+  [PASS] (4) theta_B^2 is degree-3 algebraic; gap to Srednicki ~1.8e-4 (numerology, not identity)
+  [PASS] (4b) t^3+t^2+t-1 and s^3+s^2+3s-1 irreducible over Q (no rational roots)
+  [PASS] (5) collar moments M0=1/(2pi), M1=1/(2pi)^2 differ by 2pi (labeling convention-dependent; no-go independent)
+  [PASS] (6) G*sigma_A=1/4 & kappa*sigma_A=2pi invariant under l->mu*l (scale is a free modulus)
+
+  ALL CHECKS PASS
+==============================================================================
+DONE.  (Tier-A weight-0 throughout; Tier-B coefficients appear only in the
+       cross-tier no-go, where the result is that they cannot fix the spacing.)
+==============================================================================

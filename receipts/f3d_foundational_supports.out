@@ -1,0 +1,242 @@
+
+================================================================================
+SUPPORT (A) -- THE SEAL = COMPOSITION BRIDGE  (kinematic level)
+================================================================================
+
+  CLAIM under test (Paper 1 s3.2, via paper56 s4.2):
+    [a seal at t']  <=>  [the GMH decoherence functional D diagonalizes at t']
+                    <=>  [Chapman-Kolmogorov composes the one-time law across t'].
+
+  We instantiate the Gell-Mann-Hartle / Barandes bridge explicitly:
+    Gamma(t)_{ji} = |U(t)_{ji}|^2,  composition test
+        CK gap(t2,t1,t0) := Gamma(t2,t0) - Gamma(t2,t1) Gamma(t1,t0).
+    The cross-term (interference) is exactly  |Sum_k U2_{jk}U1_{ki}|^2 - Sum_k |U2_{jk}|^2|U1_{ki}|^2.
+
+  U1, U2 unitary? residual |U^d U - I|                     1.31209e-141 
+  Gamma1 column-stochastic? residual                       0.0 
+  Gamma2 column-stochastic? residual                       1.31209e-141 
+
+  (A.0)  UNSEALED interval: does Chapman-Kolmogorov compose?
+  Gamma(t2,t0) = |U2 U1|^2  entry [0,0]                    0.1212011934179261531791068 
+  Gamma2 Gamma1            entry [0,0]                     0.4499870732532546037626146 
+  CK GAP across UNSEALED interval                          0.32878588 (!=0: composition FAILS -- the interference cross-term survives)
+
+  (A.1)  SEAL at t1: a projective record commitment diagonalizes D at t1.
+         The seal applies the pointer projectors {P_0=|0><0|, P_1=|1><1|} to the
+         decoherence functional -- i.e. it ZEROES the off-diagonal (interference)
+         part of the intermediate coherence.  Operationally the sealed composition
+         replaces  |U2 U1|^2  by  Sum_k |U2_{jk}|^2 |U1_{ki}|^2 = (Gamma2 Gamma1).
+
+  sealed Gamma(t2,t0) := Sum_k |U2_{jk}|^2|U1_{ki}|^2      0.4499870732532546037626146 
+  CK GAP across SEALED point t1                            0.0 (=0: composition RESTORED -- seal diagonalizes D)
+
+  (A.2)  THE BICONDITIONAL, made exact.  Define the GMH decoherence functional on
+         the two intermediate branches k=0,1:
+             D(k,k') = <branch k | branch k'>_{evolved}  (the off-diagonal is the
+             interference cross-term).  Medium decoherence  <=>  D off-diagonal = 0.
+         We show, on this toy:  CK-gap = 0  <=>  D off-diagonal = 0  (one number
+         controls both), so the biconditional is an IDENTITY, not a slogan.
+
+  max | CK-gap_entry  -  interference-cross-term_entry |   6.5604259e-142 (=0: CK-gap IS the cross-term -- the biconditional is an identity)
+
+  (A.3)  IS THE BICONDITIONAL FORCED AT THE KINEMATIC LEVEL, OR A CHOICE?
+    Given the GMH projective model (Gamma=|U|^2 + projective pointer commitment),
+    the biconditional is FORCED -- it is the algebraic identity just verified
+    (CK composes  <=>  cross-term vanishes  <=>  D diagonal).  NO freedom: once
+    you accept Gamma=|U|^2 and that a seal is a projective commitment, the
+    equivalence is a two-line linear-algebra fact (Sum|.|^2 vs |Sum.|^2).
+    WHAT IS A CHOICE (and this is the honest seam):
+      * that records are read by ORTHOGONAL projective pointers {P_a} (this is
+        itself FORCED elsewhere -- Paper 1 s3.1: the q=2 screen forces E=E*=E^2,
+        an orthogonal projection; so the projective character is NOT free either);
+      * that the SHARD gravitational process actually SUPPLIES these seals at
+        these places (the INTRINSIC SUPPLY question) -- this is NOT settled by the
+        kinematic identity and is paper56's open Tier-1 functor [TARGET].
+
+
+================================================================================
+SUPPORT (A) -- the INTRINSIC SUPPLY question, located by TIER
+================================================================================
+
+  Decompose the bridge into its KINEMATIC half and its SUPPLY half.
+
+  KINEMATIC half (just verified):  GIVEN a projective seal-history, the seal =
+    D-diagonalization = CK-composition biconditional is a FORCED algebraic identity.
+    Tier: TIER-A and KINEMATIC.  It needs only: Gamma=|U|^2 (Born/q=2, Paper 1
+    s3.1 [FORCED]) + orthogonal projective pointers (Paper 1 s3.1 [FORCED]).  Both
+    are pre-geometric, record-level facts.  => the bridge is legitimately a
+    Tier-A KINEMATIC theorem.
+
+  SUPPLY half (open):  does the SHARD record process *intrinsically* supply these
+    very projectors/seals -- i.e. is there an intrinsic principle that fires a
+    projective commitment at the right places?  paper56 s4.2 line ~98: discharged
+    'for a chosen projective seal-history model, at the kinematic level -- NOT yet
+    an intrinsic theorem'.  paper56 line ~100: 'what remains genuinely open is the
+    GRAVITATIONAL content ... is gravitational record commitment sparse?' -- a
+    computation on the GRAVITATIONAL decoherence functional D.
+
+  TIER VERDICT (the precise relativization):
+    The SUPPLY question splits cleanly:
+      (S-A)  Does SOME intrinsic seal-supply principle exist at the pure record
+             level (Tier A)?  -- this is Paper 1's OWN open frontier: the seal
+             RATE/shape is what Paper 1 s3.2 derives (S=exp(-kappa chi)), but WHICH
+             proposition E commits and WHERE the seal fires is the record click-
+             law's 'where', which Paper 1 s6 explicitly says is NOT a Tier-A output
+             ('where (a locality kernel) is only an emergent Tier-B notion').
+      (S-B)  Does the GRAVITATIONAL record process supply them (sparse vs dense)?
+             -- this is paper56's Tier-1 functor [TARGET], a TIER-B / gravitational
+             computation on the gravitational D.  Explicitly deferred there.
+
+  So Paper 1's Tier-A FORCING legitimately rests on the KINEMATIC bridge (forced),
+  while the INTRINSIC SUPPLY is a SEPARATE, properly-deferred question -- and it is
+  deferred to TWO different places:
+     * the seal RATE/shape supply = Paper 1's own s3.4/s5.1 (the kappa, the dchi
+       magnitude) -- Tier-A-open;
+     * the seal PLACEMENT / which-E / sparse-vs-dense = Tier-B gravitational
+       (paper56 Tier-1 functor) -- Tier-B-deferred.
+  NEITHER is a hidden hole, PROVIDED Paper 1 states that its s3.2 forcing is
+  RELATIVE TO the projective GMH bridge (kinematic), which Paper 1 s3.2 ALREADY
+  does ('all forcing below is relative to the bridge').
+
+
+================================================================================
+SUPPORT (B) -- MARKOV-PRESENTABILITY of the COLLAR  (forced by paper10?)
+================================================================================
+
+  CLAIM under test:  the eventless collar between seals is Markov-presentable
+  (so the path measure factorizes and the trajectory action telescopes), and this
+  is FORCED by paper10's standing structure (T3 eventless=>detailed balance;
+  T4 RP-as-theorem of a finite primitive Markov presentation), NOT a separate
+  assumption -- while the SEAL ORDER itself is non-Markov / indivisible.
+
+  paper10 s2.6 (the Barandes link, verbatim):
+    'division events are exactly where record dynamics visibly fails Markovianity
+     (P4 s10), and they carry evidence; BETWEEN events the collar is eventless and
+     T3-T4 apply ... the indivisible (non-Markov) structure lives precisely where
+     the positivity theorem does not need to hold, and the positivity theorem
+     holds precisely where the process is order-blind.'
+
+  We make the split QUANTITATIVE on one explicit process.
+
+  (B.1)  WITHIN an eventless collar: trajectory action telescopes (Markov).
+  collar trajectory action A[full]                         6.263814842476839978440603 
+  A[sub1] + A[sub2]                                        6.263814842476839978440603 
+  WITHIN-COLLAR TELESCOPE GAP                              0.0 (=0: collar is ordered/Markov -- composition holds BETWEEN seals)
+
+  (B.2)  ACROSS a seal/event: the seal-order one-time transition law FAILS
+         Chapman-Kolmogorov (non-Markov / indivisible).  We use the Barandes
+         Gamma=|U|^2 process of Support A: the inter-seal holonomy interval is
+         the collar (coherent, CK fails as a *coherent* composition), and a seal
+         is the only place CK is restored.  The KEY consistency check: the SAME
+         coherent interval that is 'ordered/Markov for the trajectory-action of
+         committed evidence' (B.1) carries a holonomy whose one-time transition
+         law does NOT compose -- because composing it would require inserting an
+         intermediate record (a seal), which is exactly what is absent.
+
+  CK gap ACROSS unsealed (coherent) interval               0.32878588 (!=0: seal-order composition FAILS -- indivisible)
+  CK gap ACROSS a seal (D diagonalized)                    0.0 (=0: composition restored ONLY at a seal)
+
+  (B.3)  CONSISTENCY of the split -- is it genuinely true that Markovianity holds
+         BETWEEN seals while the seal order is non-Markov?  The two statements live
+         on DIFFERENT objects, and that is what makes the split consistent (not a
+         contradiction):
+
+    * BETWEEN seals (collar), the object that is MARKOV is the committed-evidence
+      trajectory action A[omega] = log dP_fwd/dP_rev of the ORDERED record
+      transport (B.1): its path measure factorizes, so the action telescopes.
+      This is paper10's eventless collar with a finite primitive Markov
+      presentation (T4).  It is 'order-blind' (T3: eventless => detailed balance
+      for the bare collar) -- the Markov presentation is what carries the *content*
+      increment dchi, not an arrow of its own.
+
+    * The SEAL ORDER (the succession of committed records / division events) is the
+      object that is NON-Markov / indivisible: the one-time transition law
+      Gamma=|U|^2 of the coherent holonomy does NOT compose across an unsealed
+      interval (B.2), because composing = inserting an intermediate seal, and the
+      holonomy is unsealed there.  Composition is restored ONLY at a seal.
+
+    These are not in tension: the FACTORIZATION that telescopes the action is a
+    property of the EVENTLESS COLLAR's ordered transport (a Markov presentation of
+    the *content accumulation*), whereas the NON-Markovianity is a property of the
+    SEAL ORDER's coherent one-time law (the *holonomy composition*).  Markov where
+    the process is order-blind; non-Markov where it commits.  Paper10 s2.6 states
+    EXACTLY this architecture; we have now made both halves quantitative on one
+    process.
+
+
+  (B.4)  FORCED or ASSUMED?  paper10's chain:
+    T3 (dissolution): an eventless collar records nothing -- not even the order of
+       its own traversal -- so D(P_AB||P_BA)=0 => P_AB=P_BA => DETAILED BALANCE,
+       exactly.  An eventless collar is REVERSIBLE.
+    T4 (theorem): a reversible primitive (block-)Markov collar transport has the
+       symmetrized transfer self-adjoint, spectrum in [-1,1]; every collar
+       correlation is a spectral (moment) sequence => reflection positivity, AS A
+       THEOREM of indivisible ordered transports, for every sector with a FINITE
+       PRIMITIVE MARKOV PRESENTATION.
+  So 'the eventless collar admits a finite primitive Markov presentation' is the
+  STANDING ARENA of paper10 Part I -- the hypothesis under which T4 (RP) is a
+  theorem.  For the click-law, the collar between seals is, BY paper10's
+  architecture, exactly such an eventless ordered transport.  Therefore:
+
+    collar Markov-presentability is FORCED *within paper10's standing arena*
+    (T3+T4: eventless => detailed-balance reversible => a finite primitive Markov
+     presentation exists, for every sector that HAS one),
+    with ONE honestly-named residue paper10 itself flags (s2.5 scope subtlety;
+    s2.6 'sectors with no finite primitive presentation remain open'):
+    sectors with GENUINELY INFINITE collar memory (no finite primitive
+    presentation) -- the constructive-QFT-class residue -- are NOT covered.
+
+  HONEST STATUS:  collar Markov-presentability is FORCED for every collar with a
+  finite primitive presentation (paper10 T3+T4 standing arena), NOT a fresh
+  assumption.  The residue (infinite-memory collars) is paper10's own named open,
+  inherited verbatim -- not a new hole opened by Paper 1.
+
+
+================================================================================
+CROSS-CHECK -- the split does not smuggle geometry, and dchi>=0 still holds
+================================================================================
+  collar per-step arrow sigma_step (=dchi)                 0.6263814842476839978440603 (>=0: arrow-positivity, paper10 T2; NOT a seal if =0)
+  any spacetime/metric/s^2 used?                           NO (all numbers are record-internal probabilities/KL/|amp|^2)
+
+================================================================================
+CANONICAL OUTPUT BLOCK  (F3d foundational-supports receipt)
+================================================================================
+
+  dps = 140; pre-geometric (records, commit order, chi=D(P_AB||P_BA)) only.
+
+  SUPPORT (A) -- SEAL = COMPOSITION BRIDGE:
+    CK gap across UNSEALED (coherent) interval   = 0.328786   (FAILS: interference survives)
+    CK gap across a SEAL (D diagonalized)        = 0.0   (RESTORED at the seal)
+    CK-gap == interference cross-term (identity) = 6.56043e-142   (biconditional is an IDENTITY)
+    => the seal<=>CK-composition biconditional is FORCED AT THE KINEMATIC LEVEL,
+       given the projective GMH model (which is itself forced by Paper 1 s3.1:
+       q=2 => orthogonal projective pointers).  NOT a further choice.
+    => the INTRINSIC SUPPLY of the seals is a SEPARATE question, deferred to:
+         (a) Paper 1's own seal-RATE supply (s3.4/s5.1, the kappa/dchi magnitude)  -- TIER-A-OPEN;
+         (b) the seal PLACEMENT / sparse-vs-dense GRAVITATIONAL functor          -- TIER-B-DEFERRED (paper56 Tier-1).
+
+  SUPPORT (B) -- MARKOV-PRESENTABILITY of the COMMIT ORDER:
+    WITHIN-COLLAR trajectory-action telescope gap = 0.0   (collar is ordered/Markov)
+    CK gap ACROSS unsealed interval               = 0.328786   (seal order is NON-Markov/indivisible)
+    collar per-step arrow sigma_step (=dchi>=0)    = 0.626381
+    => collar Markov-presentability is FORCED within paper10's standing arena
+       (T3 eventless=>detailed-balance reversible; T4 RP-as-theorem of a finite
+       primitive Markov presentation), NOT a fresh assumption.
+    => the Markov(collar)/non-Markov(seal-order) split is CONSISTENT: they are
+       properties of DIFFERENT objects (the collar's ordered content-transport vs
+       the seal order's coherent one-time law).  Markov where order-blind; non-
+       Markov where it commits.  paper10 s2.6's architecture, made quantitative.
+    => residue: collars with NO finite primitive presentation (infinite memory) --
+       paper10's OWN named open (s2.5/s2.6), inherited, NOT a new hole.
+
+  BRUTAL-HONESTY VERDICT:
+    (A) FORCED-at-kinematic-level (legitimate relativization to the GMH bridge,
+        which Paper 1 s3.2 already declares); intrinsic supply properly deferred,
+        split Tier-A-open (rate) + Tier-B-deferred (placement).  NOT a hidden hole.
+    (B) FORCED (within paper10's standing arena) + CONSISTENT split; infinite-memory
+        residue is paper10's inherited named open.  NOT a hidden hole.
+
+
+================================================================================
+DONE.
+================================================================================

@@ -1,0 +1,80 @@
+
+================================================================================
+(A) DIMENSION (the cone-opening / conformal datum) from the PURE ORDER  [THM-MyrheimMeyer]
+================================================================================
+  1+1 Alexandrov: ordering fraction r (order-only)   0.49626275   (MM exact f(2)=1/2)
+  1+1 Myrheim-Meyer dimension estimate               2.01   (true = 2)
+  2+1 Alexandrov: ordering fraction r (order-only)   0.22589039   (MM exact f(3)=0.228571)
+  2+1 Myrheim-Meyer dimension estimate               3.01458   (true = 3)
+  MM exact f(2), f(3) (cross-check)                  0.5, 0.228571   
+
+================================================================================
+(B) NULL CONE / DIRECTIONS from the ORDER alone (links concentrate on the null directions)
+================================================================================
+  low density  N=400: #links                         1714   
+  low density  N=400: median |dx/dt| of links (null=1) 0.8279   
+  low density  N=400: fraction of links with |dx/dt|>0.6 0.6960   
+  high density N=3000: #links                        18541   
+  high density N=3000: median |dx/dt| of links (null=1) 0.9296   
+  high density N=3000: fraction of links with |dx/dt|>0.6 0.7846   
+  median |dx/dt| rises with density?                 0.8279 -> 0.9296   (toward null=1: cone from order)
+
+================================================================================
+(B2) the recovered null DIRECTIONS are BOOST-INVARIANT objects of the ORDER
+================================================================================
+  causal ORDER invariant under boost eta=0.8?        True   
+  LINK relation (null skeleton) invariant under boost? True   
+
+================================================================================
+(C) SCALE-FREE: a global dilation x -> lambda*x leaves the ENTIRE ORDER unchanged
+================================================================================
+  dilation lambda=0.137: order unchanged?            True   
+  dilation lambda=0.137: null skeleton unchanged?    True   
+  dilation lambda=7.3: order unchanged?              True   
+  dilation lambda=7.3: null skeleton unchanged?      True   
+  box volume: lambda=1 vs 7.3                        7.943 vs 423.280   (volume = weight+1, NOT order-determined)
+
+================================================================================
+(D) PAPER X's n-hat: a propagation DIRECTION is exactly an order-determined, scale-free object
+================================================================================
+  recovered n-hat (direction)                        [ 0.7097, -0.7045]   
+  n-hat under dilation lambda=7.3 (drift)            0.00e+00   (=0: DIRECTION is scale-free)
+  length under dilation: 1 vs 7.3                    2.6983 vs 19.6974   (scales by lambda: LENGTH = l_step wall)
+
+================================================================================
+(E) GATES (tagged honestly, NOT claimed as delivered)
+================================================================================
+  [GATE-manifoldlike]  Malament/HKMM require a manifold-like (past/future-distinguishing)
+                       spacetime. A FINITE sprinkled causal set is not a manifold; the
+                       bridge to Malament's THEOREM is the CONTINUUM LIMIT.  -> GATED.
+  [GATE-Hauptvermutung] that a causal set faithfully embeds in AT MOST ONE manifold up to
+                       approximate isometry is the causal-set HAUPTVERMUTUNG -- an OPEN
+                       CONJECTURE (proven only in special/1d cases), the real gate on
+                       'order -> a UNIQUE conformal class' in the discrete program. -> GATED.
+  [SCALE-wall]         the VOLUME / l_step (weight +1) is NOT order-determined (shown in
+                       (C)). It is the SCALE ONLY; it does NOT touch the conformal/direction
+                       structure. So the direction is NOT walled by l_step.  -> SCALE wall,
+                       orthogonal to the conformal/direction question.
+
+================================================================================
+MACHINE CHECKS
+================================================================================
+  [PASS] (A) dimension (cone-opening = conformal datum) recovered from PURE ORDER: 1+1 vs 2+1 separated
+  [PASS] (A2) THEOREM cross-check: exact Myrheim-Meyer f(2)=1/2 (the pure-order->dimension map)
+  [PASS] (B) order's links concentrate on the NULL cone (median |dx/dt| rises toward 1 with density)
+  [PASS] (B2) the order is boost-invariant AND its link/null skeleton is boost-invariant (scale-free)
+  [PASS] (C) dilation lambda=0.137 leaves order+direction UNCHANGED (scale-free; no l_step needed)
+  [PASS] (C) dilation lambda=7.3 leaves order+direction UNCHANGED (scale-free; no l_step needed)
+  [PASS] (C2) VOLUME/l_step is weight+1 and order-BLIND (a dilation changes volume, not the order)
+  [PASS] (D) the propagation DIRECTION n-hat is order-determined & SCALE-FREE; the LENGTH is the l_step wall
+  [PASS] (E) HONEST SCOPE: claim = order->conformal/direction owned-in-principle (gated by manifoldlikeness/Hauptvermutung, NOT walled by l_step)
+
+  ALL CHECKS PASS
+================================================================================
+DONE.  Route 1: the OWNED Lorentz-invariant causal ORDER recovers the CONFORMAL/DIRECTION
+       data (dimension/cone-opening from the pure order via Myrheim-Meyer; the null cone
+       from the order's links; the recovered DIRECTION boost-invariant and SCALE-FREE).
+       Paper X's n-hat is exactly such a scale-free, order-determined object: OWNED-IN-
+       PRINCIPLE by the order, NOT walled by l_step (l_step is only the volume/scale).
+       GATED by manifoldlikeness (continuum limit) and the Hauptvermutung (uniqueness).
+================================================================================

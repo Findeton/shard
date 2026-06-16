@@ -1,0 +1,51 @@
+========================================================================
+(A) SHARD numerical anchor  (mpmath dps = 90 )
+========================================================================
+eta_hist (root of e^-eta = tanh eta)         : 0.6093778634360062315368034
+theta_hist = tanh(eta_hist) = e^-eta_hist    : 0.543689012692076361570856
+  check e^-eta - tanh eta                    : 0.0
+  theta^3+theta^2+theta-1 (commitment cubic) : 0.0
+
+W = eta*theta - log cosh(eta)                : 0.1561092001572401165799095
+quoted paper7                                : 0.156109200157240
+  abs diff vs quoted                         : 1.1658e-16
+d_binary(theta_hist) [binary KL from 1/2]    : 0.003822332222225121592066773
+  W == d_binary(theta_hist)? diff            : 0.15229
+
+========================================================================
+(B) protection<->mass: unoriented gap (=W) vs oriented (chiral) collapse
+========================================================================
+oriented/chiral minima (paper8 sec5.4) vs the unoriented gap W:
+   P1 (unoriented gap = W)          m_hat = 0.156109200157  = W  (unoriented gap edge; vector-like floor)
+   n=3 oriented (exact)             m_hat = 0.133530982072  < W : GAP VIOLATED (protected/chiral branch goes gapless)
+   n=4 oriented (exact)             m_hat =       0.064539  < W : GAP VIOLATED (protected/chiral branch goes gapless)
+   n=5 oriented (sampled UB)        m_hat =       0.031749  < W : GAP VIOLATED (protected/chiral branch goes gapless)
+   n=6 oriented (sampled UB)        m_hat =       0.015748  < W : GAP VIOLATED (protected/chiral branch goes gapless)
+
+floor-to-first step  W / m(n3) = 1.16909  (the unoriented gap is ~1.17x the first oriented minimum)
+successive ratios m(n)/m(n+1) on the oriented branch (expect ~2):
+   n3/n4: 2.069
+   n4/n5: 2.03279
+   n5/n6: 2.01607
+
+prefactor m(n)*2^n (data ~1.0, slowly decreasing; the 0.27*2^-n first-edition fit is superseded):
+   n=3: m*2^n = 1.06825
+   n=4: m*2^n = 1.03262
+   n=5: m*2^n = 1.01597
+   n=6: m*2^n = 1.00787
+
+========================================================================
+(C) M1 dictionary check: 'one constant, three roles' = PSG protection knob
+========================================================================
+   spectral gap   Delta       = 0.15610920015724011658
+   lightest mass  m_hat(P1)   = 0.15610920015724011658
+   work/event     W_hist      = 0.15610920015724011658
+   ALL THREE EQUAL to <1e-40 ? True
+
+PSG mapping verdict (structural, not numeric):
+  protection EXACT  (anomaly-free chiral ledger)  -> oriented branch -> 0  [gapless]
+  protection BROKEN (generic committed species)   -> m_hat = D(eta_hist) = W [gapped]
+  => 'mass = the spectral gap when protection breaks' is LITERAL here:
+     the gap IS W, the same number that prices a record event.
+
+RECEIPT COMPLETE.

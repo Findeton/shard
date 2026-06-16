@@ -1,0 +1,58 @@
+
+==============================================================================
+(0) the seal root and the unoriented floor W (owned, receipt m1)
+==============================================================================
+  eta = 0.609377863436006231536803371168  (e^-eta = tanh eta)
+  W   = 0.156109200157240116579909467737  (unoriented / vector-like floor)
+
+==============================================================================
+(1) the analytic identity: alternating-by-weight collapses T(s) to TWO values
+==============================================================================
+  T(s) = -(2^n-1) on the all-minus state, +1 on each of the other 2^n-1 states
+  verified exactly for n = 2..7, all 2^n states each: True
+
+==============================================================================
+(2) the closed form m_hat_min(n) = -ln(1 - 2^-n) - delta_n, vs exact anchors
+==============================================================================
+   n     m_hat_min(n) [exact fixed point]        -ln(1-2^-n)            delta_n        m*2^n
+    3  0.1335309820724719738497871883     0.133531392624522623   4.1055e-7     1.0682478565798
+    4  0.06453852113757117122300463725    0.0645385211375711717  4.4992e-19    1.0326163382011
+    5  0.03174869831458030115699628275    0.0317486983145803012  6.76e-48      1.0159583460666
+    6  0.01574835696813916860754951146    0.0157483569681391686  2.9377e-115   1.0078948459609
+    7  0.007843177461025892873184042491   0.00784317746102589287 -2.2295e-130  1.0039267150113
+   25  0.00000002980232283178453117332268062 2.98023228317845312e-8 1.0917e-129   1.0000000149012
+
+==============================================================================
+(3) the gap is STRICTLY POSITIVE at finite n, -> 0 only as n -> inf, prefactor EXACTLY 1
+==============================================================================
+  m_hat_min(n) > 0 for every finite n tested (n up to 40): True
+  m_hat_min(n) * 2^n -> 1 : ['1.06824785658', '1.01595834607', '1.00195822621', '1.00012209018', '1.00000047684', '1.0']
+
+==============================================================================
+(4) GLOBAL-OPTIMALITY LEMMA: alternating-by-weight is the min over ALL orientations
+==============================================================================
+  n=2: brute min over all 8 orientations = 0.266653365180 ; closed form = 0.266653365180 ; alt-by-weight gap = 0.266653365180
+  n=3: brute min over all 128 orientations = 0.133530982072 ; closed form = 0.133530982072 ; alt-by-weight gap = 0.133530982072
+  n=4: brute min over all 32768 orientations = 0.064538521138 ; closed form = 0.064538521138 ; alt-by-weight gap = 0.064538521138
+
+==============================================================================
+MACHINE CHECKS
+==============================================================================
+  [PASS] (0) W = eta*theta - log cosh eta = 0.156109200157240...
+  [PASS] (1) alternating-by-weight identity T(s) in {-(2^n-1), +1} exact for n=2..7
+  [PASS] (2) closed form reproduces corpus exact anchors n=3,4,5 (incl. n=5 'sampled UB' was EXACT)
+  [PASS] (2b) delta_n > 0 and doubly-exp small (n=3: ~4e-7, n=6: ~3e-115)
+  [PASS] (3) m_hat_min(n) > 0 at every finite n (gapped at finite n; gapless only as n->inf)
+  [PASS] (3b) prefactor m_hat_min(n)*2^n -> 1 exactly
+  [PASS] (3c) chiral minimum < unoriented floor W for n>=3 (oriented branch collapses)
+  [PASS] (4) n=2 brute-force global min == closed form, realized by alternating-by-weight
+  [PASS] (4) n=3 brute-force global min == closed form, realized by alternating-by-weight
+  [PASS] (4b) n=4 EXHAUSTIVE (all 32768) global min == closed form, realized by alternating-by-weight
+
+  ALL CHECKS PASS
+==============================================================================
+DONE.  The oriented/chiral minimum gap is m_hat_min(n) = -ln(1 - 2^-n) - delta_n,
+       attained at the alternating-by-weight orientation: strictly positive at finite n,
+       asymptotically gapless as n->inf, prefactor EXACTLY 1.  Paper VIII's gapless
+       conjecture is now a THEOREM (mod the finite global-optimality lemma).
+==============================================================================

@@ -1,0 +1,312 @@
+
+==============================================================================
+PART 1.  THE SPARSE-SEAL SETUP  (genuinely indivisible, pre-geometric)
+==============================================================================
+
+  DENSE (classical) regime -- recap.  Seals dense in chi:  the decoherence
+  functional D is diagonal at EVERY content value, Chapman-Kolmogorov composes
+  across EVERY split, S(chi1+chi2)=S(chi1)S(chi2) for ALL chi1,chi2>=0, hence the
+  Cauchy multiplicative equation forces S(chi)=exp(-kappa chi).  paper56 s1/s2.3:
+  this is exactly CONTINUOUS SEALING = CP-divisible = Barandes-DIVISIBLE = the
+  CLASSICAL side.  It is NOT genuine quantum indivisibility.
+
+  SPARSE (quantum / genuinely indivisible) regime -- the actual target.
+  Composition holds ONLY at sparse DIVISION EVENTS.  Let the seal points be a
+  sub-semigroup (additive lattice in the intrinsic content) :
+
+      L = { chi_k = k d : k = 0,1,2,... },   spacing  d > 0.
+
+  (A sub-SEMIGROUP because two composed seal-stretches must again land on a seal:
+  chi_k + chi_m = (k+m) d in L.  Closure under the commit-order concatenation IS
+  the semigroup axiom -- the algebraic residue of 'a seal followed by a seal is a
+  seal'.)  BETWEEN consecutive seals (k d < chi < (k+1) d) the holonomy is
+  UNSEALED: the Gell-Mann--Hartle decoherence functional D(alpha,alpha') has
+  NON-TRIVIAL OFF-DIAGONAL support (the interference cross-term
+  |Sigma|^2 - Sigma|.|^2 != 0, paper56 s4.2).  THIS off-diagonal survival between
+  commitments IS Barandes-indivisibility / genuine quantum coherence.
+
+  So Chapman-Kolmogorov (D diagonalizes, composition) is available ONLY on L:
+
+      S(chi_k + chi_m) = S(chi_k) S(chi_m)   ONLY for chi_k, chi_m in L.   (*L)
+
+  Between lattice points there is NO composition constraint -- by definition the
+  inter-seal stretch is the unrefinable, non-composing region (that is what makes
+  it indivisible).  The dense case is the SPECIAL limit where L fills up (d->0).
+
+  one-diamond anchor eta_*                             1.0903443548794922 
+                    theta_*                            0.797003794162878272 
+                    W_*=J_*                            0.364784952089976362 
+  sub-semigroup of seal points L                       {k d : k=0,1,2,...} spacing d > 0
+
+==============================================================================
+PART 2.  COMPOSITION ON THE SUB-SEMIGROUP  ->  GEOMETRIC ON THE LATTICE
+==============================================================================
+
+  Restrict (*L) to the seal lattice.  Write the per-seal survival
+      s := S(d)  in (0,1]  (the survival across ONE inter-seal stretch).
+  Composition on L is the multiplicative Cauchy equation on the INTEGERS:
+      S((k+m) d) = S(k d) S(m d)    for all integers k,m >= 0.
+  This is Cauchy's equation on the sub-semigroup (N,+).  Its solution is RIGID
+  even without any regularity (no monotonicity/measurability needed on N):
+  setting g(k):=log S(k d), g(k+m)=g(k)+g(m), g(0)=0  =>  g(k)=k g(1)  =>
+
+      S(k d) = S(d)^k = s^k = exp( k log s ) = exp( -kappa_lat * (k d) ),
+      with the LATTICE rate    kappa_lat := -log s / d   (= -log S(d)/d).
+
+  So ON THE SEAL LATTICE the law is FORCED GEOMETRIC: S(n d)=S(d)^n.  Same FORM as
+  the dense exponential, but evaluated ONLY at the seal points {k d}.
+
+  S(kd)=s^k satisfies S((k+m)d)=S(kd)S(md)? residual   0 
+  S(kd)=exp(-kappa_lat * k d), kappa_lat=-log s/d      identity (geometric on L)
+  max |S((k+m)d) - S(kd)S(md)| over 50 random k,m      1.21018e-122 (=0: geometric FORCED on lattice)
+  lattice rate kappa_lat = -log S(d)/d                 1.380609793962136981636525 
+
+  IS THE INTER-SEAL PROFILE CONSTRAINED?  No.  (*L) says NOTHING about S(chi) for
+  chi strictly between lattice points.  Any continuation
+      S(chi) = s^{floor(chi/d)} * g( frac(chi/d) ),   g:[0,1)->(0,1], g(0)=1,
+  that REPRODUCES the lattice values S(kd)=s^k is admissible by composition alone:
+  composition only ever evaluates S at sums of lattice points, which never probe
+  the open inter-seal interval.  We exhibit two DIFFERENT continuations with the
+  SAME lattice values to PROVE the inter-seal profile is genuinely free.
+
+  -- two continuations agree on the lattice, differ between seals --
+     chi=0d (a SEAL):  |S_P1 - S_P2|                   0.0 (=0: forced lattice value)
+     chi=1d (a SEAL):  |S_P1 - S_P2|                   0.0 (=0: forced lattice value)
+     chi=2d (a SEAL):  |S_P1 - S_P2|                   0.0 (=0: forced lattice value)
+     chi=3d (a SEAL):  |S_P1 - S_P2|                   0.0 (=0: forced lattice value)
+     chi=(1+0.25)d (BETWEEN seals): |S_P1 - S_P2|      0.00497391 (!=0: profile FREE)
+     chi=(1+0.5)d (BETWEEN seals): |S_P1 - S_P2|       0.00584594 (!=0: profile FREE)
+     chi=(1+0.75)d (BETWEEN seals): |S_P1 - S_P2|      0.00385277 (!=0: profile FREE)
+
+==============================================================================
+PART 3.  DECISIVE:  FORCED vs FREE in the genuinely-indivisible regime
+==============================================================================
+
+  FORCED  (sparse / indivisible Tier-A click-law, what self-consistency DOES fix):
+
+  [FORCED-S1]  The seal points carry a GEOMETRIC click-law: S(k d)=S(d)^k.  The
+               VALUES on the seal lattice are forced (Cauchy on the sub-semigroup
+               (N,+), rigid with NO regularity assumption).  Equivalently the
+               per-seal survival s=S(d) is constant across seals: a CONSTANT seal
+               hazard PER SEAL, -log s, is forced.  The discrete click-law is a
+               Bernoulli/geometric process in the seal count -- the indivisible
+               analogue of the dense Poisson-in-content law.
+  [FORCED-S2]  Monotonicity/no-revival on the lattice: s=S(d) in (0,1] => s^k
+               non-increasing => kappa_lat = -log s/d >= 0.  A revival across a
+               seal would make the inserted seal NON-composing -> not a seal
+               (same structural no-revival as the dense case, restricted to L).
+
+  FREE  (the genuinely-indivisible residue -- NOT present in the dense case):
+
+  [FREE-S1]    The INTER-SEAL PROFILE S(chi) for chi NOT in L is COMPLETELY
+               UNCONSTRAINED by composition.  Composition only evaluates S at sums
+               of lattice points (which stay in L), so it NEVER probes the open
+               inter-seal interval.  PART 2 exhibits two distinct monotone
+               continuations (P1 straight-exp, P2 wiggly) with IDENTICAL lattice
+               values -- a literal proof the profile is free.  This free function
+               (an arbitrary g:[0,1)->(0,1], g(0)=1) is the off-diagonal coherent
+               holonomy that survives between commitments: it is EXACTLY the
+               Barandes-indivisible / genuine-quantum content the dense case kills.
+  [FREE-S2]    The SPACING d itself.  Composition fixes the geometric form GIVEN d,
+               but says nothing about d (the density of seals).  d-freedom = the
+               sparsity question (PART 5).
+
+  THE DECISIVE ANSWER.  In the genuinely-indivisible (sparse) regime self-
+  consistency forces ONLY the click-law's VALUES ON THE SEAL LATTICE (geometric,
+  S(nd)=S(d)^n), NOT a global SHAPE.  The dense case forces the WHOLE curve because
+  the lattice fills the line (every chi is a seal, so composition probes every
+  point).  Sparse composition probes only L -> the inter-seal profile is a genuine
+  FREE FUNCTIONAL DEGREE OF FREEDOM.  So:
+
+     DENSE (classical):    SHAPE fully forced  =>  S(chi)=exp(-kappa chi).
+     SPARSE (quantum):     only the lattice VALUES forced (geometric);  one FREE
+                           inter-seal profile function survives  =  the indivisible
+                           coherent residue.
+
+  This is the honest hinge: genuine indivisibility = exactly the freedom the dense
+  multiplicative-everywhere assumption removed.  The click-law shape is NOT forced
+  in the indivisible regime; only its seal-lattice skeleton is.
+
+  DENSE freedom  (forced shape, free scale)            1 real parameter kappa 
+  SPARSE freedom (lattice forced, profile free)        kappa_lat (1 param) + g:[0,1)->(0,1] (INF-dim) 
+  => the indivisible click-law is forced only up to ONE FREE inter-seal
+     PROFILE FUNCTION (an entire functional d.o.f.), not just one scale.
+
+==============================================================================
+PART 4.  DENSE LIMIT  d->0:  sparse geometric -> dense exponential
+==============================================================================
+
+  Hold the lattice rate fixed while refining the seal spacing:
+       kappa := -log S(d)/d   held CONSTANT as d->0      (so S(d)=e^{-kappa d}).
+  Evaluate the sparse geometric law at a content chi that is an integer number of
+  steps, chi = n d (n=chi/d):
+       S_sparse(chi) = S(d)^{chi/d} = (e^{-kappa d})^{chi/d} = e^{-kappa chi}.
+  This is EXACT for every d (no limit needed) at the lattice points; as d->0 the
+  lattice points fill the line and the FREE inter-seal profile is squeezed to zero
+  width -> the whole curve becomes the dense exponential.  We verify both the exact
+  lattice identity and the squeeze of the free profile.
+
+  log[ S(d)^{chi/d} ] - log[ exp(-kappa chi) ]  (S(d)=e^{-kappa d}) 1 (=1 EXACT: sparse=dense on lattice)
+
+  target dense value exp(-kappa*chi), kappa=0.83 chi=2.5 0.1255564274931972203359442 
+  The KEY squeeze: ANY monotone continuation S(chi) with the forced lattice
+  values must, on a cell [kd,(k+1)d], lie between S((k+1)d)=s^{k+1} and
+  S(kd)=s^k; so its WORST-CASE deviation from the straight exponential is
+  bounded by the survival DROP across one cell, B(d) := s^k (1 - s).  As d->0
+  this bound -> 0 for EVERY continuation, not just our P2 -> the free profile
+  is squeezed out and the dense exponential becomes UNIQUE.
+
+  d        S_sparse(chi) at lattice (geometric)  |S_sparse - dense|   sup_{any monotone profile} dev  B(d)=s^k(1-s)
+  d=0.5      S_lat=0.125556427493       |S-dense|=2.42e-122   cellbound B(d)=0.0426465
+  d=0.1      S_lat=0.125556427493       |S-dense|=1.452e-121  cellbound B(d)=0.0100004
+  d=0.02     S_lat=0.125556427493       |S-dense|=7.019e-121  cellbound B(d)=0.00206703
+  d=0.004    S_lat=0.125556427493       |S-dense|=3.171e-120  cellbound B(d)=0.000416156
+  d=0.0005   S_lat=0.125556427493       |S-dense|=1.629e-119  cellbound B(d)=5.20951e-5
+
+  RESULT.  S(d)^{chi/d} = exp(-kappa chi) is EXACT at the lattice points for every
+  d (the geometric law IS the exponential sampled on L).  As d->0 with
+  kappa=-log S(d)/d fixed: (i) the lattice fills the line, (ii) the WORST-CASE
+  deviation of ANY monotone inter-seal continuation from the straight exponential
+  is bounded by the one-cell survival drop B(d)=s^k(1-s) -> 0 (B(d) ~ kappa*d*s^k).
+  So the entire free functional d.o.f. is squeezed to zero amplitude -- the dense
+  exponential becomes UNIQUE.  The dense exp is the d->0 limit of the sparse
+  geometric law, AND the dense uniqueness is precisely the disappearance of the
+  sparse free profile.  paper1 s3.2 IS the d->0 limit of s5.3 -- one statement.
+
+
+==============================================================================
+PART 5.  IS THE SPACING d SELF-CONSISTENTLY FIXED, OR GENUINELY FREE?
+==============================================================================
+
+  The one-diamond constants eta_*, theta_* were fixed by an INTRINSIC self-
+  consistency condition KL content = Fisher capacity:
+        D(P_eta || mu_D) = J(eta)   <=>   eta tanh eta - log cosh eta = 1 - tanh^2 eta,
+  a balance between two record-internal numbers, with a UNIQUE nonzero root.  The
+  question: is there an ANALOGOUS intrinsic balance that fixes the seal spacing d
+  (or the inter-seal profile) from the holonomy content ITSELF?
+
+  Candidate principle (the natural analogue):  a seal fires when the ACCUMULATED
+  inter-seal holonomy content saturates the one-diamond capacity -- i.e. the seal
+  spacing in content equals the per-diamond saturated content:
+        d  ?=  W_*  =  1 - theta_*^2  =  J(eta_*)   (the Fisher capacity at the
+                                                     self-consistent tilt).
+  This WOULD fix d to a pure number.  We test whether it is FORCED (a genuine self-
+  consistency identity like KL=Fisher) or merely a NATURAL CHOICE (not forced).
+
+  candidate intrinsic spacing d_* = W_* = 1 - theta_*^2 0.364784952089976362257177160512 
+
+  ANALYSIS (honest).  Two record-internal numbers are available:
+    - W_* = 1 - theta_*^2 = J_* : the saturated content / Fisher capacity per
+      diamond -- a forced PURE NUMBER (it IS fixed by KL=Fisher).
+    - the per-diamond KL content D(P_eta_* || mu_D) = W_* (equal at the root, by
+      the self-consistency condition itself).
+  So there is a forced INTRINSIC CONTENT UNIT W_* per saturated diamond.  IF the
+  seal-spacing principle 'a seal fires once one diamond's worth of content has
+  accumulated' is adopted, then d = W_* is a forced PURE NUMBER and the spacing is
+  NOT free in CONTENT units.  BUT -- and this is the decisive honest point -- this
+  does NOT remove the freedom, for two independent reasons:
+
+  [REASON 1 -- the scale no-go is untouched].  Even if d = W_* is forced as a
+  CONTENT number, the click-law's absolute rate kappa = -log s/d still requires the
+  one absolute commit-order unit the records provably do not carry (do-delete C6,
+  paper-XI scale no-go).  Fixing the spacing in WEIGHT-0 content units cannot
+  manufacture the missing absolute scale: d_*=W_* is dimensionless content, and
+  kappa stays the one free no-go scale.  (Receipt: W_* and the per-diamond KL agree
+  at the root to the balance residual below -- the content unit IS forced, the rate
+  is NOT.)
+      per-diamond KL content D(P_eta_*||mu_D)          0.3647849520899763622571772 
+      Fisher capacity W_* = J_* = 1 - theta_*^2        0.3647849520899763622571772 
+      |KL content - Fisher capacity| at root           9.68148e-122 (=0: content unit W_* is forced)
+
+  [REASON 2 -- the inter-seal profile freedom is independent of d].  Even granting
+  d = W_* (seal LOCATIONS fixed), PART 3's [FREE-S1] is untouched: the inter-seal
+  PROFILE function g:[0,1)->(0,1] (the surviving off-diagonal coherent holonomy)
+  is not constrained by composition NOR by the KL=Fisher saturation condition,
+  which is a statement about the ENDPOINT content of a diamond, not about the
+  coherence trajectory between seals.  So the genuinely-indivisible residue (the
+  free profile = the quantum coherence) survives EVEN IF the spacing is pinned.
+
+  IS THE SPACING PRINCIPLE ITSELF FORCED?  No -- and we are honest about it.
+  'A seal fires at one saturated-diamond's worth of accumulated content (d=W_*)'
+  is a NATURAL and self-consistent CHOICE (it reuses the SAME KL=Fisher balance
+  that fixed eta_*), but composition-consistency does NOT force it: ANY spacing
+  d>0 gives a consistent geometric lattice law.  Unlike eta_* (where KL=Fisher has
+  a UNIQUE nonzero root, so the constant is FORCED), there is no second balance
+  equation whose unique root SELECTS d.  The saturation principle is a plausible
+  closure, not a derived identity.  Verdict: the spacing is FORCED-IF the
+  saturation closure is adopted (d=W_*), but the closure is CONJECTURED, not forced
+  -- so the sparsity (whether sealing is sparse, and at what density) is GENUINELY
+  OPEN.
+
+  -- composition consistency vs spacing: is any d>0 admissible? --
+     d=0.05: composition on lattice holds?             True 
+     d=0.3648: composition on lattice holds?           True   <- = W_* (saturation closure)
+     d=1.0: composition on lattice holds?              True 
+     d=3.7: composition on lattice holds?              True 
+  => EVERY d>0 is composition-consistent; no intrinsic equation selects d.
+     The saturation closure d=W_* is the ONLY candidate that reuses KL=Fisher,
+     but it is a CHOICE, not forced.  Sparsity is genuinely open.
+
+==============================================================================
+CANONICAL OUTPUT BLOCK  (F3-B sparse-seal shape receipt)
+==============================================================================
+
+  SPARSE-SEAL SETUP (genuinely indivisible, pre-geometric, Tier A):
+    seal points  L = {k d : k>=0}  (sub-semigroup of intrinsic content, spacing d)
+    between seals: D off-diagonal != 0  =  coherent unsealed holonomy
+                 =  Barandes-indivisible / genuine quantum.
+    composition (Chapman-Kolmogorov / D diagonalizes) holds ONLY on L.
+
+  FORCED in the indivisible regime (self-consistency fixes the LATTICE SKELETON):
+    [FORCED-S1]  S(n d) = S(d)^n  GEOMETRIC on the seal lattice  (Cauchy on (N,+),
+                 rigid, no regularity needed).  Per-seal survival s=S(d) constant.
+                 lattice rate kappa_lat = -log S(d)/d.
+                 (max |S((k+m)d)-S(kd)S(md)| over 50 random k,m = 1.21e-122)
+    [FORCED-S2]  s in (0,1] => kappa_lat>=0  (no revival, restricted to L).
+
+  FREE in the indivisible regime (the genuine-quantum residue):
+    [FREE-S1]    the INTER-SEAL PROFILE  g:[0,1)->(0,1], g(0)=1  is UNCONSTRAINED
+                 (proof: two monotone continuations P1,P2 agree on L, differ between
+                 seals).  An ENTIRE FREE FUNCTIONAL d.o.f. -- the surviving coherent
+                 off-diagonal holonomy.  This is exactly what the dense case removes.
+    [FREE-S2]    the spacing d (the sparsity / seal density).
+
+  DECISIVE:  in the genuinely-indivisible (sparse) regime self-consistency forces
+  ONLY the click-law's VALUES ON THE SEAL LATTICE (geometric), NOT a global SHAPE.
+  The dense exponential is forced only because dense seals fill the line; sparse
+  seals leave a free inter-seal profile.  SHAPE NOT FORCED; lattice skeleton forced.
+
+  DENSE LIMIT d->0:  S(d)^{chi/d} = exp(-kappa chi) EXACT on the lattice for every
+  d (with kappa=-log S(d)/d); as d->0 the lattice fills the line and the WORST-CASE
+  deviation of ANY monotone inter-seal continuation is bounded by the one-cell
+  survival drop B(d)=s^k(1-s) -> 0, recovering the UNIQUE dense exponential.  paper1
+  s3.2 IS the d->0 limit of s5.3.  (cell-bound B(d) collapses with d, verified.)
+
+  SPACING d:  composition admits EVERY d>0 (no second self-consistency equation
+  selects it).  A natural closure d=W_*=1-theta_*^2=0.36478495209 reuses the
+  one-diamond KL=Fisher saturation (a seal per saturated-diamond's content), which
+  would FIX d as a pure CONTENT number -- but (R1) it cannot manufacture the absolute
+  commit-order scale kappa (the no-go is untouched), (R2) it does not constrain the
+  free inter-seal profile, and (R3) it is a CONJECTURED closure, not a forced
+  identity (no unique-root selection, unlike eta_*).  So the spacing -- and hence
+  SPARSITY ITSELF -- is GENUINELY OPEN.
+
+  HONEST STATUS:  the genuinely-indivisible click-law does NOT have a forced global
+  SHAPE.  Self-consistency forces the SEAL-LATTICE SKELETON (geometric values
+  S(nd)=S(d)^n, constant per-seal hazard, no revival) and nothing more.  What
+  remains OPEN: (i) the inter-seal coherence profile (a free functional d.o.f. = the
+  genuine quantum/Barandes-indivisible content), (ii) the seal spacing d / sparsity
+  (no intrinsic equation selects it; the W_* saturation closure is plausible but
+  unforced), (iii) the one absolute scale kappa (the standing no-go floor).  The
+  dense exponential of paper1 s3.2 is recovered exactly as the d->0 (continuous-
+  sealing = classical) limit, confirming that the FORCED dense shape and the OPEN
+  sparse freedom are the two faces of one statement: indivisibility = the free
+  inter-seal profile the dense limit annihilates.
+
+  Pre-geometric throughout: chi is a record-internal KL pure number; no spacetime,
+  metric, light cone, or s^2 was used.
+
+
+==============================================================================
+DONE.
+==============================================================================

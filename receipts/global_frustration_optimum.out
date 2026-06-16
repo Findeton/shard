@@ -1,0 +1,48 @@
+
+==============================================================================
+(1) the two-value identity T(s) = 1 - prod_i(1 - s_i)
+==============================================================================
+  T(s) = -(2^n-1) on all-minus, +1 on each of the other 2^n-1 states
+  verified exactly over all 2^n states for n = 2..7: True
+
+==============================================================================
+(2) closed form m_min(n) = -ln(1 - 2^-n) - delta_n vs exact fixed-point values
+==============================================================================
+   n     m_min(n) [exact]                      -ln(1-2^-n)            delta_n     m*2^n
+    3  0.1335309820724719738497871883     0.133531392624522623   4.106e-7    1.06824785658
+    4  0.06453852113757117122300463725    0.0645385211375711717  4.499e-19   1.0326163382
+    5  0.03174869831458030115699628275    0.0317486983145803012  6.76e-48    1.01595834607
+    6  0.01574835696813916860754951146    0.0157483569681391686  2.938e-115  1.00789484596
+    7  0.007843177461025892873184042491   0.00784317746102589287 -2.229e-130 1.00392671501
+   25  0.00000002980232283178453117332268062 2.98023228317845312e-8 1.092e-129  1.0000000149
+
+==============================================================================
+(3) delta_n > 0 (analytic + high precision); strictly positive; prefactor -> 1
+==============================================================================
+  delta_7 at dps=420 = 2.5261e-269  (> 0, doubly-exp small)
+
+==============================================================================
+(4) GLOBAL-OPTIMALITY LEMMA: exhaustive over all orientations at n = 2, 3, 4
+==============================================================================
+  n=2: exhaustive min over all 8 orientations = 0.266653365180 ; closed form = 0.266653365180 ; alt-by-weight = 0.266653365180
+  n=3: exhaustive min over all 128 orientations = 0.133530982072 ; closed form = 0.133530982072 ; alt-by-weight = 0.133530982072
+  n=4: exhaustive min over all 32768 orientations = 0.064538521138 ; closed form = 0.064538521138 ; alt-by-weight = 0.064538521138
+
+==============================================================================
+MACHINE CHECKS
+==============================================================================
+  [PASS] (1) two-value identity T(s) in {-(2^n-1), +1} exact for n=2..7
+  [PASS] (2) closed form reproduces the exact fixed-point relative entropy at n=3,4,5
+  [PASS] (3) m_min(n) > 0 at every finite n; delta_n > 0 (analytic, dps=420 at n=7)
+  [PASS] (3b) prefactor m_min(n) * 2^n -> 1 exactly
+  [PASS] (4) n=2 exhaustive global min == closed form, realised by alternating-by-weight
+  [PASS] (4) n=3 exhaustive global min == closed form, realised by alternating-by-weight
+  [PASS] (4) n=4 exhaustive global min == closed form, realised by alternating-by-weight
+
+  ALL CHECKS PASS
+==============================================================================
+DONE.  The minimum evidence content over all orientations of the complete n-mode set is
+       m_min(n) = -ln(1 - 2^-n) - delta_n (delta_n > 0, doubly-exp small), attained at the
+       alternating-by-weight orientation: the maximally binding orientation, with binding
+       defect diverging as the relative entropy decays to 0 like 2^-n.
+==============================================================================

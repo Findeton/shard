@@ -1,0 +1,65 @@
+
+==============================================================================
+(1) NUMERIC reality: c_m = G m^2/(hbar c) = (m/M_Planck)^2  (the hierarchy)
+==============================================================================
+  M_Planck (kg)                                2.176434342e-8   
+  c_m(electron) = (m_e/M_Pl)^2                 1.7518094e-45   ~ 1.75e-45
+  c_m(proton)   = (m_p/M_Pl)^2                 5.9061494e-39   ~ 5.91e-39
+  c_m(p)/c_m(e)  vs  (m_p/m_e)^2               3371456.64 vs 3371456.64   
+
+==============================================================================
+(2) WEIGHT-0 + gauge invariance: c_m is intrinsic-eligible (no-go does NOT forbid)
+==============================================================================
+  weight(G), weight(m), weight(hbar c)         2, -1, 0   
+  weight(c_m) = wG + 2*wm - whc                0   (= 0: weight-zero / intrinsic-eligible)
+  c_m under l->1.7*l / c_m                     1.0   (= 1: invariant)
+  c_m under l->5.0*l / c_m                     1.0   (= 1: invariant)
+
+==============================================================================
+(3) EXACT factorization c_m = gamma_G * nu_m^2 (sigma_A cancels; gamma_G = G*sigma_A = 1/4)
+==============================================================================
+  gamma_G = G*sigma_A                          G*sigma_A   (= 1/4 at sigma_A = 1/(4G); convention)
+  nu_m = m/sqrt(sigma_A)                       m/sqrt(sigma_A)   (matter mass in record units; weight-0)
+  gamma_G * nu_m^2  (sigma_A cancels)          G*m**2   = G*m^2 = c_m  (exact)
+  nu_m(electron) = sqrt(c_m(e)/gamma_G)        8.37092e-23   (~8.4e-23: physical, NOT eta_B/0.156)
+
+==============================================================================
+(3c) NOT-SELECTED structure: the gravity invariants do not depend on c_m
+==============================================================================
+  kappa*sigma_A INDEPENDENT of c_m?            True   (d/dc_m = 0: yes, independent)
+  G*sigma_A INDEPENDENT of c_m?                True   (d/dc_m = 0: yes, independent)
+
+==============================================================================
+(4) SHARED BOTTLENECK with d: nu_m is MODE-DEPENDENT (same canonicalization as d)
+==============================================================================
+  one-mode gap eta_B                           0.609377863436   
+  coupled gap h_*                              0.495053264332   (|eta_B - h_*| = 0.114325)
+  => nu_m mode-dependent                       no canonical member   (same bottleneck as the spacing d)
+
+==============================================================================
+(5) NO pinning: any c_m value smuggles in the 1/4 convention + a mode choice
+==============================================================================
+  illustrative gamma_G*eta_B^2 (NOT a prediction) 0.09283534511   (smuggles 1/4 conv + a TOY mode)
+  illustrative / c_m(electron)                 5.299e+43   (~5e43: O(0.1) vs 1.75e-45)
+  theta_B^2 (root of s^3+s^2+3s-1)             0.295597742522   vs Srednicki a=0.295417
+
+==============================================================================
+MACHINE CHECKS
+==============================================================================
+  [PASS] (1) c_m(e)~1.75e-45, c_m(p)~5.9e-39, and c_m proportional to m^2 (ratio=(m_p/m_e)^2)
+  [PASS] (1b) c_m = (m/M_Planck)^2 exactly
+  [PASS] (2) weight(c_m) = 0 (intrinsic-eligible; scale no-go does NOT forbid it)
+  [PASS] (2b) c_m invariant under l->mu*l (G->mu^2 G, m->m/mu): the scale cancels
+  [PASS] (3) c_m = gamma_G*nu_m^2 = G*m^2 EXACTLY (sigma_A cancels; gamma_G=G*sigma_A=1/4)
+  [PASS] (3b) physical nu_m(e)~8.4e-23 is ~22 orders below the toy gaps (toy=illustrative only)
+  [PASS] (3c) gravity invariants kappa*sigma_A, G*sigma_A are c_m-independent (NOT-SELECTED; any c_m passes)
+  [PASS] (4) the matter gap is mode-dependent (eta_B != h_*): c_m shares d's canonicalization bottleneck
+  [PASS] (5b) illustrative 0.093 is ~44 orders from physical c_m(e): self-evidently not a prediction
+  [PASS] (5) theta_B^2 cubic-algebraic, != Srednicki a (numerology); no record number pins c_m
+
+  ALL CHECKS PASS
+==============================================================================
+DONE.  c_m is weight-0 and PERMITTED, but provably a matter-sector calibration the
+       gravity sector is complete-and-blind to (Thm 6.1): one free coupling per
+       species, sharing the spacing d's mode-canonicalization + matter-sector gate.
+==============================================================================

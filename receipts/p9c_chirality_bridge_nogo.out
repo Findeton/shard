@@ -1,0 +1,43 @@
+
+==============================================================================
+(1) the two layers carry independent data (different objects)
+==============================================================================
+  sigma : K -> Z2        -- orientation class, dim K bits on the RELATION CODE (ledger)
+  m     : SO(3) label    -- Weyl handedness, 1 bit on the ROTATION FIBER (Paper 9)
+  a bridge would be a map  K-hat -> {+,-}  forcing the 1 fiber bit from the dim K ledger bits
+
+==============================================================================
+(2) the LEDGER is handedness-BLIND: the gap is a function of sigma ALONE
+==============================================================================
+  m_hat(alternating-by-weight, n=3) computed from sigma only = 0.133530982072
+  (the gap function takes the orientation signs; NO handedness argument exists)
+
+==============================================================================
+(3) parity is a JOINT symmetry: the gap is parity-invariant => a bridge must be parity-ODD
+==============================================================================
+  m_hat(sigma) = 0.133530982072   m_hat(parity partner sigma-bar) = 0.133530982072
+  => the gap is parity-invariant; the records do NOT distinguish sigma from sigma-bar
+  => a bridge f: sigma|->m must be parity-ODD on parity-SYMMETRIC data -- undetermined
+
+==============================================================================
+(4) the NO-GO conclusion (drawn from checks 1-3; not a separate computation)
+==============================================================================
+  the ledger is handedness-blind (checks 2/2b) and parity-symmetric in the gap (check 3)
+  => a bridge would be parity-ODD on parity-SYMMETRIC data: undetermined, supplied by g
+  => the chirality bridge is NOT record-forced  [NO-GO, a logical consequence of 1-3]
+
+==============================================================================
+MACHINE CHECKS
+==============================================================================
+  [PASS] (1) sigma (dim K ledger bits) and m (1 fiber bit) are objects of different record layers
+  [PASS] (2) the gap m_hat is a pure function of sigma (ledger) -- handedness m never enters
+  [PASS] (2b) flipping the fiber handedness m -> -m leaves every ledger quantity unchanged (blind)
+  [PASS] (3) gap is parity-invariant (m_hat(sigma)=m_hat(sigma-bar)); a bridge must be parity-odd
+
+  ALL CHECKS PASS
+==============================================================================
+DONE.  The ledger layer is handedness-blind (the gap is a pure function of the orientation),
+       parity is a joint symmetry with a parity-invariant gap, so a chirality bridge would
+       be a parity-odd map on parity-symmetric data -- undetermined by the records and
+       supplied only by the coupling g.  The chirality bridge is NOT record-forced [NO-GO].
+==============================================================================

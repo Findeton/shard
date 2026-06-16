@@ -1,0 +1,169 @@
+
+==============================================================================
+CONSTANTS (paper4 s5: single-diamond self-consistency, for adjudication)
+==============================================================================
+    eta_A  (root of C=J)                                1.09034435487949219622050770835094995335821979
+    W_* = J(eta_A) = C(eta_A)                           0.364784952089976362257177160512248045657483089
+    |C(eta_A) - J(eta_A)| (balance)                     8.89103e-162
+
+==============================================================================
+TASK 2 -- one-mode parity seal root  tanh eta = exp(-eta)  (paper4 s71)
+==============================================================================
+    eta_B  (root of tanh eta = exp(-eta))               0.60937786343600623153680337116839869542853927931285
+    theta_B = tanh eta_B                                0.54368901269207636157085597180174798652520329765098
+    exp(-eta_B) (no-division survival)                  0.54368901269207636157085597180174798652520329765098
+    |tanh eta_B - exp(-eta_B)| residual                 0.0
+    min d/deta(tanh-exp(-eta)) over [0,20]              2.1668312e-9   > 0  => one root, no bifurcation
+
+  -- rejected double-counting root  tanh eta = exp(-2 eta)  (paper4 s71) --
+    eta_DC (root of tanh eta = exp(-2 eta))             0.44068679350977151261630466248989615451408016413082
+    |tanh eta_DC - exp(-2 eta_DC)| residual             0.0
+
+==============================================================================
+TASK 3 -- coupled VECTOR ledger root  grad psi(h) = exp(-h)  on {x,y,xy}
+==============================================================================
+
+  -- coupled fixed point (general 3-vector solve, symmetric seed) --
+    h_x                                                 0.49505326433154660045387050531037346702761125501069
+    h_y                                                 0.49505326433154660045387050531037346702761125501069
+    h_xy                                                0.49505326433154660045387050531037346702761125501069
+    ||grad psi(h) - exp(-h)|| residual                  3.07994e-161
+    |h_x - h_y|                                         0.0
+    |h_x - h_xy|                                        0.0
+    |h_y - h_xy|                                        0.0
+
+  -- INDEPENDENT scalar reduction on the symmetric subspace --
+    symmetric closed form Z(h)=e^{3h}+3e^{-h}; <chi>=g(h)
+    g(h) = (e^{3h}-e^{-h})/(e^{3h}+3 e^{-h})            
+    h*  (root of g(h)=e^{-h})                           0.49505326433154660045387050531037346702761125501069
+    |g(h*) - exp(-h*)| residual                         8.89103e-162
+    |h* - h_x(vector solve)|                            2.0659326e-162
+    min eig of Hessian(Phi) at h*                       1.0   > 0  => strictly convex, unique isolated minimizer
+
+==============================================================================
+TASK 4/5 -- adjudication: three roots & 'seals fire under W_*' across modes
+==============================================================================
+
+  -- the three distinct roots --
+    eta_A  (LAW-A, C=J self-consistency)                1.09034435487949219622050770835   fixes constants/W_*
+    h*     (coupled {x,y,xy} seal ledger)               0.49505326433154660045387050531   vector commitment root
+    eta_B  (one-mode parity seal)                       0.609377863436006231536803371168   scalar commitment root
+    eta_DC (double-count, REJECTED)                     0.44068679350977151261630466249   rejected by cochain unit
+    ascending order                                     eta_DC(0.44068679) < h*(0.49505326) < eta_B(0.60937786) < eta_A(1.0903444)
+
+  -- per-mode KL content C(.) vs capacity W_* (= max-min self-consistent content) --
+    W_* (capacity ceiling, = C(eta_A))                  0.364784952089976362257177160512
+    C(eta_B)  one-mode seal content                     0.156109200157240116579909467737   <- below W_*
+    C(h*)     coupled per-mode content                  0.109004107832912105570640955825   <- below W_*
+    C(eta_B)/W_*  (fraction of capacity)                0.427948574257
+    C(h*)/W_*     (fraction of capacity)                0.298817446302
+    D(P_{h*}||U)  TOTAL coupled KL content              0.459889495499428991434474569055   (3-mode; compare to 3*W_* capacity budget)
+    D(P_{h*}||U) / (3 W_*)                              0.420237999461
+
+==============================================================================
+TASK 6 -- STRUCTURAL robustness: content < W_* is not merely empirical
+==============================================================================
+
+  -- structural reason the inequality is robust --
+    C'(eta) at eta=0.3, 0.6, 1.09                       0.274541, 0.426947, 0.397741  (>0: C strictly rising)
+    lim_{eta->inf} C(eta) = log 2                       0.693147180559945309   (C bounded, C(50)=0.693147180559945309)
+    lambda* to reach content W_*                        0.2080955788   (< 1 => under-counts RN action, inadmissible)
+    C(eta_B)/W_* (canonical lambda=1)                   0.4279485743   (= supremum over admissible modes)
+
+  -- (i) monotone dilution over the symmetric character group (uniform base) --
+    per-mode coeff: 1-char / 3-char / 7-char            0.60937786 / 0.49505326 / 0.36796316  (eta_B=0.60937786; falls)
+
+  -- (ii) gate is load-bearing: a SKEWED (non-count-dual) base exceeds W_* --
+    skewed base mu(+)=0.2: coeff, content               1.0560978, 0.52599604  (both > eta_B / W_*)
+
+==============================================================================
+VERDICT BLOCK
+==============================================================================
+
+  THREE DISTINCT COMMITMENT-LAW ROOTS (all high precision, this run):
+    eta_A  = 1.090344354879492   LAW-A self-consistency C=J  (fixes W_*; NOT a seal root)
+    h*     = 0.4950532643315466   coupled {x,y,xy} division-event ledger  grad psi=exp(-h)
+    eta_B  = 0.6093778634360062   one-mode parity seal  tanh eta = exp(-eta)
+    eta_DC = 0.4406867935097715   double-count  tanh eta = exp(-2 eta)  (REJECTED by paper4)
+
+  s71 vs s73-76 DISTINCTION (verbatim-grounded):
+    s71 ONE-MODE law selects a TILT COEFFICIENT h (== eta) of the whole-history
+      parity Gibbs law P_eta=U exp(eta H - log cosh eta): partial_eta psi = tanh eta,
+      seal law  tanh eta = exp(-eta)  -> eta_B.  It is NOT a spacing or a content;
+      it is the RN/cochain action coefficient of the single oriented closed-history mode.
+    s73-76 UPGRADE it to the VECTOR/cofinal commitment law on the COMPLETE primitive
+      oriented RN/KL ledger:  grad psi(h) = exp(-h)  (one equation per primitive mode),
+      Euler eq of the strictly convex potential Phi(h)=psi(h)+sum_j exp(-h_j),
+      cofinal/cover-invariant on the primitive QUOTIENT ledger (serial-subdivision
+      invariant via prod exp(-I_k)=exp(-sum I_k)).  The {x,y,xy} coupled instance
+      lands at h*=(0.49505326,...) with all three components EQUAL.
+
+  IS 'THE commitment root' WELL-DEFINED?  ->  NO -- it is MODE-/LEDGER-DEPENDENT.
+    The seal/commitment law is grad psi(h)=exp(-h) on whatever the COMPLETE primitive
+    ledger is.  A different complete ledger (one oriented mode -> eta_B; the coupled
+    {x,y,xy} ledger -> h*~0.4951) gives a different numerical root.  eta_B is the
+    ONE-MODE-PARITY value, not a corpus-unique 'the' commitment root.  s69 also warns
+    a fixed-CONTENT threshold is non-canonical (selected eta drifts with the supplied
+    unit), so there is no single content/eta the seal universally commits.
+
+  s69 NON-CANONICITY (verbatim): the constant-unit/Poisson-renewal route
+    eta=atanh(exp(-r eta)) selects eta only after the dimensionless ratio r is
+    supplied, and 'Changing the renewal shape changes the selected eta' /
+    'commitment scale attack ... the selected eta moves, so r must be intrinsic'.
+    => a FIXED-CONTENT commitment threshold is NON-CANONICAL; the selected eta
+    drifts with the supplied unit/shape.  (s71 removes r via RN self-accounting,
+    fixing r=1 -> the survival shape, but the *ledger/mode* still sets the root.)
+
+  IS 'SEALS FIRE UNDER W_*' ROBUST ACROSS MODES?  ->  YES (every mode checked).
+    one-mode:  C(eta_B) = 0.156109200157  <  W_* = 0.36478495209  (frac 0.427949)
+    coupled :  C(h*)    = 0.109004107833  <  W_*               (frac 0.298817)
+    coupled total D(P_{h*}||U) = 0.459889495499 < 3 W_* (the 3-mode capacity budget).
+    Both checkable seal modes fire STRICTLY UNDER the W_* per-mode capacity ceiling.
+
+  RECOMMENDATION FOR PAPER 2 WORDING (commitment root / 'two roots' framing):
+    Paper 2 should NOT call eta_B 'the' commitment root.  State it as:
+    (1) eta_A=1.0903 is the self-consistency root that FIXES the diamond constants
+        and the capacity W_*; it is not a seal-firing value.
+    (2) The corpus seal/division-event law is the VECTOR fixed point grad psi(h)=exp(-h)
+        on the complete primitive oriented ledger; its numerical root is mode-/ledger-
+        dependent -- eta_B=0.6094 is the ONE-MODE-PARITY slice, the coupled {x,y,xy}
+        ledger gives ~0.4951.  Frame eta_B as 'the one-mode-parity seal value', not the
+        unique canonical commitment root.
+    (3) The robust, mode-independent corpus fact is the INEQUALITY: in every sealing
+        mode we can check, the committed content lands STRICTLY BELOW the W_* capacity
+        (C(eta_B), C(h*) both < W_*).  Paper 2 should lead with that inequality, not
+        with a single magic number, and should cite s69's non-canonicity of any
+        fixed-content threshold so it neither manufactures a contradiction nor implies
+        a unique seal root.
+
+
+==============================================================================
+MACHINE CHECKS
+==============================================================================
+  [PASS] eta_A matches paper4 s5 (1.090344354879492)
+  [PASS] W_* matches paper4 s5 (0.364784952089976)
+  [PASS] C(eta_A)=J(eta_A) to <1e-120 (independent formulas)
+  [PASS] TASK2 eta_B = 0.6093778634360061 (paper4 s71)
+  [PASS] TASK2 theta_B=exp(-eta_B) self-consistent <1e-120
+  [PASS] TASK2 one-mode law strictly monotone (unique root)
+  [PASS] TASK2 double-count eta_DC = 0.4406867935097715 (paper4 s71)
+  [PASS] TASK3 coupled root residual < 1e-100
+  [PASS] TASK3 coupled root matches s71 (0.495053)
+  [PASS] TASK3 scalar reduction == vector solve (<1e-100)
+  [PASS] TASK3 components all equal (symmetric coupled root)
+  [PASS] TASK3 commitment potential Phi strictly convex (Hess>0)
+  [PASS] ADJ three commitment roots are mutually distinct
+  [PASS] TASK5 one-mode seal content C(eta_B) < W_*
+  [PASS] TASK5 coupled per-mode content C(h*) < W_*
+  [PASS] TASK5 coupled TOTAL content < 3-mode capacity 3 W_*
+  [PASS] TASK5 'seals fire under W_*' robust in every checked mode
+  [PASS] TASK6 C(eta) strictly monotone increasing (C'>0)
+  [PASS] TASK6 C(eta_A) = W_* exactly (<1e-100): content W_* needs coefficient eta_A
+  [PASS] TASK6 C bounded: lim C = log 2 (C(50) ~ log2 <1e-20)
+  [PASS] TASK6 lambda* to reach W_* ~ 0.208 < 1 (inadmissible under-count)
+  [PASS] TASK6 coupling DILUTES: h_* < eta_B (more modes -> lower coefficient)
+  [PASS] TASK6 admissible-class supremum = C(eta_B) < W_*
+  [PASS] TASK6 orthogonal modes each = eta_B; coupling DILUTES (0.609>0.495>0.368)
+  [PASS] TASK6 INADMISSIBLE skewed base (p=0.2) EXCEEDS W_* (gate is load-bearing)
+
+  ALL CHECKS PASS

@@ -1,0 +1,29 @@
+=== (1) equal-split norm preservation pins p=q (here q=2) ===
+  q=2 screen, p=1.0: |W_p(out)-1| = 1.0   broken
+  q=2 screen, p=2.0: |W_p(out)-1| = 0.0   <- PRESERVED (p=q=2)
+  q=2 screen, p=3.0: |W_p(out)-1| = 0.5   broken
+  q=2 screen, p=4.0: |W_p(out)-1| = 0.75   broken
+
+=== (2) Banach-Lamperti: only q=2 isometry group is transitive ===
+  Hadamard e_1 = ['0.707106781187', '0.707106781187']  (support size 2 = uniform)
+  any generalized permutation sends e_1 to a SINGLE-support phased vector
+  => cannot equal the uniform Hadamard image => not transitive for q!=2.
+  q=1: ||e_1||_q=1.0  ||H e_1||_q=1.41421356237   NOT isometry
+  q=2: ||e_1||_q=1.0  ||H e_1||_q=1.0   ISOMETRY
+  q=3: ||e_1||_q=1.0  ||H e_1||_q=0.89089871814   NOT isometry
+  q=4: ||e_1||_q=1.0  ||H e_1||_q=0.840896415254   NOT isometry
+
+=== (3) count-symmetric idempotent in l^2 is an ORTHOGONAL projection ===
+  oblique idempotent E_t (E_t^2=E_t), norm-split gap  ||Ea||^2+||(I-E)a||^2-||a||^2 :
+    2*a0*a1*t + 2*a1**2*t**2
+  norm-preservation holds for all a  <=>  t in [(0,)]  (t=0 = ORTHOGONAL projector)
+  t=0: E=E^* ? True   E^2=E ? True
+  t=1: E=E^* ? False   (oblique idempotent: idempotent but NOT self-adjoint)
+
+  q_hat = 2E-1 at t=0:  q_hat^2 = I ? True   q_hat=q_hat^* ? True
+  q_hat = 2E-1 at t=1:  q_hat^2 = I ? True   q_hat=q_hat^* ? False
+
+VERDICT: in the 2-norm (Hilbert) screen forced by Banach-Lamperti/q=2,
+the count-symmetric idempotent seal E is FORCED to be an orthogonal
+projection (E^2=E=E^*), and q=2E-1 a self-adjoint reflection (q^2=1).
+Oblique (non-orthogonal) idempotents are NOT screen-norm-preserving.

@@ -1,0 +1,154 @@
+
+==============================================================================
+PART S -- the SEAL is a SCALAR (weight-0) ALGEBRAIC object  [Tier-A fact]
+==============================================================================
+
+  Paper I S3.1 (f1_born_projection_q2): the seal E is FORCED to be an orthogonal
+  (self-adjoint) projection, E=E^2=E^*.  Paper I S2/S3.4 (f4_variational_rate):
+  the content chi=D(P_AB||P_BA) is a weight-0 KL NUMBER.  Both are SCALAR objects
+  under the screen/internal automorphisms.  We confirm the algebraic scalar
+  property: E is self-adjoint (so q=2E-1 is a self-adjoint reflection, a scalar
+  under unitary conjugation up to similarity), and chi is a pure number (rank-0
+  tensor) invariant under the internal relabeling P_AB <-> its presentation.
+
+  seal E (t=0): E^2=E ?                              True 
+  seal E (t=0): E=E^* (self-adjoint/scalar-under-conj) ? True 
+  q=2E-1: q^2=I ? and q=q^* ?                        (True, True) 
+  chi = D(P_AB||P_BA) (a number) =                   0.192041993162 
+  chi invariant under simultaneous index relabel ?   True (gap 0.0)
+
+  => The seal carries the (S) ingredient ALGEBRAICALLY: E is self-adjoint, chi
+     is weight-0 (rank-0).  This is the GOOD news for C1: GDC's collapse
+     operator Q=(1/2)alpha:phi^2: is ALSO a self-adjoint scalar -- the seal is
+     the right KIND of object.  CAVEAT below: 'scalar under the EMERGENT Lorentz
+     group' is a Tier-B premise, not this Tier-A algebraic fact.
+
+
+==============================================================================
+PART N -- the Tier-B noise kernel f(s^2) is ALREADY Lorentz-invariant  [SHARD supplies (N)]
+==============================================================================
+
+  GDC need the noise correlator G to depend ONLY on the invariant (x-y)^2.
+  SHARD's Tier-B locality kernel f(s^2) (f1_kernel_positive_type) is, by
+  construction, a function of the invariant s^2 alone, positive-type (Bochner),
+  quartic UV decay.  So the ONE GDC condition on the NOISE, (N), SHARD already
+  meets at Tier B.  We re-verify the LI form: f built from a spectrum
+  ghat(q^2)=e^{-q^4} is (i) a function of |s| only (even, depends on s^2), and
+  (ii) positive semidefinite Gram (positive-type).
+
+  f(s) even (depends on s^2 only): f(1.3)-f(-1.3) =  0.0 
+  kernel Gram min-eigenvalue (>=0 => positive-type / LI noise OK): 2.77752268119e-9 
+
+  => (N) is SUPPLIED by SHARD at Tier B: f(s^2) is a Lorentz-invariant,
+     positive-type colored-noise correlator, exactly GDC's required G((x-y)^2).
+     This is the single GDC ingredient SHARD already has in hand.
+
+
+==============================================================================
+PART L+MCC -- LOCALITY is the load-bearing gap; reproduce GDC all-orders recursion
+==============================================================================
+
+  GDC's all-orders MCC needs Q POINT-LOCAL.  SHARD's primitive is a FINITE
+  holonomy DIAMOND (a region with a collar), NOT a point.  We make the
+  inheritance condition OPERATIONAL with a finite causal-lattice operator model:
+
+    * Sites carry a causal (partial) order (a discrete light-cone), mimicking the
+      emergent causal set.
+    * A 'point-local scalar seal density' h(x) acts only at site x (diagonal /
+      single-site self-adjoint operator) -- the COARSE-GRAINED (collar->0) limit
+      of the diamond.
+    * A 'region-smeared seal density' h_R(x) acts on a CLUSTER of sites that can
+      straddle a spacelike gap -- the diamond WITH finite collar.
+    * A spacelike-separated probe O(z) acts at a site z not in the causal
+      future/past of x.
+
+  GDC mechanism, reproduced: the nested commutator
+      C_n = [h(x),[h(x),...,[h(x), O(z)]...]]   (n factors of h)
+  must VANISH for spacelike (x,z) if h is point-local-scalar and [h(x),O(z)]=0
+  spacelike (microcausality of the building blocks).  We verify VANISHING to all
+  orders tested for the POINT-LOCAL seal, and FAILURE for the REGION-SMEARED seal
+  whose support reaches z.
+
+  POINT-LOCAL scalar seal h(x) vs spacelike probe O(z):
+     ad_h^1(O) = 0 ?                                 True 
+     ad_h^2(O) = 0 ?                                 True 
+     ad_h^3(O) = 0 ?                                 True 
+     ad_h^4(O) = 0 ?                                 True 
+     ad_h^5(O) = 0 ?                                 True 
+     ALL orders 1..5 vanish (MCC inherited) ?        True 
+
+  REGION-SMEARED seal h_R straddling the spacelike gap vs O(z):
+     ad_hR^1(O) = 0 ?                                False 
+     ad_hR^2(O) = 0 ?                                False 
+     ad_hR^3(O) = 0 ?                                False 
+     SOME order is NONZERO (MCC BROKEN by non-locality) ? True 
+
+  READING.  When the seal density is POINT-LOCAL and self-adjoint-scalar, EVERY
+  nested commutator with a spacelike probe vanishes -> the GDC all-orders MCC
+  recursion goes through verbatim and [H(x),H(y)]=0 spacelike is INHERITED to all
+  orders (the spacelike HALF of Tomonaga-Schwinger integrability).  When the seal
+  density is REGION-SMEARED across the spacelike gap (a diamond with a finite
+  collar reaching the spacelike probe), the very first commutators are nonzero ->
+  MCC FAILS.  So the inheritance is EXACTLY conditioned on POINT-LOCALITY.
+
+
+==============================================================================
+PART V -- VERDICT: what SHARD must show, and whether the forced seal supplies it
+==============================================================================
+
+  GDC microcausality-to-all-orders is INHERITED by SHARD's seal IFF the
+  seal-firing density h_seal(x) can be written as a
+
+        LOCAL (point-supported) LORENTZ-SCALAR self-adjoint field operator,
+
+  with a Lorentz-invariant noise correlator.  Ledger of the three ingredients:
+
+   (S) SCALAR self-adjoint object .......... SUPPLIED ALGEBRAICALLY at Tier A.
+        E=E^* forced (f1_born); chi weight-0 KL number (f4).  The seal is the
+        RIGHT KIND of object -- same self-adjoint-scalar character as GDC's
+        Q=(1/2)alpha:phi^2:.  GAP: 'scalar under the EMERGENT Lorentz group'
+        needs a Lorentz action, which is Tier-B (no Lorentz group pre-geometry).
+
+   (N) LORENTZ-INVARIANT positive-type noise kernel .... ALREADY SUPPLIED (Tier B).
+        f(s^2) positive-type, function of the invariant s^2, quartic UV decay
+        (f1_kernel_positive_type, re-verified above).  This is GDC's G((x-y)^2).
+
+   (L) POINT-LOCALITY of the seal density ... NOT a Tier-A fact; the LOAD-BEARING
+        emergence premise.  SHARD's primitive is a finite holonomy DIAMOND (a
+        region + collar), point-local ONLY in the coarse-grained collar->0
+        emergent limit.  Part L above shows MCC is inherited for the point-local
+        seal and BROKEN for the region-smeared one -- so the whole inheritance
+        rides on the diamond becoming point-local in the emergent continuum.
+
+  THEREFORE:
+
+   * TIER B (emergent-spacetime regime) -- INHERITS:  IF the records coarse-grain
+     to a Lorentz-covariant continuum in which the seal density is a point-local
+     self-adjoint Lorentz scalar (collar->0) with the already-LI kernel f(s^2),
+     THEN GDC's all-orders MCC is INHERITED VERBATIM, and with it the spacelike
+     [H(x),H(y)]=0 HALF of Tomonaga-Schwinger integrability -- to all orders.
+     The Fedida 2025 result independently certifies the IRREVERSIBLE-collapse
+     spacelike commutation in the TS picture, matching SHARD's no-revival seal.
+
+   * TIER A (fundamental, pre-geometric) -- DOES NOT INHERIT:  there is no
+     Lorentz group and no spacetime point, so (L) and 'scalar under Lorentz'
+     are undefined.  The seal supplies the ALGEBRAIC scalar/self-adjoint
+     skeleton (S) and the program supplies the LI kernel (N), but (L) point-
+     locality + a Lorentz action are PRECISELY the emergence premises Paper I
+     quarantines into Tier B.  SHARD gets an INHERITANCE THEOREM, conditional on
+     the SAME covariance emergence it already declares OPEN -- NOT a Tier-A
+     derivation of microcausality.
+
+  ONE-LINE:  The SHARD seal is a self-adjoint weight-0 SCALAR (right kind of
+  object) and its noise kernel is already Lorentz-invariant; so IF the emergent
+  seal density is POINT-LOCAL and the records carry an emergent Lorentz action,
+  the GDC all-orders microcausality -- the spacelike half of Tomonaga-Schwinger
+  integrability -- is INHERITED for free.  Point-locality + the Lorentz action
+  are Tier-B emergence premises, not Tier-A facts: the move converts SHARD's open
+  'microcausality' frontier into the SHARPER, BORROWABLE condition
+  'point-local-scalar emergent seal density', and inherits the rest from 2025.
+
+
+==============================================================================
+DONE.  Scalar/self-adjoint algebra sympy-exact; kernel & KL numerics mpmath dps=100.
+==============================================================================

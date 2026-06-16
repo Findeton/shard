@@ -1,0 +1,172 @@
+==============================================================================
+PAPER XI RECEIPTS -- sealed-record gravity no-go
+==============================================================================
+mpmath mp.dps = 100   (all numeric checks at dps>=80; 100 used here)
+sympy 1.13.3   mpmath 1.3.0   numpy 1.23.5
+
+==============================================================================
+(1) LENGTH-GAUGE WEIGHT MAP  (g_lambda: l -> mu*l)
+==============================================================================
+   weight(X) := log[ X(mu*l) / X(l) ] / log(mu)   (degree / homogeneity map)
+
+   sympy-exact degree-map residuals  (must be identically 0):
+     weight(A_rec = l^2       ) =    2   expected   2   residual 0
+     weight(sigma_A = 1/l^2   ) =   -2   expected  -2   residual 0
+     weight(G = l^2           ) =    2   expected   2   residual 0
+     weight(l_step = l        ) =    1   expected   1   residual 0
+     weight(1/l               ) =   -1   expected  -1   residual 0
+     weight(pure count        ) =    0   expected   0   residual 0
+   all weight residuals identically zero (sympy): True
+
+   BIJECTION  G(l) = (1/4)/sigma_A(l)   ->   G*sigma_A is l-independent:
+     G*sigma_A (exact)        = 1/4     (expected 1/4)
+     weight(G*sigma_A)        = 0      (expected 0)
+     residual value (-1/4)    = 0
+     residual weight (-0)     = 0
+
+   dps=100 NUMERIC cross-check of the degree map at mu=1.7 (l=1.3, c0=0.9):
+     weight(A_rec=l^2     ) = 2.000000000000000000000000000000000000000   |resid| = 0.0
+     weight(sigma_A=1/l^2 ) = -2.000000000000000000000000000000000000000   |resid| = 0.0
+     weight(G=l^2         ) = 2.000000000000000000000000000000000000000   |resid| = 0.0
+     weight(l_step=l      ) = 1.000000000000000000000000000000000000000   |resid| = 0.0
+     weight(1/l           ) = -1.000000000000000000000000000000000000000   |resid| = 0.0
+     weight(pure count    ) = 0.0   |resid| = 0.0
+     weight(G*sigma_A     ) = 0.0   |resid| = 0.0
+   max numeric weight residual (dps=100): 0.0
+
+==============================================================================
+(2) SIGMA-SPLIT  (same sealed horizon data, A_rec = 1 vs A_rec = 3)
+==============================================================================
+   sealed data fixed; only the record-area->geometry label A_rec changes.
+   sigma_A = 1/A_rec ;  G = A_rec/4 (from G*sigma_A=1/4) ;
+   kappa (Jacobson, prefactor 1) = 1/sigma_A = A_rec.
+
+   sympy-exact, parametrized by A_rec:
+     sigma_A           = 1/A_rec
+     G = (1/4)/sigma_A = A_rec/4
+     kappa = 1/sigma_A = A_rec   (schematic Jacobson, prefactor 1)
+     kappa_phys = 8piG = 2*pi*A_rec   (physical normalization)
+     G*sigma_A         = 1/4     (invariant = 1/4)
+     Einstein-form residual  G_ab - kappa*T_ab = 0   (identically 0)
+
+   two explicit splits (sympy substitution):
+     A_rec = 1:  sigma_A = 1,  G = 1/4,  kappa = 1,  kappa_phys = 2*pi,  G*sigma_A = 1/4,  Einstein resid = 0
+     A_rec = 3:  sigma_A = 1/3,  G = 3/4,  kappa = 3,  kappa_phys = 6*pi,  G*sigma_A = 1/4,  Einstein resid = 0
+
+   CONCLUSION: G and kappa DIFFER across the split (1 vs 3); G*sigma_A=1/4 and
+   the Einstein-form residual=0 are IDENTICAL in both -> the records fix the
+   FORM and the weight-0 product, never the absolute scale G.
+
+==============================================================================
+(3) TWO SEPARATE weight-zero invariants
+==============================================================================
+   invariant A:  kappa*sigma_A = (8*pi*G)*sigma_A = 8*pi*(G*sigma_A) = 8*pi*(1/4)
+                 kappa*sigma_A = 2*pi   (= 2*pi, weight 0)
+   invariant B:  G*Lambda^2 = const  (a DIFFERENT pure number; Lambda = inverse-length
+                 UV/spectral cutoff). Illustrative (CONJECTURED) value 3*pi^2.
+                 3*pi^2 = 3*pi**2
+
+   dps=100 numeric values and their separation:
+     kappa*sigma_A = 2*pi      = 6.2831853071795864769252867665590057683943387987502
+     G*Lambda^2   = 3*pi^2     = 29.608813203268075856503472999628453405941098221722
+     difference (2pi - 3pi^2)  = -23.32562789608848937957818623306944763755
+     are they numerically equal? False
+   -> NOT equal: kappa*sigma_A=2pi and G*Lambda^2 are SEPARATE invariants
+      (they share the STRUCTURE 'fixed weight-0 pure number', not a value).
+
+==============================================================================
+(4) de SITTER WEIGHT-TWIN  (Lambda0 is the weight-twin of sigma_A)
+==============================================================================
+   N_dS = A_horizon/A_rec = 4*pi*(sigma_A/Lambda0)  (ratio of two weight-(-2) data):
+     N_dS (l-form)          = 4*pi*c0/k0
+     4pi*(sigma_A/Lambda0)  = 4*pi*c0/k0   (same)
+     d N_dS / d l           = 0     (l-independent => weight 0, sympy-exact)
+
+   S_dS = pi/(G*Lambda0) = N_dS  => fixes ONLY the weight-0 product G*Lambda0:
+     G*Lambda0 = pi/N_dS   (the only thing fixed); G alone stays FREE.
+
+   dps=100: two unit conventions with the SAME G*Lambda0 but DIFFERENT G:
+     fixed product G*Lambda0 = pi/N_dS = 0.031415926535897932384626433832795028841971693993751
+     conv I :  Lambda0 = 1.00  -> G = 0.03141592653589793238462643383279502884197
+     conv II:  Lambda0 = 7.00  -> G = 0.004487989505128276054946633404685004120282
+     G_I  != G_II ?                True
+     G_I*Lambda0_I  = 0.03141592653589793238462643383279502884197
+     G_II*Lambda0_II= 0.03141592653589793238462643383279502884197
+     product residual |GL0_I - GL0_II| = 0.0
+     entropy residual |S_I - S_II|     = 0.0   (both = N_dS)
+     S_I  = 100.0000000000000000000000000000000000000   (= N_dS = 100.)
+   -> S_dS pins G*Lambda0 only; G is free for the same reason sigma_A is.
+
+==============================================================================
+(5) NULL-CONE LEMMA and the correct TIMELIKE statement
+==============================================================================
+   (a) S_ab k^a k^b = 0 for all null k  (sampled 12 EXACT null directions):
+       constraint matrix is 12 x 10 on the symmetric components
+       rank(constraint)            = 9    (expected 9)
+       nullspace dimension         = 1    (expected 1 -> S = Phi*g)
+       nullspace vector (S00..S33) proportional to eta = (-1,0,0,0,1,0,0,1,0,1):
+         normalized solution - eta_pattern = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+       => off-diagonals 0 ; S00 = -S11 = -S22 = -S33  (i.e. S_ab = Phi*g_ab).
+       pattern check  S00=-S33=S11=S22 satisfied: True
+
+   (b1) CORRECT timelike statement: E_ab u^a u^b = c (SAME constant) for all unit
+        timelike u (sampled 12):  solving the 11 unknowns (E.. , c):
+        constraint rank = 10 of 11  ->  nullspace dim = 1
+        solution (E00..E33, c) normalized to c=1: [1, 0, 0, 0, -1, 0, 0, -1, 0, -1, 1]
+        => E_ab = c'*g_ab with proportionality c' = -1 (here c=1 => c'=-1, since u.u=-1).
+        E-part proportional to g (E = c'*eta): True   (1-parameter family, c FREE)
+
+   (b2) WRONG (naive vanishing) version: E_ab u^a u^b = 0 for all unit timelike u:
+        constraint rank = 10 of 10  ->  nullspace dim = 0
+        => unique solution E_ab = 0 (all components forced to zero).
+        forces E=0: True
+   -> So the load-bearing statement is the CONSTANT (not vanishing) timelike
+      contraction; the vanishing version is the WRONG one (it kills E entirely).
+
+==============================================================================
+(6) SPECTRAL-ACTION HONESTY  (naive collar profile e^{-2 pi u})
+==============================================================================
+   f2 = integral_0^inf u * e^(-2 pi u) du  (sympy-exact) = 1/(4*pi**2)
+   simplified                                            = 1/(4*pi**2)   = 1/(2 pi)^2
+
+   dps=100 numeric, printed to 30 digits:
+     f2 (numeric integral)   = 0.0253302959105844428609698658024
+     1/(2 pi)^2 (target)     = 0.0253302959105844428609698658024
+     1/(2 pi)   (the WRONG / often-quoted) = 0.159154943091895335768883763373
+     |f2 - 1/(2pi)^2| residual = 0.0
+     f2 vs 1/(2pi) MISMATCH    = 0.133824647181310892907913897570   (factor 2 pi off)
+     ratio (1/(2pi)) / f2      = 6.28318530717958647692528676656   (= 2 pi)
+   -> The naive profile gives f2 = 1/(2pi)^2, NOT 1/(2pi); so G*Lambda^2 = 3 pi^2
+      does NOT follow without specifying the exact measure (status: CONJECTURED).
+
+==============================================================================
+(7) KMS / UNRUH detailed balance  +  Rindler interval identity
+==============================================================================
+   detailed balance F(E)/F(-E) = exp(-2 pi E / a)  at T = a/2pi  (dps=100):
+     E =  0.1:  F(E)/F(-E) = 0.6321512051740076645944192279853720621498   exp(-2piE/a) = 0.6321512051740076645944192279853720621498   |resid| = 7.14e-102
+     E =  0.5:  F(E)/F(-E) = 0.1009496578240053087282904659141954183374   exp(-2piE/a) = 0.1009496578240053087282904659141954183374   |resid| = 0.0
+     E =  1.0:  F(E)/F(-E) = 0.01019083341478375624358480627322172171284   exp(-2piE/a) = 0.01019083341478375624358480627322172171284   |resid| = 0.0
+     E =  2.3:  F(E)/F(-E) = 0.00002623507533128756979830110408904892591575   exp(-2piE/a) = 0.00002623507533128756979830110408904892591575   |resid| = 0.0
+     E =  5.0:  F(E)/F(-E) = 0.0000000001099128608808898213094514612486733353443   exp(-2piE/a) = 0.0000000001099128608808898213094514612486733353443   |resid| = 2.58e-110
+   max detailed-balance residual (dps=100): 7.14e-102   (identically 0 to floor)
+
+   Rindler interval identity (sympy-exact), t=sinh(a tau)/a, x=cosh(a tau)/a:
+     Dt^2 - Dx^2 (closed form)  = 2*(cosh(a*dtau) - 1)/a**2
+     (4/a^2) sinh^2(a dtau/2)   = 4*sinh(a*dtau/2)**2/a**2
+     residual (LHS - RHS)       = 0   (identically 0, sympy)
+
+==============================================================================
+CANONICAL HEADLINE NUMBERS (each labeled, with residual)
+==============================================================================
+  (1) weight(G*sigma_A)           = 0            residual 0  (sympy)
+      G*sigma_A                   = 1/4          residual 0  (sympy)
+      max numeric weight residual = 0.0  (dps=100)
+  (2) SIGMA-SPLIT G*sigma_A       = 1/4 (A_rec=1 and 3)  Einstein resid = 0 (both, sympy)
+  (3) kappa*sigma_A               = 2*pi  = 6.28318530717958647692528676656
+      G*Lambda^2 (3 pi^2)         = 29.6088132032680758565034729996   (separate invariant)
+  (4) d N_dS/dl                   = 0 (sympy)    G_I!=G_II yet G*Lambda0 equal (resid 0.0)
+  (5) null-cone rank              = 9 of 10 -> S=Phi*g ; timelike-CONST nullspace dim 1 (E=c g); timelike-VANISH forces E=0 (nullspace dim 0)
+  (6) spectral f2                 = 0.0253302959105844428609698658024 = 1/(2pi)^2 ; 1/(2pi) = 0.159154943091895335768883763373 (factor 2pi off)
+  (7) KMS detailed-balance resid  = 7.14e-102 ; Rindler identity resid = 0 (sympy)
+
+ALL RECEIPTS COMPLETE.

@@ -1,0 +1,131 @@
+
+==============================================================================
+THE MODE LADDER (the under-determination we must close or wall)
+==============================================================================
+  eta_A (capacity root, C=J; NOT a seal)             1.0903443548794922   
+  W_* = J(eta_A) (the ceiling)                       0.364784952089976362   
+  1-char  per-mode coeff (== eta_B)                  0.609377863436006232   C=0.1561092002
+  3-char  per-mode coeff (== h_*)                    0.4950532643315466   C=0.1090041078
+  7-char  per-mode coeff                             0.367963155647177871   C=0.06337613413
+  ladder is MONOTONE DECREASING                      0.609 > 0.495 > 0.368   (coupling dilutes)
+
+==============================================================================
+ROUTE 1 -- completeness / no-silent-refinement axiom (paper10 T3/T4 template)
+==============================================================================
+  paper10 T3 is a DISSOLUTION, not a dynamical theorem: an arrow RECORDED BY NOTHING
+  is a contradiction (silent-seam exclusion).  It forces uniqueness (detailed balance)
+  ONLY because the distinguishing quantity (RN order-evidence D(P_AB||P_BA)) is a
+  RECORDED quantity whose vanishing is forced.  Apply the SAME template to the mode:
+
+  TWO horns -- the mode-LABEL is either recorded or not, and BOTH fail to canonicalize:
+  complete char ledger on {+-1}^1:  modes=1  coeff=  0.60937786343601   
+  complete char ledger on {+-1}^2:  modes=3  coeff=  0.49505326433155   
+  complete char ledger on {+-1}^3:  modes=7  coeff=  0.36796315564718   
+  dilution trend (coeffs)                            0.60937786 > 0.49505326 > 0.36796316   monotone DOWN, away from eta_B
+  HORN A: does 'maximal complete ledger' select eta_B? NO   (it selects the DILUTION LIMIT, not the one-mode eta_B)
+  RN 'order-evidence' analog D(P_etaB || P_h*)       0.0047923520904444   NONZERO => modes recorded-DISTINCT
+  HORN B: are the modes 'recorded by nothing' (silent)? NO -- they are recorded-distinct   (so the dissolution does NOT apply; no canonicalization)
+
+==============================================================================
+ROUTE 2 -- external structural identity: 1/eta_B = 1.641018 = 1d Ising xi
+==============================================================================
+  xi_1d(eta_B) = -1/log(tanh eta_B)                  1.64101792992848832   
+  1/eta_B                                            1.64101792992848832   
+  |xi_1d(eta_B) - 1/eta_B|                           0.0   (EXACT: identity)
+  symbolic: (xi=1/eta) <=> (tanh eta = exp(-eta))?   YES, algebraically identical   residual 0
+  xi_1d(h_*) = -1/log(tanh h_*)                      1.28137710352515038   (the COUPLED mode's OWN correlation length)
+  1/h_*  (=? )                                       2.01998466033804587   NOT equal to xi(h_*): h_* != seal-xi root
+  does h_* ALSO have a (different) spectral xi?      YES, xi(h_*)=1.2813771 != xi(eta_B)=1.6410179   
+  => 'a mode has a mass-gap length' does NOT select eta_B EACH mode has its own xi   (spectral quantity is mode-COVARIANT)
+
+==============================================================================
+ROUTE 3 -- non-circular variational principle on the inter-seal stretch
+==============================================================================
+  A variational principle CLOSES the wall iff some functional F(mode) has a UNIQUE
+  extremum over the ADMISSIBLE class, WITHOUT the extremum being attained at a boundary
+  fixed by the admissibility gate itself (which would be circular -- the gate is the
+  choice). Test the natural candidates.
+  content C(h) along ladder                          1-char(eta_B):0.1561092 , 3-char(h_*):0.10900411 , 7-char:0.063376134   (monotone DOWN)
+  argmax C  (max-content principle)                  1-char(eta_B)   = eta_B (LEAST-coupled ledger!)
+  argmin C  (max-coupling principle)                 7-char   = most-coupled (-> dilution limit)
+  CONFLICT                                           max-content -> eta_B  vs  completeness -> dilution limit   OPPOSITE selections
+  dilution limit exists?                             coeffs 0.609378, 0.495053, 0.367963   decreasing; the 'most complete' mode is base-group-dependent (not unique)
+  evidence-rate E[I] (every mode)                    1.0   MODE-BLIND: the firing clock is Exp(1) in EVERY mode -> no variational handle
+  skewed base p=0.2 content (INADMISSIBLE)           0.525996040135   > W_*=0.36478495: gate is the choice, extremum is circular
+
+==============================================================================
+DECISIVE STRUCTURAL TEST -- are the modes gauge-EQUIVALENT (collapse) or -INEQUIVALENT (wall)?
+==============================================================================
+  Wen PSG: gauge-EQUIVALENT labels collapse to one physical phase (canonicalizable);
+  gauge-INEQUIVALENT labels are GENUINELY distinct, canonicalizable only by IMPORTING
+  external (energetic) data. Test: is there a record-internal symmetry/gauge map taking
+  the one-mode ledger to the coupled ledger (-> collapse), or are they inequivalent?
+  ledger ranks (# orthogonal primitive characters)   [1, 3, 7]   INVARIANT under record-internal gauge (cannot be changed by a gauge map)
+  => modes are in DISTINCT superselection sectors    gauge-INEQUIVALENT   (Wen: genuinely distinct, NOT canonicalizable internally)
+  the per-mode coefficients DIFFER across sectors    0.609 / 0.495 / 0.368   no internal map identifies them
+
+==============================================================================
+MACHINE CHECKS
+==============================================================================
+  [PASS] ladder monotone decreasing, no canonical member
+  [PASS] ROUTE1 HORN A: completeness pushes DOWN the ladder, NOT to eta_B
+  [PASS] ROUTE1 HORN B: modes are recorded-DISTINCT (D>0), dissolution does not apply
+  [PASS] ROUTE2 xi=1/eta is ALGEBRAICALLY the seal equation (tautology, no new info)
+  [PASS] ROUTE2 each mode has its OWN xi (spectral quantity mode-covariant, selects nothing)
+  [PASS] ROUTE2 1/eta_B is weight-0 record-internal (paper III): not an external selector
+  [PASS] ROUTE3 max-content and completeness point OPPOSITE => no canonical extremum
+  [PASS] ROUTE3 evidence clock is mode-blind (E[I]=1 all modes): no variational handle
+  [PASS] ROUTE3 admissibility gate IS the mode-choice (skew overshoots W_*): extremum circular
+  [PASS] DECISIVE: modes are gauge-INEQUIVALENT (distinct ledger rank) -> genuinely distinct
+
+  ALL CHECKS PASS
+
+==============================================================================
+ROUTE-BY-ROUTE VERDICT
+==============================================================================
+
+  >> ROUTE 1 (completeness axiom)
+     WALL. The no-silent-refinement template has two horns and BOTH fail to canonicalize. If the ledger choice is RECORDED (Horn A), completeness forces the MAXIMAL ledger, which pushes the coefficient DOWN the dilution ladder (0.609->0.495->0.368->limit), AWAY from eta_B -- it selects a different mode (the dilution limit), and worse, that limit depends on the base's group {+-1}^m (still a choice). If the choice is SILENT (Horn B), the modes are 'recorded by nothing' and the T3 dissolution would apply -- but the per-mode laws are RECORDED-DISTINCT (D(P_etaB||P_h*)=0.00479235 > 0), so the silent horn is FALSE. The template that worked for the arrow (a single recorded quantity whose vanishing is forced) does NOT transfer: here the distinguishing quantity does NOT vanish, and there is no forced-vanishing analog.
+
+  >> ROUTE 2 (external structural identity 1/eta_B=xi_1d)
+     WALL (and worse, CIRCULAR). The identity '1/eta_B = the 1d Ising mass-gap length xi' is ALGEBRAICALLY EQUIVALENT to the seal equation tanh eta=exp(-eta) itself (xi(eta)=1/eta  <=>  -log(tanh eta)=eta  <=>  tanh eta=exp(-eta)): proven symbolically, residual 0. So it carries ZERO information beyond 'eta_B solves the one-mode seal' -- it does not SELECT the one-mode mode, it RESTATES it. Decisively, the SAME spectral construction applied to the coupled mode gives a DIFFERENT, equally-valid length xi(h_*)=1.2813771 != xi(eta_B)=1.6410179: the mass-gap length is mode-COVARIANT, so 'a derived spectral quantity exists' is true of EVERY mode and selects none. (Paper III already files 1/eta_B as a weight-0 record-INTERNAL number collapsing onto the scale-no-go invariant -- not an external identity at all.) An EXTERNAL identity would have to come from a DERIVED gravitational/spectral coefficient -- but Paper III's trichotomy (circular/scale-blind/wrong-tier) already closed that door.
+
+  >> ROUTE 3 (variational principle on inter-seal stretch)
+     WALL. No non-circular variational principle forces a unique mode. (i) The natural max-content functional argmax C(h) DOES land on eta_B -- but ONLY by selecting the LEAST-coupled (1-char) ledger, which is the OPPOSITE of Route-1's completeness (max-coupling -> dilution limit); the two candidate principles point in OPPOSITE directions, so neither is canonical -- the answer depends on which you assume. (ii) The firing clock is MODE-BLIND (E[I]=1 in every mode), so the inter-seal stretch itself offers no variational handle. (iii) Any functional whose extremum lands inside the admissible class is CIRCULAR: the admissibility gate (count-dual base + orthogonality) IS the mode-choice -- drop it (skew p=0.2) and the content overshoots W_* (D=0.52599604 > 0.36478495), so 'content<W_*' is a property conferred BY the gate, not a selector WITHIN it.
+
+  >> DECISIVE (PSG gauge classification)
+     The modes differ by the NUMBER of orthogonal primitive characters (ledger rank 1/3/7), an invariant no record-internal gauge map can change -- so they are gauge-INEQUIVALENT (distinct superselection sectors), the Wen-PSG hallmark of GENUINELY DISTINCT orders that NO internal principle canonicalizes. Selecting one would require IMPORTING external (matter-Hamiltonian / energetic) data the records do not carry -- exactly the l_step pattern: self-consistency fixes the FORM (grad psi=exp(-h) in EVERY sector), never WHICH sector is physical.
+
+==============================================================================
+FINAL VERDICT
+==============================================================================
+
+  MODE-CANONICALIZATION IS A FIFTH l_step-TYPE UNDER-DETERMINATION WALL -- NOT CLOSEABLE
+  by any of the three logged non-circular routes.
+
+   * ROUTE 1 (completeness axiom): two horns, both fail -- completeness pushes to the
+     dilution LIMIT (away from eta_B), and the modes are recorded-DISTINCT so the T3
+     silent-seam dissolution does not apply.
+   * ROUTE 2 (external identity 1/eta_B=xi_1d): the identity is ALGEBRAICALLY the seal
+     equation (tautology, residual 0) and the mass-gap length is mode-COVARIANT (each mode
+     has its own xi) -- it RESTATES eta_B, never SELECTS it; and it is record-internal, not
+     external.
+   * ROUTE 3 (variational): candidate principles point in OPPOSITE directions
+     (max-content->eta_B vs completeness->limit), the clock is mode-blind, and any
+     in-class extremum is circular (the admissibility gate IS the choice).
+
+  STRUCTURAL ROOT (Wen PSG): the modes are gauge-INEQUIVALENT (distinct ledger rank
+  1/3/7) -- genuinely distinct superselection sectors that no record-internal principle
+  canonicalizes. Self-consistency fixes the FORM grad psi=exp(-h) in every sector but
+  never WHICH sector is physical. This is precisely the l_step / Q-tilde signature:
+  the form is forced, the last distinguishing choice is free.
+
+  CAVEAT (the one honest crack): a route OUTSIDE the three -- a constructed MATTER SECTOR
+  whose Hamiltonian energetically selects one ledger rank (the PSG 'import external data'
+  escape) -- is not refuted here; it is exactly the unbuilt matter sector Paper V flags.
+  That is not a record-internal canonicalization; it RELOCATES the choice to a sector that
+  does not yet exist. Within the executed corpus, the wall stands.
+
+==============================================================================
+DONE.
+==============================================================================

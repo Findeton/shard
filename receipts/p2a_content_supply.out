@@ -1,0 +1,329 @@
+
+==============================================================================
+PART 0.  The one-diamond constants (paper4 s5 KL=Fisher) -- anchors
+==============================================================================
+
+  Single-diamond law: contrast q in {-1,+1}, P_eta(q)=e^{eta q}/(2 cosh eta),
+  eventless base mu_D=(1/2,1/2).  Two intrinsic functions of accumulated tilt eta:
+
+    KL content (accumulated distinguishability):
+        C(eta) := D(P_eta || mu_D) = eta tanh eta - log cosh eta     (rises 0 -> inf)
+    Fisher capacity (instantaneous coherent capacity of the contrast):
+        J(eta) := Var_{P_eta}(q) = d^2 psi / d eta^2 = 1 - tanh^2 eta (falls 1 -> 0)
+
+  The KL=Fisher self-consistency fixes the one-diamond constants:
+        C(eta) = J(eta)  <=>  eta tanh eta - log cosh eta = 1 - tanh^2 eta.
+
+    psi(eta)  = log(2 cosh eta) - log 2                 
+    C(eta)    = eta tanh eta - log cosh eta             (KL content; sympy)
+    J(eta)    = psi''(eta)                              cosh(eta)**(-2)   (Fisher capacity; sympy)
+    eta_*   (root of C=J)                               1.0903443548794921962205077083509499533582197857503
+    theta_* = tanh eta_*                                0.79700379416287827214301410712698451034044364470054
+    W_* = J(eta_*)  (Fisher capacity)                   0.36478495208997636225717716051224804565748308899359
+    W_* = C(eta_*)  (KL content)                        0.36478495208997636225717716051224804565748308899359
+    residual balance(eta_*) = C-J                       1.31209e-141
+    |C(eta_*) - J(eta_*)| (independent)                 1.31209e-141   (=0: the two formulas for W_* agree)
+
+==============================================================================
+Q1.  IS dchi's FORM FORCED BY THE COCHAIN COBOUNDARY?
+==============================================================================
+
+  paper4 s44: a chain of sealed diamonds carries oriented interface cochains
+  h_0, h_1, ..., h_N (the complete closed-holonomy potential).  The LOCAL source
+  in diamond i is the coboundary (interface mismatch):
+        rho_i = h_{i+1} - h_i               (paper4 s44, eq for rho_i)
+  with the EXACT telescope (gluing) property
+        Sum_{i=a}^{b-1} rho_i = h_b - h_a.  (paper4 s44)
+
+  Paper 1 (R2-B) identified chi = accumulated entropy production sigma with this
+  telescope: chi is a content ODOMETER, chi(seg1 then seg2)=chi(seg1)+chi(seg2),
+  and the per-step INCREMENT is exactly the coboundary of the holonomy potential.
+
+  CLAIM TO TEST: the FORM of dchi is FORCED to be the cochain coboundary
+        dchi_i  =  rho_i  =  h_{i+1} - h_i,
+  a theorem of the telescope structure; only its MAGNITUDE (size of rho_i) is open.
+
+
+  -- (a) telescope identity: Sum rho_i = h_b - h_a  (sympy-exact, symbolic chain) --
+    Sum_{i=a}^{b-1} rho_i - (h_b - h_a) for ALL sub-blocksall == 0
+    number of sub-blocks checked                        28
+
+  -- (b) coboundary <=> additive increment of a SCALAR potential (forced form) --
+    A content functional chi is concatenation-additive (the forced odometer of
+    Paper 1) IFF it is the telescoping sum of a per-step increment d_i:
+          chi(a->b) = Sum_{i=a}^{b-1} d_i,   chi(a->b)+chi(b->c)=chi(a->c).
+    A sequence d_i is a coboundary of SOME potential H (d_i = H_{i+1}-H_i) IFF its
+    partial sums telescope, i.e. IFF chi is path-independent (depends only on the
+    endpoints a,b).  This is the discrete Poincare lemma on a chain (1D: every
+    closed 1-cochain is exact; H^1 of a path = 0).  So:
+
+      ODOMETER (additive, endpoint-only)  <=>  dchi_i is a coboundary d_i=H_{i+1}-H_i.
+
+    Paper 1 FORCED the odometer (arrow-positivity: chi:=accumulated sigma is
+    concatenation-additive).  Therefore dchi's FORM is forced to be a coboundary.
+    The ONLY question is WHICH potential H, i.e. the MAGNITUDE of each increment.
+    max | coboundary(H_rec)_i - d_phys_i |              1.31209e-141   (=0: every additive increment IS a coboundary)
+    | Sum d_phys - (H_N - H_0) | (telescope)            2.62417e-141
+
+  -- (c) matches paper4 s45 receipt numbers (h, rho) --
+    paper4 s45 rho = h_{i+1}-h_i reproduced             ['0.57', '-0.8', '0.54', '0.45']
+    max gap vs paper4 s45 quoted rho                    1.31209e-141
+    Sum rho = 0.76 ; h_N - h_0 = 0.76 ; gap             1.31209e-141
+
+  Q1 VERDICT: dchi's FORM is FORCED to be the cochain coboundary
+        dchi_i = rho_i = h_{i+1} - h_i,
+  a theorem of the odometer (Paper 1) + the discrete Poincare lemma (1D exactness)
+  + paper4 s44's source-as-coboundary law.  The telescope Sum rho_i = h_b - h_a is
+  the SAME object as the content-additivity of Paper 1's odometer.  Only the
+  MAGNITUDE (which potential h, i.e. the size of each rho_i) is open -> Q3.
+  STATUS: FORCED-IN-FORM (coboundary), MAGNITUDE-OPEN.
+
+
+==============================================================================
+Q2.  CENTERPIECE: DOES A CAPACITY/SATURATION PRINCIPLE FORCE d = W_*?
+==============================================================================
+
+  The NEW principle (distinct from Paper 1's composition-self-consistency):
+
+    A single record diamond can hold at most W_* of COHERENT content at
+    self-consistency.  Once the accumulated unsealed holonomy content reaches that
+    capacity, the diamond is SATURATED and MUST commit (seal).  So the seal fires
+    at accumulated content = W_*, forcing the spacing d = W_*.
+
+  We test this in four parts:
+    (a) set up the capacity bound precisely from the KL=Fisher structure;
+    (b) is 'commit exactly at saturation content W_*' a THEOREM or a POSTULATE?
+    (c) does it EVADE R2-A's freedom (composition is silent on spacing)?
+    (d) compute W_* to dps>=100; any internal characterization of W_*?
+
+
+  -- (d) W_* to high precision + internal characterization --
+    W_* (dps 50 shown of 140 computed)                  0.36478495208997636225717716051224804565748308899359
+    max_eta min(C(eta),J(eta)) = min(C,J) at eta_*      0.36478495208997636225717716051224804565748308899359
+    |max - W_*| (analytic: max is AT the crossing)      0.0   (=0 to full precision; max is exactly the crossing)
+    C'(eta) (sympy)                                     eta/cosh(eta)**2   (>0 for eta>0 => C strictly up)
+    J'(eta) (sympy)                                     -2*sinh(eta)/cosh(eta)**3   (<0 for eta>0 => J strictly down)
+    C(eta) strictly increasing on scan                  True
+    J(eta) strictly decreasing on scan                  True
+    on [0,eta_*] min(C,J)=C (C<=J) ?                    True
+    on [eta_*,inf) min(C,J)=J (J<=C) ?                  True
+
+    CHARACTERIZATION: W_* is the unique fixed value where the MONOTONE-RISING
+    accumulated content C(eta) meets the MONOTONE-FALLING instantaneous capacity
+    J(eta).  Equivalently W_* = max_eta min(C(eta),J(eta)) -- the largest content
+    that is simultaneously (i) accumulated and (ii) still within capacity.  This
+    IS a genuine capacity/saturation bound STRUCTURE (a max of a coherent-content
+    functional), not an arbitrary crossing.  W_* is the saturation content of one
+    diamond.  [This part is FORCED: W_* is a forced pure number and IS a capacity.]
+
+
+  -- (a) the capacity bound, precisely --
+    At tilt eta a diamond has:
+        accumulated content C(eta)  (monotone up, the odometer reading)
+        remaining capacity  J(eta)  (monotone down, Fisher of the contrast)
+    Self-consistency (KL=Fisher) is the demand C(eta)=J(eta): the accrued content
+    equals the contrast's own capacity to carry it.  For eta<eta_* the diamond is
+    UNDER-saturated (C<J: capacity to spare); for eta>eta_* it is OVER-saturated
+    (C>J: content exceeds what the single contrast can self-consistently carry).
+    The boundary eta_* (content W_*) is the saturation point.  So 'the maximum
+    coherent content a diamond can carry at self-consistency' = W_*.  [FORCED]
+    C-J at eta_*/2 (under-saturated, <0)                -0.62398539
+    C-J at 2 eta_* (over-saturated, >0)                 0.5757487
+
+  -- (b) DECISIVE: is 'commit AT saturation' a theorem or a postulate? --
+    The capacity bound (a) is FORCED: a diamond's max self-consistent coherent
+    content IS W_*.  But the SPACING question is: does a seal fire EXACTLY when the
+    ACCUMULATED INTER-SEAL content reaches W_*?  This needs a bridge premise:
+
+      (P-sat)  'a diamond commits the instant its accumulated coherent content
+                reaches the one-diamond saturation capacity W_*.'
+
+    Is (P-sat) forced?  Examine what the record structure actually delivers:
+
+    - The capacity bound says a SINGLE diamond at self-consistency carries <= W_*.
+      It bounds the content of ONE saturated diamond.  It does NOT, by itself, say
+      the SEALING DYNAMICS must wait until accumulation hits that bound: a diamond
+      could seal EARLY (at content < W_*, under-saturated) and remain a valid
+      record -- nothing in the capacity bound forbids an under-full commitment.
+    - Conversely a diamond cannot self-consistently EXCEED W_* (over-saturation
+      C>J is inconsistent), so W_* is a genuine UPPER bound on per-seal content:
+            d <= W_*    is FORCED.
+      But an upper bound is not an equality: d=W_* requires SATURATING the bound,
+      i.e. the extra principle 'seals fire as LATE as possible / at the capacity'.
+    S(nd)=S(d)^n holds for d in {W_/4,W_/2,W_,2W_}      True   (composition consistent for ANY d -- R2-A)
+    FORCED upper bound  d <= W_*  (no over-saturation)  YES (capacity bound)
+    FORCED equality     d == W_*  (must saturate)?      NO -- and the firing law DENIES it (see p2b/p2c)
+
+    d = W_* is equivalent to the postulate (P-sat) 'the seal fires AT the capacity,
+    not before'.  This receipt (p2a) proves only the CEILING d <= W_*; whether the
+    EQUALITY holds is settled by the corpus's own seal-firing law, in p2b / p2c:
+    that law (paper4 s71-76, the vector fixed point grad psi(h)=exp(-h)) commits
+    STRICTLY UNDER the ceiling in every admissible mode (one-mode C(eta_B)=0.156,
+    coupled C(h_*)=0.109, both < W_*=0.365), so it CONTRADICTS (P-sat).  Hence the
+    capacity law (s5) and the firing law (s71-76) are distinct and CONSISTENT; only
+    (P-sat)/d=W_* is denied.  No internal EQUATION whose unique root is d=W_* exists;
+    only the INEQUALITY d<=W_* (here) and a sub-capacity, mode-dependent firing
+    content (p2b/p2c).
+
+  -- (c) does the capacity bound EVADE R2-A's composition-freedom? --
+    R2-A's freedom: the COMPOSITION condition (Cauchy/refinement) only checks the
+    law AT seal points -> silent on spacing -> ANY d>0 admissible (confirmed above).
+    The capacity bound is a DIFFERENT constraint (not composition): it caps the
+    content PER diamond.  Does it pin d where composition could not?
+
+    PARTIAL YES: the capacity bound adds NEW information composition lacked --
+    it converts 'any d>0' into the genuine UPPER BOUND  d <= W_*.  That is real
+    progress beyond R2-A (composition gave no bound at all; capacity gives a
+    ceiling).  So saturation is NOT vacuous against R2-A.
+
+    BUT NOT FULL: to land on the EQUALITY d=W_* one still needs the extremal
+    postulate (P-sat) 'saturate the bound'.  The capacity bound alone leaves the
+    half-open interval (0, W_*] free.  So:
+        composition (R2-A):  d in (0, inf)      [no constraint]
+        + capacity bound:    d in (0, W_*]      [FORCED ceiling -- new]
+        + (P-sat) extremal:  d = W_*            [CHOICE -- saturate]
+    R2-A admissible spacings                            (0, inf)
+    + capacity bound -> admissible spacings             (0, W_*]   <- W_* now a FORCED ceiling
+    + (P-sat) extremal -> spacing                       d = W_*    <- requires the saturate-choice
+
+  Q2 VERDICT (BRUTALLY HONEST): saturation does NOT FORCE d=W_*.  What IS forced:
+    * W_* is a genuine capacity (a forced pure number; = max_eta min(C,J));
+    * the capacity bound forces a real CEILING  d <= W_*  (this EVADES part of
+      R2-A's total freedom -- composition gave no bound, capacity gives one);
+  What is NOT forced -- and what the corpus's firing law DENIES:
+    * d=W_* is the postulate (P-sat) 'seal AT the capacity'.  The corpus's own
+      seal-firing law (paper4 s71-76; p2b/p2c) commits STRICTLY UNDER the ceiling,
+      at a MODE-DEPENDENT root (one-mode eta_B, coupled h_*), so it contradicts
+      (P-sat).  The capacity law (s5) and firing law (s71-76) are distinct and
+      CONSISTENT; the open question is not 'reconcile two laws' but 'what (if
+      anything) fixes the content spacing d', given the firing content is mode-
+      dependent and the firing clock is random.
+  STATUS: d <= W_* FORCED (ceiling, here); d = W_* DENIED by the firing law (p2b/p2c).
+  The honest upgrade over Paper 1/R2-A is the CEILING.
+
+
+==============================================================================
+Q3.  IS THE ACCUMULATION RATE (size of rho_i) FORCED OR PHYSICAL?
+==============================================================================
+
+  Q1 forced dchi's FORM = coboundary rho_i = h_{i+1}-h_i.  The MAGNITUDE of each
+  rho_i is the actual relative-holonomy configuration of the chain: the difference
+  of the closed-holonomy potential across the i-th interface.
+
+  paper4 s44 (and s45) is explicit: the global closed-holonomy cochain
+  {h_i} is the PHYSICAL FREE DATA of the whole sealed process ('the physical free
+  data are global closed-holonomy cochains of the whole sealed process, not
+  independent local source amplitudes').  Given {h_i}, every rho_i is FIXED (a
+  coboundary, Q1).  But {h_i} ITSELF is the configuration the records actually
+  carry -- it is not fixed by any internal self-consistency; it is the physical
+  input (the realized holonomy).
+
+
+  -- structure forced, magnitude physical -- the same split as Q1 --
+    rho for config A (small holonomy)                   ['0.57', '-0.8', '0.54', '0.45']
+    rho for config B (10x holonomy)                     ['5.7', '-8.0', '5.4', '4.5']
+    telescope gap A                                     0.0
+    telescope gap B                                     7.74518e-121
+    rho magnitudes differ (B = 10*A)?                   True
+
+  Q3 VERDICT: the FORM of the accumulation (coboundary/telescope/odometer) is
+  FORCED (Q1); the SIZE of each rho_i = h_{i+1}-h_i is the PHYSICAL relative-
+  holonomy configuration {h_i} -- genuine physical input, not internally forced.
+  STATUS: STRUCTURE FORCED, MAGNITUDE PHYSICAL.
+
+
+==============================================================================
+Q4.  CONFIRM kappa IS THE NO-GO FLOOR
+==============================================================================
+
+  Even if d=W_* (a weight-0 content pure number) were forced AND dchi's form is
+  forced, the survival law S(chi)=exp(-kappa chi) [dense] / S(d)=exp(-kappa d)
+  [sparse skeleton] needs the conversion kappa from CONTENT to COMMIT-ORDER RATE.
+
+  WEIGHTS (the no-go bookkeeping, paper XI):
+    chi = D(P_AB||P_BA)  : a KL divergence  -> WEIGHT 0 (dimensionless pure number)
+    d   = W_* = 1-theta_*^2 : a pure number -> WEIGHT 0 (eligible; records carry it)
+    kappa : content -> rate  = [rate]/[content] = [1/(commit-order unit)]
+            -> requires ONE absolute commit-order unit the records do NOT carry.
+
+
+  -- weight bookkeeping (dimensional analysis of the conversion) --
+    w(chi)   [KL divergence]                            0   (weight-0: records carry it)
+    w(d=W_*) [pure number]                              0   (weight-0: eligible)
+    w(kappa) = -w_T - w(chi)                            -w_T   (needs one absolute commit-order unit)
+    kappa*chi must be weight-0 for exp() argument       => w_kappa = -w(chi) only if rate unit supplied
+    chi, d weight-0 AND kappa carries the lone unit?    True
+
+  Q4 VERDICT: CONSISTENT with the scale no-go (paper XI).  Both d=W_* and chi are
+  weight-0 content pure numbers -- the records CAN carry them (eligible).  The
+  conversion kappa (content -> commit-order rate) carries the ONE absolute unit
+  the weight-0 records provably cannot supply.  Fixing d=W_* in weight-0 content
+  units does NOT manufacture the missing scale: kappa remains the single free
+  no-go floor.  STATUS: NO-GO-CONSISTENT (kappa is the one forbidden absolute
+  scale; d and W_* are eligible weight-0 numbers).
+
+
+==============================================================================
+SUMMARY OF MACHINE CHECKS
+==============================================================================
+    [PASS]  W_* two-formula agreement <1e-100
+    [PASS]  balance(eta_*) ~ 0 <1e-100
+    [PASS]  Q1 telescope identity sympy-exact (all sub-blocks)
+    [PASS]  Q1 Poincare: additive increment = coboundary (mp)
+    [PASS]  Q1 telescope reproduces endpoint mismatch (mp)
+    [PASS]  Q1 paper4 s45 rho reproduced <1e-100
+    [PASS]  Q1 paper4 s45 telescope <1e-100
+    [PASS]  Q2d coherent-content max = W_* (analytic, full prec)
+    [PASS]  Q2d C increasing, J decreasing (bound structure)
+    [PASS]  Q2a saturation sign structure (under<0, over>0)
+    [PASS]  Q2b composition holds for all d (R2-A confirmed)
+    [PASS]  Q3 form holds for any magnitude (A and B both telescope)
+    [PASS]  Q4 chi,d weight-0; kappa is the lone scale
+
+    ALL CHECKS PASS: True
+
+================================================================================
+STRUCTURED VERDICT (Long March v7 Paper 2 -- the content supply)
+================================================================================
+  Q1  dchi FORM forced by the cochain?
+        FORCED-IN-FORM.  dchi_i = rho_i = h_{i+1}-h_i is the coboundary of the
+        closed-holonomy potential; the telescope Sum rho_i=h_b-h_a IS Paper 1's
+        odometer additivity; discrete Poincare lemma (1D exactness) makes
+        'additive content' <=> 'coboundary' an identity.  Magnitude open.
+
+  Q2  Does saturation FORCE d=W_*?   *** CENTERPIECE -- HONEST: NO ***
+        - W_* IS a genuine capacity (forced pure number = max_eta min(C,J),
+          the crossing of rising content C and falling capacity J).
+        - The capacity bound FORCES a real CEILING  d <= W_*  (no over-
+          saturation) -- this EVADES part of R2-A's total freedom (composition
+          gave NO bound; capacity gives one).
+        - The EQUALITY d=W_* is the postulate (P-sat) 'commit AT the capacity'.
+          The corpus's own seal-firing law (paper4 s71-76; p2b/p2c) commits
+          STRICTLY UNDER the ceiling at a MODE-DEPENDENT root, so it DENIES
+          (P-sat).  The capacity law (s5) and firing law (s71-76) are distinct
+          and CONSISTENT -- no corpus contradiction.
+        STATUS: d <= W_* FORCED (ceiling, here); d = W_* DENIED by the firing law.
+
+  Q3  Accumulation rate forced or physical?
+        STRUCTURE FORCED, MAGNITUDE PHYSICAL.  The coboundary/telescope FORM is
+        forced; the size of each rho_i = the realized closed-holonomy potential
+        {h_i}, the physical free data of the sealed process (paper4 s44).
+
+  Q4  kappa the no-go floor?
+        NO-GO-CONSISTENT.  chi and d are weight-0 (eligible) pure numbers;
+        kappa (content->commit-rate) is the ONE absolute unit the records cannot
+        carry.  Fixing d in weight-0 units never manufactures the scale.
+
+  NEXT INVESTIGATION (resolved in p2b/p2c; open for Paper 3):
+        The capacity bound upgraded 'd free in (0,inf)' to 'd in (0,W_*]'; p2b/p2c
+        then showed the firing law commits STRICTLY UNDER W_* in every admissible
+        mode (sub-capacity, mode-dependent, on a random evidence clock), so d=W_*
+        is denied.  The genuine open obligation is NOT 'reconcile s5 with s71'
+        (they are consistent) but 'what (if anything) fixes the content spacing d':
+          (i)  a MaxEnt/least-work variational principle on the inter-seal collar;
+          (ii) the Paper-3 cross-tier bridge: get d from a DERIVED Tier-B
+               gravitational dimensionless coefficient (the no-go ALLOWS this, d
+               weight-0); the one-mode root 1/eta_B=1.641 (= 1d mass-gap
+               correlation length) is a suggestive thread.
+================================================================================
+

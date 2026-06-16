@@ -1,0 +1,183 @@
+
+==============================================================================
+PAPER 4 EVENT-LAW READING -- two laws, two roots (sympy-exact + mpmath)
+==============================================================================
+    psi(eta)                                              log(2*cosh(eta)) - log(2)
+    C(eta) = D(P_eta||mu)                                 eta*tanh(eta) - log(cosh(eta))   (KL content; rises 0->inf)
+    J(eta) = psi''(eta)                                   cosh(eta)**(-2)   (Fisher capacity = sech^2; falls 1->0)
+
+  -- LAW-A  (paper4 s5: single-diamond self-consistency C=J) --
+    eta_A  (root of C=J)                                  1.090344354879492196220507708350949953358
+    theta_A = tanh eta_A                                  0.7970037941628782721430141071269845103404
+    W_* = J(eta_A) (Fisher)                               0.3647849520899763622571771605122480456575
+    W_* = C(eta_A) (KL, independent)                      0.3647849520899763622571771605122480456575
+    |C(eta_A) - J(eta_A)| balance                         1.31209e-141
+
+  -- LAW-B  (paper4 s71: intrinsic DIVISION-EVENT COMMITMENT = the SEAL law) --
+    eta_B  (root of tanh eta = exp(-eta))                 0.6093778634360062315368033711683986954285
+    theta_B = tanh eta_B                                  0.5436890126920763615708559718017479865252
+    exp(-eta_B) (no-division survival)                    0.5436890126920763615708559718017479865252
+    |tanh eta_B - exp(-eta_B)| residual                   0.0
+
+==============================================================================
+CRUX (a)+(b): do the SEAL law (LAW-B) and SELF-CONSISTENCY (LAW-A) COINCIDE?
+==============================================================================
+
+  If 'a seal fires' were SYNONYMOUS with 'the diamond reaches C=J at eta_*',
+  then LAW-B's root eta_B would EQUAL LAW-A's root eta_A, and the content the
+  seal commits would equal W_*.  We test the two roots and the two contents.
+
+    eta_A (self-consistency C=J)                          1.09034435487949219622050770835
+    eta_B (seal-firing commitment)                        0.609377863436006231536803371168
+    |eta_A - eta_B|                                       0.48096649   <-- NONZERO: the two laws are DISTINCT
+
+  -- Content & capacity AT the seal-firing point eta_B (LAW-B) --
+    C(eta_B)  content accrued at the seal                 0.156109200157240116579909467737
+    J(eta_B)  capacity at the seal                        0.704402257477915229019003407148
+    W_* (= max_eta min(C,J), at eta_A)                    0.364784952089976362257177160512
+    C(eta_B) vs W_* :  C(eta_B) - W_*                     -0.20867575
+    eta_B < eta_A ?  (seal fires BEFORE saturation, UNDER-saturated)True
+    C(eta_B) < J(eta_B) ?  (under-saturated: content below capacity)True
+
+  READING: paper4's EVENT/SEAL law (LAW-B, s71) is a SURVIVAL/commitment law
+  -- exp(-I) Poisson-in-evidence + 'retained memory = no-division survival' --
+  whose fixed point tanh eta = exp(-eta) sits at eta_B = 0.6094, STRICTLY BELOW
+  the self-consistency point eta_A = 1.0903.  The seal fires while the diamond
+  is still UNDER-saturated (C < J).  It is NOT synonymous with reaching C=J.
+
+
+==============================================================================
+Does the EVENT LAW forbid sealing past / before eta_*?  (crux b)
+==============================================================================
+
+  The capacity ceiling (Paper 2 s3.2) forbids OVER-saturation: a sealed diamond
+  cannot carry content C > J, so any seal has C <= W_*.  We confirm the event-law
+  seal indeed respects this ceiling -- and lands strictly INSIDE it (under-filled).
+
+    C(eta_B) <= W_*  (event-law seal respects the ceiling)True
+    C(eta_B) / W_*  (fraction of capacity committed)      0.427948574257
+
+  -- The seal CLOCK does not single out the content W_* --
+    mean committed evidence  E[I] = int I e^{-I} dI       1.0   (= 1, in RN/KL evidence units; NOT W_*)
+    W_* (the saturation content)                          0.364784952089976362257177160512
+
+  THREE DISTINCT OBJECTS must be kept apart (do NOT conflate them):
+   (1) the TILT coefficient eta_B = 0.6094  -- selected by tanh eta = e^{-eta};
+   (2) the EVIDENCE I ~ Exp(1) -- the random Poisson firing clock, S(I)=e^{-I},
+       inter-seal evidence random with MEAN 1 in RN/KL *evidence* units;
+   (3) the deterministic CONTENT at the selected tilt, C(eta_B) = 0.1561 *content*
+       units, which is < W_* = 0.3648 (under the capacity ceiling).
+  C(eta_B) is DETERMINISTIC (a function of the selected tilt), NOT 'a random Poisson
+  variable' -- the randomness/mean-1 belongs to the evidence I, a different axis.
+  The seal law does NOT pin the per-seal content to W_*: it fires UNDER capacity.
+
+
+==============================================================================
+CRUX (c): is 'sealed record = self-consistent diamond at eta_*' THEOREM or CHOICE?
+==============================================================================
+
+  paper4 ONTOLOGY: a sealed record diamond's internal CONSTANTS (eta_*, theta_*,
+  W_*) are fixed by LAW-A (C=J, s5).  But WHEN the diamond commits/seals is set by
+  LAW-B (the division-event law, s71), a SEPARATE law with its OWN root eta_B.
+
+  paper4 NEVER asserts the commit happens at eta_A.  s71's commitment fixed point
+  is tanh eta = exp(-eta) (eta_B), explicitly DISTINCT from s5's C=J (eta_A).
+  Indeed s69 tested the 'commit when accumulated distinguishability reaches a
+  FIXED UNIT' model and found the selected eta depends on the supplied unit/shape
+  -- i.e. a fixed-content commitment threshold is NOT canonically W_*.
+
+  Therefore 'a sealed record is the self-consistent diamond AT eta_* (content W_*)'
+  is a MODELING CHOICE (identify the commit point with the constant-fixing point),
+  NOT a theorem of the paper4 ontology.  The ontology splits the two:
+     - constants  <- self-consistency (LAW-A, eta_A)
+     - commit/seal <- division-event law (LAW-B, eta_B != eta_A).
+
+
+==============================================================================
+ALTERNATIVE READING TESTED: could the EVENT (idempotent E^2=E) itself = C=J?
+==============================================================================
+
+  Steel-man: maybe the PRIMITIVE EVENT IDENTITY (s3: E^2=E, count-symmetric,
+  Var(q|E)=0) is what 'fires', and IT is characterized by C=J?  We check what s3
+  actually constrains.  The event identity fixes the FORM of the readout
+  (q=2E-1, q^2=1, mu(+-)=1/2) -- it is a structural/algebraic condition, carrying
+  NO eta at all (it holds for the whole tilt family P_eta).  The eta is pinned
+  only by an ADDITIONAL principle: LAW-A (C=J) for the constants, LAW-B for the
+  seal.  So the event identity alone does NOT fire at C=J; it is eta-agnostic.
+
+    eta=0.3 : q^2=1 (event id holds), C=0.043053, J=0.915137
+    eta=0.60938 : q^2=1 (event id holds), C=0.156109, J=0.704402
+    eta=0.9 : q^2=1 (event id holds), C=0.284838, J=0.486917
+    eta=1.0903 : q^2=1 (event id holds), C=0.364785, J=0.364785
+    eta=1.5 : q^2=1 (event id holds), C=0.502282, J=0.180707
+
+==============================================================================
+THE 'no over-saturation' premise vs the 'no under-saturation' premise
+==============================================================================
+
+  Paper 2 R1 symmetric premises:
+    'no over-saturation' (C<=J admissible only) => d <= W_*        [ceiling]
+    'no under-saturation' (P-sat, commit AT capacity) => d >= W_*  [extremal CHOICE]
+  Together => d = W_*.
+
+  Does the EVENT LAW supply 'no under-saturation'?  NO.  LAW-B fires at eta_B
+  with C(eta_B) < J(eta_B): the event law's own seal is UNDER-saturated.  So far
+  from forbidding under-saturation, paper4's actual sealing law REALIZES it.
+  Hence the event law does NOT supply P-sat; it CONTRADICTS the W_* candidate.
+
+    under-saturation margin J(eta_B) - C(eta_B)           0.548293057321   > 0  => event-law seal is under-saturated
+
+==============================================================================
+VERDICT
+==============================================================================
+
+  Does paper4's EVENT LAW force d = W_* (close the spacing)?   ->  NO.
+
+  (a) The seal-firing condition is paper4 s71's DIVISION-EVENT COMMITMENT law
+      (LAW-B: tanh eta = exp(-eta), root eta_B = 0.6093778634360062), which is a
+      SURVIVAL/Poisson-in-evidence law, NOT the s5 self-consistency law
+      (LAW-A: C=J, root eta_A = 1.090344354879492).  'Seal fires' is NOT
+      synonymous with 'C=J'.  KL=Fisher (s5) fixes the diamond's CONSTANTS;
+      the seal-firing content is set by a SEPARATE law.
+
+  (b) The event law fires at eta_B < eta_A, i.e. UNDER-saturated
+      (C(eta_B)=0.156109200157 < J(eta_B)=0.704402257478).
+      It does NOT forbid sealing before eta_*; it positively DOES seal before it.
+      The committed content is set by the exp(-I) survival clock (mean evidence 1,
+      a Poisson random variable), not pinned to W_*.
+
+  (c) 'A sealed record is the self-consistent diamond at eta_* (content W_*)' is a
+      MODELING CHOICE that IDENTIFIES the commit point with the constant-fixing
+      point.  paper4's ontology SEPARATES them (constants<-LAW-A, seal<-LAW-B),
+      and s69 already found a fixed-content commitment threshold is non-canonical.
+
+  STATUS: d = W_* remains a CHOICE.  The event law does NOT close it -- and, read
+  literally, paper4's OWN division-event law (s71) would have the seal fire at a
+  DIFFERENT, under-saturated content (eta_B), not at W_*.  The premise d=W_* rests
+  on is exactly P-sat ('commit AT capacity / one seal per saturated diamond'),
+  which the event law neither supplies nor matches.
+
+  => Paper 2 s3.3 / s5 should be UPDATED: not merely 'the equality is unforced',
+     but 'paper4's primitive event law (s71) is a survival-commitment law with its
+     OWN root eta_B != eta_A, so it gives neither d=W_* nor the C=J seal; closing
+     d=W_* needs P-sat, which is in TENSION with the literal s71 seal law.'
+
+
+==============================================================================
+MACHINE CHECKS
+==============================================================================
+  [PASS] LAW-A: eta_A = 1.0903443548...  (matches paper4 s5)
+  [PASS] LAW-A: W_* = 0.364784952...  (matches paper4 s5)
+  [PASS] LAW-A: C(eta_A)=J(eta_A) to <1e-100 (independent)
+  [PASS] LAW-B: eta_B = 0.6093778634...  (matches paper4 s71)
+  [PASS] LAW-B: theta_B = exp(-eta_B) self-consistent <1e-100
+  [PASS] eta_A != eta_B  (seal law is NOT the C=J law)
+  [PASS] SEAL (LAW-B) fires UNDER-saturated (C(eta_B) < J(eta_B))
+  [PASS] SEAL content C(eta_B) != W_*  (event law does NOT commit W_*)
+  [PASS] event-law seal respects ceiling C(eta_B) <= W_*
+  [PASS] seal clock mean EVIDENCE = 1 (evidence units; a different axis from content W_*)
+  [PASS] paper4 SEPARATES constant-fixing (eta_A) from sealing (eta_B)
+  [PASS] event identity E^2=E is eta-agnostic (holds all eta)
+  [PASS] event law does NOT supply 'no under-saturation' (P-sat)
+
+  ALL CHECKS PASS

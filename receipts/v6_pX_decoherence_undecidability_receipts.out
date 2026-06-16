@@ -1,0 +1,183 @@
+
+##############################################################################
+# RECEIPT: Paper X  -- 'Gravitational decoherence cannot certify its own
+#           mechanism' (the operational-undecidability no-go)
+#  mpmath mp.dps = 100  (100 global; 80 for the kernel tables)
+#  sympy 1.13.3  mpmath 1.3.0
+##############################################################################
+
+==============================================================================
+(1) GAUSSIAN ONSET FROM A STATE-INDEPENDENT RAMPING SEAL  lambda(t)=a t
+==============================================================================
+  Claim (paper56 sec.3, C12): a state-independent irreversible seal with
+  hazard lambda(t)=a t gives |rho01(T)| = exp(-INT_0^T lambda) = exp(-a T^2/2),
+  reproducing Paper X's Gaussian onset EXACTLY (so the Gaussian shape is
+  NOT itself a non-Markovian / state-dependent signature).
+------------------------------------------------------------------------------
+  SYMBOLIC (sympy):
+    INT_0^T (a t) dt                         = T**2*a/2
+    |rho01(T)| = exp(-INT lambda)            = exp(-T**2*a/2)
+    target exp(-a T^2/2) - |rho01(T)|        = 0   (exact 0 => identity holds)
+    d/dT ln|rho01| at T=0 (zero-slope plateau)= 0   (=0 => quadratic onset)
+    constant hazard lambda0 instead          => |rho01| = exp(-lambda0 T)  (pure exponential semigroup)
+------------------------------------------------------------------------------
+  NUMERIC (dps=100):  a = 1,  |rho01(T)| vs exp(-a T^2/2)
+  T= 0.1:  exp(-INT lam) vs exp(-aT^2/2)         = 0.9950124791926823133525642462325041853859   [resid 0.0]
+  T= 0.5:  exp(-INT lam) vs exp(-aT^2/2)         = 0.882496902584595402864892143229050736222   [resid 0.0]
+  T= 1.0:  exp(-INT lam) vs exp(-aT^2/2)         = 0.6065306597126334236037995349911804534419   [resid 0.0]
+  T= 2.0:  exp(-INT lam) vs exp(-aT^2/2)         = 0.1353352832366126918939994949724844034076   [resid 0.0]
+  T= 3.5:  exp(-INT lam) vs exp(-aT^2/2)         = 0.002187491118182885123279463768573825806084   [resid 0.0]
+  T= 7.0:  exp(-INT lam) vs exp(-aT^2/2)         = 0.00000000002289734845645552894085224694165523418863   [resid 0.0]
+
+==============================================================================
+(2) OU (EXPONENTIAL) KERNEL IS CP-DIVISIBLE   K(s)=sigma^2 e^{-|s|/tau_c}
+==============================================================================
+  Running integral  I(T)=INT_0^T K = sigma^2 tau_c (1 - e^{-T/tau_c}) >= 0,
+  dephasing rate    gamma(T)=2 chi'(T)=(2 sigma^2 tau_c/hbar^2)(1-e^{-T/tau_c}) >= 0
+  for ALL T  =>  CP-divisible (RHP/BLP-Markovian, no revivals); |C(T)| monotone.
+------------------------------------------------------------------------------
+  SYMBOLIC (sympy):
+    I(T)=INT_0^T K                 = sigma**2*tau_c - sigma**2*tau_c*exp(-T/tau_c)
+    I(T) - sigma^2 tau_c (1-e^-T/tc)= 0   (exact 0)
+------------------------------------------------------------------------------
+  NUMERIC (dps=80):  sigma=tau_c=hbar=1
+        T |              I(T) quad |               gamma(T) |                 |C(T)| | sign
+      0.0 |                    0.0 |                    0.0 |                    1.0 | >=0   [I resid 0.0]
+     0.25 |     0.2211992169285951 |     0.4423984338571903 |     0.9716100063488122 | >=0   [I resid 2.636e-82]
+      0.5 |     0.3934693402873666 |     0.7869386805747332 |     0.8989474862671122 | >=0   [I resid 5.271e-82]
+      1.0 |     0.6321205588285577 |      1.264241117657115 |     0.6922006275553464 | >=0   [I resid 1.054e-81]
+      2.0 |     0.8646647167633873 |      1.729329433526775 |     0.3213143719495221 | >=0   [I resid 1.054e-81]
+      4.0 |     0.9816843611112658 |      1.963368722222532 |    0.04888348650158176 | >=0   [I resid 0.0]
+      8.0 |     0.9996645373720975 |      1.999329074744195 |  0.0009115761145376756 | >=0   [I resid 0.0]
+     16.0 |     0.9999998874648253 |      1.999999774929651 |   3.059022860770566e-7 | >=0   [I resid 0.0]
+------------------------------------------------------------------------------
+  gamma(T) >= 0 for all tabulated T : True
+  |C(T)| monotone non-increasing    : True
+  min gamma over table              = 0.0  (>=0)
+
+==============================================================================
+(3) chi(T) KERNEL AND THE sqrt(e) FIXED POINT  tau_c = sqrt(e) tau_G
+==============================================================================
+  chi(T) = (sigma^2 tau_c^2/hbar^2)(T/tau_c - 1 + e^{-T/tau_c})
+  Record-stabilization closure chi(tau_c)=1 with sigma=E_G, tau_G=hbar/E_G:
+    chi(tau_c) = (tau_c/tau_G)^2 (1 - 1 + e^{-1}) = (tau_c/tau_G)^2 e^{-1} = 1
+    => (tau_c/tau_G)^2 = e  => tau_c = sqrt(e) tau_G.
+------------------------------------------------------------------------------
+  SYMBOLIC (sympy):
+    chi(tau_c) with sigma=E_G, hbar=E_G tau_G = tau_c**2*exp(-1)/tau_G**2
+    solve chi(tau_c)=1  =>  tau_c           = [tau_G*exp(1/2)]   (= sqrt(e) tau_G)
+    (tau_c/tau_G)^2                          = E   (= e exactly)
+------------------------------------------------------------------------------
+  NUMERIC (dps=100):
+    sqrt(e)  (50 digits)                    = 1.6487212707001281468486507878141635716537761007101
+    sqrt(e) (rounded headline ~1.6487)      = 1.648721271
+  chi(tau_c) at fixed point (should be 1)        = 1.0   [resid 7.14367e-102]
+  (tau_c/tau_G)^2 e^-1 (closed, should be 1)     = 1.0   [resid 7.14367e-102]
+
+==============================================================================
+(4) UNDERDAMPED KERNEL  K(s)=sigma^2 e^{-|s|/tau} cos(omega0 s):
+==============================================================================
+  Positive-type (Lorentzian-pair spectrum S(omega)>=0) yet NON-CP-divisible.
+  Running integral I(T)=INT_0^T K dips BELOW 0 once b=omega0*tau exceeds ~3.644,
+  i.e. gamma(T)<0 on sub-intervals => coherence revivals.
+------------------------------------------------------------------------------
+  SYMBOLIC (sympy) running integral:
+    I(T) = sigma**2*tau*(omega_0*tau*sin(T*omega_0) + exp(T/tau) - cos(T*omega_0))*exp(-T/tau)/(omega_0**2*tau**2 + 1)
+    g(u;b)=I/(sigma^2 tau) = (b*sin(b*u) + exp(u) - cos(b*u))*exp(-u)/(b**2 + 1)
+    (g(u;b) = [1 + e^-u (b sin(bu) - cos(bu))]/(1+b^2))
+------------------------------------------------------------------------------
+  NUMERIC (dps=80):  min over T of the running integral g(u)=I/(sigma^2 tau)
+     b=omega0 tau |         min g (=sign of I) |       at u=T/tau | revival?
+              3.0 |       0.376361270947714274 |      1.570796327 | no (I>=0)
+              3.6 |      0.0276729826815285291 |      1.308996939 | no (I>=0)
+           3.6442 |  -0.0000165674016101997422 |      1.293120295 | REVIVAL (I<0)
+              3.7 |     -0.0353237464442743233 |      1.273618643 | REVIVAL (I<0)
+              5.0 |      -0.948305686876733975 |     0.9424777961 | REVIVAL (I<0)
+             10.0 |       -5.24228433648569708 |      0.471238898 | REVIVAL (I<0)
+------------------------------------------------------------------------------
+  Explicit verification at omega0*tau = 5 and 10  (sigma=tau=1, hbar=1):
+    b=  5: min running-integral I(T*) = -0.036473295649105 (<0) at T*=0.9424778
+           gamma(T*)=2 I(T*)         = -0.07294659129821 (<0 => revival)  [I resid 6.589e-83]
+    b= 10: min running-integral I(T*) = -0.05190380531174 (<0) at T*=0.4712389
+           gamma(T*)=2 I(T*)         = -0.10380761062348 (<0 => revival)  [I resid 6.589e-83]
+------------------------------------------------------------------------------
+  THRESHOLD (where min of running integral first dips below 0):
+  b* = (omega0 tau)_threshold                    = 3.644173671645632136171
+  min g at b* (should be ~0, tangency)           = 0.0   [resid 0.0]
+    paper56 quote: 'omega0 tau ~ 3.64'  -> matches.
+
+==============================================================================
+(5) OU-NOISE vs SPARSE-SEAL: BIT-IDENTICAL TO ALL ORDERS
+==============================================================================
+  Continuous OU dephasing:  C_OU(T) = exp[-chi(T)],
+    chi(T) = (sigma^2 tau_c^2/hbar^2)(T/tau_c - 1 + e^{-T/tau_c}).
+  State-independent irreversible seal with hazard
+    lambda_OU(t)=chi'(t)=(sigma^2 tau_c/hbar^2)(1 - e^{-t/tau_c}):
+    C_seal(T) = exp[-INT_0^T lambda_OU] = exp[-chi(T)]   (since chi(0)=0).
+  => |C_OU(T) - C_seal(T)| = 0 to ALL orders: the two mechanisms are
+     OPERATIONALLY UNDECIDABLE from the reduced channel.
+------------------------------------------------------------------------------
+  SYMBOLIC (sympy):
+    chi'(T)                         = sigma**2*tau_c*(exp(T/tau_c) - 1)*exp(-T/tau_c)/hbar**2
+    lambda_OU(T)                    = sigma**2*tau_c*(exp(T/tau_c) - 1)*exp(-T/tau_c)/hbar**2
+    chi'(T) - lambda_OU(T)          = 0   (exact 0)
+    INT_0^T lambda_OU - chi(T)      = 0   (exact 0 => all-orders identity)
+------------------------------------------------------------------------------
+  NUMERIC (dps=100):  sigma=tau_c=hbar=1
+        T |               C_OU=exp[-chi] |         C_seal=exp[-INT lam] | residual
+      0.1 |     0.9951742634270371112666 |     0.9951742634270371112666 | 7.144e-102
+      0.5 |     0.8989474862671122295923 |     0.8989474862671122295923 | 0.0
+      1.0 |     0.6922006275553463538654 |     0.6922006275553463538654 | 0.0
+      2.0 |      0.321314371949522082996 |      0.321314371949522082996 | 0.0
+      3.0 |     0.1287623182395577376984 |     0.1287623182395577376984 | 0.0
+      5.0 |     0.0181926439167785016555 |     0.0181926439167785016555 | 0.0
+     10.0 |  0.0001234042014174233699168 |  0.0001234042014174233699168 | 0.0
+------------------------------------------------------------------------------
+  max |C_OU - C_seal| over grid (machine 0)      = 7.14367e-102
+
+==============================================================================
+(6) BIMODAL LIMIT  delta E = +/- sigma_E  =>  C(T)=cos(sigma_E T/hbar)
+==============================================================================
+  In the long-memory regime C(T)=<exp(i deltaE T/hbar)>. A symmetric two-point
+  (branch-selecting) delta E = +/- sigma_E gives a NON-Gaussian, REVIVING
+  coherence cos(sigma_E T/hbar) that no monotone exp[-chi] can produce.
+------------------------------------------------------------------------------
+  SYMBOLIC (sympy):
+    C(T) = (1/2)(e^{i sigma_E T/hbar} + e^{-i sigma_E T/hbar}) = cos(T*sigma_E/hbar)
+    C(T) - cos(sigma_E T/hbar)            = 0   (exact 0)
+------------------------------------------------------------------------------
+  NUMERIC (dps=100):  sigma_E=hbar=1   (note: C goes negative => revival)
+        T |      <e^{i dE T/hbar}> (avg) |      cos(sigma_E T/hbar) | residual
+      0.0 |                          1.0 |                      1.0 | 0.0
+      1.0 |     0.5403023058681397174009 |     0.540302305868139717 | 0.0
+   1.5707963 |   2.679489661923131848533e-8 |   2.67948966192313185e-8 | 1.828e-102
+   3.1415927 |    -0.9999999999999989230464 |    -0.999999999999998923 | 0.0
+   4.712389 |   1.961531014230603366722e-8 |   1.96153101423060337e-8 | 5.469e-102
+   6.2831853 |     0.9999999999999999742268 |     0.999999999999999974 | 0.0
+------------------------------------------------------------------------------
+  max |<e^{i dE T/hbar}> - cos| over grid        = 5.46937e-102
+  C(pi)=-1.0 < 0  (coherence revival: |C| non-monotone) => discrete-record fingerprint
+
+==============================================================================
+CANONICAL OUTPUT BLOCK  (headline numbers, labeled, with residual)
+==============================================================================
+  [1] Gaussian onset  exp(-INT a t)=exp(-aT^2/2) = 0.002187491118182885123279463768573825806084   [resid 0.0]
+  [2] OU rate gamma_min over grid (CP-div: >=0)  = 0.0
+      => OU kernel CP-DIVISIBLE (no revivals): gamma(T)>=0 for all T : True
+  [3] sqrt(e) = tau_c/tau_G (50 digits)          = 1.6487212707001281468486507878141635716537761007101   [resid 2.85747e-101]
+  [4] threshold (omega0 tau)* for revivals       = 3.644173671645632136171
+      => underdamped kernel NON-CP-divisible (revivals) for omega0 tau > 3.6441737
+         (verified: I(T)<0 at omega0 tau = 5 and 10)
+  [5] max |C_OU - C_seal| (all-orders, =0)       = 7.14367e-102
+      => OU-noise and sparse-seal are OPERATIONALLY UNDECIDABLE
+  [6] max |<e^{i dE T/hbar}> - cos| (=0)         = 5.46937e-102
+      => bimodal deltaE=+/-sigma_E gives C(T)=cos(sigma_E T/hbar) (revival)
+==============================================================================
+VERDICT: The Gaussian onset (1), the CP-divisible OU rate (2), and the
+sqrt(e) fixed point (3) are all reproduced EXACTLY by a state-independent
+irreversible seal (5: bit-identical to all orders). Revivals require either
+a non-CP-divisible kernel (4) or non-Gaussian discrete records (6) -- a
+separate axis from the structural (Barandes/SHARD) barrier. Hence the
+reduced channel CANNOT certify its own decoherence mechanism.
+==============================================================================
+ALL CHECKS PASSED. exit 0

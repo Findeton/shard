@@ -1,0 +1,196 @@
+
+==============================================================================
+PART 1.  THE LITERATURE'S REQUIRED KERNEL PROPERTIES (2507.06954)
+==============================================================================
+
+  Covariant-collapse kernel G((x-y)^2) must satisfy, per the 2025 work:
+    [P-LI]   Lorentz invariance: G = G((x-y)_mu (x-y)^mu)  (interval only).
+    [P-PT]   positive-type (Bochner): \hat G(q) >= 0 everywhere, so the noise
+             two-point function is a genuine covariance (PSD Gram).
+    [P-FE]   finite energy: the heating integral \int d q (q-weight) \hat G(q)
+             converges (white noise \hat G=1 DIVERGES -> infinite heating).
+    [P-NO]   a NORMAL-ORDERING prescription :O: removes the residual 1/2
+             vacuum term (a SEPARATE device, on top of the kernel).
+  The literature CHOICE  \hat G(q) = exp(-q^4/beta^4)  (Eq.30), with q^4 (not
+  q^2) precisely because q^2 < 0 in spacelike regions makes exp(-q^2) blow up.
+  This is the SAME template SHARD's f1_kernel_positive_type.py already uses.
+
+  [P-PT] Bochner nonnegativity \hat G(q) >= 0:
+      white   ghat(0,1,2,3)                              1.0, 1.0, 1.0, 1.0 nonneg=True
+      gauss   ghat(0,1,2,3)                              1.0, 0.36787944, 0.018315639, 0.0001234098 nonneg=True
+      quartic ghat(0,1,2,3)                              1.0, 0.36787944, 1.1253517e-7, 6.6396772e-36 nonneg=True
+
+  [P-FE] heating integral I = \int_0^inf q^2 \hat G(q) dq (UV energy weight):
+      white  I                                           DIVERGES (not L1 -> infinite heating: the C3 catastrophe)
+      gauss  I                                           0.44311346272637900682 finite (but exp(-q^2) ill-defined off-shell)
+      quartic I                                          0.30635417561629441128 finite AND off-shell-safe -> literature CHOICE
+
+  quartic/gauss UV tail ratio -> 0 (quartic strictly lighter):
+      q=2                                                6.144212353e-6 (->0)
+      q=3                                                5.38018616e-32 (->0)
+      q=4                                                5.879282698e-105 (->0)
+
+  [why q^4 not q^2] off-shell (spacelike s^2<0) boundedness of exp(-s^2 form):
+      s^2= -4: exp(-(s^2)^2)                             1.1253517e-7 bounded for all sign(s^2)  <- quartic safe
+      s^2= -1: exp(-(s^2)^2)                             0.36787944 bounded for all sign(s^2)  <- quartic safe
+      s^2=  0: exp(-(s^2)^2)                             1.0 bounded for all sign(s^2)  <- quartic safe
+      s^2=  1: exp(-(s^2)^2)                             0.36787944 bounded for all sign(s^2)  <- quartic safe
+      s^2=  4: exp(-(s^2)^2)                             1.1253517e-7 bounded for all sign(s^2)  <- quartic safe
+    (a quadratic exp(-s^2) would -> +inf as s^2 -> -inf: the literature's
+     stated reason for picking q^4.  It is a PRAGMATIC ad-hoc fix.)
+
+==============================================================================
+PART 2.  THE SHARD CANDIDATE OBJECTS, CLASSIFIED AGAINST THE KERNEL ROLE
+==============================================================================
+
+  Four SHARD objects could a priori play the role of G((Delta x)^2).  Classify
+  each by (tier, forced/free, geometry-dependence):
+
+  (a) f1_kernel_positive_type template  \hat g(q)=exp(-q^4/beta^4).
+        TIER B (needs s^2).  paper1 itself labels it "the Tier-B FORM of the
+        seal memory", positive-type + quartic UV, white forbidden.  It is the
+        SAME exp(-q^4) ansatz as literature Eq.(30) -- a TEMPLATE, NOT a
+        derivation (paper1 s5 item: kernel is an emergent Tier-B notion,
+        "where (a locality kernel) is only an emergent Tier-B notion, not a
+        Tier-A output").
+  (b) the FORCED odometer chi = D(P_AB||P_BA).
+        TIER A, FORCED (dchi>=0 unconditional; additive by arrow-positivity).
+        But chi is a WEIGHT-0 SCALAR content (a KL number), NOT a two-point
+        spatial correlation.  It has no (Delta x)^2 argument at all -> cannot
+        BE G(.) as a function of an interval.  Wrong type.
+  (c) the FREE inter-seal coherence profile g:[0,1)->(0,1] (f3b).
+        TIER A, *FREE* (infinite-dim functional d.o.f.; the genuine-quantum
+        / Barandes-indivisible content).  This is the closest in SPIRIT to the
+        literature's "free functional choice of kernel" -- but it is free in
+        CONTENT (chi), not in an interval s^2, and crucially it is UNCONSTRAINED
+        (two continuations P1,P2 differ between seals).  A FREE object cannot
+        DERIVE a unique kernel: same status as the literature's "one of many".
+  (d) the seal spacing d / principled BHS-sprinkling discreteness.
+        Would set a characteristic LENGTH (the literature kernel's peak scale).
+        But f3b PART 5: d is GENUINELY FREE; no intrinsic equation selects it
+        (the d=W_* saturation closure is plausible but UNFORCED).
+
+  (a) f1 template  exp(-q^4)                             Tier B SAME ansatz as lit Eq.(30); NOT derived
+  (b) odometer chi (KL number)                           Tier A FORCED weight-0 scalar; WRONG TYPE for G(s^2)
+  (c) inter-seal profile g                               Tier A FREE closest in spirit; but UNCONSTRAINED (free fn)
+  (d) seal spacing d                                     FREE would set length; no intrinsic eq selects it (f3b P5)
+
+==============================================================================
+PART 3.  DECISIVE TEST: does SHARD DERIVE a UNIQUE LI positive-type G?
+==============================================================================
+
+  To DERIVE the kernel (beat the literature) SHARD must FORCE a UNIQUE
+  LI + positive-type + finite-energy G.  Test the three routes.
+
+  ROUTE R1: 'the inter-seal coherence profile IS G((Delta x)^2)'.
+    FAILS on TWO independent counts:
+      (i)  TYPE MISMATCH.  The profile is a function of fractional CONTENT
+           frac(chi/d) in [0,1) -- a Tier-A, weight-0, pre-geometric scalar.
+           G is a function of an INTERVAL s^2 -- a Tier-B geometric object.
+           There is no map chi -> s^2 at Tier A (that map is the OPEN
+           covariance/emergence frontier; paper1 s4 'Lorentz invariance and
+           microcausality are NOT claimed').  So the profile cannot even be
+           EVALUATED on the kernel's domain without importing the missing
+           geometry.
+      (ii) FREEDOM, not derivation.  Even granting a map, the profile is
+           UNCONSTRAINED by composition (f3b [FREE-S1]; two distinct
+           continuations).  A free functional CANNOT single out exp(-q^4):
+           it has exactly the literature's "one of many possible choices"
+           status.  Matching freedom to freedom is NOT a derivation.
+
+  profile P1 vs P2 at u=0 (seal)                         0.0 (=0 forced)
+  profile P1 vs P2 at u=1 (seal)                         0.0 (=0 forced)
+  profile P1 vs P2 at u=0.25 (BETWEEN)                   0.00663752 (!=0: NOT unique -> no derived G)
+  profile P1 vs P2 at u=0.5 (BETWEEN)                    0.00624627 (!=0: NOT unique -> no derived G)
+  profile P1 vs P2 at u=0.75 (BETWEEN)                   0.00329609 (!=0: NOT unique -> no derived G)
+
+  ROUTE R2: 'principled record discreteness (BHS sprinkling / seal spacing d)
+             DERIVES the characteristic length and hence the kernel shape'.
+    PARTIAL then BLOCKED.
+      (i)  A discreteness scale a (record length) IS principled in SHARD and
+           DOES set a UV cutoff -> a colored (non-white) noise is NATURAL, not
+           ad hoc.  This is a genuine PARTIAL win: SHARD MOTIVATES coloring
+           from first principles (records are discrete -> no white-noise
+           catastrophe by construction), where the literature must IMPOSE it.
+      (ii) BUT the SHAPE of the falloff (q^4 vs q^2 vs Gaussian vs hard cutoff)
+           is NOT fixed by 'there is a length a'.  A cutoff length gives a
+           SCALE beta ~ 1/a, not a FUNCTIONAL FORM.  And d itself is FREE
+           (f3b P5: no intrinsic equation selects the spacing; the W_*
+           saturation closure is unforced).  So discreteness derives THAT the
+           noise is colored, NOT WHICH colored kernel.  The q^4 ansatz stays
+           hand-picked even given SHARD discreteness.
+      (iii) the scale no-go bites: a is weight-0 record content -> turning the
+           cutoff into an absolute heating rate still needs the one free scale
+           kappa (paper57 G no-go / paper1 s3.4).  Same wall as everywhere.
+
+  admissible-kernel FAMILY at a single cutoff scale beta~1 (all P-PT & P-FE):
+      quartic exp(-q^4)                                  I=0.306354175616 nonneg=True -> ADMISSIBLE
+      sextic exp(-q^6)                                   I=0.295408975151 nonneg=True -> ADMISSIBLE
+      compact bump                                       I=2.2464472561 nonneg=True -> ADMISSIBLE
+    => >= 3 distinct LI positive-type finite-energy kernels at one scale.
+       Discreteness fixes the SCALE, NOT the SHAPE.  The shape stays free.
+
+  ROUTE R3: 'the f1_kernel_positive_type receipt IS the derivation'.
+    NO -- it is a RE-USE of the literature ansatz.  f1's docstring fixes
+    \hat g(q)=exp(-q^4/beta^4) as 'the worked template' and CHECKS its
+    properties (Bochner PSD, UV decay, sign-indefinite position kernel).  It
+    VERIFIES a hand-picked form satisfies the constraints; it does not DERIVE
+    the form from a SHARD principle.  paper1 lists the kernel as a Tier-B
+    EMERGENT notion explicitly NOT a Tier-A output.  So f1 and lit Eq.(30) are
+    the SAME ansatz, independently property-checked -- a CONVERGENCE, not a
+    SHARD derivation.
+
+
+==============================================================================
+PART 4.  HONEST COMPARISON TABLE  (literature kernel vs SHARD object)
+==============================================================================
+
+  PROPERTY                 LITERATURE (2507.06954)        SHARD
+  -----------------------  -----------------------------  ----------------------------
+  object                   G((Delta x)^2), \hat G=e^{-q^4} (a) f1 template = SAME e^{-q^4}
+                                                          (c) inter-seal profile (free fn)
+  Lorentz invariance       IMPOSED (G of interval only)   NOT claimed (open frontier; Tier B)
+  positive-type (Bochner)  required; e^{-q^4}>=0 OK        f1 verifies PSD for SAME e^{-q^4}
+  finite energy            via q^4 falloff + normal-order  colored-by-discreteness (motivated)
+  normal ordering :O:      EXPLICIT extra device           NOT present (no QFT vacuum at Tier A)
+  derived or hand-picked?  HAND-PICKED ('one of many')     ALSO not derived:
+                                                            - f1 template = same ansatz
+                                                            - profile is FREE (not unique)
+                                                            - discreteness fixes SCALE not SHAPE
+  what SHARD DOES add      --                              PRINCIPLED reason the noise is
+                                                            COLORED (records discrete -> no
+                                                            white-noise catastrophe by
+                                                            construction), not imposed.
+
+
+  VERDICT (Move C2).  SHARD does NOT derive the literature's colored LI noise
+  kernel.  The three routes all fail to produce a UNIQUE G:
+
+    - the FORCED Tier-A objects (odometer chi, the geometric seal skeleton) are
+      the WRONG TYPE -- weight-0 content scalars, not functions of an interval
+      s^2; the chi -> s^2 map is the OPEN covariance frontier.
+    - the genuinely-quantum SHARD object (the inter-seal coherence profile) is
+      itself FREE / UNCONSTRAINED -- it has EXACTLY the literature's
+      'one of many possible choices' status.  Matching a free profile to a free
+      kernel is not a derivation.
+    - principled discreteness gives a real but PARTIAL win: it MOTIVATES that
+      the noise must be COLORED (records are discrete -> a UV cutoff is built in,
+      so the white-noise / infinite-heating catastrophe is avoided BY
+      CONSTRUCTION rather than by hand).  But it fixes only the SCALE, not the
+      FUNCTIONAL SHAPE; >=3 distinct positive-type finite-energy kernels share
+      any one cutoff scale.  The q^4 vs q^2 vs bump choice stays hand-picked.
+    - the f1 receipt re-uses the literature exp(-q^4) ansatz and property-checks
+      it; it is a CONVERGENCE on the same template, not a derivation.
+
+  SO: the potential WIN does NOT land as a DERIVED kernel.  The honest, defensible
+  partial: SHARD's principled record discreteness explains WHY the noise is
+  colored (the literature's hardest ad-hoc move -- avoiding white noise -- becomes
+  structural), but the SPECIFIC kernel exp(-q^4) and the normal-ordering device
+  remain hand-picked in BOTH frameworks.  The free inter-seal profile is the
+  genuine-quantum residue, NOT a kernel-derivation engine.  Pre-geometric wall:
+  the kernel is Tier B (needs s^2); SHARD's forced content is Tier A.
+
+
+==============================================================================
+DONE.
+==============================================================================

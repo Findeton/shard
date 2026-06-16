@@ -1,0 +1,72 @@
+
+==============================================================================
+(0) the exact Myrheim-Meyer ordering fractions f(d) (the manifold-like reference values)
+==============================================================================
+  f(1) = 1.0
+  f(2) = 0.5
+  f(3) = 0.2285714285714286
+  f(4) = 0.1
+
+==============================================================================
+(A) SPRINKLED (manifold-like) -> Myrheim-Meyer recovers the embedding dimension
+==============================================================================
+  2d sprinkling: N=600, 12 reps
+    measured ordering fraction  r = 0.50320766   (f(2)=1/2=0.5)
+    recovered MM dimension  d_MM = 1.9914696
+  3d sprinkling: N=600, 12 reps
+    measured ordering fraction  r = 0.22834168   (f(3)=8/35=0.22857143)
+    recovered MM dimension  d_MM = 3.0012431
+
+==============================================================================
+(B) KR-type random order (non-manifold, the uniform-measure-DOMINANT family)
+==============================================================================
+  KR 3-layer order: layer sizes (150, 300, 150) (N=600), cross-layer prob p=1/2
+    measured ordering fraction  r = 0.37404563
+    'MM dimension' naively returned  d_MM = 2.3797653  <-- a spurious near-integer (the trap)
+    (manifold range: f(2)=0.5, f(3)=0.228571, f(4)=0.1)
+    height = 2 (a 3-element chain exists: True; a 4-chain is impossible with 3 layers)
+    expected r from the layered combinatorics = 0.37562604 (matches measured)
+    longest chain: 2d sprinkling (N=600) = 46 elements  vs  KR order = 3 elements (height 2, any N)
+    => the height-based estimator SEPARATES them even though d_MM ~ 2.2 does not (the MM trap).
+
+==============================================================================
+(C) the dominance problem -- non-manifold (KR) orders dominate the uniform measure on posets
+==============================================================================
+  n=  100:  KR leading log2(#posets) ~ n^2/4 = 2500.0 bits
+  n= 1000:  KR leading log2(#posets) ~ n^2/4 = 250000.0 bits
+  n=10000:  KR leading log2(#posets) ~ n^2/4 = 25000000.0 bits
+  n=10000:  manifold-like embedding data ~ n log2 n * (coords) = 531508.5 bits  <<  KR 25000000.0 bits
+  => manifoldlikeness needs a non-uniform measure (a dynamics / selection rule): the open core.
+
+==============================================================================
+MACHINE CHECKS
+==============================================================================
+  [PASS] (0a) f(1)=1 exact (total order)
+  [PASS] (0b) f(2)=1/2 exact
+  [PASS] (0c) f(3)=8/35 exact
+  [PASS] (0d) f(4)=1/10 exact
+  [PASS] (0e) f monotone decreasing on [1,4]
+  [PASS] (0f) f^{-1}(f(2)) = 2 to 1e-20
+  [PASS] (0g) f^{-1}(f(3)) = 3 to 1e-20
+  [PASS] (A1) 2d sprinkling r within 0.02 of f(2)=1/2
+  [PASS] (A2) 2d sprinkling recovers d_MM in [1.85, 2.15]
+  [PASS] (A3) 3d sprinkling r within 0.02 of f(3)=8/35
+  [PASS] (A4) 3d sprinkling recovers d_MM in [2.7, 3.3]
+  [PASS] (B1) KR order has height exactly 2 (a 3-chain exists, no 4-chain)
+  [PASS] (B2) KR measured r matches the layered prediction to 0.01 (NOT a manifold curve value)
+  [PASS] (B3) 2d sprinkling longest chain grows with N (>= 15 at N=600); KR pinned at 3
+  [PASS] (B4) MM's single scalar is fooled (KR d_MM looks ~2) -> manifold-likeness needs AGREEING estimators
+  [PASS] (C1) KR leading exponent is n^2/4 (the Kleitman-Rothschild signature)
+  [PASS] (C2) KR log-count (n^2) dominates manifold-like log-data (n log n) for large n
+
+  ALL CHECKS PASS
+==============================================================================
+VERDICT.  The Myrheim-Meyer estimator cleanly separates the two families:
+  - SPRINKLED (manifold-like): r ~ f(d), d_MM recovers the embedding dimension (2d->~2, 3d->~3).
+  - KR-type RANDOM (non-manifold): height-2, r off the manifold curve, d_MM tracks NO embedding
+    dimension; and these orders DOMINATE the uniform measure (n^2/4 exponent).
+  => Manifold-likeness is the gate Malament(order->conformal)/BHS/Paper VII presuppose, and the
+     uniform measure is dominated by non-manifold orders (the dominance/entropy problem). The
+     causal order ALONE does not select a manifold; a DYNAMICS (selection rule) is required --
+     the open core of the entire causal-set program. SHARD inherits this wall (not SHARD-specific).
+==============================================================================

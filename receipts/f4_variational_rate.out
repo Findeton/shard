@@ -1,0 +1,178 @@
+
+==========================================================================
+B0.  DICTIONARY  sigma(t) = lambda(t)  (seal rate = local entropy production)
+==========================================================================
+
+  paper56 s3: state-independent irreversible which-path seal, deterministic
+  holonomy.  rho01(T) = e^{i Phi(T)} <E0(T)|E1(T)> rho01(0), and a genuine
+  irreversible seal makes the branch-record overlap a non-increasing
+  contraction, so
+
+      |rho01(T)| = exp(- int_0^T lambda(t) dt),   lambda(t) >= 0.
+
+  paper10 T2 (exact): sigma = E[A_D] = D(P_AB || P_BA) is the entropy
+  production = the order evidence committed to the record per unit traversal.
+  The 'decoherence rate = seal rate = sigma' identity (paper56 TARGET) reads,
+  LOCALLY in history time,
+
+      lambda(t) = sigma(t)   :=  instantaneous rate of D(P_AB||P_BA) accrual.
+
+  So the whole-history coherence functional is
+
+      chi(T) = int_0^T lambda dt = int_0^T sigma dt = total entropy produced.
+
+  chi_const = int_0^T lambda_0 dt                T*lambda_0 
+  chi_ramp  = int_0^T a t dt                     T**2*a/2 
+  => |rho01|_const = exp(-chi)                   exp(-T*lambda_0) 
+  => |rho01|_ramp  = exp(-chi)                   exp(-T**2*a/2) (paper56: e^{-aT^2/2})
+  CHECK ramp -> Gaussian onset e^{-aT^2/2}: residual 0 (sympy-exact).
+
+==========================================================================
+B1.  MAXCAL FUNCTIONAL on the inhomogeneous-Poisson seal point process
+==========================================================================
+
+  The whole-history law P^hist is a law over seal trajectories (when each seal
+  fires).  The least-biased such law consistent with the constraints is the
+  Jaynes maximum-caliber (path-MaxEnt) law.  For a seal point process the
+  caliber relative to a reference Poisson process of rate r(t) is, with
+  lambda(t) the to-be-determined hazard,
+
+      Cal[lambda] = - int_0^T [ lambda log(lambda/r) - lambda + r ] dt
+                                                          (Poisson path KL).
+
+  The entropy-production constraint to extremize against is the arrow itself,
+  the time-integral of sigma(t)=lambda(t).  Introduce a constraint functional
+
+      G_k[lambda] = int_0^T w_k(t) lambda(t) dt = g_k     (k labels the moment),
+
+  with w_k the constraint weight (w_0=1: total arrow; w_1=t: arrow first
+  time-moment; etc.) and Lagrange multipliers beta_k.  Extremizing
+
+      Cal[lambda] + sum_k beta_k ( G_k[lambda] - g_k )
+
+  pointwise in lambda(t) (delta/delta lambda = 0) gives the Euler-Lagrange law
+
+  Euler-Lagrange dL/dlambda = 0 gives            lambda = r * exp(sum_k beta_k w_k(t)) 
+    sympy solve:                                 [r*exp(beta_0 + beta_1*t)] 
+
+  So the MAXCAL EXTREMAL SEAL RATE is the LOG-LINEAR (exponential-family) law
+
+      lambda*(t) = r(t) * exp( beta_0 + beta_1 t + beta_2 t^2 + ... ),
+
+  the unique least-biased hazard given moment constraints on the arrow.  This
+  is the SAME exponential-tilt structure that fixes the one-diamond event law
+  P_eta(q) = e^{eta q}/(2 cosh eta) in paper4 -- MaxEnt in q there, MaxCal in
+  seal-time here.  The toy hazards are its special cases.
+
+
+==========================================================================
+B2/B3.  THE THREE CONSTRAINT SETS -> THE THREE TOY HAZARDS (extremal-sigma)
+==========================================================================
+
+  We now show each published toy hazard is lambda*(t) for a specific constraint
+  set, with r(t)=const absorbed into the scale.  Two routes coexist and we give
+  both: (A) the log-linear MaxCal family above (constraints on log-hazard
+  moments), and (B) the kernel/running-integral family of B4 (constraints on
+  the stationary memory) -- they agree on (i) and (ii) and the OU case (iii) is
+  cleanest in route (B).
+
+  (i)  constraint {total arrow}: lambda* =       lambda_0 
+       chi(T) =                                  T*lambda_0  -> |rho01| = e^{-lambda_0 T}  EXPONENTIAL
+  (ii) constraint {fixed d sigma/dt = a}: lambda* = a*t 
+       chi(T) =                                  T**2*a/2  -> |rho01| = e^{-a T^2/2}  GAUSSIAN
+  (iii) relaxational (OU) constraint: lambda* =  K0*(1 - exp(-t/tau_c)) 
+       chi(T) =                                  K0*T - K0*tau_c + K0*tau_c*exp(-T/tau_c) 
+       published OU/DP chi(T) =                  K0*T - K0*tau_c + K0*tau_c*exp(-T/tau_c) 
+     OU residual chi* - chi_published = 0
+
+  All three published toy hazards ARE extremal-sigma seal rates:
+    constant  <- total-arrow constraint            -> exponential   (Markov semigroup)
+    ramp a t  <- fixed arrow acceleration d sigma/dt -> Gaussian onset
+    OU curve  <- relaxational kernel, corr. time tau_c -> DP/OU crossover
+  i.e. the postulated hazards of the program are NOT independent inputs: each
+  is the least-biased whole-history seal law under one additional constraint.
+
+
+==========================================================================
+B4.  THE GENERAL FORCED FORM: lambda(t) = running integral of the kernel
+==========================================================================
+
+  For a stationary Gaussian pure-dephasing channel (paper56 s1; paper X) the
+  coherence is |rho01(T)| = e^{-chi(T)} with
+
+      chi(T) = (1/hbar^2) int_0^T (T-s) K(s) ds,
+      lambda(T) = chi'(T)  ... but note: the SEAL hazard is the *rate of the
+      arrow*, the instantaneous decoherence rate
+
+      gamma(T) = 2 chi'(T) = (2/hbar^2) int_0^T K(s) ds   (paper56 s1, exact).
+
+  So the seal rate is the RUNNING INTEGRAL of the memory kernel.  Identify
+  lambda(t) := gamma(t)/2 = (1/hbar^2) int_0^t K(s) ds.  Then:
+
+  K(s)=K_c (flat memory)  -> lambda(t) =         K_c*t/hbar**2 (RAMP, a=K_c/hbar^2)
+  K(s)=sigma^2 e^{-s/tau_c}  -> lambda(t) =      sigma**2*tau_c*(exp(t/tau_c) - 1)*exp(-t/tau_c)/hbar**2 (OU)
+  OU hazard residual vs K0(1-e^{-t/tau_c}) [K0=sigma^2 tau_c/hbar^2]: 0 
+
+  K(s) = 2 hbar^2 lambda_0 delta(s)  -> lambda(t) = lambda_0 const (white/Markov),
+  but delta-correlated K is the white-noise catastrophe FORBIDDEN by C3.  So the
+  variational form selects, among ALLOWED (smooth, positive-type, quartic-falloff)
+  kernels, the running-integral hazard -- never a pure constant from a smooth K
+  except in the t -> inf plateau (lambda(inf) = (1/hbar^2) int_0^inf K = stationary
+  arrow rate).  Constant hazard is the LATE-TIME plateau of any integrable kernel.
+
+
+==========================================================================
+B4b.  POSITIVITY / CP-DIVISIBILITY GATE  (lambda >= 0 <=> int_0^t K >= 0)
+==========================================================================
+  OU  int_0^0.5 K =                              0.35732083831013281243874075344 >=0  (lambda>=0, CP-divisible)
+  OU  int_0^2.0 K =                              0.659797166512667854934223593733 >=0  (lambda>=0, CP-divisible)
+  OU  int_0^8.0 K =                              0.699992383901844625676932271329 >=0  (lambda>=0, CP-divisible)
+  underdamped int_0^0.6 K =                      -0.0203540520649301159 <0 -> lambda<0, REVIVAL (non-CP-div)
+  underdamped kernel produces lambda<0 (revival)? True (w0 tau=5; C3-allowed positive-type, but NOT seal-monotone)
+
+  Reading: a state-independent irreversible SEAL forces lambda(t)>=0 (monotone
+  coherence), which selects kernels with int_0^t K >= 0 for all t -- a STRICTLY
+  stronger condition than C3's spectral positivity.  The OU kernel passes; the
+  equally-positive-type underdamped kernel fails (revivals) and is therefore
+  NOT a committed-seal kernel.  This is paper56's no-revival no-go re-derived as
+  a *variational selection rule on the kernel*: the seal-monotonicity constraint
+  is what the variational principle adds beyond MaxEnt.
+
+
+==========================================================================
+B5.  WHAT FILTER 4 FORCES vs LEAVES FREE  (the one-scale no-go bookkeeping)
+==========================================================================
+
+  FORCED by Filter 4 (variational rate):
+   * functional FORM of lambda(t): the MaxCal extremal hazard is log-linear in
+     the constrained time-moments,  lambda*(t) = r(t) exp(sum_k beta_k t^k);
+     equivalently the running integral lambda(t)=(1/hbar^2)int_0^t K of the
+     positive-type memory.  Same exponential-family logic as paper4's P_eta.
+   * lambda >= 0 (monotone coherence) from seal irreversibility; equivalently
+     int_0^t K >= 0 -- a variational selection rule STRONGER than C3.
+   * the three published toys are NOT inputs: constant/ramp/OU are the extremal
+     hazards for {total arrow}/{arrow acceleration}/{relaxational tau_c}.
+   * recovery limits pass: exponential, Gaussian onset e^{-aT^2/2}, OU/DP chi.
+
+  LEFT FREE by Filter 4 (one no-go scale, paper XI):
+   * the absolute scale of lambda -- one multiplicative constant per constraint
+     (lambda_0, a, K0=sigma^2 tau_c/hbar^2).  The Lagrange multipliers beta_k are
+     fixed by the constraint *values* g_k, which are themselves not record-
+     internal (do-delete C6): the variational principle fixes the SHAPE, the
+     calibration sets the SCALE.  This is exactly paper XI's 'unique up to one
+     absolute scale'.
+
+  weight(t) under l->mu l                        +1 
+  weight(lambda ~ 1/t)                           -1 (a rate; one dimensionful scale, the free modulus)
+  weight(chi = int lambda dt = dimensionless)    0 (arrow is a pure number -- record-internal)
+
+  chi (total entropy produced) is weight-0: a pure number the records DO fix
+  in principle (it is D(P_AB||P_BA), a KL divergence).  The conversion of chi
+  into a *rate* needs one absolute time/length unit -- the single free scale
+  the no-go (paper XI) guarantees must remain.  Filter 4 therefore lands
+  exactly on the no-go floor: SHAPE forced, ONE SCALE free.
+
+
+==========================================================================
+DONE.  All residuals 0 (sympy-exact) / printed (mpmath dps=100).
+==========================================================================
