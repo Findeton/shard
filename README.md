@@ -5,30 +5,60 @@ instantaneous states. Quantum phases, spacetime, gauge structure, and
 matter constraints emerge from which record distinctions can be sealed
 without silent, unrecorded structure.
 
-This repository is the program's **publishable batch**: thirteen papers
-and six companion notes (markdown is the source of record throughout;
-LaTeX and compiled PDF are provided for the eleven core
-mathematics/foundations papers — papers X and XI and the six companion
-notes ship as markdown plus receipts), the two dated registration
-documents for the program's experimental claims, and the complete set
-of receipt scripts with their canonical outputs.
+This repository is the program's **publishable batch**: fifteen papers
+(the thirteen-paper core arc C0/I–XI, plus the two standalone results
+XII and XIII) and six companion notes (markdown is the source of record
+throughout; LaTeX and compiled PDF are provided for all fifteen papers;
+the six companion notes ship as markdown plus receipts), the two dated
+registration documents for the program's experimental claims, and the
+complete set of receipt scripts with their canonical outputs.
 
 **Author:** Felix Robles Elvira (ORCID:
 [0009-0009-2017-4394](https://orcid.org/0009-0009-2017-4394);
 independent researcher)
 
-**Status:** preprints, not peer reviewed, version 2026-06-15. Nothing
-in this repository has been deposited, submitted, or posted anywhere
-yet; the registration documents have no evidential standing until the
-batch is third-party timestamped (Zenodo deposit planned, then arXiv).
+**Status:** preprints, not peer reviewed, version 2026-07-02. The
+eleven core papers (C0 and I–IX) were **deposited to Zenodo on
+2026-06-13 with DOIs** (listed below). Papers X, XI, XII, XIII and the
+six companion notes are not yet deposited. The two registration
+documents' claims are already third-party-timestamped via the deposited
+papers VII (the neutrino-step comparison, which explicitly supersedes
+the internal registration) and IX (the dressed-spectrum menu and seam
+mechanism); a separate registration deposit is therefore optional
+bookkeeping, not an evidential requirement. arXiv posting is the next
+external step.
+
+### Published versions (Zenodo, deposited 2026-06-13)
+
+DOIs below are **concept DOIs** (they resolve to the latest version of
+each record).
+
+| Paper | Zenodo concept DOI |
+|---|---|
+| C0 binding-codes | [10.5281/zenodo.20675389](https://doi.org/10.5281/zenodo.20675389) |
+| I psd-words | [10.5281/zenodo.20673402](https://doi.org/10.5281/zenodo.20673402) |
+| II rp-realization | [10.5281/zenodo.20673476](https://doi.org/10.5281/zenodo.20673476) |
+| III moment-test | [10.5281/zenodo.20673494](https://doi.org/10.5281/zenodo.20673494) |
+| IV graded-weyl | [10.5281/zenodo.20673510](https://doi.org/10.5281/zenodo.20673510) |
+| Va foundations-1 | [10.5281/zenodo.20673531](https://doi.org/10.5281/zenodo.20673531) |
+| Vb foundations-2 | [10.5281/zenodo.20673550](https://doi.org/10.5281/zenodo.20673550) |
+| VI sm-floor | [10.5281/zenodo.20675247](https://doi.org/10.5281/zenodo.20675247) |
+| VII neutrino-note | [10.5281/zenodo.20675294](https://doi.org/10.5281/zenodo.20675294) |
+| VIII horizons | [10.5281/zenodo.20675339](https://doi.org/10.5281/zenodo.20675339) |
+| IX fn-mechanism | [10.5281/zenodo.20675357](https://doi.org/10.5281/zenodo.20675357) |
+
+**Not yet on Zenodo:** X (gravitational-decoherence), XI (sealed-record
+-gravity-no-go), XII (walsh-delta — self-contained, submission-ready),
+XIII (causal-tomography), the six companion notes, and the registration
+bundle.
 
 ## Layout
 
 ```
-papers/         the thirteen papers + six companion notes (markdown source of record)
-tex/            LaTeX (generated from markdown by code/md2tex.py; eleven core papers)
-pdf/            compiled PDFs (tectonic; eleven core papers)
-registrations/  two dated registration documents (neutrino claims)
+papers/         the fourteen papers + six companion notes (markdown source of record)
+tex/            LaTeX (generated from markdown by code/md2tex.py)
+pdf/            compiled PDFs (tectonic)
+registrations/  two dated registration documents (neutrino claims) + the frozen registration manifest (2026-07-02, with content hashes)
 code/           receipt scripts + the md->tex build tool
 receipts/       canonical outputs of every receipt script
 ```
@@ -66,6 +96,28 @@ two documents cross-declare each other). Papers X and XI are the
 gravity pair: XI derives the gravitational equation of state and proves
 the scale no-go on Newton's `G`, and X is its observational counterpart
 (why gravitational decoherence cannot certify its own mechanism).
+
+## Standalone papers
+
+| Label | File | One line |
+|---|---|---|
+| XII | `paper-XII-walsh-delta` | The delta orientation is the unique entropy minimizer for self-calibrated ±1 Walsh tilts on the Boolean cube: existence/uniqueness of the calibrated law, the deep-dip trichotomy, the full theorem for every n (analytic for n ≥ 6, certified computation for n ≤ 5), and the sharp-constant conjecture 4·log 4 |
+| XIII | `paper-XIII-causal-tomography` | Causal tomography: a per-order quantitative characterization of 2D volume-faithfulness (canonical rank embedding, iff with loss 3ε + 1/n), a poly-time-verifiable manifoldlikeness certificate for d ≥ 3 from 2D shadows with its soundness budget scoped exactly (Logan), an order-intrinsic finder, and the celestial sphere of a causal set from inversion counts |
+
+Paper XIII is likewise self-contained (causal-set order theory +
+computation; no `[P]` tags, no SHARD constructions — the theorems are
+elementary given two named imports, and every quoted number ships with
+receipt code).
+
+Paper XII is **fully self-contained pure mathematics**: it carries no
+`[P]` tags, cites nothing in this repository, and depends on no SHARD
+construction — it can be read (and refereed) with no knowledge of the
+program.  Within the program it is nevertheless load-bearing: it
+proves, as a theorem, the finite global-optimality lemma that the
+receipt `p9a_chiral_gap_closed.py` (paper IX's chiral-gap law) had
+brute-forced at n ≤ 4 and left open for larger n; the "alternating-by-
+weight" orientation there is exactly paper XII's delta orientation at
+the all-minus state.  Receipts: `w1`–`w4` (see Code and receipts).
 
 ## Companion notes
 
@@ -135,6 +187,8 @@ Per-paper receipt map (script names in `code/`, outputs in
 | IX | `v6_p37_*`, `v6_p38_*`, `v6_p38b_parity_obstruction` | `v6_p37/38_campaign.out`, `v6_p38b_parity.out` |
 | X | `v6_pX_decoherence_undecidability_receipts` | `v6_pX_decoherence_undecidability_receipts.out` |
 | XI | `v6_pXI_sealed_record_gravity_nogo_receipts` | `v6_pXI_sealed_record_gravity_nogo_receipts.out` |
+| XII | `w1_cert_small_n` (exhaustive certified n ≤ 4; ~1 h), `w2_orbit_bfs.c` (orbit enumeration, compile with `cc -O2`; n = 5 takes ~40 min), `w3_cert_n5` (176-orbit certification), `w4_family_receipt` (in-regime inequality checks + the §9 table), `w5_burnside.c` (independent Burnside orbit count, compile with `cc -O2`) | `w1_cert_small_n.out`, `w2_orbit_bfs.out` + `w2_orbits_n5.txt`, `w3_cert_n5.out`, `w4_family_receipt.out`, `w5_burnside.out` |
+| XIII | `i1_canonical_realizer`, `i2_characterization`, `i3_internal_prime_census` (the 2D engine), `k1_shadow_engine`, `k2_shadow_search`, `k3_decoration_probe` (2+1 tomography), `l1_ghost_budget`, `l2_intrinsic_finder`, `l3_four_dimensional`, `m1_intrinsic_4d` (soundness, the finder, 3+1) | `i1–i3_*.out`, `k1–k3_*.out`, `l1–l3_*.out`, `m1_intrinsic_4d.out` |
 
 Companion notes (scripts in `code/`, outputs in `receipts/`):
 

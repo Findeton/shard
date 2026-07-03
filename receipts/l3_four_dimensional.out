@@ -1,0 +1,10 @@
+CHECK 1: the 4D shadow's target density is the disk-section law
+  [PASS] projected 4D density matches the disk-section law (1-|t|)^2 - s^2 (TV < 0.03 on the central grid)  (TV = 0.0129)
+CHECK 2: the weighted certifier, 4D shadows vs controls
+  [PASS] all 12 true 4D shadows pass at the max-calibrated floor (gate 1.35x, 10-replicate calibration; the pass margin vs floor noise is printed, not hidden); FAIRLY-SCORED garbage (quantile-mapped) fails above the true band — the honest gap, replacing the retracted 18x artifact  (max wD* = 0.0551 vs 1.35x floor 0.0595 (margin +0.10 floors); garbage 0.2291 = 4.2x true)
+CHECK 3: degree-<=1 spherical-harmonic reconstruction of (t, x, y, z)
+  [PASS] profiles are affine in n (residual < 0.05); the four coefficients reconstruct (t, x, y, z) at > 0.99 each; the rebuilt order agrees > 99% — the first ORACLE-FAMILY 4D reconstruction in this program (the intrinsic-finder 4D run is the named next step, NOT claimed here)  (resid = 0.0119; corr = 0.9999/0.9999/0.9998/0.9999; agreement = 0.9988)
+CHECK 4: the celestial S^2 from inversion distances
+  [PASS] MDS of the 24 extensions' inversion distances is a 2-SPHERE: shell (radius CV < 0.12), 3-dimensional spectrum (4th/3rd eigenvalue < 0.35), and the angular geometry matches the true celestial angles (corr > 0.95) — the celestial sphere recovered from order data, 3+1  (radius CV = 0.008; spectral drop = 0.019; angle corr = 0.9995)
+
+ALL CHECKS PASS (4/4)

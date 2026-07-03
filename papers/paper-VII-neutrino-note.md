@@ -2,6 +2,8 @@
 
 **Author:** Felix Robles Elvira (ORCID: 0009-0009-2017-4394; independent researcher)
 
+**DOI:** [10.5281/zenodo.20675294](https://doi.org/10.5281/zenodo.20675294) (Zenodo concept DOI — resolves to the latest version; this version 20675295, deposited 2026-06-13)
+
 **Status:** preprint, not peer reviewed, version 2026-06-11
 (supersedes the 2026-06-10 internal registration; the changes from
 that version — including a self-consistency correction that

@@ -1,0 +1,10 @@
+CHECK 1: the celestial circle from order data (given the extension family)
+  [PASS] MDS of pairwise Kendall distances between the 16 null-direction extensions is a CIRCLE (radius CV < 0.12) with the correct cyclic adjacency (each direction's nearest neighbour is an angular neighbour, >= 14/16) — the celestial S^1 recovered from inversion counts alone  (radius CV = 0.009; adjacency 16/16)
+CHECK 2: the grid-score floor and the true-shadow score
+  [PASS] true shadow pair scores at the same-law subsample floor (grid surrogate)  (true = 0.0296, floor = 0.0346)
+CHECK 3: the plateau — local corruption leaves score AND reconstruction intact
+  [PASS] the plateau, measured: 400 adjacent swaps leave the score at the floor (|delta| < half the floor — no local gradient, the certifier tolerates at least a Kendall-0.006 neighbourhood, the measured corruption radius) AND reconstruction from fully corrupted 16-direction families still recovers (t, x, y) at > 0.98 per axis — certificate-grade pairs are interchangeable for T1 (robustness, the actual content the draft's basin-return design mis-aimed at)  (score true 0.0296 vs corrupted 0.0290 (floor 0.0346); Kendall 0.0063; recon corr = 0.9995/0.9994/0.9993)
+CHECK 4: the cold start (the hardness face, measured)
+  [PASS] cold start, measured and PINNED: random extensions anneal from 0.207 to 0.207 — final at 6.0x the floor, the hardness face exhibited (a gap <= 1.5x would fail this gate and flag the claim stale — the alternative arm, search-is-easy, did not occur)  (budget 12k proposals at N = 256)
+
+ALL CHECKS PASS (4/4)

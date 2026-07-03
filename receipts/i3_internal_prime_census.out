@@ -1,0 +1,23 @@
+CHECK 1-4: the internal-prime census across populations
+      population             module census & transpose classification
+      sprinkling N=128 #0    modules   2 (sizes {2: 2}) | identity 1, relabel 1, invalid-flip 0, POINT-MOVING 0
+      sprinkling N=128 #1    modules   0 (sizes {}) | identity 0, relabel 0, invalid-flip 0, POINT-MOVING 0
+      sprinkling N=128 #2    modules   3 (sizes {2: 3}) | identity 2, relabel 1, invalid-flip 0, POINT-MOVING 0
+      sprinkling N=128 #3    modules   1 (sizes {2: 1}) | identity 0, relabel 1, invalid-flip 0, POINT-MOVING 0
+      sprinkling N=128 #4    modules   1 (sizes {2: 1}) | identity 1, relabel 0, invalid-flip 0, POINT-MOVING 0
+      sprinkling N=128 #5    modules   3 (sizes {2: 3}) | identity 2, relabel 1, invalid-flip 0, POINT-MOVING 0
+      sprinkling N=256 #0    modules   1 (sizes {2: 1}) | identity 0, relabel 1, invalid-flip 0, POINT-MOVING 0
+      sprinkling N=256 #1    modules   2 (sizes {2: 2}) | identity 1, relabel 1, invalid-flip 0, POINT-MOVING 0
+      sprinkling N=256 #2    modules   2 (sizes {2: 2}) | identity 0, relabel 2, invalid-flip 0, POINT-MOVING 0
+      sprinkling N=256 #3    modules   2 (sizes {2: 2}) | identity 1, relabel 1, invalid-flip 0, POINT-MOVING 0
+  [PASS] sprinklings: ZERO point-moving modules across all seeds and sizes (the internal-prime ABSENCE census, N = 128 x 6 + 256 x 4)  (point-moving total = 0)
+  [PASS] size->=3 module counts do not grow with N (mean per seed), consistent with the E ~ n^(2-m) collision estimate behind the absence bound [DERIVED estimate + this census]  (mean #size>=3: N=128: 0.00, N=256: 0.00)
+      lattice N=196          modules   0 (sizes {}) | identity 0, relabel 0, invalid-flip 0, POINT-MOVING 0
+  [PASS] jittered lattice: zero point-moving modules  (census: {'identity': 0, 'relabel': 0, 'moving': 0, 'invalid': 0})
+      cluster N=198 #0       modules 122 (sizes {5: 15, 6: 25, 3: 15, 2: 54, 10: 1, 4: 12}) | identity 29, relabel 45, invalid-flip 3, POINT-MOVING 45
+      cluster N=198 #1       modules 145 (sizes {2: 63, 5: 15, 6: 24, 3: 24, 4: 16, 8: 1, 12: 2}) | identity 46, relabel 44, invalid-flip 9, POINT-MOVING 46
+      cluster N=198 #2       modules 151 (sizes {2: 61, 6: 24, 3: 29, 4: 21, 5: 15, 8: 1}) | identity 32, relabel 54, invalid-flip 13, POINT-MOVING 52
+  [PASS] cluster: point-moving modules EXHIBITED (143 across 3 seeds — internal prime-type freedom is REAL on blow-up populations) and PRICED: worst |Delta D*| < 0.02, far below the 2.45x inflation signal (~0.05) and inside Thm 3.1's 3*eps + 1/n slack  (worst |dD*| = 0.00000 on module [31, 32, 33, 34, 35])
+  [PASS] root/parity sanity: D* exactly invariant under the u <-> v swap
+
+ALL CHECKS PASS (5/5)

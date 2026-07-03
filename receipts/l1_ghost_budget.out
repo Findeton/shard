@@ -1,0 +1,12 @@
+CHECK 1: certificate v2 (with condition (iii)) on faithful P
+  [PASS] faithful P carries the FULL v2 certificate — (i) shadows at floor, (ii) harmonic, (iii) order-realizing reconstruction — jointly, one order  (max wD* 0.0348 vs 1.3x floor 0.0454; resid 0.0104; agreement 0.9983)
+CHECK 2: the spectral ghost — really non-uniform, certificate-invisible
+  [PASS] the ghost's density is REALLY non-uniform: matched-filter amplitude recovers the modulation at > 5 sigma  (a_hat = 0.625 (injected 0.6 pre-chord-weighting), z = 15.3)
+  [PASS] the ghost PASSES the full v2 certificate at K = 8 AND its shadows pass at K = 16 — high-frequency modes are CDF-blind in every direction (<= a/q per anchored box), exactly as the scoping theorem says  (K=8: max wD* 0.0318 vs 0.0608, resid 0.0093, agree 0.9985; K=16 max 0.0318 vs 0.0516)
+  [PASS] the ghost's 3D box discrepancy is UNCHANGED vs clean (within 1.5x) — shadow-invisible modes cannot create large-scale volume defect (the closed loop: invisibility forces q >~ K, and q >~ K forces box effects <= a/q)  (clean 0.0270 vs ghost 0.0385)
+CHECK 3: the low-frequency control — slow modes CANNOT hide
+  [PASS] the SAME amplitude at low frequency (q = 6, off-grid) is CAUGHT by the K = 8 certificate (max shadow wD* > 2x floor) — the ghost budget is high-frequency-only; low-frequency non-uniformity cannot hide from even 8 directions  (max wD* = 0.0879 vs floor 0.0435)
+CHECK 4: the separator adversary — (iii) bears load
+  [PASS] the lifted family passes (i) and (ii) — it is real faithful data — but FAILS (iii) against the actual input order P (agreement far below 0.98): condition (iii) is what stops certificate theft between orders; it bears exactly the load the paper claims  ((i) max wD* 0.0396; (ii) resid 0.0117; (iii) agreement vs P = 0.794 => REJECTED)
+
+ALL CHECKS PASS (6/6)

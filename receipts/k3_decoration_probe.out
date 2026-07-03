@@ -1,0 +1,10 @@
+CHECK 1: chain extraction on faithful 3D input
+  [PASS] greedy longest-chain decomposition yields a usable worldline-surrogate fleet (M = 20 chains, lengths 8-15)  (covering 198/600 elements)
+CHECK 2: the coupling mechanism — w decreases with transverse distance
+  [PASS] cross-comparability fraction w(c, c') decreases with the held-out transverse distance (Spearman(w, -d) > 0.6) — the mechanism exists  (Spearman = 0.978 over 190 chain pairs)
+CHECK 3: transverse geometry recovered by MDS + Procrustes
+  [PASS] MDS of the ORDER-ONLY coupling dissimilarity recovers the transverse plane (Procrustes correlation > 0.8 against held-out chain positions) — the decoration principle survives its geometric sanity test  (Procrustes corr = 0.993 (M = 20 chains))
+CHECK 4: the shuffled-coupling control
+  [PASS] shuffling the coupling entries destroys the recovery (the geometry lives in w, not in the MDS pipeline)  (shuffled Procrustes corr = 0.193 vs real 0.993)
+
+ALL CHECKS PASS (4/4)

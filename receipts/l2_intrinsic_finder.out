@@ -1,0 +1,8 @@
+CHECK 1: the finder's COORDINATES (seed -> calibration -> bootstrap), held-out scoring
+  [PASS] order-only finder coordinates (POST-calibration+bootstrap — not the raw seed): t_hat corr > 0.95, transverse Procrustes > 0.8 (M = 12 chains; all elements assigned by coupling weights); the RAW seed's own numbers now receipted: t corr 0.979, naive score 0.081  (t corr = 0.984; transverse Procrustes = 0.940)
+CHECK 2: the finder's certificate scores vs floor and cold start
+  [PASS] the finder (no annealing, no local moves; calibration + 2 bootstrap iterations ARE the pipeline) lands at 1.5x floor — verdict INCONCLUSIVE (near-certificate), NOT certified (gate 1.3x; the 1.3-2x band is defined as inconclusive); condition (iii) measured on the finder output: order agreement 0.953; the naive seed's receipted failure: 2.5x (the scale-calibration lesson, measured)  (max wD* = 0.0481 vs floor 0.0328; cold-start reference 6x)
+CHECK 3: the same pipeline REFUSES the adversary gallery
+  [PASS] KR and the 3D cluster blow-up are REFUSED (best-effort finder output still scores > 2x floor — the pipeline does not certify non-faithful orders it is fed)  (KR: infx; cluster-3D: 2.2x)
+
+ALL CHECKS PASS (3/3)

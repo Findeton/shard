@@ -17,8 +17,11 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \usepackage{microtype}
 \usepackage{parskip}
 \usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{adjustbox}
 \usepackage[colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
 \providecommand{\tightlist}{}
+\setlength{\emergencystretch}{3.5em}
 """
 
 
@@ -38,6 +41,13 @@ def fmt_inline(text, stash):
     def stash_token(s):
         tokens.append(s)
         return f"\x00{len(tokens)-1}\x00"
+
+    # markdown links [text](url) -> \href{url}{text} (stash so esc() skips it)
+    def _mklink(m):
+        txt, url = m.group(1), m.group(2)
+        url = url.replace("%", r"\%").replace("#", r"\#")
+        return stash_token(r"\href{" + url + "}{" + esc(txt) + "}")
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", _mklink, text)
 
     # inline code first (may contain $ or *)
     text = re.sub(r"`([^`]+)`",
@@ -134,7 +144,7 @@ def convert(md):
             i += 1
             continue
 
-        # blockquote
+        # blockquote (display-math aware: $$ blocks inside quotes)
         if ln.startswith(">"):
             flush_para()
             close_lists()
@@ -143,8 +153,52 @@ def convert(md):
             while i < len(lines) and lines[i].startswith(">"):
                 buf.append(lines[i].lstrip("> ").rstrip())
                 i += 1
-            out.append(fmt_inline(" ".join(buf), None))
+            run = []
+            in_math = False
+            for q in buf:
+                if q.strip() == "$$":
+                    if not in_math:
+                        if run:
+                            out.append(fmt_inline(" ".join(run), None))
+                            run = []
+                        out.append(r"\[")
+                        in_math = True
+                    else:
+                        out.append(r"\]")
+                        in_math = False
+                elif in_math:
+                    out.append(q)
+                else:
+                    run.append(q)
+            if run:
+                out.append(fmt_inline(" ".join(run), None))
             out.append(r"\end{quote}")
+            continue
+
+        # pipe table (header | separator | rows)
+        if ln.lstrip().startswith("|") and i + 1 < len(lines) and \
+                re.match(r"^\s*\|[\s:|-]+\|?\s*$", lines[i + 1]):
+            flush_para()
+            close_lists()
+            rows = [ln]
+            i += 2  # skip separator
+            while i < len(lines) and lines[i].lstrip().startswith("|"):
+                rows.append(lines[i])
+                i += 1
+            parsed = [[c.strip() for c in r.strip().strip("|").split("|")]
+                      for r in rows]
+            ncol = max(len(r) for r in parsed)
+            out.append(r"\begin{center}")
+            out.append(r"\begin{adjustbox}{max width=\textwidth}")
+            out.append(r"\begin{tabular}{" + "l" * ncol + "}")
+            for j, r in enumerate(parsed):
+                cells = [fmt_inline(c, None) for c in r] + [""] * (ncol - len(r))
+                out.append(" & ".join(cells) + r" \\")
+                if j == 0:
+                    out.append(r"\hline")
+            out.append(r"\end{tabular}")
+            out.append(r"\end{adjustbox}")
+            out.append(r"\end{center}")
             continue
 
         # lists

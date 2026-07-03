@@ -5,13 +5,18 @@
 \usepackage{microtype}
 \usepackage{parskip}
 \usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{adjustbox}
 \usepackage[colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
 \providecommand{\tightlist}{}
+\setlength{\emergencystretch}{3.5em}
 \title{Reflection positivity and the obstruction to finite hidden-Markov realization}
 \author{Felix Robles Elvira (ORCID: 0009-0009-2017-4394; independent researcher)}
 \date{\small preprint, not peer reviewed, version 2026-06-11.}
 \begin{document}
 \maketitle
+
+\textbf{DOI:} \href{https://doi.org/10.5281/zenodo.20673476}{10.5281/zenodo.20673476} (Zenodo concept DOI — resolves to the latest version; this version 20673477, deposited 2026-06-13)
 
 \section*{Abstract}
 A stationary binary process is reflection-positive (RP) if the Gram matrices built from word probabilities by reflection through bonds ($G[u,v] = p(\bar u \circ v)$, $\bar u$ the reversal) \emph{and} through sites ($p(\bar u\,x\,v)$) are positive semidefinite — the discrete Osterwalder–Schrader structure, with the two reflections playing genuinely different roles.  We prove that RP processes are exactly those with a representation $p(x_1\cdots x_n) = \langle\omega, A_{x_1}\cdots A_{x_n}\omega\rangle$ with self-adjoint PSD letters summing to a contraction fixing $\omega$ — the POVM-type "quantum" realizations (site reflection is precisely what makes the letters positive) — and that within this class \emph{reflection positivity is exhausted}: every reflected Gram is automatically PSD, so the entire content of the open realization problem resides in word positivity of the non-commutative form.  Our main structural results confine the known obstruction to classical (entrywise-nonnegative, hidden-Markov) realizability: (i) for every block $W$ whose cyclic word is achiral, the diagonal $p(W^n)$ is a Stieltjes moment sequence at palindromic phase \emph{where such a phase exists} (odd length always; even length iff an edge–edge axis) and has real nonnegative poles at every phase, hence is positively realizable by the dominant-pole criterion; consequently any irrational-rotation ("clock") obstruction must live on \emph{chiral} blocks of length $\ge 6$; (ii) for the minimal dangerous configuration — a coupled spectral triple $\{\rho, \rho e^{\pm i\theta}\}$ on a chiral block — all constraints from the block–reversed-block word algebra reduce, exactly and $\theta$-freely, to torus-positivity conditions on a six-parameter reduced datum, and the \emph{normal point} of that datum satisfies every such condition at every coupling ratio $r < 1$ (the supremum $r = 1$ is approached but not attained), so no exclusion argument can be carried by the block algebra alone; (iii) we reduce the remaining conjecture, \emph{for rank-three blocks} (the higher-rank case needs a named strengthening stated in Section 6), to two sharp finite-dimensional statements — "normal words in two PSD letters have real spectrum" and "all-depth torus feasibility is isolated at the normal point" — and supply quantitative evidence including a two-walls separation: letter-realizable near-triples live at Gram distance $\ge 0.50$ from normality while deep-torus-feasible data live at $\le 0.15$.  An explicit three-dimensional reversible process whose diagonal oscillates on its decay circle (a "clock") shows the finite-rank realization question has genuine content; the clock provably fails reflection positivity.

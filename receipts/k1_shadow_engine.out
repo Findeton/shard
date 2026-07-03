@@ -1,0 +1,15 @@
+CHECK 1: every shadow coarsens the 3D order (Thm 2.1, exact)
+  [PASS] all 3D relations survive in every tested shadow (5 directions, N = 400) — shadows are order-coarsenings, exactly
+  [PASS] finite-grid intersection converges to P from above: extra relations shrink with K and are < 1% of true relations at K = 64 (the continuum identity's finite face, measured — not assumed)  (extra relations at K = 16/32/64: 32/11/1 of 17291)
+CHECK 2: the shadow's target density is the chord law
+  [PASS] projected density matches the chord law sqrt((1-|t|)^2 - s^2) (TV over a 6x6 central grid < 0.03; bin-center approximation disclosed)  (TV = 0.0227)
+CHECK 3: the weighted certifier — true shadows pass, controls fail
+  [PASS] the certifier, floor-calibrated: true shadows sit at the target-copula two-sample floor (within 1.5x of same-law subsample controls); random-extension garbage fails at > 4x; and the chord copula's asymptotic uniform-defect is real (rank-D* of a 20k target sample > 0.02 — though at N = 400 the uniform test barely discriminates, measured 0.047 vs the ~0.03 faithful band: the weighting's load-bearing role is defect ATTRIBUTION and the large-N limit, DISCLOSED, not a dramatic finite-N kill)  (wD*(true) = 0.0744 vs floor 0.0530; garbage 0.4976; copula uniform-defect(20k) = 0.0399; unweighted-on-true(400) = 0.0469)
+CHECK 4: the harmonic condition and intrinsic-gauge reconstruction
+  [PASS] quantile-recovered profiles are degree-<=1 Fourier concentrated (RMS residual < 0.05) and the Fourier coefficients reconstruct (t, x, y) at correlation > 0.99 each — the T1 constructive core, intrinsic gauge  (residual = 0.0197; corr = 0.9994/0.9994/0.9994)
+CHECK 5: the reconstructed point set is 3D count-volume faithful
+  [PASS] reconstruction fidelity: the reconstructed order agrees with the original on > 99.5% of pairs, and box counts around random centers match the original's to < 3 elements on average (closed-form-free faithfulness transfer)  (order agreement = 0.9967; mean |box-count diff| = 2.10)
+CHECK 6: the pilot certificate, defined and jointly verified on P
+  [PASS] P carries the FULL pilot certificate: (i) the MAX wD* over all 8 antipodal shadows < 1.3x the max-calibrated same-law floor (the floor is the same max-over-K functional on target subsamples — apples-to-apples), and (ii) the harmonic residual < 0.05 — both conditions on the SAME order (T2's witness, jointly verified; thresholds pinned)  (max wD* = 0.0923 vs 1.3x max-floor = 0.0969; residual = 0.0197)
+
+ALL CHECKS PASS (7/7)

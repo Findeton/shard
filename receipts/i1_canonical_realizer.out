@@ -1,0 +1,15 @@
+CHECK 1: the intrinsic realizer reproduces the held-out coordinate ranks
+  [PASS] order-only realizer ranks match held-out coordinate ranks up to parity (mean per-element agreement > 0.9; exact on >= half the seeds — module-local defects account for the rest)  (mean agreement 0.992; exact seeds 6/8)
+CHECK 2: the rank embedding — exact realization, exactly uniform marginals
+  [PASS] rank embedding realizes C EXACTLY (dominance of rank points = the order) and has exactly uniform marginals (ranks are permutations)
+CHECK 3: nontrivial modules stay O(1) as N grows (Winkler-consistent)
+      N = 64    mean #2-modules = 2.50
+      N = 128   mean #2-modules = 2.33
+      N = 256   mean #2-modules = 2.50
+  [PASS] mean 2-module count bounded (< 6) and non-growing across N = 64 -> 256 (the O(1) local-defect picture; Winkler's non-uniqueness fraction strictly inside (0,1) [IMPORT] is the same phenomenon)  (2.50, 2.33, 2.50)
+CHECK 4: orientation counts — 2 when module-free (small-n enumeration)
+  [PASS] every 2-module-free order has EXACTLY 2 transitive orientations (Gallai direction; only 2/40 samples qualify at n = 10 — small orders are module-rich; NOTE: 2-module-freeness is a PROXY for primality, not a primality test, and the converse — modules force > 2 — is NOT asserted: comparable-pair modules add no freedom); measured non-2-module-free fraction 38/40 (Winkler's (0,1) fraction)  (module-free counts all = 2: True)
+CHECK 5: module robustness — reorienting a 2-module moves each rank by <= 1
+  [PASS] a 2-module's reorientation yields ANOTHER exact realizer whose ranks differ only inside the module (by 1) — the box-count/discrepancy effect is exactly ZERO for such swaps [the relabeling lemma's exhibit]  (designed twins form 3 module(s))
+
+ALL CHECKS PASS (5/5)

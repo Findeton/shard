@@ -1,0 +1,29 @@
+CHECK 1: backward direction — the rank embedding realizes P, defect = D*
+  [PASS] rank embedding realizes the order EXACTLY on all three populations (sprinkling / jittered lattice / cluster) — the (<=) direction's realization half is definitional and holds
+CHECK 2: the order forgets a conformal distortion; ranks recover the gauge
+  [PASS] monotone maps (u^2, sqrt v) leave the ORDER bit-identical while blowing up the point-set discrepancy; the canonical rank embedding recovers the faithful scale  (D*: points 0.0532 -> distorted 0.3013 -> rank-recovered 0.0356)
+CHECK 3: canonical D* declines at the iid N^{-1/2} scale
+      N      D*(rank emb)   D*(iid ref)
+      64     0.0681         0.1545
+      128    0.0536         0.1014
+      256    0.0390         0.0745
+      512    0.0270         0.0564
+      1024   0.0215         0.0344
+  [PASS] fitted decline exponent in (-0.65, -0.35) (~N^{-1/2}); rank-embedding D* within 1.6x of the iid reference at every N (large-N ranks via the coordinate realizer — the i1-verified canonicity bridge, disclosed)  (slope = -0.432)
+CHECK 4: the jittered lattice — volume-faithful YES, Poisson-typical NO
+  [PASS] lattice passes the VOLUME layer at the SAME N: D*(rank) at-or-below the N = 400 faithful scale (a uniform-density embedding exists — the theorem must and does accept it; low-discrepancy sets beat iid here)  (D*_lattice(400) = 0.0140 vs faithful(400) = 0.0301)
+  [PASS] the link-fraction candidate does NOT separate lattice from sprinkling (z < 3) — the rejected statistic, now measured on the record  (z = 0.9)
+  [PASS] lattice FAILS the statistical layer: the interval-count dispersion index (ensemble-calibrated — NOT an absolute Fano scale, the ensemble itself sits at ~0.39) is z > 4 BELOW the sprinkling ensemble and below its min, in the predicted deterministic direction — volume-faithfulness (characterized) is not Poisson typicality  (lattice 0.063 vs sprinkling 0.397 +/- 0.064 (z = 5.2))
+CHECK 5: the cluster blow-up — quantitative D* inflation
+  [PASS] cluster D*(rank) inflated vs faithful at the same N, WITHIN the sqrt(c) band (1.6, 3.5) around sqrt(6) = 2.45 — a finite-N inflation DIAGNOSTIC against the equal-N faithful band, NOT an asymptotic exclusion (bounded-c blow-ups have D* -> 0 and are asymptotically volume-faithful — the outright exclusion is the statistical layer's, below)  (mean inflation 2.45x (sqrt(6) = 2.45); D*_cluster(396) = 0.0760 measured directly)
+  [PASS] cluster FAILS the statistical layer, measured: interval-count dispersion super-Poisson (clumping), z > 5 ABOVE the sprinkling ensemble — the blow-up's outright exclusion lives here  (cluster 2.219 vs sprinkling 0.397 +/- 0.064 (z = 28.4))
+CHECK 6: the end-to-end pipeline
+  [PASS] KR fails dim <= 2 at the oracle (n = 48) — rejected at pipeline step 1
+      population        dim<=2   D*(rank)   volume layer        statistical layer
+      sprinkling        yes      0.0301     YES                 consistent
+      jittered lattice  yes      0.0140     YES                 FAILS (z = 5.2, sub)
+      cluster           yes      0.0760     inflated 2.5x        FAILS (z = 28.4, super)
+      KR                NO       —          rejected            —
+  [PASS] MODULE CENSUS + AMBIGUITY, exact (the M1 repair): cluster carries Theta(N) 2-modules (105 pairs: 47 series/no-freedom + 58 parallel) — the naive Sum|modules|/n pricing IS vacuous there; the correct accounting: parallel swaps exchange FULL (r1, r2) tuples = a relabeling — point set identical, D* EXACTLY equal (verified bit-level), the alternative realizer realizes P exactly — the canonical D* is well-defined with ZERO ambiguity from the entire twin structure  (D* 0.0482 = 0.0482; same point set: True)
+
+ALL CHECKS PASS (10/10)

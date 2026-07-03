@@ -1,0 +1,8 @@
+PART A: the 2+1 finder-gap test at N = 1000, K = 12, 3 bootstrap iters
+  [PASS] 2+1 at N = 1000/K = 12/3 iters: gap = 1.21x (was 1.5x at N = 400), condition (iii) = 0.9648 (was 0.953; gate 0.98) — verdict INCONCLUSIVE; the finite-size hypothesis for the residual is answered by these numbers, whichever way they fall  (max wD* = 0.0228 vs floor 0.0188; M = 32 chains)
+PART B: the INTRINSIC 4D finder (the last oracle step)
+      chain fleet: M = 26
+  [PASS] 4D order-only seed quality: t_hat corr 0.961 (> 0.9); 3-component transverse Procrustes 0.888 (> 0.5 — the 4D chains are shorter and the transverse space bigger; the bar is deliberately lower and disclosed)  (M = 26 chains)
+  [PASS] the INTRINSIC 4D finder: gap = 1.50x floor, condition (iii) = 0.9700 — verdict INCONCLUSIVE (band: <1.3 certified / 1.3-2 inconclusive / >2 refused; all arms were admissible); held-out reconstruction: t corr 0.974, spatial Procrustes 0.916 (the frame is recovered up to global rotation — per-axis correlations are undefined under the certificate's own symmetry, a first-draft slip corrected here)  (max wD* = 0.0372 vs floor 0.0247)
+
+ALL CHECKS PASS (3/3)

@@ -1,0 +1,184 @@
+\documentclass[11pt]{article}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\providecommand{\tightlist}{}
+\setlength{\emergencystretch}{3.5em}
+\title{Gravitational decoherence does not certify its mechanism: the Gaussian onset, CP-divisibility, and an operational undecidability theorem}
+\author{Felix Robles Elvira (ORCID: 0009-0009-2017-4394; independent researcher)}
+\date{\small preprint, not peer reviewed, version 2026-06-14. Every load-bearing line is tagged by epistemic status: \textbf{[THEOREM]} = proved here (symbolic or high-precision numeric); \textbf{[RESULT]} = an established external or corpus result used as input; \textbf{[OPEN]} = an unsolved obligation. All numeric claims were verified at mpmath \texttt{dps ≥ 80} (commonly 100) and symbolically (sympy) where exact; the receipt script is \texttt{code/v6\_pX\_decoherence\_undecidability\_receipts.py}.}
+\begin{document}
+\maketitle
+
+\section*{Abstract}
+A gravitationally induced loss of matter coherence is the most-discussed empirical window on the quantum–gravity interface, and a recurring claim is that its \emph{shape} — most often a short-time \textbf{Gaussian onset} \texttt{|ρ₀₁(T)| = e\textasciicircum{}{−½(T/τ\_G)²}}, as in finite-memory variants of the Diósi–Penrose proposal — diagnoses the underlying mechanism (non-Markovianity, state-dependence, or a genuinely quantum-gravitational record process). We prove the opposite, in a sharp and useful form: \textbf{the gravitational dephasing curve is mechanism-blind, and the structural distinction that would mark a quantum-gravitational record process is not a function of the reduced channel.} Three results, each computed at high precision. (i) The Gaussian onset is \emph{not a signature}: a state-independent, irreversible record commitment ("seal") firing at a ramping hazard \texttt{λ(t) = a t} reproduces it exactly (\texttt{|ρ₀₁(T)| = e\textasciicircum{}{−aT²/2}}, residual \texttt{0}), and a constant hazard gives the pure exponential semigroup — the most Markovian channel there is. (ii) Any state-independent irreversible seal is \textbf{CP-divisible}: \texttt{|ρ₀₁(T)| = e\textasciicircum{}{−∫₀ᵀλ}} is monotone, so it can \emph{never} produce revivals; revivals occur exactly for Gaussian kernels whose running integral goes negative — the underdamped (still spectrally positive) kernel is the canonical case, with the boundary at \texttt{ω₀τ = 3.644173671645632…} — a non-Markovianity \textbf{orthogonal} to the structural axis. (iii) \textbf{Operational undecidability from the dephasing curve:} a continuous (Ornstein–Uhlenbeck) classical-noise ontology and a matched sparse-seal record ontology produce \textbf{bit-identical free-induction coherence} \texttt{|ρ₀₁(T)|} for all \texttt{T} (the identity \texttt{∫λ\_OU = χ} is sympy-exact; an independent numerical integration gives the machine-zero residual \texttt{max|C\_OU − C\_seal| = 7.1×10⁻¹⁰²}), so free-induction decay cannot separate them. Multi-time dynamical decoupling (echo/CPMG) \emph{can} probe reversibility — it distinguishes a refocusable noise from an irreversible commitment — but the genuine quantum-gravitational content, whether the matter's \emph{closed-system} record process is \emph{indivisible} in Barandes' sense / \emph{unrefinable} in the sealed-record sense, is \textbf{structural} (the off-diagonal support of the decoherence functional between sparse commitments) and is \emph{invisible to passive reduced-channel measurement}, at every order, because a bath dilation is always divisible and a closed unitary system is indivisible yet a trivial channel (an invasive protocol that reconstructs \texttt{Γ(t)} would insert a seal at each conditioning step, and so cannot certify the unintervened process — §6, O7). We make the structural axis precise, exhibit the consistent-histories functor that turns "unrefinable ⟺ indivisible" into a theorem at the kinematic level, and isolate the one open obligation (whether the gravitational record process is sparsely or continuously sealing). The widely used finite-memory Diósi–Penrose-family kernel is, on this analysis, \emph{one illustrative CP-divisible member of the undecidable class rather than a discriminating prediction.} The practical upshot is a sharpened no-go: a free-induction onset-shape measurement, however precise, does not distinguish gravitational quantum decoherence from classical gravitational noise — the reversibility of the mechanism is probed only by multi-time decoupling, and the structural indivisibility that would mark a genuinely quantum-gravitational record process is reachable by no reduced-channel measurement at all.
+
+---
+
+\section*{1. The question, and why the obvious answer is wrong}
+Suppose two branches of a massive body's wavefunction carry distinct mass-density configurations, so that a relative gravitational self-energy \texttt{ΔE\_G} accumulates a relative phase. A gravitationally induced decoherence model posits that this phase is degraded — the off-diagonal \texttt{ρ₀₁(T)} of the which-path density matrix decays — and proposes a decay law. The Diósi–Penrose (DP) proposal gives a short-time \textbf{exponential} \texttt{e\textasciicircum{}{−T/τ\_G}} with \texttt{τ\_G = ℏ/E\_G}; finite-memory variants instead give a \textbf{Gaussian onset} \texttt{e\textasciicircum{}{−½(T/τ\_G)²}} crossing over to the DP slope at late times. A large experimental program — interferometric and (dominantly) non-interferometric — aims to measure this decay and thereby test "gravitational" collapse against quantum mechanics.
+
+The temptation, repeatedly voiced, is to read the \emph{shape} of the decay as a fingerprint of the mechanism: a Gaussian (rather than exponential) onset is taken as evidence of finite memory / non-Markovianity, and non-Markovianity in turn as a hint of a genuinely quantum-gravitational, non-classical record process. \textbf{Each link in that chain fails.} This paper proves three obstructions that, together, say the reduced channel is mechanism-blind, and then locates precisely where the genuine content does live.
+
+The setup is the standard one. For a stationary Gaussian pure-dephasing channel,
+
+\texttt{C(T) ≡ |ρ₀₁(T)|/|ρ₀₁(0)| = e\textasciicircum{}{−χ(T)}},  \texttt{χ(T) = (1/ℏ²)∫₀ᵀ (T−s) K(s) ds},
+
+with \texttt{K(s) = ⟨δE\_G(0) δE\_G(s)⟩} the noise autocorrelation, and the instantaneous dephasing rate is \texttt{γ(T) = 2χ′(T) = (2/ℏ²)∫₀ᵀ K(s) ds}. The DP-family kernel is the Ornstein–Uhlenbeck (exponential) form \texttt{K(s) = σ² e\textasciicircum{}{−|s|/τ\_c}}; we return to it in §5. The point of departure is that the \emph{closed-system} record process underlying such a channel — the sealed-record ontology in which a "division event" commits a which-path record and the gravitational holonomy between events is a coherent, uncommitted phase — is a \emph{different} object from the noise \texttt{δE\_G(t)}, and the two can be told apart, if at all, only structurally.
+
+---
+
+\section*{2. Three inequivalent senses of "Markovian", and where the fingerprint lives}
+The word "Markovian" collides three inequivalent notions, and a given model's status flips between them. Naming them is what dissolves the false chain of §1.
+
+\begin{enumerate}
+\item \textbf{Constant-rate semigroup} (time-homogeneous Lindblad). A finite-memory channel is \emph{not} this: its rate \texttt{γ(T)} is time-dependent — that time-dependence \emph{is} the Gaussian onset. This is the only sense in which "the Gaussian-onset channel is non-Markovian" is unambiguously true, and it is the weakest sense.
+\item \textbf{CP-divisibility} (the RHP/BLP sense: a time-dependent but pointwise-positive rate, no information backflow). A channel is CP-divisible \textbf{iff \texttt{∫₀ᵀ K(s) ds ≥ 0} for all \texttt{T}} — equivalently \texttt{γ(T) ≥ 0}, \texttt{|C(T)|} monotone non-increasing. This is \emph{strictly stronger} than the kernel being positive-type (spectral density \texttt{S(ω) ≥ 0}): positivity of \texttt{S} is a statement about the \emph{full-line} Fourier transform of \texttt{K}, while CP-divisibility is governed by the sign of the \emph{finite running integral} \texttt{∫₀ᵀ K}.
+\item \textbf{Markov embeddability} (dilation to a memoryless process on a larger space). By Mori–Zwanzig essentially every physical channel has one; the OU kernel is a 1-D Ornstein–Uhlenbeck embedding, the underdamped kernel of §3 a 2-D one.
+\end{enumerate}
+These three axes are \textbf{orthogonal}, and all corners are populated:
+
+\begin{itemize}
+\item A closed unitary qubit is \textbf{indivisible} in Barandes' structural sense (§4) yet, as a channel, \emph{trivial} (no decoherence at all) — structural indivisibility with no operational signature.
+\item An underdamped Gaussian noise is \textbf{non-CP-divisible} (it revives, §3.4) yet \textbf{Markov-embeddable} and \emph{not} structurally indivisible — an operational signature with no structural content.
+\end{itemize}
+So \textbf{CP-divisibility and structural indivisibility are independent axes; non-CP-divisibility is neither necessary nor sufficient for the structural barrier.} The whole of §3 is the consequence of taking this seriously: the things one can measure on \texttt{|ρ₀₁|} (rate time-dependence, revivals) live on axes 1–2, while the quantum-gravitational question of interest lives on a fourth, structural, axis that §4 makes precise.
+
+---
+
+\section*{3. The reduced channel is mechanism-blind: three theorems}
+We take the closed-system object seriously: a which-path qubit whose branches carry distinct gravitational records, with a deterministic holonomy \texttt{Φ(t) = (1/ℏ)∫₀ᵗ ΔE\_G dt′} between \textbf{division events} (seals), and a \textbf{state-independent} irreversible seal firing at hazard \texttt{λ(t) ≥ 0}. A seal commits the which-path record; irreversibility means the branch–record overlap \texttt{⟨E₀(t)|E₁(t)⟩} is a non-increasing contraction. Then
+
+\texttt{ρ₀₁(T) = e\textasciicircum{}{iΦ(T)} ⟨E₀(T)|E₁(T)⟩ ρ₀₁(0)},  \texttt{|ρ₀₁(T)| = e\textasciicircum{}{−∫₀ᵀ λ(t) dt}}.
+
+\subsection*{3.1 The Gaussian onset is not a signature [THEOREM]}
+A \textbf{ramping} hazard \texttt{λ(t) = a t} gives \texttt{∫₀ᵀ λ = aT²/2}, hence
+
+\texttt{|ρ₀₁(T)| = e\textasciicircum{}{−aT²/2}},
+
+which is \emph{exactly} the Gaussian onset with \texttt{a = 1/τ\_G²} (symbolic identity; numeric residual \texttt{0.0} at every \texttt{T} on the grid \texttt{{0.1,…,7}}, \texttt{dps = 100}; e.g. \texttt{e\textasciicircum{}{−a·3.5²/2} = 2.1874911181828851…×10⁻³}, residual \texttt{0}). The initial slope \texttt{d/dT ln|ρ₀₁|} vanishes at \texttt{T = 0} — the quadratic (Zeno-like) onset — with no fine-tuning. A \emph{constant} hazard \texttt{λ ≡ λ₀} instead gives the pure exponential semigroup \texttt{e\textasciicircum{}{−λ₀T}}, the most Markovian channel of all. \textbf{The onset shape is set by the time-profile of a state-independent commitment rate, and carries no information about whether the underlying process is classical noise or a quantum record process.} The Gaussian is the ramp; the exponential is the constant; neither is a fingerprint of anything but \texttt{λ(t)}.
+
+\subsection*{3.2 State-independent irreversible sealing is CP-divisible — it cannot revive [THEOREM]}
+Because \texttt{λ(t) ≥ 0}, the coherence \texttt{|ρ₀₁(T)| = e\textasciicircum{}{−∫₀ᵀ λ}} is \textbf{monotone non-increasing}: the channel is CP-divisible, with no information backflow and no revivals, for \emph{every} state-independent irreversible seal. For the DP-family OU kernel this is explicit: \texttt{∫₀ᵀ K = σ²τ\_c(1 − e\textasciicircum{}{−T/τ\_c}) ≥ 0}, so \texttt{γ(T) = (2σ²τ\_c/ℏ²)(1 − e\textasciicircum{}{−T/τ\_c}) ≥ 0} (the rate minimum over a wide grid is \texttt{0.0}, attained at \texttt{T = 0}). A non-monotone \texttt{|ρ₀₁|} would require \texttt{⟨E₀|E₁⟩} to \emph{grow} — the record returning which-path information, i.e. reversible echo / an information-preserving bath (by definition \emph{not} a committed record), or a seal reading the coherence to engineer refocusing (the forbidden nonlinear state-dependence; §6, O2). Hence the dichotomy, with no middle ground:
+
+\textbf{state-independent + irreversible ⟹ monotone, CP-divisible, no revival;  revivals ⟹ no committed record, or state-dependence.}
+
+\subsection*{3.3 Operational undecidability: continuous noise and sparse sealing give identical free-induction decay to all orders (in T) [THEOREM]}
+The decisive obstruction. Take the DP-family OU dephasing curve \texttt{C\_OU(T) = e\textasciicircum{}{−χ(T)}}. Its CP-divisibility (§3.2) means its equivalent instantaneous hazard \texttt{λ\_OU(t) = χ′(t) = (σ²τ\_c/ℏ²)(1 − e\textasciicircum{}{−t/τ\_c})} is globally \texttt{≥ 0} — hence \texttt{λ\_OU} is \emph{itself} a legitimate state-independent irreversible-seal hazard. A sparse-seal record process with that hazard therefore reproduces the continuous-noise coherence \textbf{to all orders}:
+
+\texttt{∫₀ᵀ λ\_OU(t) dt = χ(T)} identically (sympy-exact), so \texttt{C\_seal(T) = e\textasciicircum{}{−∫λ\_OU} = e\textasciicircum{}{−χ(T)} = C\_OU(T)} for all \texttt{T}.
+
+Numerically, integrating \texttt{λ\_OU} independently and comparing, \texttt{max|C\_OU(T) − C\_seal(T)| = 7.1×10⁻¹⁰²} across \texttt{T ∈ {0.1,…,10}} at \texttt{dps = 100} (machine zero). The "order of first disagreement" between a \emph{truncated} seal model and OU (\texttt{O(T³)} for a ramp, \texttt{O(Tⁿ)} for an \texttt{n}-term hazard) is a free truncation knob, not physics; at full resolution the two coincide exactly. So \textbf{free-induction decay does not separate the continuous-noise ontology (gravity as a classical stochastic field) from the matched sparse-seal ontology (gravity as a discrete record process)} — the single-time curve, and the Gaussian-equivalent two-time function it implies, are shared (the genuine multi-time statistics differ, as the next paragraph notes).
+
+This is a statement about \emph{free induction}, and that is where to be careful. A multi-time \textbf{dynamical-decoupling} sequence (spin echo, CPMG) is \emph{not} a function of \texttt{|ρ₀₁(T)|} alone: it refocuses reversible phase accumulation, so it \emph{can} separate a refocusable noise (whose coherence echo restores) from an irreversible commitment (whose committed records echo cannot undo), and it is sensitive to the non-Gaussian higher cumulants by which the two models differ. So \emph{reversibility is an accessible discriminant.} What is \emph{not} accessible at any order is the \textbf{structural} axis of §4 — whether the matter's \emph{closed-system} record process is indivisible: a bath dilation is always divisible (§4.1) and a closed unitary system is indivisible yet a trivial channel (§2), so no \emph{passive} reduced-channel measurement, free-induction or multi-time, is a function of it; an \emph{invasive} protocol that reconstructs \texttt{Γ(t)} requires intermediate conditioning measurements, but each such measurement inserts a seal, so it cannot certify the \emph{unintervened} process's indivisibility (the do-delete obstruction; §6, O7). The dephasing curve hides the mechanism; the whole channel hides the structure.
+
+\subsection*{3.4 What a revival would, and would not, buy you [THEOREM]}
+Revivals (operational non-Markovianity, axis 2) are reachable — but only off the committed-seal class, and they still do not reach the structural axis. The equally positive-type \textbf{underdamped} kernel \texttt{K(s) = σ² e\textasciicircum{}{−|s|/τ} cos(ω₀ s)} (a Lorentzian-pair spectrum, \texttt{S(ω) ≥ 0}) has running integral
+
+\texttt{∫₀ᵀ K = σ²τ · [1 + e\textasciicircum{}{−T/τ}(ω₀τ sin ω₀T − cos ω₀T)] / (1 + (ω₀τ)²)},
+
+whose minimum over \texttt{T} first dips below zero at
+
+\texttt{(ω₀τ)\_* = 3.644173671645632136171…}
+
+(the value where the running integral becomes tangent to zero; \texttt{dps = 80}), and is negative for \texttt{ω₀τ > (ω₀τ)\_*} — verified revivals at \texttt{ω₀τ = 5} (\texttt{γ\_min = −0.0729} at \texttt{T\_* = 0.9425}) and \texttt{ω₀τ = 10} (\texttt{γ\_min = −0.1038} at \texttt{T\_* = 0.4712}). So revivals are a property of the \emph{kernel's oscillation}, available within Gaussian noise, and they certify only non-CP-divisibility. A sharper, genuinely discrete fingerprint is the bimodal limit \texttt{δE\_G = ±σ\_E}, giving \texttt{C(T) = cos(σ\_E T/ℏ)} (symbolic; \texttt{max} residual \texttt{5.5×10⁻¹⁰²}) — a hard which-path oscillation with \texttt{C(π) = −1}, distinct from the smooth Gaussian echo. This is the most diagnostic \emph{observable} of discreteness, but it is a \textbf{diagnostic, not a definition}: it is neither necessary nor sufficient for the structural barrier (§2), and §3.2 shows a committed seal cannot produce it at all.
+
+---
+
+\section*{4. Where the content actually lives: the structural (indivisibility) axis}
+The quantum-gravitational question that the reduced channel cannot answer is whether the matter's gravitational record process is \textbf{indivisible}.
+
+\subsection*{4.1 The barrier in two languages [RESULT: Barandes; sealed-record program]}
+Barandes specifies a process by its one-time-conditioned transition matrices \texttt{Γ(t)\_{ji} = P(j\textbackslash{} \textbackslash{}text{at}\textbackslash{} t \textbackslash{}mid i\textbackslash{} \textbackslash{}text{at}\textbackslash{} 0)}. The process is \textbf{divisible} (his Markovian) iff \texttt{Γ(t₂,t₀) = Γ(t₂,t₁)Γ(t₁,t₀)} for \emph{every} intermediate \texttt{t₁}, and \textbf{indivisible} iff composition fails except at sparse \textbf{division events}. The stochastic–quantum correspondence makes the obstruction explicit, \texttt{Γ(t)\_{ji} = |U(t)\_{ji}|²}:
+
+\texttt{[Γ(t₂)Γ(t₁)]\_{ji} = Σ\_k |U(t₂)\_{jk}|² |U(t₁)\_{ki}|²}  (sum of path probabilities),
+
+\texttt{Γ(t₂t₁)\_{ji} = |Σ\_k U(t₂)\_{jk} U(t₁)\_{ki}|²}  (probability of the path sum),
+
+and the gap between them is the \textbf{interference cross-term}. Divisibility holds exactly where that cross-term vanishes — a division event. In the sealed-record language the same line is the \textbf{unrefinability of the seal order}: between commitments the system carries a reversible holonomy (a closed phase, no committed value); one cannot insert an intermediate conditioning record without \emph{sealing} it, and sealing destroys the holonomy and changes the process. \emph{Refine ≡ insert an intermediate conditioning record ≡ compose the transition matrices ≡ Chapman–Kolmogorov}, so the two barriers are the same barrier. Two features matter here: (i) indivisibility is a property of the \emph{closed system's own} transition law — a bath dilation always gives a \emph{divisible} embedding, which is exactly why a noise model is structurally silent; (ii) it is a strictly \emph{different} axis from open-system CP-divisibility (the closed unitary qubit is indivisible yet a trivial channel).
+
+\subsection*{4.2 The functor: "unrefinable ⟺ indivisible" is a theorem at the kinematic level [THEOREM, kinematic; gravitational realization OPEN]}
+The bridge is the Gell-Mann–Hartle decoherence functional. A sealed-record history is a finite poset of seals \texttt{{e\_k}} with a unitary holonomy \texttt{U\_k} on each inter-seal interval and a pointer-basis commitment \texttt{{P\_a}} at each seal. Define
+
+\texttt{D(α, α′) = Tr[ P\_{a\_n}\textasciicircum{}{(n)} ⋯ P\_{a\_1}\textasciicircum{}{(1)} ρ P\_{a′\_1}\textasciicircum{}{(1)} ⋯ P\_{a′\_n}\textasciicircum{}{(n)} ]}
+
+on coarse-grained pointer histories, with the projectors evolved by the inter-seal holonomies, and read the one-time matrix from its diagonal, \texttt{Γ(t)\_{ji} = D(j;i)}. Then the Tier-1 biconditional \emph{is} the consistent-histories consistency condition:
+
+\emph{Chapman–Kolmogorov holds across \texttt{t′} ⟺ the off-diagonal (interference) part of \texttt{D} vanishes at \texttt{t′} (medium decoherence) ⟺ \texttt{t′} is a seal.}
+
+Forward: a projective commitment diagonalizes \texttt{D} at \texttt{t′}, which is exactly the probability sum rule (Chapman–Kolmogorov) for the pointer histories. Reverse: if \texttt{Γ} composes across \texttt{t′} for \emph{all} boundary conditions, the interference terms must vanish at \texttt{t′}, i.e. the record is committed. So \textbf{unrefinable ≡ indivisible is a theorem of consistency} — \emph{for a chosen projective seal-history model.} What is \textbf{not} thereby settled, and is the one open obligation, is whether the \emph{gravitational} record process supplies these very seals; that is §4.3, not something the functor decides.
+
+\subsection*{4.3 The one open question, sharply posed [OPEN]}
+\textbf{Is gravitational record commitment sparse or continuous?}
+
+If the gravitational records decohere the which-path \emph{continuously} (medium decoherence at all times — the continuous-sealing limit), \texttt{D} is diagonal everywhere, the seal order is fully refinable, and the process is \textbf{divisible} (classical), with the dephasing curve of §5 its complete content. Genuine indivisibility requires \emph{intervals on which \texttt{D} is non-diagonal} — interference surviving between sparse gravitational seals. This is a computation on the off-diagonal support of \texttt{D}, not on \texttt{|ρ₀₁|}, and by §3 it cannot be read off any coherence-decay measurement. It is the correct target, and it is open.
+
+---
+
+\section*{5. The Diósi–Penrose-family kernel, in its true status}
+The widely used finite-memory channel is a fully legitimate, empirically anchored member of the undecidable class — and nothing more. With the OU kernel,
+
+\texttt{χ(T) = (σ²τ\_c²/ℏ²)(T/τ\_c − 1 + e\textasciicircum{}{−T/τ\_c})},
+
+which is quadratic at short times (\texttt{χ ≈ (σ²/2ℏ²)T²}, the Gaussian onset) and crosses over to the linear DP slope at \texttt{T ≫ τ\_c}. Matching the onset to the DP scale \texttt{τ\_G = ℏ/E\_G} and the curvature condition \texttt{χ(τ\_c) = 1} fixes the single internal time,
+
+\texttt{τ\_c = √e · τ\_G = 1.6487212707001281468486507878141635716537761007101 · τ\_G}
+
+(the fixed point \texttt{(τ\_c/τ\_G)² = e} is exact; residual \texttt{|χ(τ\_c) − 1| = 7.1×10⁻¹⁰²} at \texttt{dps = 100}). The energy scale \texttt{E\_G} is inherited from the DP geometric self-energy and is \emph{not} derived here; the model is \textbf{rate-robust, not fit-free}. Its empirical content — the quadratic onset against the DP exponential, the \texttt{E\_G}-scaling, the crossover, the small higher-cumulant (non-Gaussian) correction — is exactly what a free-induction experiment can access, and §3.3 is the statement that \emph{the free-induction content is shared with the classical-noise ontology.} The kernel is therefore the program's \textbf{dense-seal Gaussian shadow} — it recovers the phenomenology and loses no empirical ground — and is, correctly, one illustrative CP-divisible member of the undecidable class, not the discriminating prediction the onset shape is often read as.
+
+\textbf{[RESULT: DP-family phenomenology, ref. [11,12].]} In the large-object, large-displacement regime relevant to the experiments [11, 12], the finite-memory modification constrains only the model's regularization length \texttt{R\_0} (per-nucleon emission \texttt{∝ 1/R\_0³}) and decouples from the collective decoherence the interferometer measures (\texttt{∝ GM²/R}, \texttt{R\_0}-independent); it does not \emph{worsen} the radiation/heating bounds and in fact \emph{suppresses} high-frequency (keV) emission. So the kernel survives the laboratory bounds — which is exactly why it is a viable member of the undecidable class, not a falsified one.
+
+---
+
+\section*{6. The observability ledger: what a measurement can and cannot decide}
+A coherence-decay experiment is a measurement of \texttt{C(T) = e\textasciicircum{}{−χ(T)}} and its statistics. The following constrain what such a measurement can certify; each is a [RESULT] (corpus or external) used as a constraint on the \emph{interpretation}, not a new claim.
+
+\begin{center}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lll}
+\# & Constraint & Consequence for a decoherence test \\
+\hline
+\textbf{O1} & The Gaussian onset is reproduced by a state-independent ramp (§3.1) & The onset \emph{shape} certifies neither non-Markovianity in any strong sense nor a quantum-gravitational mechanism. \\
+\textbf{O2} & State-independent irreversible sealing is CP-divisible (§3.2) & A revival, if seen, \emph{rules out} a committed-record interpretation of that channel (forces reversibility or state-dependence); its absence certifies nothing. \\
+\textbf{O3} & OU-noise and matched sparse-seal share the free-induction curve (§3.3) & Free-induction decay does not distinguish classical gravitational noise from a discrete record process; multi-time decoupling probes reversibility, but the \emph{structural} axis (O4–O5) is invisible to the whole channel. \\
+\textbf{O4} & Bath dilations are always divisible (§4.1) & Fitting an open-system (master-equation) model can never exhibit the closed-system indivisibility, by construction. \\
+\textbf{O5} & A closed unitary system is indivisible yet a trivial channel (§2) & The structural axis is not a channel property; it cannot be the output of any reduced-channel tomography. \\
+\textbf{O6} & Bell non-evasion [RESULT: corpus] & The memory may not be used to signal or to evade Bell; the channel's non-Markovianity relocates nonlocality into memory, it does not remove it. \\
+\textbf{O7} & Reconstructing \texttt{Γ(t)} needs intermediate conditioning [RESULT: do-delete] & An \emph{invasive} multi-time protocol can reconstruct Barandes' \texttt{Γ(t)}, but each conditioning measurement inserts a seal (commits a record), so it cannot certify the \emph{unintervened} process's indivisibility — the intervention is not an observational statistic. \\
+\end{tabular}
+\end{adjustbox}
+\end{center}
+The reading is uniform: \emph{every} discriminating question about the mechanism lives on the structural axis (§4), and the structural axis is provably not a function of the reduced channel. The one thing a measurement \emph{can} do is constrain \texttt{E\_G} and the onset time within the shared phenomenology — useful, but mechanism-blind.
+
+---
+
+\section*{7. What this paper does and does not claim}
+It \textbf{claims}, with verified mathematics: the Gaussian onset is reproduced exactly by a state-independent ramping seal and is not a mechanism signature (§3.1); any state-independent irreversible seal is CP-divisible and cannot revive (§3.2); continuous classical noise and sparse sealing produce identical reduced coherence to all orders, so the mechanism is operationally undecidable from the channel (§3.3); revivals are a separate, orthogonal axis reachable only off the committed-seal class (§3.4); and the structural (indivisibility) question is well-posed, reduces at the kinematic level to a consistency theorem via the decoherence functional (§4.2), and is invisible to \texttt{|ρ₀₁|}.
+
+It does \textbf{not} claim: that the sealed-record/indivisible ontology is the \emph{unique} mechanism (the undecidability cuts both ways — it equally forbids certifying \emph{classical} noise); that the gravitational record process \emph{is} indivisible (whether it is sparsely or continuously sealing is [OPEN], §4.3); that any observable non-Markovian fingerprint of indivisibility exists (§3.2 rules it out for the committed-record class); a derivation of general relativity, a graviton, or the Born rule; or a solution of the relativistic-collapse (Tomonaga–Schwinger) and covariant-localization (Hegerfeldt) obstructions, which bound any concrete realization. The finite-memory DP-family kernel is presented as one CP-divisible member of the undecidable class, not as a prediction.
+
+The honest one-line summary: \textbf{gravitational decoherence has a shape, and the shape does not know its own cause; the cause is structural, and the structure does not show up in the decay curve.}
+
+---
+
+\section*{8. Precision discipline}
+Every quantity was computed in mpmath at \texttt{dps ≥ 80} (commonly 100), with sympy used for the exact identities (the Gaussian-onset integral, the OU running integral, the \texttt{λ\_OU = χ′} all-orders identity, the underdamped running integral, the bimodal cosine). Float-safe small quantities are stated as such. The receipt script \texttt{code/v6\_pX\_decoherence\_undecidability\_receipts.py} reproduces every number in the canonical output block: the Gaussian onset (residual \texttt{0}), the CP-divisible OU rate (\texttt{γ\_min = 0}), \texttt{√e = 1.6487212707…} (50 digits), the revival threshold \texttt{(ω₀τ)\_* = 3.644173671645632…}, the all-orders identity \texttt{max|C\_OU − C\_seal| = 7.1×10⁻¹⁰²}, and the bimodal cosine (\texttt{max} residual \texttt{5.5×10⁻¹⁰²}). Never float64 for the kernel running-integrals or the all-orders comparison, where cancellation makes double precision unreliable.
+
+---
+
+\section*{References}
+\textbf{External.}
+
+[1] J. A. Barandes, \emph{The stochastic-quantum correspondence}, arXiv:2302.10778 (2023). [2] J. A. Barandes, \emph{The stochastic-quantum theorem}, arXiv:2309.03085 (2023). [3] R. Penrose, \emph{On gravity's role in quantum state reduction}, Gen. Relativ. Gravit. \textbf{28}, 581 (1996). [4] L. Diósi, \emph{Models for universal reduction of macroscopic quantum fluctuations}, Phys. Rev. A \textbf{40}, 1165 (1989). [5] L. Diósi, \emph{A universal master equation for the gravitational violation of quantum mechanics}, Phys. Lett. A \textbf{120}, 377 (1987). [6] M. Carlesso, L. Ferialdi, A. Bassi, \emph{Colored collapse models from the non-interferometric perspective}, Eur. Phys. J. D \textbf{72}, 159 (2018). [7] H.-P. Breuer, E.-M. Laine, J. Piilo, B. Vacchini, \emph{Colloquium: Non-Markovian dynamics in open quantum systems}, Rev. Mod. Phys. \textbf{88}, 021002 (2016). [8] Á. Rivas, S. F. Huelga, M. B. Plenio, \emph{Quantum non-Markovianity: characterization, quantification and detection}, Rep. Prog. Phys. \textbf{77}, 094001 (2014). [9] B. Misra, E. C. G. Sudarshan, \emph{The Zeno's paradox in quantum theory}, J. Math. Phys. \textbf{18}, 756 (1977). [10] M. Gell-Mann, J. B. Hartle, \emph{Classical equations for quantum systems}, Phys. Rev. D \textbf{47}, 3345 (1993). [11] S. Donadi et al., \emph{Underground test of gravity-related wave function collapse}, Nat. Phys. \textbf{17}, 74 (2021). [12] M. Carlesso, S. Donadi, L. Ferialdi, M. Paternostro, H. Ulbricht, A. Bassi, \emph{Present status and future challenges of non-interferometric tests of collapse models}, Nat. Phys. \textbf{18}, 243 (2022).
+
+\textbf{Companion papers.}
+
+[V] \emph{Quantum theory from sealed records I–II}, companion papers (\texttt{paper-Va-foundations-1}, \texttt{paper-Vb-foundations-2}) — axioms R, S, C; the \texttt{q = 2} weight calculus. [XI] \emph{Emergent Einstein equations without an emergent Newton constant}, companion paper (\texttt{paper-XI-sealed-record-gravity-no-go}) — the gravitational equation of state and the scale no-go; the indivisibility question of §4 is the observability counterpart of its open covariance frontier.
+
+\end{document}
