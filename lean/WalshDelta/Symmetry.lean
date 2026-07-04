@@ -248,23 +248,77 @@ theorem translation_covariance_law
     (Pcal : Orientation n → ProbLaw n) (hP : IsCalAssignment Pcal)
     (t : Point n) (ε : Orientation n) (s : Point n) :
     (Pcal (transOrient t ε)).P s = (Pcal ε).P (s + t) := by
-  sorry
-  -- With `ℓ` the minimizer for `ε`, set `ℓ'_a = ℓ_a χ_a(t)`; then
-  -- `∑_a ℓ'_a χ_a(s) = ∑_a ℓ_a χ_a(s+t)`, so the Gibbs law of `ℓ'` is the
-  -- translate `s ↦ P_ε(s+t)`, and `(τ_t ε)_a ℓ'_a = ε_a ℓ_a` makes the barrier
-  -- terms agree, so `ℓ'` calibrates `τ_t ε`; uniqueness (`hP.2`) gives
-  -- `Pcal (τ_t ε) = ` this translate. Cf. Lemma 3.2.
-
+  let Q : ProbLaw n :=
+    { P := fun u => (Pcal ε).P (u + t)
+      pos := fun u => (Pcal ε).pos (u + t)
+      sum_one := by
+        rw [← (Pcal ε).sum_one]
+        exact Fintype.sum_equiv (Equiv.addRight t)
+          (fun u => (Pcal ε).P (u + t)) (fun u => (Pcal ε).P u) (fun u => rfl) }
+  obtain ⟨h, hexp, hcalib⟩ := hP.1 ε
+  have hchi : ∀ (a x y : Point n), chi a (x + y) = chi a x * chi a y := by
+    intro a x y
+    have hadd : dotZ2 a (x + y) = dotZ2 a x + dotZ2 a y := by
+      simp only [dotZ2, Pi.add_apply, mul_add, Finset.sum_add_distrib]
+    have hv : ∀ z : ZMod 2, z = 0 ∨ z = 1 := by decide
+    have key : ∀ p q : ZMod 2,
+        (if p + q = 0 then (1:ℝ) else -1)
+          = (if p = 0 then (1:ℝ) else -1) * (if q = 0 then (1:ℝ) else -1) := by
+      intro p q
+      rcases hv p with hp | hp <;> rcases hv q with hq | hq <;>
+        subst hp <;> subst hq <;> simp [show (1:ZMod 2) + 1 = 0 from by decide]
+    simp only [chi, hadd]; exact key _ _
+  have hsign : ∀ a : NonzeroMask n, (transOrient t ε).sign a = ε.sign a * chi a.1 t :=
+    fun a => rfl
+  have hQP : ∀ u, Q.P u = (Pcal ε).P (u + t) := fun u => rfl
+  have htilt : ∀ u, tilt (transOrient t ε) h u = tilt ε h (u + t) := by
+    intro u
+    simp only [tilt]
+    apply Finset.sum_congr rfl
+    intro a _
+    rw [hsign a, hchi]
+    ring
+  have hZ : (∑ r, Real.exp (tilt (transOrient t ε) h r))
+      = ∑ r, Real.exp (tilt ε h r) := by
+    apply Fintype.sum_equiv (Equiv.addRight t)
+    intro r
+    simp only [Equiv.coe_addRight]
+    rw [htilt r]
+  have hQcal : Calibrated Q (transOrient t ε) := by
+    refine ⟨h, ?_, ?_⟩
+    · intro u
+      rw [hQP u, hexp (u + t), htilt u, hZ]
+    · intro a
+      have key : EP Q (fun u => (transOrient t ε).sign a * chi a.1 u)
+          = EP (Pcal ε) (fun u => ε.sign a * chi a.1 u) := by
+        simp only [EP]
+        apply Fintype.sum_equiv (Equiv.addRight t)
+        intro u
+        simp only [Equiv.coe_addRight, hQP, hsign a]
+        rw [hchi]
+        ring
+      rw [key]
+      exact hcalib a
+  have hEq := hP.2 (transOrient t ε) Q hQcal
+  rw [← hEq, hQP s]
 /-- **Paper XII, Lemma 3.2 (translation covariance, entropy).**
 `m̂(τ_t ε) = m̂(ε)`. -/
 theorem translation_covariance_mhat
     (Pcal : Orientation n → ProbLaw n) (hP : IsCalAssignment Pcal)
     (t : Point n) (ε : Orientation n) :
     mhatFam Pcal (transOrient t ε) = mhatFam Pcal ε := by
-  sorry
-  -- `P_{τ_t ε}` is the translate of `P_ε` (translation_covariance_law) and `U`
-  -- is translation invariant, so `D(· ‖ U)` is unchanged. Cf. Lemma 3.2.
-
+  unfold mhatFam Dkl EU
+  have key : ∀ s, dens (Pcal (transOrient t ε)) s = dens (Pcal ε) (s + t) := by
+    intro s
+    unfold dens
+    rw [translation_covariance_law Pcal hP t ε s]
+  congr 1
+  rw [← Equiv.sum_comp (Equiv.addRight t)
+      (fun u => dens (Pcal ε) u * Real.log (dens (Pcal ε) u))]
+  apply Finset.sum_congr rfl
+  intro s _
+  simp only [Equiv.coe_addRight]
+  rw [key s]
 /-- **Paper XII, Lemma 3.3 (`GL(n,2)` covariance, law).**  `P_{M·ε}` is the
 pushforward of `P_ε` under the `U`-preserving bijection `s ↦ M⁻¹ s`; concretely
 `P_{M·ε}(s) = P_ε(M s)`. -/
@@ -272,24 +326,134 @@ theorem glAction_covariance_law
     (Pcal : Orientation n → ProbLaw n) (hP : IsCalAssignment Pcal)
     (M : GLn n) (ε : Orientation n) (s : Point n) :
     (Pcal (glOrient M ε)).P s = (Pcal ε).P (glAct M s) := by
-  sorry
-  -- With `ℓ` the minimizer for `ε`, define `ℓ'` by `ℓ'_{Mᵀa} = ℓ_a`; then
-  -- `∑_b ℓ'_b χ_b(s) = ∑_a ℓ_a χ_a(Ms)` (via `chi_mulVec`), so the Gibbs law of
-  -- `ℓ'` is `s ↦ P_ε(Ms)`, and `(M·ε)_{Mᵀa} ℓ'_{Mᵀa} = ε_a ℓ_a` makes the
-  -- barrier terms agree, so `ℓ'` calibrates `M·ε`; uniqueness (`hP.2`) gives
-  -- `Pcal (M·ε)(s) = P_ε(Ms)`. Cf. Lemma 3.3.
-
+  -- matrix inverse facts
+  have hMMinv : (M : Matrix (Fin n) (Fin n) (ZMod 2))
+      * (↑(M⁻¹ : GLn n) : Matrix (Fin n) (Fin n) (ZMod 2)) = 1 := by
+    rw [← Matrix.GeneralLinearGroup.coe_mul, mul_inv_cancel, Matrix.GeneralLinearGroup.coe_one]
+  have hMinvM : (↑(M⁻¹ : GLn n) : Matrix (Fin n) (Fin n) (ZMod 2))
+      * (M : Matrix (Fin n) (Fin n) (ZMod 2)) = 1 := by
+    rw [← Matrix.GeneralLinearGroup.coe_mul, inv_mul_cancel, Matrix.GeneralLinearGroup.coe_one]
+  -- point action is bijective
+  have hpt : Function.Bijective (glAct M) := by
+    refine Function.bijective_iff_has_inverse.mpr ⟨glAct (M⁻¹), fun s => ?_, fun t => ?_⟩
+    · show glAct (M⁻¹) (glAct M s) = s
+      unfold glAct
+      rw [Matrix.mulVec_mulVec, hMinvM, Matrix.one_mulVec]
+    · show glAct M (glAct (M⁻¹) t) = t
+      unfold glAct
+      rw [Matrix.mulVec_mulVec, hMMinv, Matrix.one_mulVec]
+  -- mask-relabeling algebra
+  have hMt_prod : (M : Matrix (Fin n) (Fin n) (ZMod 2))ᵀ * glTransInv M = 1 := by
+    unfold glTransInv
+    rw [← Matrix.transpose_mul, hMinvM, Matrix.transpose_one]
+  have hchi_id : ∀ (s : Point n) (b : NonzeroMask n),
+      chi (glMaskInvT M b).1 (glAct M s) = chi b.1 s := by
+    intro s b
+    show chi (glTransInv M *ᵥ b.1) (glAct M s) = chi b.1 s
+    unfold glAct
+    rw [chi_mulVec, Matrix.mulVec_mulVec, hMt_prod, Matrix.one_mulVec]
+  -- mask action is bijective
+  have htrans_prod : glTransInv M * glTransInv (M⁻¹ : GLn n) = 1 := by
+    unfold glTransInv
+    rw [inv_inv, ← Matrix.transpose_mul, hMMinv, Matrix.transpose_one]
+  have htrans_prod' : glTransInv (M⁻¹ : GLn n) * glTransInv M = 1 := by
+    unfold glTransInv
+    rw [inv_inv, ← Matrix.transpose_mul, hMinvM, Matrix.transpose_one]
+  have hmaskinv : ∀ b : NonzeroMask n, glMaskInvT M (glMaskInvT (M⁻¹ : GLn n) b) = b := by
+    intro b
+    apply Subtype.ext
+    show glTransInv M *ᵥ (glTransInv (M⁻¹ : GLn n) *ᵥ b.1) = b.1
+    rw [Matrix.mulVec_mulVec, htrans_prod, Matrix.one_mulVec]
+  have hmaskinv' : ∀ b : NonzeroMask n, glMaskInvT (M⁻¹ : GLn n) (glMaskInvT M b) = b := by
+    intro b
+    apply Subtype.ext
+    show glTransInv (M⁻¹ : GLn n) *ᵥ (glTransInv M *ᵥ b.1) = b.1
+    rw [Matrix.mulVec_mulVec, htrans_prod', Matrix.one_mulVec]
+  have hmaskbij : Function.Bijective (glMaskInvT M) :=
+    Function.bijective_iff_has_inverse.mpr ⟨glMaskInvT (M⁻¹ : GLn n), hmaskinv', hmaskinv⟩
+  have hsign : ∀ b : NonzeroMask n, (glOrient M ε).sign b = ε.sign (glMaskInvT M b) :=
+    fun b => rfl
+  -- calibration data for `Pcal ε`
+  obtain ⟨h₀, hA, hB⟩ := hP.1 ε
+  -- tilt intertwining identity
+  have htilt : ∀ s : Point n,
+      tilt (glOrient M ε) (fun b => h₀ (glMaskInvT M b)) s = tilt ε h₀ (glAct M s) := by
+    intro s
+    unfold tilt
+    refine Fintype.sum_bijective (glMaskInvT M) hmaskbij _ _ ?_
+    intro b
+    show h₀ (glMaskInvT M b) * (glOrient M ε).sign b * chi b.1 s
+       = h₀ (glMaskInvT M b) * ε.sign (glMaskInvT M b) * chi (glMaskInvT M b).1 (glAct M s)
+    rw [hsign b, hchi_id s b]
+  -- normalizer equality
+  have hZ : (∑ r, Real.exp (tilt ε h₀ r))
+      = ∑ r, Real.exp (tilt (glOrient M ε) (fun b => h₀ (glMaskInvT M b)) r) := by
+    symm
+    have hstep : (∑ r, Real.exp (tilt (glOrient M ε) (fun b => h₀ (glMaskInvT M b)) r))
+        = ∑ r, Real.exp (tilt ε h₀ (glAct M r)) := by
+      apply Finset.sum_congr rfl
+      intro r _
+      rw [htilt r]
+    rw [hstep]
+    exact Fintype.sum_bijective (glAct M) hpt
+      (fun r => Real.exp (tilt ε h₀ (glAct M r))) (fun t => Real.exp (tilt ε h₀ t)) (fun r => rfl)
+  -- the pushforward law
+  let Q : ProbLaw n :=
+    { P := fun s => (Pcal ε).P (glAct M s)
+      pos := fun s => (Pcal ε).pos (glAct M s)
+      sum_one := by
+        rw [← (Pcal ε).sum_one]
+        exact Fintype.sum_bijective (glAct M) hpt
+          (fun s => (Pcal ε).P (glAct M s)) (fun t => (Pcal ε).P t) (fun s => rfl) }
+  -- Q is calibrated for `glOrient M ε`
+  have hcalQ : Calibrated Q (glOrient M ε) := by
+    refine ⟨fun b => h₀ (glMaskInvT M b), ?_, ?_⟩
+    · intro s
+      show (Pcal ε).P (glAct M s)
+          = Real.exp (tilt (glOrient M ε) (fun b => h₀ (glMaskInvT M b)) s)
+            / (∑ r, Real.exp (tilt (glOrient M ε) (fun b => h₀ (glMaskInvT M b)) r))
+      rw [hA (glAct M s), ← htilt s, hZ]
+    · intro b
+      show EP Q (fun s => (glOrient M ε).sign b * chi b.1 s)
+          = Real.exp (- h₀ (glMaskInvT M b))
+      rw [← hB (glMaskInvT M b)]
+      unfold EP
+      refine Fintype.sum_bijective (glAct M) hpt _ _ ?_
+      intro s
+      show (Pcal ε).P (glAct M s) * ((glOrient M ε).sign b * chi b.1 s)
+          = (Pcal ε).P (glAct M s)
+            * (ε.sign (glMaskInvT M b) * chi (glMaskInvT M b).1 (glAct M s))
+      rw [hsign b, hchi_id s b]
+  -- identify Q with the calibrated law of `glOrient M ε`
+  have hfin : Q = Pcal (glOrient M ε) := hP.2 (glOrient M ε) Q hcalQ
+  calc (Pcal (glOrient M ε)).P s = Q.P s := by rw [hfin]
+    _ = (Pcal ε).P (glAct M s) := rfl
 /-- **Paper XII, Lemma 3.3 (`GL(n,2)` covariance, entropy).**
 `m̂(M·ε) = m̂(ε)`. -/
 theorem glAction_covariance_mhat
     (Pcal : Orientation n → ProbLaw n) (hP : IsCalAssignment Pcal)
     (M : GLn n) (ε : Orientation n) :
     mhatFam Pcal (glOrient M ε) = mhatFam Pcal ε := by
-  sorry
-  -- `P_{M·ε}` is the image of `P_ε` under the `U`-preserving bijection
-  -- `s ↦ M⁻¹ s`, and `D(· ‖ U)` is invariant under a `U`-preserving relabeling.
-  -- Cf. Lemma 3.3.
-
+  have hleft : ∀ s, glAct M⁻¹ (glAct M s) = s := by
+    intro s
+    unfold glAct
+    rw [Matrix.mulVec_mulVec, ← Matrix.GeneralLinearGroup.coe_mul, inv_mul_cancel,
+        Matrix.GeneralLinearGroup.coe_one, Matrix.one_mulVec]
+  have hright : ∀ s, glAct M (glAct M⁻¹ s) = s := by
+    intro s
+    unfold glAct
+    rw [Matrix.mulVec_mulVec, ← Matrix.GeneralLinearGroup.coe_mul, mul_inv_cancel,
+        Matrix.GeneralLinearGroup.coe_one, Matrix.one_mulVec]
+  have hbij : Function.Bijective (glAct M) :=
+    Function.bijective_iff_has_inverse.mpr ⟨glAct M⁻¹, hleft, hright⟩
+  unfold mhatFam Dkl EU
+  congr 1
+  apply Fintype.sum_bijective (glAct M) hbij
+  intro s
+  have hd : dens (Pcal (glOrient M ε)) s = dens (Pcal ε) (glAct M s) := by
+    unfold dens
+    rw [glAction_covariance_law Pcal hP M ε s]
+  rw [hd]
 /-! ## Corollary: the group `Γ_n` and its orbits
 
 `Γ_n = ⟨translations, GL(n,2)⟩ = AGL(n,2)`, the affine group of `𝔽₂ⁿ`; every

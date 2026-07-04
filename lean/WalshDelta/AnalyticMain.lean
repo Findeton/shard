@@ -28,9 +28,8 @@ This module assembles the analytic (`n ≥ 6`) half of the main theorem:
 ## Interfaces to Sections 3, 4, 6
 
 Section 7 consumes the following results, proved in the paper's earlier
-sections.  In a multi-file build they would be `import`ed from the
-existence / delta-law / deep-dip modules; here they are stated (with `sorry`)
-as the interface this module rests on, each labeled with its paper number:
+sections and now `import`ed (fully proved, no `sorry`) from the existence /
+delta-law / deep-dip modules; each is labeled with its paper number:
 
   * `calibrated_exists_unique`  — Theorem 3.1 (existence and uniqueness of the
     calibrated law `P_ε`), whence `Pcal`, `mhat`;
@@ -82,24 +81,25 @@ def tau (t : Point n) (ε : Orientation n) : Orientation n where
 theorem translation_covariance (t : Point n) (ε : Orientation n) :
     (∀ s, (Pcal (tau t ε)).P s = (Pcal ε).P (s + t)) ∧
       mhat (tau t ε) = mhat ε := by
-  sorry
-  -- Lemma 3.2: `ℓ ↦ ℓ' := (ℓ_a χ_a(t))_a` is a linear bijection with
-  -- `G_{τ_t ε}(ℓ') = G_ε(ℓ)` (the substitution `s ↦ s+t` preserves `U`), so it
-  -- carries the unique minimizer to the unique minimizer; the laws are
-  -- translates, and `D(·‖U)` is translation-invariant.
-
+  have hcal : ∀ ε' : Orientation n, Pcal ε' = calLaw ε' :=
+    fun ε' => calLaw_unique ε' (Pcal_calibrated ε')
+  have htau : tau t ε = tauOrient t ε := rfl
+  refine ⟨?_, ?_⟩
+  · intro s
+    rw [hcal, hcal, htau]
+    exact calLaw_tauOrient t ε s
+  · rw [htau]
+    exact mhat_tauOrient t ε
 /-- Paper XII, Lemma 3.2 (delta orbit).
 `τ_t(ε⋆ at s⋆) = ε⋆ at s⋆ + t`: the `N` delta orientations form a single
 translation orbit. -/
 theorem tau_deltaOrientation (t sstar : Point n) :
     tau t (deltaOrientation sstar) = deltaOrientation (sstar + t) := by
-  sorry
-  -- Lemma 3.2: `(τ_t ε⋆)_a = -χ_a(s⋆)·χ_a(t) = -χ_a(s⋆+t)` by multiplicativity
-  -- of `χ_a` in its point argument; hence the sign fields agree (funext), and
-  -- the orientations are equal by structure/proof-irrelevance extensionality.
-
--- (removed redundant `Ddelta`; canonical in an imported module)
--- (removed redundant `mhat_deltaOrientation`; canonical in an imported module)
+  apply Orientation.ext
+  intro a
+  show (- chi a.1 sstar) * chi a.1 t = - chi a.1 (sstar + t)
+  rw [chi_right_add]
+  ring
 /-! ## Lemma 4.2 (elementary delta bound) -/
 
 -- (removed redundant `Ddelta_lt`; canonical in an imported module)
@@ -117,11 +117,19 @@ lemma psi_exp_neg_five : psi (Real.exp (-5)) = 1 - 6 * Real.exp (-5) := by
 /-- Paper XII, Theorem 6.1: `3 ψ(e^{-5}) = 3(1 - 6 e^{-5}) = 2.8787169… >
 2.878716`. -/
 lemma three_psi_gt : (2.878716 : ℝ) < 3 * (1 - 6 * Real.exp (-5)) := by
-  sorry
-  -- `3(1 - 6 e^{-5}) = 2.87871690…`.  To be discharged by rigorous rational
-  -- interval arithmetic on `e^{-5}` (e.g. a certified enclosure of `e^{-5}`),
-  -- NOT by `native_decide`.
-
+  have h5 : Real.exp 5 = Real.exp 1 ^ 5 := by
+    rw [show (5:ℝ) = (5:ℕ) * 1 by norm_num, Real.exp_nat_mul]
+  have hlb : (2.7182818283:ℝ) ^ 5 < Real.exp 5 := by
+    rw [h5]
+    gcongr
+    linarith [Real.exp_one_gt_d9]
+  have hpos : (0:ℝ) < Real.exp 5 := Real.exp_pos 5
+  have hneg : Real.exp (-5) = 1 / Real.exp 5 := by
+    rw [Real.exp_neg, one_div]
+  have hbound : Real.exp (-5) < 0.006738 := by
+    rw [hneg, div_lt_iff₀ hpos]
+    nlinarith [hlb]
+  nlinarith [hbound, Real.exp_pos (-5)]
 /-- Paper XII, Section 7 (arithmetic fact).  `2.878716·(N-1) > N` for every
 `N ≥ 2` (equivalently `N > 2.878716/1.878716 = 1.532…`). -/
 lemma calib_N_bound (hN2 : (2 : ℝ) ≤ (N n : ℝ)) :
@@ -134,16 +142,100 @@ lemma calib_N_bound (hN2 : (2 : ℝ) ≤ (N n : ℝ)) :
 not a delta orientation.  Then `m̂(ε) > D_δ`. -/
 theorem main_analytic (hn : 6 ≤ n) (ε : Orientation n) (hnd : ¬ IsDelta ε) :
     Ddelta n < mhat ε := by
-  sorry  -- proof stubbed to sorry (renamed order/div API in the drafted proof); statement is faithful
+  have hnpos : 0 < n := by omega
+  have hn2 : 2 ≤ n := by omega
+  haveI hne : Nonempty (NonzeroMask n) := by
+    obtain ⟨i⟩ : Nonempty (Fin n) := ⟨⟨0, hnpos⟩⟩
+    refine ⟨⟨Pi.single i (1 : ZMod 2), ?_⟩⟩
+    intro h
+    have hh := congrFun h i
+    simp only [Pi.single_eq_same, Pi.zero_apply] at hh
+    exact one_ne_zero hh
+  -- N n ≥ 64
+  have hN64 : (64 : ℝ) ≤ (N n : ℝ) := by
+    have hle : (2:ℕ)^6 ≤ N n := by
+      rw [show N n = 2^n from rfl]; exact Nat.pow_le_pow_right (by norm_num) hn
+    calc (64:ℝ) = ((2^6 : ℕ) : ℝ) := by norm_num
+      _ ≤ (N n : ℝ) := by exact_mod_cast hle
+  have hNm1 : (63 : ℝ) ≤ (N n : ℝ) - 1 := by linarith
+  have hNpos : (0:ℝ) < (N n : ℝ) := by linarith
+  have hNm1pos : (0:ℝ) < (N n : ℝ) - 1 := by linarith
+  have hmhat : mhat ε = Dkl (calLaw ε) := rfl
+  rw [hmhat]
+  have hdd : Ddelta n < 1 / ((N n : ℝ) - 1) := Ddelta_lt n hn2
+  by_cases hcase : Dkl (calLaw ε) ≤ 1/60
+  · -- deep-dip trichotomy case
+    have htri := deep_dip_trichotomy hn2 (calLaw ε) ε (calLaw_calibrated ε) hcase hnd
+    have hbound : (2.878716 : ℝ) < (N n : ℝ) * Dkl (calLaw ε) := htri.2.2
+    have hcalib : (N n : ℝ) < 2.878716 * ((N n : ℝ) - 1) := calib_N_bound (by linarith)
+    have hB : (1:ℝ) / ((N n : ℝ) - 1) < 2.878716 / (N n : ℝ) := by
+      rw [lt_div_iff₀ hNpos, div_mul_eq_mul_div, one_mul, div_lt_iff₀ hNm1pos]
+      linarith [hcalib]
+    have hC : (2.878716 : ℝ) / (N n : ℝ) < Dkl (calLaw ε) :=
+      (div_lt_iff₀ hNpos).mpr (by rw [mul_comm]; exact hbound)
+    linarith [hdd, hB, hC]
+  · -- D > 1/60 case
+    have hcase' : (1:ℝ)/60 < Dkl (calLaw ε) := not_le.mp hcase
+    have h63 : (1:ℝ) / ((N n : ℝ) - 1) ≤ 1 / 63 :=
+      one_div_le_one_div_of_le (by norm_num) hNm1
+    linarith [hdd, h63, hcase']
 theorem corollary_1_3 (hn : 6 ≤ n) (ε : Orientation n) (hnd : ¬ IsDelta ε) :
     min ((N n : ℝ) / 60) 2.878716 ≤ (N n : ℝ) * mhat ε
       ∧ (N n : ℝ) * Ddelta n < (N n : ℝ) / ((N n : ℝ) - 1)
       ∧ (N n : ℝ) / ((N n : ℝ) - 1) ≤ 64 / 63 := by
-  sorry  -- proof stubbed to sorry (renamed order/div API in the drafted proof); statement is faithful
+  haveI : Nonempty (NonzeroMask n) := by
+    have hpos : 0 < n := by omega
+    refine ⟨⟨fun _ => 1, ?_⟩⟩
+    intro hcontra
+    have h2 := congrFun hcontra ⟨0, hpos⟩
+    simp only [Pi.zero_apply] at h2
+    exact one_ne_zero h2
+  have hNpos : (0 : ℝ) < (N n : ℝ) := by
+    have : 0 < N n := by unfold N; positivity
+    exact_mod_cast this
+  have hN64 : (64 : ℝ) ≤ (N n : ℝ) := by
+    have : (64 : ℕ) ≤ N n := by
+      unfold N
+      calc (64 : ℕ) = 2 ^ 6 := by norm_num
+        _ ≤ 2 ^ n := Nat.pow_le_pow_right (by norm_num) hn
+    exact_mod_cast this
+  have hNm1 : (0 : ℝ) < (N n : ℝ) - 1 := by linarith
+  refine ⟨?_, ?_, ?_⟩
+  · -- Part 1
+    rcases le_or_gt (Dkl (calLaw ε)) (1 / 60) with hD | hD
+    · have htri := deep_dip_trichotomy (by omega) (calLaw ε) ε (calLaw_calibrated ε) hD hnd
+      have hstar : (2.878716 : ℝ) < (N n : ℝ) * mhat ε := by
+        unfold mhat; exact htri.2.2
+      calc min ((N n : ℝ) / 60) 2.878716 ≤ 2.878716 := min_le_right _ _
+        _ ≤ (N n : ℝ) * mhat ε := le_of_lt hstar
+    · have hstar : (N n : ℝ) / 60 < (N n : ℝ) * mhat ε := by
+        unfold mhat
+        have heq : (N n : ℝ) / 60 = (N n : ℝ) * (1 / 60) := by ring
+        rw [heq]
+        exact mul_lt_mul_of_pos_left hD hNpos
+      calc min ((N n : ℝ) / 60) 2.878716 ≤ (N n : ℝ) / 60 := min_le_left _ _
+        _ ≤ (N n : ℝ) * mhat ε := le_of_lt hstar
+  · -- Part 2
+    have hdl := Ddelta_lt n (by omega)
+    calc (N n : ℝ) * Ddelta n < (N n : ℝ) * (1 / ((N n : ℝ) - 1)) :=
+          mul_lt_mul_of_pos_left hdl hNpos
+      _ = (N n : ℝ) / ((N n : ℝ) - 1) := by rw [mul_one_div]
+  · -- Part 3
+    rw [div_le_div_iff₀ hNm1 (by norm_num)]
+    linarith
 theorem main_equality_analytic (hn : 6 ≤ n) (ε : Orientation n) :
     Ddelta n ≤ mhat ε ∧ (mhat ε = Ddelta n ↔ IsDelta ε) := by
-  -- Combines `main_analytic` (strict for non-delta) with `mhat` being constant
-  -- `= Ddelta n` on the delta family (Symmetry.mhat_deltaOrientation).
-  sorry
-
+  constructor
+  · -- Ddelta n ≤ mhat ε
+    by_cases h : IsDelta ε
+    · obtain ⟨sstar, rfl⟩ := h
+      rw [mhat_deltaOrientation_const sstar]
+    · exact le_of_lt (main_analytic hn ε h)
+  · constructor
+    · intro heq
+      by_contra hnd
+      exact absurd heq (ne_of_gt (main_analytic hn ε hnd))
+    · intro h
+      obtain ⟨sstar, rfl⟩ := h
+      rw [mhat_deltaOrientation_const sstar]
 end WalshDelta

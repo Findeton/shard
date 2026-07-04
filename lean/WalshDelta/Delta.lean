@@ -233,6 +233,27 @@ lemma deltaB_gt_one (n : ℕ) (hn : 2 ≤ n) : 1 < deltaB n := by
   have := uStar_pos n hn
   simp only [deltaB]; linarith
 
+/-- `u⋆ ≥ 0` for every `n` (a positive root, or the junk value `0`). -/
+lemma uStar_nonneg (n : ℕ) : 0 ≤ uStar n := by
+  unfold uStar
+  by_cases h : ∃ u : ℝ, 0 < u ∧ deltaPoly n u = 0
+  · rw [dif_pos h]; exact le_of_lt h.choose_spec.1
+  · rw [dif_neg h]
+
+/-- `A = 1-(N-1)u⋆ > 0` for EVERY `n` (no `n ≥ 2` needed): if `u⋆` is a genuine
+root then `p(u⋆)=0` forces `(N-1)u⋆ = 1 - u⋆^{N+1} - u⋆^N < 1`; otherwise `u⋆=0`
+and `A = 1`. -/
+lemma deltaA_pos_all (n : ℕ) : 0 < deltaA n := by
+  unfold deltaA
+  by_cases h : ∃ u : ℝ, 0 < u ∧ deltaPoly n u = 0
+  · have hspec : 0 < uStar n ∧ deltaPoly n (uStar n) = 0 := by
+      unfold uStar; rw [dif_pos h]; exact h.choose_spec
+    obtain ⟨hpos, hroot⟩ := hspec
+    unfold deltaPoly at hroot
+    nlinarith [hroot, pow_pos hpos (N n + 1), pow_pos hpos (N n)]
+  · have h0 : uStar n = 0 := by unfold uStar; rw [dif_neg h]
+    rw [h0]; simp
+
 /-- Paper XII, Proposition 4.1 (two-level law).  The calibrated law of the
 delta orientation at `s⋆`: the probability law with density
 `X_δ(s⋆) = A = 1-(N-1)u⋆` and `X_δ(s) = B = 1+u⋆` for `s ≠ s⋆`, i.e.
@@ -240,12 +261,28 @@ delta orientation at `s⋆`: the probability law with density
 noncomputable def deltaLaw (sstar : Point n) : ProbLaw n where
   P := fun s => (if s = sstar then deltaA n else deltaB n) / (N n : ℝ)
   pos := by
-    sorry
-    -- `A > 0` (deltaA_pos) and `B > 0` (deltaB_gt_one), divided by `N > 0`. Prop 4.1.
+    have hN : (0:ℝ) < (N n : ℝ) := by exact_mod_cast N_pos n
+    have hA : 0 < deltaA n := deltaA_pos_all n
+    have hB : 0 < deltaB n := by
+      have := uStar_nonneg n; simp only [deltaB]; linarith
+    intro s
+    apply div_pos _ hN
+    split
+    · exact hA
+    · exact hB
   sum_one := by
-    sorry
-    -- `A + (N-1)B = (1-(N-1)u⋆) + (N-1)(1+u⋆) = N`, so `∑_s P(s) = N/N = 1`.
-    -- Split the sum at `s = s⋆` (one point) vs. the other `N-1` points. Prop 4.1.
+    have hN : (N n : ℝ) ≠ 0 := N_ne_zero n
+    have hsum : (∑ s, (if s = sstar then deltaA n else deltaB n)) = (N n : ℝ) := by
+      have hsplit : ∀ s : Point n, (if s = sstar then deltaA n else deltaB n)
+          = deltaB n + (if s = sstar then (deltaA n - deltaB n) else 0) := by
+        intro s; split <;> ring
+      rw [Finset.sum_congr rfl (fun s _ => hsplit s), Finset.sum_add_distrib,
+          Finset.sum_const, Finset.card_univ, card_point,
+          Finset.sum_ite_eq' Finset.univ sstar (fun _ => deltaA n - deltaB n),
+          if_pos (Finset.mem_univ sstar), nsmul_eq_mul]
+      unfold deltaA deltaB
+      ring
+    rw [← Finset.sum_div, hsum, div_self hN]
 
 /-- Paper XII, Proposition 4.1 (density in closed form): the density of
 `deltaLaw sstar` w.r.t. uniform is the two-level field
@@ -262,11 +299,8 @@ lemma dens_deltaLaw (sstar s : Point n) :
 exactly one calibrated law `P_ε` (the unique minimizer of the strictly convex
 coercive `G_ε`). -/
 theorem exists_unique_calibrated (ε : Orientation n) :
-    ∃! P : ProbLaw n, Calibrated P ε := by
-  sorry
-  -- `G_ε(ℓ) = F(ℓ) + ∑_{a≠0} e^{-ε_a ℓ_a}` is smooth, strictly convex, coercive;
-  -- its unique minimizer's critical equations are exactly the calibration
-  -- conditions (Definition 1.1).  Cf. Theorem 3.1.
+    ∃! P : ProbLaw n, Calibrated P ε :=
+  calibrated_exists_unique ε
 
 -- `calLaw`, `calLaw_calibrated`, `mhat`, `Ddelta` are canonical in `Calibration`
 -- (imported).  `calLaw_unique` is not in `Calibration`, so keep it here:
@@ -289,19 +323,70 @@ def tauOrient (t : Point n) (ε : Orientation n) : Orientation n where
 /-- Paper XII, Lemma 3.2: `P_{τ_t ε}(s) = P_ε(s + t)`. -/
 theorem calLaw_tauOrient (t : Point n) (ε : Orientation n) (s : Point n) :
     (calLaw (tauOrient t ε)).P s = (calLaw ε).P (s + t) := by
-  sorry
-  -- With `ℓ'_a = ℓ_a χ_a(t)`: `F(ℓ') = F(ℓ)` and `P_{ℓ'}(s) = P_ℓ(s+t)`, and the
-  -- barrier sums match, so `G_{τ_t ε}(ℓ') = G_ε(ℓ)`; the linear bijection
-  -- `ℓ ↦ ℓ'` carries the minimizer to the minimizer.  Cf. Lemma 3.2.
-
+  obtain ⟨h, hP, hcal⟩ := calLaw_calibrated ε
+  have hsign : ∀ a : NonzeroMask n, (tauOrient t ε).sign a = ε.sign a * chi a.1 t :=
+    fun a => rfl
+  have htilt : ∀ (s : Point n), tilt (tauOrient t ε) h s = tilt ε h (s + t) := by
+    intro s
+    unfold tilt
+    apply Finset.sum_congr rfl
+    intro a _
+    rw [hsign a, chi_right_add]
+    ring
+  have hZ : (∑ r, Real.exp (tilt (tauOrient t ε) h r)) = ∑ r, Real.exp (tilt ε h r) := by
+    have hstep : (∑ r, Real.exp (tilt (tauOrient t ε) h r))
+        = ∑ r, Real.exp (tilt ε h (r + t)) :=
+      Finset.sum_congr rfl (fun r _ => by rw [htilt r])
+    rw [hstep]
+    exact Fintype.sum_equiv (Equiv.addRight t)
+      (fun r => Real.exp (tilt ε h (r + t)))
+      (fun r => Real.exp (tilt ε h r))
+      (fun x => rfl)
+  let Q : ProbLaw n :=
+    { P := fun s => (calLaw ε).P (s + t)
+      pos := fun s => (calLaw ε).pos (s + t)
+      sum_one := by
+        rw [← (calLaw ε).sum_one]
+        exact Fintype.sum_equiv (Equiv.addRight t)
+          (fun s => (calLaw ε).P (s + t)) (fun s => (calLaw ε).P s) (fun x => rfl) }
+  have hcalib : Calibrated Q (tauOrient t ε) := by
+    refine ⟨h, ?_, ?_⟩
+    · intro s
+      show (calLaw ε).P (s + t)
+          = Real.exp (tilt (tauOrient t ε) h s) / (∑ r, Real.exp (tilt (tauOrient t ε) h r))
+      rw [hP (s + t), htilt s, hZ]
+    · intro a
+      rw [← hcal a]
+      show (∑ s, Q.P s * ((tauOrient t ε).sign a * chi a.1 s))
+          = ∑ s, (calLaw ε).P s * (ε.sign a * chi a.1 s)
+      rw [← Fintype.sum_equiv (Equiv.addRight t)
+          (fun s => (calLaw ε).P (s + t) * (ε.sign a * chi a.1 (s + t)))
+          (fun s => (calLaw ε).P s * (ε.sign a * chi a.1 s))
+          (fun x => rfl)]
+      apply Finset.sum_congr rfl
+      intro s _
+      show (calLaw ε).P (s + t) * ((tauOrient t ε).sign a * chi a.1 s)
+          = (calLaw ε).P (s + t) * (ε.sign a * chi a.1 (s + t))
+      rw [hsign a, chi_right_add]
+      ring
+  have hQeQ : Q = calLaw (tauOrient t ε) := calLaw_unique (tauOrient t ε) hcalib
+  have key : (calLaw (tauOrient t ε)).P s = Q.P s := by rw [← hQeQ]
+  exact key
 /-- Paper XII, Lemma 3.2: `ŵm(τ_t ε) = ŵm(ε)` (relative entropy to the
 translation-invariant `U` is unchanged by a translate). -/
 theorem mhat_tauOrient (t : Point n) (ε : Orientation n) :
     mhat (tauOrient t ε) = mhat ε := by
-  sorry
-  -- `P_{τ_t ε}` is a translate of `P_ε` (calLaw_tauOrient) and `U` is
-  -- translation-invariant, so `D(·‖U)` agrees.  Cf. Lemma 3.2.
-
+  have hsum :
+      (∑ s, dens (calLaw (tauOrient t ε)) s * Real.log (dens (calLaw (tauOrient t ε)) s))
+        = ∑ s, dens (calLaw ε) s * Real.log (dens (calLaw ε) s) := by
+    have h1 :
+        (∑ s, dens (calLaw (tauOrient t ε)) s * Real.log (dens (calLaw (tauOrient t ε)) s))
+          = ∑ s, dens (calLaw ε) (s + t) * Real.log (dens (calLaw ε) (s + t)) :=
+      Finset.sum_congr rfl (fun s _ => by simp only [dens, calLaw_tauOrient t ε s])
+    rw [h1]
+    exact Equiv.sum_comp (Equiv.addRight t)
+      (fun u => dens (calLaw ε) u * Real.log (dens (calLaw ε) u))
+  simp only [mhat, Dkl, EU, hsum]
 /-- Paper XII, Lemma 3.2 (delta orbit): `τ_t (ε⋆ at s⋆) = ε⋆ at s⋆ + t`; the
 `N` delta orientations form a single translation orbit. -/
 theorem tauOrient_deltaOrientation (t sstar : Point n) :
@@ -319,13 +404,136 @@ for the delta orientation at `s⋆` (with all tilts equal, `h_a = -log u⋆ > 0`
 -/
 theorem calibrated_deltaLaw (sstar : Point n) (hn : 2 ≤ n) :
     Calibrated (deltaLaw sstar) (deltaOrientation sstar) := by
-  sorry
-  -- Reduce to `s⋆ = 0` (Lemma 3.2): there `ε⋆ ≡ -1`, `x_a = -u⋆`, and Walsh
-  -- inversion (`sum_nonzero_chi`) gives `X(s) = 1 - u⋆(N·1_{s=0} - 1)`, i.e. the
-  -- two levels `A, B`.  The log-side calibration `loĝX(a) = log u⋆` is
-  -- `(1-(N-1)u⋆)/(1+u⋆) = u⋆^N`, i.e. `p(u⋆) = 0` (deltaPoly_root_iff +
-  -- deltaPoly_uStar).  Cf. Proposition 4.1.
-
+  -- basic facts
+  have hu : 0 < uStar n := uStar_pos n hn
+  have hune : uStar n ≠ 0 := hu.ne'
+  have hNne : (N n : ℝ) ≠ 0 := N_ne_zero n
+  have hN1 : (0:ℝ) < (N n : ℝ) - 1 := by have := one_lt_N n hn; linarith
+  have hexpL : Real.exp (Real.log (uStar n)) = uStar n := Real.exp_log hu
+  have hD : (0:ℝ) < (uStar n) ^ (N n) + ((N n : ℝ) - 1) := add_pos (pow_pos hu (N n)) hN1
+  -- root identity
+  have hroot : 1 - ((N n : ℝ) - 1) * uStar n = (uStar n) ^ (N n) * (1 + uStar n) :=
+    (deltaPoly_root_iff n (uStar n)).mp (deltaPoly_uStar n hn)
+  have hDB : ((uStar n) ^ (N n) + ((N n : ℝ) - 1)) * (1 + uStar n) = (N n : ℝ) := by
+    linear_combination -hroot
+  have hAD : deltaA n * ((uStar n) ^ (N n) + ((N n : ℝ) - 1)) = (uStar n) ^ (N n) * (N n : ℝ) := by
+    unfold deltaA
+    linear_combination ((uStar n) ^ (N n) + ((N n : ℝ) - 1)) * hroot + (uStar n) ^ (N n) * hDB
+  have hBD : deltaB n * ((uStar n) ^ (N n) + ((N n : ℝ) - 1)) = (N n : ℝ) := by
+    unfold deltaB
+    linear_combination hDB
+  -- tilt closed form
+  have htilt : ∀ s : Point n,
+      tilt (deltaOrientation sstar) (fun _ => -Real.log (uStar n)) s
+        = Real.log (uStar n) * ((if s = sstar then (N n : ℝ) else 0) - 1) := by
+    intro s
+    have hchar : (sstar + s = 0) ↔ (s = sstar) := by
+      constructor
+      · intro hh
+        funext i
+        have hi := congrFun hh i
+        simp only [Pi.add_apply, Pi.zero_apply] at hi
+        have key : ∀ x y : ZMod 2, x + y = 0 → y = x := by decide
+        exact key _ _ hi
+      · intro hh
+        funext i
+        have hi := congrFun hh i
+        simp only [Pi.add_apply, Pi.zero_apply]
+        have key : ∀ x y : ZMod 2, y = x → x + y = 0 := by decide
+        exact key _ _ hi
+    unfold tilt
+    have hstep : ∀ a : NonzeroMask n,
+        (fun _ : NonzeroMask n => -Real.log (uStar n)) a * (deltaOrientation sstar).sign a * chi a.1 s
+          = Real.log (uStar n) * chi a.1 (sstar + s) := by
+      intro a
+      show (-Real.log (uStar n)) * (- chi a.1 sstar) * chi a.1 s
+          = Real.log (uStar n) * chi a.1 (sstar + s)
+      rw [chi_right_add]; ring
+    rw [Finset.sum_congr rfl (fun a _ => hstep a), ← Finset.mul_sum, sum_nonzero_chi (sstar + s)]
+    by_cases hs : s = sstar
+    · rw [if_pos (hchar.mpr hs), if_pos hs]
+    · rw [if_neg (fun hc => hs (hchar.mp hc)), if_neg hs]
+  -- exp of tilt, pointwise
+  have hg : ∀ r : Point n,
+      Real.exp (tilt (deltaOrientation sstar) (fun _ => -Real.log (uStar n)) r)
+        = if r = sstar then (uStar n) ^ (N n) / uStar n else 1 / uStar n := by
+    intro r
+    rw [htilt r]
+    by_cases hr : r = sstar
+    · rw [if_pos hr, if_pos hr,
+        show Real.log (uStar n) * ((N n : ℝ) - 1)
+            = (N n : ℝ) * Real.log (uStar n) + (-(Real.log (uStar n))) from by ring,
+        Real.exp_add, Real.exp_nat_mul, hexpL, Real.exp_neg, hexpL, div_eq_mul_inv]
+    · rw [if_neg hr, if_neg hr,
+        show Real.log (uStar n) * ((0 : ℝ) - 1) = -(Real.log (uStar n)) from by ring,
+        Real.exp_neg, hexpL, one_div]
+  -- normalizer
+  have hZ : (∑ r, Real.exp (tilt (deltaOrientation sstar) (fun _ => -Real.log (uStar n)) r))
+      = ((uStar n) ^ (N n) + ((N n : ℝ) - 1)) / uStar n := by
+    rw [Finset.sum_congr rfl (fun r _ => hg r)]
+    have hsplit : ∀ r : Point n,
+        (if r = sstar then (uStar n) ^ (N n) / uStar n else 1 / uStar n)
+          = 1 / uStar n + (if r = sstar then ((uStar n) ^ (N n) / uStar n - 1 / uStar n) else 0) := by
+      intro r; split_ifs <;> ring
+    rw [Finset.sum_congr rfl (fun r _ => hsplit r), Finset.sum_add_distrib,
+        Finset.sum_const, Finset.card_univ, card_point,
+        Finset.sum_ite_eq' Finset.univ sstar (fun _ => (uStar n) ^ (N n) / uStar n - 1 / uStar n),
+        if_pos (Finset.mem_univ sstar), nsmul_eq_mul]
+    field_simp
+    ring
+  -- assemble
+  refine ⟨fun _ => -Real.log (uStar n), ?_, ?_⟩
+  · -- first calibration condition
+    intro s
+    have hZne : (∑ r, Real.exp (tilt (deltaOrientation sstar) (fun _ => -Real.log (uStar n)) r)) ≠ 0 := by
+      rw [hZ]; exact (div_pos hD hu).ne'
+    rw [eq_div_iff hZne, hZ, hg s]
+    show (if s = sstar then deltaA n else deltaB n) / (N n : ℝ)
+          * (((uStar n) ^ (N n) + ((N n : ℝ) - 1)) / uStar n)
+        = (if s = sstar then (uStar n) ^ (N n) / uStar n else 1 / uStar n)
+    by_cases hs : s = sstar
+    · rw [if_pos hs, if_pos hs, div_mul_div_comm, hAD,
+        div_eq_div_iff (mul_ne_zero hNne hune) hune]
+      ring
+    · rw [if_neg hs, if_neg hs, div_mul_div_comm, hBD,
+        div_eq_div_iff (mul_ne_zero hNne hune) hune]
+      ring
+  · -- second calibration condition
+    intro a
+    simp only [neg_neg]
+    rw [hexpL]
+    unfold EP
+    have hfe : ∀ s : Point n,
+        (deltaLaw sstar).P s * ((deltaOrientation sstar).sign a * chi a.1 s)
+          = (- chi a.1 sstar) / (N n : ℝ)
+              * ((if s = sstar then deltaA n else deltaB n) * chi a.1 s) := by
+      intro s
+      show ((if s = sstar then deltaA n else deltaB n) / (N n : ℝ))
+            * ((- chi a.1 sstar) * chi a.1 s)
+          = (- chi a.1 sstar) / (N n : ℝ)
+              * ((if s = sstar then deltaA n else deltaB n) * chi a.1 s)
+      ring
+    rw [Finset.sum_congr rfl (fun s _ => hfe s), ← Finset.mul_sum]
+    have hS : (∑ s, (if s = sstar then deltaA n else deltaB n) * chi a.1 s)
+        = (deltaA n - deltaB n) * chi a.1 sstar := by
+      have hsplit : ∀ s : Point n,
+          (if s = sstar then deltaA n else deltaB n) * chi a.1 s
+            = deltaB n * chi a.1 s
+                + (if s = sstar then (deltaA n - deltaB n) * chi a.1 s else 0) := by
+        intro s; split_ifs <;> ring
+      rw [Finset.sum_congr rfl (fun s _ => hsplit s), Finset.sum_add_distrib, ← Finset.mul_sum,
+          sum_chi a.1, if_neg a.2, mul_zero, zero_add,
+          Finset.sum_ite_eq' Finset.univ sstar (fun s => (deltaA n - deltaB n) * chi a.1 s),
+          if_pos (Finset.mem_univ sstar)]
+    rw [hS]
+    have hchisq : chi a.1 sstar * chi a.1 sstar = 1 := by
+      rcases chi_mem a.1 sstar with h | h <;> rw [h] <;> norm_num
+    have hAB : deltaA n - deltaB n = -((N n : ℝ) * uStar n) := by
+      unfold deltaA deltaB; ring
+    rw [hAB,
+      show (- chi a.1 sstar) / (N n : ℝ) * ((-((N n : ℝ) * uStar n)) * chi a.1 sstar)
+          = (N n : ℝ) * uStar n * (chi a.1 sstar * chi a.1 sstar) / (N n : ℝ) from by ring,
+      hchisq, mul_one, mul_comm (N n : ℝ) (uStar n), mul_div_assoc, div_self hNne, mul_one]
 /-- Paper XII, Proposition 4.1: consequently `deltaLaw sstar` is THE calibrated
 law of the delta orientation, `P_{ε⋆} = deltaLaw sstar` (Theorem 3.1
 uniqueness). -/
@@ -349,11 +557,26 @@ theorem Ddelta_closedForm (n : ℕ) (hn : 2 ≤ n) :
     Ddelta n
       = (deltaA n * Real.log (deltaA n)
           + ((N n : ℝ) - 1) * (deltaB n * Real.log (deltaB n))) / (N n : ℝ) := by
-  sorry
-  -- `Ddelta n = D(deltaLaw 0 ‖ U) = E_U[X log X] = (1/N) ∑_s X(s) log X(s)`;
-  -- `dens_deltaLaw` gives one point at level `A` and `N-1` points at level `B`.
-  -- Cf. Proposition 4.1 (formula for `D_δ`).
-
+  unfold Ddelta
+  rw [mhat_deltaOrientation (0 : Point n) hn, Dkl, EU]
+  congr 1
+  have hsplit : ∀ s : Point n,
+      dens (deltaLaw (0 : Point n)) s * Real.log (dens (deltaLaw (0 : Point n)) s)
+        = deltaB n * Real.log (deltaB n)
+          + (if s = (0 : Point n)
+              then deltaA n * Real.log (deltaA n) - deltaB n * Real.log (deltaB n)
+              else 0) := by
+    intro s
+    rw [dens_deltaLaw]
+    by_cases h : s = (0 : Point n)
+    · simp only [if_pos h]; ring
+    · simp only [if_neg h]; ring
+  rw [Finset.sum_congr rfl (fun s _ => hsplit s), Finset.sum_add_distrib,
+      Finset.sum_const, Finset.card_univ, card_point,
+      Finset.sum_ite_eq' Finset.univ (0 : Point n)
+        (fun _ => deltaA n * Real.log (deltaA n) - deltaB n * Real.log (deltaB n)),
+      if_pos (Finset.mem_univ (0 : Point n)), nsmul_eq_mul]
+  ring
 /-! ## Symmetry Lemma 3.2: all `N` delta orientations share `D_δ` -/
 
 /-- Paper XII, Lemma 3.2 / §4 remark: all `N` delta orientations share the single
@@ -369,18 +592,65 @@ theorem mhat_deltaOrientation_const (sstar : Point n) :
 
 /-- Paper XII, Lemma 4.2: `D_δ > 0` (the calibrated delta law is not uniform). -/
 theorem Ddelta_pos (n : ℕ) (hn : 2 ≤ n) : 0 < Ddelta n := by
-  sorry
-  -- A calibrated law is never uniform (Section 1.1), so `D(P‖U) > 0`.  Lemma 4.2.
-
+  have hN : (0:ℝ) < (N n : ℝ) := by exact_mod_cast N_pos n
+  have hA : 0 < deltaA n := deltaA_pos_all n
+  have hAlt : deltaA n < 1 := deltaA_lt_one n hn
+  have hB : 0 < deltaB n := by
+    have := uStar_nonneg n; simp only [deltaB]; linarith
+  have hstep : Ddelta n = EU (fun s => psi (dens (deltaLaw (0:Point n)) s)) := by
+    unfold Ddelta
+    rw [mhat_deltaOrientation (0:Point n) hn, Dkl_eq_EU_psi]
+  rw [hstep, EU]
+  apply div_pos _ hN
+  apply Finset.sum_pos'
+  · intro s _
+    rw [dens_deltaLaw]
+    apply psi_nonneg
+    split
+    · exact hA.le
+    · exact hB.le
+  · refine ⟨0, Finset.mem_univ 0, ?_⟩
+    rw [dens_deltaLaw, if_pos rfl]
+    have hlt := psi_strictAntiOn (Set.mem_Icc.mpr ⟨hA.le, hAlt.le⟩)
+      (Set.mem_Icc.mpr ⟨zero_le_one, le_refl 1⟩) hAlt
+    rw [psi_one] at hlt
+    exact hlt
 /-- Paper XII, Lemma 4.2: `D_δ < 1/(N-1)`.  (From `A log A ≤ 0`,
 `log(1+u⋆) ≤ u⋆`, and `1 + u⋆ < N/(N-1)`.) -/
 theorem Ddelta_lt (n : ℕ) (hn : 2 ≤ n) : Ddelta n < 1 / ((N n : ℝ) - 1) := by
-  sorry
-  -- `A ∈ (0,1)` ⇒ `A log A ≤ 0`, so
-  -- `D_δ ≤ ((N-1)/N)(1+u⋆)log(1+u⋆) ≤ ((N-1)/N)u⋆(1+u⋆)`;
-  -- then `u⋆ < 1/(N-1)` and `1+u⋆ < N/(N-1)` give
-  -- `D_δ < ((N-1)/N)(1/(N-1))(N/(N-1)) = 1/(N-1)`.  Lemma 4.2.
-
+  have hN1 : (0:ℝ) < (N n : ℝ) - 1 := by have := one_lt_N n hn; linarith
+  have hNpos : (0:ℝ) < (N n : ℝ) := by linarith
+  have hA_pos := deltaA_pos n hn
+  have hA_lt := deltaA_lt_one n hn
+  have hu_pos := uStar_pos n hn
+  have hu_lt := uStar_lt n hn
+  have hB_pos : (0:ℝ) < deltaB n := by simp only [deltaB]; linarith
+  have hlogA : Real.log (deltaA n) ≤ 0 := Real.log_nonpos hA_pos.le hA_lt.le
+  have hAlog : deltaA n * Real.log (deltaA n) ≤ 0 :=
+    mul_nonpos_iff.mpr (Or.inl ⟨hA_pos.le, hlogA⟩)
+  have hlogB : Real.log (deltaB n) ≤ uStar n := by
+    have h := Real.log_le_sub_one_of_pos hB_pos
+    simp only [deltaB] at h ⊢; linarith
+  have hBlog : deltaB n * Real.log (deltaB n) ≤ deltaB n * uStar n :=
+    mul_le_mul_of_nonneg_left hlogB hB_pos.le
+  rw [Ddelta_closedForm n hn, div_lt_div_iff₀ hNpos hN1]
+  simp only [deltaB] at hBlog ⊢
+  have htu : uStar n * ((N n:ℝ) - 1) < 1 := (lt_div_iff₀ hN1).mp hu_lt
+  have hnum : deltaA n * Real.log (deltaA n)
+        + ((N n:ℝ) - 1) * ((1 + uStar n) * Real.log (1 + uStar n))
+      ≤ ((N n:ℝ) - 1) * ((1 + uStar n) * uStar n) := by
+    have h2 : ((N n:ℝ) - 1) * ((1 + uStar n) * Real.log (1 + uStar n))
+        ≤ ((N n:ℝ) - 1) * ((1 + uStar n) * uStar n) :=
+      mul_le_mul_of_nonneg_left hBlog hN1.le
+    linarith
+  have hPpos : 0 < uStar n * ((N n:ℝ) - 1) := mul_pos hu_pos hN1
+  have hQ : (1 + uStar n) * ((N n:ℝ) - 1) < (N n:ℝ) := by nlinarith [htu]
+  have hQpos : 0 < (1 + uStar n) * ((N n:ℝ) - 1) :=
+    mul_pos (by linarith : (0:ℝ) < 1 + uStar n) hN1
+  have hPQ : (uStar n * ((N n:ℝ) - 1)) * ((1 + uStar n) * ((N n:ℝ) - 1)) < 1 * (N n:ℝ) :=
+    mul_lt_mul'' htu hQ hPpos.le hQpos.le
+  have hmul := mul_le_mul_of_nonneg_right hnum hN1.le
+  nlinarith [hmul, hPQ]
 /-- Paper XII, Lemma 4.2 (statement as in the paper): `0 < D_δ < 1/(N-1)` for
 every `n ≥ 2`. -/
 theorem Lemma_4_2 (n : ℕ) (hn : 2 ≤ n) :
@@ -392,8 +662,109 @@ theorem Lemma_4_2 (n : ℕ) (hn : 2 ≤ n) :
 `u⋆ = (1/(N-1))(1 - O(N^{-N}))`, whence `N·D_δ → 1`.) -/
 theorem N_Ddelta_tendsto_one :
     Tendsto (fun n : ℕ => (N n : ℝ) * Ddelta n) atTop (𝓝 1) := by
-  sorry
-  -- `u⋆ = (1/(N-1))(1 - O(N^{-N}))`, `A → 0`, `B → 1`, and
-  -- `N·D_δ = A log A + (N-1)B log B → 1`.  Cf. §4 first remark after Lemma 4.2.
-
+  -- N n → ∞
+  have hN : Tendsto (fun n : ℕ => (N n : ℝ)) atTop atTop :=
+    Tendsto.congr (fun n => by simp only [N]; push_cast; ring)
+      (tendsto_pow_atTop_atTop_of_one_lt (by norm_num : (1:ℝ) < 2))
+  -- N n - 1 → ∞
+  have hNm1 : Tendsto (fun n : ℕ => (N n : ℝ) - 1) atTop atTop := by
+    have := tendsto_atTop_add_const_right atTop (-1 : ℝ) hN
+    simpa [sub_eq_add_neg] using this
+  -- 1/(N-1) → 0
+  have hinv : Tendsto (fun n : ℕ => ((N n : ℝ) - 1)⁻¹) atTop (𝓝 0) :=
+    hNm1.inv_tendsto_atTop
+  -- u⋆ → 0
+  have hu : Tendsto (fun n : ℕ => uStar n) atTop (𝓝 0) := by
+    apply tendsto_of_tendsto_of_tendsto_of_le_of_le' tendsto_const_nhds hinv
+    · exact Eventually.of_forall (fun n => uStar_nonneg n)
+    · filter_upwards [eventually_ge_atTop 2] with n hn
+      have h := uStar_lt n hn
+      rw [one_div] at h
+      exact h.le
+  -- deltaA n → 0
+  have hA : Tendsto (fun n : ℕ => deltaA n) atTop (𝓝 0) := by
+    have hupper : Tendsto (fun n : ℕ => uStar n * (1 + uStar n)) atTop (𝓝 0) := by
+      have := hu.mul (hu.const_add (1 : ℝ))
+      simpa using this
+    apply tendsto_of_tendsto_of_tendsto_of_le_of_le' tendsto_const_nhds hupper
+    · exact Eventually.of_forall (fun n => (deltaA_pos_all n).le)
+    · filter_upwards [eventually_ge_atTop 2] with n hn
+      -- relation: deltaA n = u^N (1+u)
+      have hroot := deltaPoly_uStar n hn
+      rw [deltaPoly_root_iff] at hroot
+      have hNpos : (0:ℝ) < (N n : ℝ) - 1 := by have := one_lt_N n hn; linarith
+      have h4 : (4:ℝ) ≤ (N n : ℝ) := by
+        have hnat : (4:ℕ) ≤ N n := by
+          calc (4:ℕ) = 2 ^ 2 := by norm_num
+            _ ≤ 2 ^ n := Nat.pow_le_pow_right (by norm_num) hn
+        exact_mod_cast hnat
+      have hu1 : uStar n ≤ 1 := by
+        have hle : (1:ℝ) / ((N n : ℝ) - 1) ≤ 1 := by
+          rw [div_le_one hNpos]; linarith
+        exact le_of_lt (lt_of_lt_of_le (uStar_lt n hn) hle)
+      show deltaA n ≤ uStar n * (1 + uStar n)
+      unfold deltaA
+      rw [hroot]
+      apply mul_le_mul_of_nonneg_right
+      · exact pow_le_of_le_one (uStar_nonneg n) hu1 (N_pos n).ne'
+      · linarith [uStar_nonneg n]
+  -- (N-1)·u → 1
+  have hNm1u : Tendsto (fun n : ℕ => ((N n : ℝ) - 1) * uStar n) atTop (𝓝 1) := by
+    have h1 : Tendsto (fun n : ℕ => 1 - deltaA n) atTop (𝓝 1) := by
+      simpa using hA.const_sub (1 : ℝ)
+    exact Tendsto.congr (fun n => by unfold deltaA; ring) h1
+  -- lower / upper envelopes for term2
+  have hLow : Tendsto (fun n : ℕ => 1 - deltaA n) atTop (𝓝 1) := by
+    simpa using hA.const_sub (1 : ℝ)
+  have hUp : Tendsto (fun n : ℕ => (1 - deltaA n) * (1 + uStar n)) atTop (𝓝 1) := by
+    have := (hA.const_sub (1 : ℝ)).mul (hu.const_add (1 : ℝ))
+    simpa using this
+  -- term2 → 1
+  have hterm2 : Tendsto
+      (fun n : ℕ => ((N n : ℝ) - 1) * (deltaB n * Real.log (deltaB n)))
+      atTop (𝓝 1) := by
+    apply tendsto_of_tendsto_of_tendsto_of_le_of_le' hLow hUp
+    · filter_upwards [eventually_ge_atTop 2] with n hn
+      have hid : (1:ℝ) - deltaA n = ((N n : ℝ) - 1) * uStar n := by unfold deltaA; ring
+      have hBu : deltaB n = 1 + uStar n := rfl
+      have hBpos : 0 < deltaB n := by rw [hBu]; linarith [uStar_nonneg n]
+      have hNm1pos : (0:ℝ) < (N n : ℝ) - 1 := by have := one_lt_N n hn; linarith
+      rw [hid]
+      have hlb := Real.self_sub_one_le_mul_log hBpos.le
+      have huv : uStar n = deltaB n - 1 := by rw [hBu]; ring
+      have hule : uStar n ≤ deltaB n * Real.log (deltaB n) := by rw [huv]; exact hlb
+      exact mul_le_mul_of_nonneg_left hule hNm1pos.le
+    · filter_upwards [eventually_ge_atTop 2] with n hn
+      have hid : (1:ℝ) - deltaA n = ((N n : ℝ) - 1) * uStar n := by unfold deltaA; ring
+      have hBu : deltaB n = 1 + uStar n := rfl
+      have hBpos : 0 < deltaB n := by rw [hBu]; linarith [uStar_nonneg n]
+      have hNm1pos : (0:ℝ) < (N n : ℝ) - 1 := by have := one_lt_N n hn; linarith
+      rw [hid]
+      have hub := Real.log_le_sub_one_of_pos hBpos
+      have h1 : deltaB n * Real.log (deltaB n) ≤ deltaB n * (deltaB n - 1) :=
+        mul_le_mul_of_nonneg_left hub hBpos.le
+      have h2 : deltaB n * (deltaB n - 1) = uStar n * (1 + uStar n) := by rw [hBu]; ring
+      rw [h2] at h1
+      calc ((N n : ℝ) - 1) * (deltaB n * Real.log (deltaB n))
+          ≤ ((N n : ℝ) - 1) * (uStar n * (1 + uStar n)) :=
+            mul_le_mul_of_nonneg_left h1 hNm1pos.le
+        _ = ((N n : ℝ) - 1) * uStar n * (1 + uStar n) := by ring
+  -- term1 → 0 (x log x continuous at 0)
+  have hterm1 : Tendsto (fun n : ℕ => deltaA n * Real.log (deltaA n)) atTop (𝓝 0) := by
+    have hc : Tendsto (fun x : ℝ => x * Real.log x) (𝓝 0) (𝓝 (0 * Real.log 0)) :=
+      Real.continuous_mul_log.continuousAt
+    have := hc.comp hA
+    simpa [Function.comp_def] using this
+  -- sum → 1
+  have hsum : Tendsto
+      (fun n : ℕ => deltaA n * Real.log (deltaA n)
+        + ((N n : ℝ) - 1) * (deltaB n * Real.log (deltaB n))) atTop (𝓝 1) := by
+    have := hterm1.add hterm2
+    simpa using this
+  -- transfer to N·Ddelta via closed form
+  refine hsum.congr' ?_
+  filter_upwards [eventually_ge_atTop 2] with n hn
+  have hNne : (N n : ℝ) ≠ 0 := by exact_mod_cast (N_pos n).ne'
+  rw [Ddelta_closedForm n hn]
+  field_simp
 end WalshDelta

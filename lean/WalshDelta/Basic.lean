@@ -276,11 +276,248 @@ lemma Dkl_eq_EU_psi (P : ProbLaw n) :
 /-- Paper XII, Lemma 2.1 (Pinsker).  `E_U|X - 1| = ∑_s |P(s) - 1/N| ≤ √(2 D(P‖U))`. -/
 lemma pinsker (P : ProbLaw n) :
     EU (fun s => |dens P s - 1|) ≤ Real.sqrt (2 * Dkl P) := by
-  sorry
-  -- Pinsker `TV ≤ √(D/2)`, and `E_U|X-1| = 2·TV`.  Cite Mathlib's information
-  -- theory Pinsker inequality if available.  Cf. Lemma 2.1 ([1] Lemma 11.6.1).
-  -- TODO(api): locate Mathlib Pinsker (`ProbabilityTheory`/`MeasureTheory`).
-
+  -- Pointwise Pinsker:  for x > 0,  3(x-1)^2 ≤ (2x+4) ψ(x).
+  have hpt : ∀ x : ℝ, 0 < x → 3 * (x - 1) ^ 2 ≤ (2 * x + 4) * psi x := by
+    -- G(x) = (2x+4)ψ(x) - 3(x-1)^2 ,  with derivative Gp.
+    have hderivG : ∀ x : ℝ, 0 < x →
+        HasDerivAt (fun y => (2 * y + 4) * psi y - 3 * (y - 1) ^ 2)
+          (2 * psi x + (2 * x + 4) * Real.log x - 6 * (x - 1)) x := by
+      intro x hx
+      have hpsi := psi_hasDerivAt hx
+      have h1 : HasDerivAt (fun y : ℝ => 2 * y + 4) 2 x := by
+        simpa using ((hasDerivAt_id x).const_mul (2:ℝ)).add_const (4:ℝ)
+      have h2 : HasDerivAt (fun y : ℝ => (2 * y + 4) * psi y)
+          (2 * psi x + (2 * x + 4) * Real.log x) x := h1.mul hpsi
+      have hb : HasDerivAt (fun y : ℝ => y - 1) 1 x := (hasDerivAt_id x).sub_const (1:ℝ)
+      have h3 : HasDerivAt (fun y : ℝ => (y - 1) ^ 2) (2 * (x - 1)) x := by
+        have hmul : HasDerivAt (fun y : ℝ => (y - 1) * (y - 1))
+            (1 * (x - 1) + (x - 1) * 1) x := hb.mul hb
+        have e : (fun y : ℝ => (y - 1) * (y - 1)) = (fun y : ℝ => (y - 1) ^ 2) := by
+          funext y; ring
+        rw [e] at hmul
+        rw [show (2:ℝ) * (x - 1) = 1 * (x - 1) + (x - 1) * 1 from by ring]
+        exact hmul
+      have h4 : HasDerivAt (fun y : ℝ => 3 * (y - 1) ^ 2) (6 * (x - 1)) x := by
+        have h := h3.const_mul (3:ℝ)
+        rw [show (6:ℝ) * (x - 1) = 3 * (2 * (x - 1)) from by ring]
+        exact h
+      exact h2.sub h4
+    -- Gp(x) = 2ψ(x) + (2x+4)log x - 6(x-1) ,  with derivative Gpp.
+    have hderivGp : ∀ x : ℝ, 0 < x →
+        HasDerivAt (fun y => 2 * psi y + (2 * y + 4) * Real.log y - 6 * (y - 1))
+          (2 * Real.log x + (2 * Real.log x + (2 * x + 4) * x⁻¹) - 6) x := by
+      intro x hx
+      have hpsi := psi_hasDerivAt hx
+      have hlog := Real.hasDerivAt_log (ne_of_gt hx)
+      have h1 : HasDerivAt (fun y : ℝ => 2 * y + 4) 2 x := by
+        simpa using ((hasDerivAt_id x).const_mul (2:ℝ)).add_const (4:ℝ)
+      have t1 : HasDerivAt (fun y : ℝ => 2 * psi y) (2 * Real.log x) x := hpsi.const_mul (2:ℝ)
+      have t2 : HasDerivAt (fun y : ℝ => (2 * y + 4) * Real.log y)
+          (2 * Real.log x + (2 * x + 4) * x⁻¹) x := h1.mul hlog
+      have t3 : HasDerivAt (fun y : ℝ => 6 * (y - 1)) 6 x := by
+        simpa using ((hasDerivAt_id x).sub_const (1:ℝ)).const_mul (6:ℝ)
+      exact (t1.add t2).sub t3
+    -- Gp is monotone on (0,∞) because Gpp ≥ 0.
+    have hGp_cont : ContinuousOn
+        (fun y => 2 * psi y + (2 * y + 4) * Real.log y - 6 * (y - 1)) (Set.Ioi (0:ℝ)) :=
+      fun x hx => (hderivGp x hx).continuousAt.continuousWithinAt
+    have hGp_diff : DifferentiableOn ℝ
+        (fun y => 2 * psi y + (2 * y + 4) * Real.log y - 6 * (y - 1))
+        (interior (Set.Ioi (0:ℝ))) := by
+      rw [interior_Ioi]
+      exact fun x hx => (hderivGp x hx).differentiableAt.differentiableWithinAt
+    have hGp_mono : MonotoneOn
+        (fun y => 2 * psi y + (2 * y + 4) * Real.log y - 6 * (y - 1)) (Set.Ioi (0:ℝ)) := by
+      apply monotoneOn_of_deriv_nonneg (convex_Ioi 0) hGp_cont hGp_diff
+      intro x hx
+      rw [interior_Ioi] at hx
+      rw [(hderivGp x hx).deriv]
+      have hlog : Real.log x⁻¹ ≤ x⁻¹ - 1 := Real.log_le_sub_one_of_pos (inv_pos.mpr hx)
+      rw [Real.log_inv] at hlog
+      have hxinv : x * x⁻¹ = 1 := mul_inv_cancel₀ (ne_of_gt hx)
+      nlinarith [hlog, hxinv, hx]
+    -- Gp(1) = 0, hence Gp ≥ 0 on [1,∞) and Gp ≤ 0 on (0,1].
+    have hGp_nonneg : ∀ x : ℝ, 1 ≤ x →
+        0 ≤ 2 * psi x + (2 * x + 4) * Real.log x - 6 * (x - 1) := by
+      intro x hx1
+      have hx0 : (0:ℝ) < x := lt_of_lt_of_le one_pos hx1
+      have key : (2 * psi (1:ℝ) + (2 * (1:ℝ) + 4) * Real.log 1 - 6 * ((1:ℝ) - 1))
+          ≤ (2 * psi x + (2 * x + 4) * Real.log x - 6 * (x - 1)) :=
+        hGp_mono (Set.mem_Ioi.mpr one_pos) (Set.mem_Ioi.mpr hx0) hx1
+      have h1 : (2 * psi (1:ℝ) + (2 * (1:ℝ) + 4) * Real.log 1 - 6 * ((1:ℝ) - 1)) = 0 := by
+        simp [psi_one]
+      linarith [key, h1]
+    have hGp_nonpos : ∀ x : ℝ, 0 < x → x ≤ 1 →
+        2 * psi x + (2 * x + 4) * Real.log x - 6 * (x - 1) ≤ 0 := by
+      intro x hx0 hx1
+      have key : (2 * psi x + (2 * x + 4) * Real.log x - 6 * (x - 1))
+          ≤ (2 * psi (1:ℝ) + (2 * (1:ℝ) + 4) * Real.log 1 - 6 * ((1:ℝ) - 1)) :=
+        hGp_mono (Set.mem_Ioi.mpr hx0) (Set.mem_Ioi.mpr one_pos) hx1
+      have h1 : (2 * psi (1:ℝ) + (2 * (1:ℝ) + 4) * Real.log 1 - 6 * ((1:ℝ) - 1)) = 0 := by
+        simp [psi_one]
+      linarith [key, h1]
+    -- G is monotone on [1,∞) and antitone on (0,1], with G(1)=0.
+    have hGcont_ici : ContinuousOn
+        (fun y => (2 * y + 4) * psi y - 3 * (y - 1) ^ 2) (Set.Ici (1:ℝ)) :=
+      fun x hx => (hderivG x (lt_of_lt_of_le one_pos hx)).continuousAt.continuousWithinAt
+    have hGdiff_ici : DifferentiableOn ℝ
+        (fun y => (2 * y + 4) * psi y - 3 * (y - 1) ^ 2) (interior (Set.Ici (1:ℝ))) := by
+      rw [interior_Ici]
+      exact fun x hx => (hderivG x (lt_trans one_pos hx)).differentiableAt.differentiableWithinAt
+    have hGcont_ioc : ContinuousOn
+        (fun y => (2 * y + 4) * psi y - 3 * (y - 1) ^ 2) (Set.Ioc (0:ℝ) 1) :=
+      fun x hx => (hderivG x hx.1).continuousAt.continuousWithinAt
+    have hGdiff_ioc : DifferentiableOn ℝ
+        (fun y => (2 * y + 4) * psi y - 3 * (y - 1) ^ 2) (interior (Set.Ioc (0:ℝ) 1)) := by
+      rw [interior_Ioc]
+      exact fun x hx => (hderivG x hx.1).differentiableAt.differentiableWithinAt
+    have hG_mono : MonotoneOn
+        (fun y => (2 * y + 4) * psi y - 3 * (y - 1) ^ 2) (Set.Ici (1:ℝ)) := by
+      apply monotoneOn_of_deriv_nonneg (convex_Ici 1) hGcont_ici hGdiff_ici
+      intro x hx
+      rw [interior_Ici] at hx
+      rw [(hderivG x (lt_trans one_pos hx)).deriv]
+      exact hGp_nonneg x (le_of_lt hx)
+    have hG_anti : AntitoneOn
+        (fun y => (2 * y + 4) * psi y - 3 * (y - 1) ^ 2) (Set.Ioc (0:ℝ) 1) := by
+      apply antitoneOn_of_deriv_nonpos (convex_Ioc 0 1) hGcont_ioc hGdiff_ioc
+      intro x hx
+      rw [interior_Ioc] at hx
+      rw [(hderivG x hx.1).deriv]
+      exact hGp_nonpos x hx.1 (le_of_lt hx.2)
+    have hG1 : (2 * (1:ℝ) + 4) * psi 1 - 3 * ((1:ℝ) - 1) ^ 2 = 0 := by simp [psi_one]
+    have hG_nonneg_ge : ∀ x : ℝ, 1 ≤ x → 0 ≤ (2 * x + 4) * psi x - 3 * (x - 1) ^ 2 := by
+      intro x hx1
+      have key : ((2 * (1:ℝ) + 4) * psi 1 - 3 * ((1:ℝ) - 1) ^ 2)
+          ≤ ((2 * x + 4) * psi x - 3 * (x - 1) ^ 2) :=
+        hG_mono (Set.mem_Ici.mpr le_rfl) (Set.mem_Ici.mpr hx1) hx1
+      linarith [key, hG1]
+    have hG_nonneg_le : ∀ x : ℝ, 0 < x → x ≤ 1 → 0 ≤ (2 * x + 4) * psi x - 3 * (x - 1) ^ 2 := by
+      intro x hx0 hx1
+      have key : ((2 * (1:ℝ) + 4) * psi 1 - 3 * ((1:ℝ) - 1) ^ 2)
+          ≤ ((2 * x + 4) * psi x - 3 * (x - 1) ^ 2) :=
+        hG_anti (Set.mem_Ioc.mpr ⟨hx0, hx1⟩) (Set.mem_Ioc.mpr ⟨one_pos, le_rfl⟩) hx1
+      linarith [key, hG1]
+    intro x hx
+    rcases le_total 1 x with hle | hle
+    · have hge := hG_nonneg_ge x hle
+      linarith [hge]
+    · have hle' := hG_nonneg_le x hx hle
+      linarith [hle']
+  -- Basic facts about the density X = N·P.
+  have hXpos : ∀ s : Point n, 0 < dens P s := by
+    intro s
+    have hN : (0:ℝ) < (N n : ℝ) := by exact_mod_cast N_pos n
+    simp only [dens]
+    exact mul_pos hN (P.pos s)
+  have hsumX : (∑ s : Point n, dens P s) = (N n : ℝ) := by
+    have h := EU_dens_eq_one P
+    simp only [EU] at h
+    field_simp at h
+    linarith
+  have hpsi_sum : (∑ s : Point n, psi (dens P s)) = (N n : ℝ) * Dkl P := by
+    rw [Dkl_eq_EU_psi]
+    simp only [EU]
+    rw [mul_comm (N n : ℝ) ((∑ s : Point n, psi (dens P s)) / (N n : ℝ)),
+       div_mul_cancel₀ _ (N_ne_zero n)]
+  have arg_nonneg : ∀ s : Point n, (0:ℝ) ≤ (2 * dens P s + 4) / 3 := by
+    intro s
+    have := hXpos s
+    apply div_nonneg
+    · linarith
+    · norm_num
+  -- Product identity for the Cauchy–Schwarz split.
+  have prodeq : ∀ s : Point n,
+      Real.sqrt ((2 * dens P s + 4) / 3)
+        * Real.sqrt (3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4)) = |dens P s - 1| := by
+    intro s
+    have hXs := hXpos s
+    have hpos : (0:ℝ) < 2 * dens P s + 4 := by linarith
+    have hne : (2 * dens P s + 4) ≠ 0 := ne_of_gt hpos
+    rw [← Real.sqrt_mul (arg_nonneg s)]
+    have hid : (2 * dens P s + 4) / 3 * (3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4))
+        = (dens P s - 1) ^ 2 := by
+      field_simp
+    rw [hid, Real.sqrt_sq_eq_abs]
+  have hSprod : (∑ s : Point n,
+        Real.sqrt ((2 * dens P s + 4) / 3)
+          * Real.sqrt (3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4)))
+      = ∑ s : Point n, |dens P s - 1| :=
+    Finset.sum_congr rfl (fun s _ => prodeq s)
+  -- ∑ f² = 2N.
+  have hsum24 : (∑ s : Point n, (2 * dens P s + 4)) = 6 * (N n : ℝ) := by
+    rw [Finset.sum_add_distrib, ← Finset.mul_sum, hsumX, Finset.sum_const, Finset.card_univ,
+       card_point, nsmul_eq_mul]
+    ring
+  have hf2 : (∑ s : Point n, Real.sqrt ((2 * dens P s + 4) / 3) ^ 2) = 2 * (N n : ℝ) := by
+    have hcong : ∀ s : Point n,
+        Real.sqrt ((2 * dens P s + 4) / 3) ^ 2 = (2 * dens P s + 4) / 3 :=
+      fun s => Real.sq_sqrt (arg_nonneg s)
+    rw [Finset.sum_congr rfl (fun s _ => hcong s), ← Finset.sum_div, hsum24]
+    ring
+  -- ∑ g² ≤ ∑ ψ(X).
+  have g2le : ∀ s : Point n,
+      Real.sqrt (3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4)) ^ 2 ≤ psi (dens P s) := by
+    intro s
+    have hXs := hXpos s
+    have hpos : (0:ℝ) < 2 * dens P s + 4 := by linarith
+    have harg : (0:ℝ) ≤ 3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4) := by
+      apply div_nonneg
+      · positivity
+      · linarith
+    rw [Real.sq_sqrt harg, div_le_iff₀ hpos]
+    have hp := hpt (dens P s) hXs
+    rw [mul_comm (psi (dens P s)) (2 * dens P s + 4)]
+    exact hp
+  have hg2 : (∑ s : Point n, Real.sqrt (3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4)) ^ 2)
+      ≤ ∑ s : Point n, psi (dens P s) :=
+    Finset.sum_le_sum (fun s _ => g2le s)
+  -- Cauchy–Schwarz.
+  have CS : (∑ s : Point n,
+        Real.sqrt ((2 * dens P s + 4) / 3)
+          * Real.sqrt (3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4))) ^ 2
+      ≤ (∑ s : Point n, Real.sqrt ((2 * dens P s + 4) / 3) ^ 2)
+        * (∑ s : Point n, Real.sqrt (3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4)) ^ 2) := by
+    have h := Finset.sum_mul_sq_le_sq_mul_sq (Finset.univ : Finset (Point n))
+      (fun s => Real.sqrt ((2 * dens P s + 4) / 3))
+      (fun s => Real.sqrt (3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4)))
+    simpa only [] using h
+  -- Assemble the squared bound  S² ≤ 2N²·D.
+  have hCbound : (∑ s : Point n, Real.sqrt (3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4)) ^ 2)
+      ≤ (N n : ℝ) * Dkl P :=
+    le_trans hg2 (le_of_eq hpsi_sum)
+  have h2Nnonneg : (0:ℝ) ≤ 2 * (N n : ℝ) := by positivity
+  have hS2 : (∑ s : Point n, |dens P s - 1|) ^ 2 ≤ 2 * (N n : ℝ) * ((N n : ℝ) * Dkl P) := by
+    have hstep : (∑ s : Point n, |dens P s - 1|) ^ 2
+        ≤ (2 * (N n : ℝ))
+          * (∑ s : Point n, Real.sqrt (3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4)) ^ 2) := by
+      rw [← hSprod, ← hf2]
+      exact CS
+    calc (∑ s : Point n, |dens P s - 1|) ^ 2
+        ≤ (2 * (N n : ℝ))
+            * (∑ s : Point n, Real.sqrt (3 * (dens P s - 1) ^ 2 / (2 * dens P s + 4)) ^ 2) := hstep
+      _ ≤ (2 * (N n : ℝ)) * ((N n : ℝ) * Dkl P) :=
+          mul_le_mul_of_nonneg_left hCbound h2Nnonneg
+      _ = 2 * (N n : ℝ) * ((N n : ℝ) * Dkl P) := by ring
+  -- Take square roots and divide by N.
+  have hSnonneg : (0:ℝ) ≤ ∑ s : Point n, |dens P s - 1| :=
+    Finset.sum_nonneg (fun s _ => abs_nonneg _)
+  have hNsqrt : Real.sqrt ((N n : ℝ) ^ 2 * (2 * Dkl P)) = (N n : ℝ) * Real.sqrt (2 * Dkl P) := by
+    rw [Real.sqrt_mul (by positivity : (0:ℝ) ≤ (N n : ℝ) ^ 2),
+       Real.sqrt_sq (by positivity : (0:ℝ) ≤ (N n : ℝ))]
+  have key : (∑ s : Point n, |dens P s - 1|) ≤ (N n : ℝ) * Real.sqrt (2 * Dkl P) := by
+    rw [← hNsqrt, ← Real.sqrt_sq hSnonneg]
+    apply Real.sqrt_le_sqrt
+    calc (∑ s : Point n, |dens P s - 1|) ^ 2
+        ≤ 2 * (N n : ℝ) * ((N n : ℝ) * Dkl P) := hS2
+      _ = (N n : ℝ) ^ 2 * (2 * Dkl P) := by ring
+  have hNpos : (0:ℝ) < (N n : ℝ) := by exact_mod_cast N_pos n
+  have hEU : EU (fun s => |dens P s - 1|)
+      = (∑ s : Point n, |dens P s - 1|) / (N n : ℝ) := rfl
+  rw [hEU, div_le_iff₀ hNpos]
+  calc (∑ s : Point n, |dens P s - 1|)
+      ≤ (N n : ℝ) * Real.sqrt (2 * Dkl P) := key
+    _ = Real.sqrt (2 * Dkl P) * (N n : ℝ) := by ring
 /-! ## Self-calibrated laws (Definition 1.1) -/
 
 /-- Paper XII, Definition 1.1.  The tilt field

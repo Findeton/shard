@@ -2,6 +2,7 @@ import Mathlib
 import WalshDelta.Basic
 import WalshDelta.Symmetry
 import WalshDelta.Calibration
+import WalshDelta.Delta
 
 /-!
 # Walsh–delta: the certified computation for `2 ≤ n ≤ 5` (Paper XII, Section 8)
@@ -436,7 +437,7 @@ masks (`cGl φ ε` reindexes the signs by `φ⁻¹`); named `cGl` to avoid clash
 with `Symmetry.glOrient`.  The nonzero-preservation of `φ.symm` is left `sorry`. -/
 noncomputable def cGl (φ : Point n ≃ₗ[ZMod 2] Point n) (ε : Orientation n) :
     Orientation n where
-  sign := fun a => ε.sign ⟨φ.symm a.1, by sorry⟩
+  sign := fun a => ε.sign ⟨φ.symm a.1, fun h => a.2 ((LinearEquiv.map_eq_zero_iff φ.symm).mp h)⟩
   is_sign := fun a => ε.is_sign _
 /-- Paper XII, Lemma 3.3.  A `GL(n,2)` element is an `𝔽₂`-linear automorphism of
 the mask space; it relabels a nonzero mask to another nonzero mask.  (`φ`

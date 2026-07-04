@@ -42,40 +42,48 @@ Status legend: ☐ open · ✅ done (`lake build` clean).
 
 ## Tier C — medium (multi-step, standard mathematics)
 
-- ☐ `Calibration.*` convexity/coercivity cluster: `logPartition_convexOn`,
-  `Gfun_strictConvexOn`, `Gfun_coercive`, `logPartition_partialDeriv`,
-  `Gfun_partialDeriv`, `critical_iff_calibrationEqs`, `calibrated_of_critical`,
-  `hcoeff_pos_of_critical`, `Gfun_min_exists_unique`, `ellStar_isCritical`,
-  `calibrated_exists_unique`, `*_contDiff`, `logPartition_radial_tendsto`.
-- ☐ `Symmetry.*` covariance cluster (remaining): `translation_covariance_law/_mhat`,
-  `glAction_covariance_law/_mhat` (need the minimizer relabeling + `hP.2` uniqueness).
-  [`dotZ2_mulVec`, `glTransInv_mulVec_ne_zero`, `delta_glAction` now ✅.]
+- ✅ `Calibration.*` convex-analysis core — **ALL 14 DONE, kernel-verified** (`theorem_3_1`
+  has no `sorryAx`): `logPartition_contDiff`/`Gfun_contDiff` (ContDiff.log ∘ exp ∘ linear),
+  `logPartition_convexOn` (log-sum-exp convexity via two-point weighted Hölder,
+  `Real.inner_le_Lp_mul_Lq`), `Gfun_strictConvexOn` (convex `F` + strictly-convex separable
+  barrier), `logPartition_radial_tendsto` + `Gfun_coercive` (μ(v)>0 zero-mean + sphere
+  compactness ⇒ `c‖ℓ‖−log N`), `logPartition_partialDeriv`/`Gfun_partialDeriv` (log-sum-exp
+  gradient via `HasDerivAt`), `critical_iff_calibrationEqs`, `calibrated_of_critical`,
+  `hcoeff_pos_of_critical` (|E_P χ_a|<1), `Gfun_min_exists_unique` (compact-ball min + strict
+  convexity), `ellStar_isCritical` (Fermat), `calibrated_exists_unique`.  Also `Delta.exists_unique_calibrated := calibrated_exists_unique`.
+- ✅ `Symmetry.*` covariance cluster — ALL DONE (see below).
 - ✅ `Delta`: `deltaPoly_strictMonoOn` (monotone sum), `deltaPoly_pos_at_bound`
   (`(N-1)·1/(N-1)=1` cancels), `uStar_exists_unique` (IVT + strict mono),
   `tauOrient_deltaOrientation` (`chi_right_add`).  [These also clear `uStar_spec`,
   `uStar_pos`, `deltaPoly_uStar`, `uStar_lt` transitively.]
-- ☐ `Delta` (still, gated by the `Calibration` convex core): `calLaw_tauOrient`,
-  `mhat_tauOrient`, `calibrated_deltaLaw`, `Ddelta_closedForm`, `Ddelta_pos`,
-  `Ddelta_lt`, `N_Ddelta_tendsto_one`, `Lemma_4_2`, `exists_unique_calibrated`,
-  `deltaLaw` (pos/sum_one — `pos` needs the `n<2` junk-root edge).
+- ✅ `Delta` delta-law/covariance cluster — **ALL DONE** (kernel-verified): `deltaLaw`
+  (valid `ProbLaw` ∀`n` via `(N−1)u⋆<1`), `calibrated_deltaLaw` (constant tilt `−log u⋆`;
+  `chi_right_add`+`sum_nonzero_chi`+`deltaPoly_root_iff`), `calLaw_tauOrient`+`mhat_tauOrient`
+  (translation covariance via `calLaw_unique`+reindex), `Ddelta_closedForm`, `Ddelta_pos`
+  (`ψ`-form, `psi`>0 for `A<1`), `Ddelta_lt`/`Lemma_4_2` (`log(1+u⋆)≤u⋆`), `N_Ddelta_tendsto_one`
+  (asymptotic), `exists_unique_calibrated`.
+- ✅ `Symmetry` calibrated-law covariance — **ALL DONE**: `translation_covariance_law/_mhat`,
+  `glAction_covariance_law/_mhat` (build the translate/pushforward `ProbLaw`, show it's calibrated
+  for the acted orientation, conclude by `IsCalAssignment` uniqueness; `glAction` via `chi_mulVec`).
 - ☐ `Certified`: `exists_unique_minimizer`, `lemma_8_1`, `lemma_8_2_grad/_transfer`,
   `Ddelta_eq`, `mhat_transOrient/_glOrient/_of_sameOrbit`, `isDelta_of_sameOrbit`,
   `nat_card_orientation`.
 
-## Tier D — hard (the two frontiers + the numeric constants)
+## Tier D — hard (the frontiers + the numeric constants)
 
-- ☐ **Analytic frontier** (`Trichotomy` §5–6 + `AnalyticMain` §7):
-  `parameter_floor`, `bookkeeping`, `spectral_floor`, `hMin_sub_epsG_ge_hPrime`,
-  `dipTransform_ne_zero`, `dominance_criterion`, `shallowDepthSum_lt`,
-  `deepDipCount_ne_zero/_one/_two`, `deep_dip_trichotomy`;
-  `main_analytic`, `corollary_1_3`, `main_equality_analytic`,
-  `translation_covariance`, `tau_deltaOrientation`, `N_Ddelta_tendsto_one`,
+- ✅ **Analytic frontier — ALL DONE, kernel-verified** (`Trichotomy` §5–6 + `AnalyticMain` §7):
+  `parameter_floor`, `bookkeeping`, `spectral_floor` (the `|Φ(a)|≥1.24416N` floor + sign readout),
+  `hMin_sub_epsG_ge_hPrime`, `dipTransform_ne_zero`, `dominance_criterion`, `shallowDepthSum_lt`,
+  `deepDipCount_ne_zero/_one/_two`, `deep_dip_trichotomy` (**Thm 6.1**); `main_analytic` (**Thm 7.1**),
+  `corollary_1_3`, `main_equality_analytic`, `translation_covariance`, `tau_deltaOrientation`,
+  `N_Ddelta_tendsto_one`.  Also **`Basic.pinsker`** (Lemma 2.1, pointwise `3(x−1)²≤(2x+4)ψ(x)` via `f''≥0`
+  + Cauchy–Schwarz).  [`Main.corollary_1_3_top` still open — see below.]
+- ✅ **Numeric constants — ALL DONE** (exact interval arithmetic on Mathlib `exp_one_gt_d9` /
+  `log_two,three,five_gt_d9`, NOT `native_decide`): `three_psi_gt`, `hPrime_gt`, `three_psi_exp_neg5_gt`.
+- ☐ **Certified frontier** (`Certified` §8) — the last cluster: `theorem_8_3`, `orbitCount_five`,
+  `orbitCount_low`, `reduce_to_transversal`, `lemma_8_1`, `lemma_8_2_*`, `opNorm_le_trace_of_psd` — the
+  exact-interval Newton–Kantorovich certification over the 176-orbit Γ₅ transversal; plus
   `Main.corollary_1_3_top`.
-- ☐ **Numeric constants** (rigorous rational/interval arithmetic, NOT `norm_num`
-  on transcendentals): `three_psi_gt`, `hPrime_gt`, `three_psi_exp_neg5_gt`.
-- ☐ **Certified frontier** (`Certified` §8): `theorem_8_3`, `orbitCount_five`,
-  `orbitCount_low`, `reduce_to_transversal` — the exact-interval Newton–Kantorovich
-  certification over the 176-orbit Γ₅ transversal.
 
 ---
 

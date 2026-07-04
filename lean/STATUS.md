@@ -29,8 +29,39 @@ Date: 2026-07-03. Verified with `lake build` against a locally built Mathlib.
 
 ## What is not done
 
-**64 `sorry`s** remain (29 discharged and `lake build`-verified; see `SORRIES.md`).  Nothing is claimed proved
+**16 `sorry`s** remain (77 discharged and `lake build`-verified; see `SORRIES.md`).  Nothing is claimed proved
 unless Lean accepts it; `#print axioms` will show `sorryAx` until they are gone.
+
+**The entire analytic side is done.**  `Basic`, `Calibration`, `Delta`, `Symmetry`, `Trichotomy`, and
+`AnalyticMain` are now ALL sorry-free and kernel-verified.  In particular `pinsker` (Lemma 2.1, via the
+pointwise bound `3(x−1)²≤(2x+4)ψ(x)` from an `f''≥0` convexity argument + Cauchy–Schwarz),
+`deep_dip_trichotomy` (**Theorem 6.1**), and `main_analytic` (**Theorem 7.1**, the `n≥6` main theorem) all
+depend on only `[propext, Classical.choice, Quot.sound]`.  The tight numeric constants (`hPrime_gt`,
+`three_psi_exp_neg5_gt`, `three_psi_gt`) were discharged by exact interval arithmetic on Mathlib's `exp_one_gt_d9`
+/ `log_two,three,five_gt_d9` — never `native_decide`.  The **only** reason `Main.theorem_1_2` still carries
+`sorryAx` is its small-`n` half (`Certified.theorem_8_3`, the `2≤n≤5` 176-orbit computation) — the last cluster.
+
+**`Calibration`, `Delta`, and `Symmetry`** (§3 Theorem 3.1,
+§4 Proposition 4.1 + Lemma 4.2, and the §3 Lemma 3.2 / 3.3 covariance).  Beyond the convex core (below), this
+pass added: `Delta.deltaLaw` (a valid `ProbLaw` for *every* `n`, via the root identity `(N−1)u⋆<1`),
+`calibrated_deltaLaw` (the two-level law is calibrated for `ε⋆`, constant tilt `h_a=−log u⋆`),
+`calLaw_tauOrient`/`mhat_tauOrient` (translation covariance of the calibrated law, via `calLaw_unique`),
+`Ddelta_closedForm`/`Ddelta_pos`/`Ddelta_lt` (`Lemma_4_2`: `0<D_δ<1/(N−1)` via the `ψ`-form and
+`log(1+u⋆)≤u⋆`), the asymptotic `N_Ddelta_tendsto_one`, and all four `Symmetry` calibrated-law covariance
+theorems (`translation_covariance_law/_mhat`, `glAction_covariance_law/_mhat` — the latter via the
+`chi_mulVec` mask-relabeling bijection).  Every one depends on only `[propext, Classical.choice, Quot.sound]`.
+
+**The convex-analysis core (Paper XII Theorem 3.1) is COMPLETE and kernel-verified.** All 14 `Calibration`
+leaves are proved, so `WalshDelta.theorem_3_1` (smoothness + strict convexity + coercivity of `G_ε`; its
+unique minimizer is *the* calibrated law with `h_a = ε_a ℓ⋆_a > 0`; each orientation has exactly one
+calibrated law) now depends on only `[propext, Classical.choice, Quot.sound]` — **no `sorryAx`**. Highlights:
+`logPartition_convexOn` (log-sum-exp convexity via two-point weighted Hölder, `Real.inner_le_Lp_mul_Lq`);
+`Gfun_strictConvexOn` (convex `F` + strictly-convex separable barrier); `logPartition_radial_tendsto` +
+`Gfun_coercive` (μ(v)>0 zero-mean argument + sphere-compactness lower bound `c‖ℓ‖ − log N`);
+`logPartition_partialDeriv` (the log-sum-exp gradient via `HasDerivAt`); `critical_iff_calibrationEqs`,
+`hcoeff_pos_of_critical`, `Gfun_min_exists_unique` (coercive+continuous ⇒ min on a compact ball; strict
+convexity ⇒ unique), `ellStar_isCritical` (Fermat), and the capstone `calibrated_exists_unique`. The
+downstream `Delta.exists_unique_calibrated` is now `:= calibrated_exists_unique ε`.
 
 Recently discharged (this pass, all `lake build`-verified): the Walsh
 orthogonality core (`Delta.sum_chi`, `sum_nonzero_chi`), the delta-polynomial root
@@ -44,16 +75,14 @@ and the `GL(n,2)`/translation kinematics (`Symmetry.dotZ2_mulVec`,
 `glTransInv_mulVec_ne_zero`, `glOrient_one`, `delta_injective`, `delta_glAction`),
 plus `Trichotomy.log_abs_le_two_abs_sub_one`.
 
-The remaining 64 are the three research frontiers plus what depends on them: the
-**convex-analysis core** (`Calibration` — `G_ε` strictly convex + coercive ⇒ unique
-minimizer = calibrated law; this gates `Delta.exists_unique_calibrated`,
-`calLaw_tauOrient`, `mhat_tauOrient`, `calibrated_deltaLaw`, `Ddelta_*`, and the four
-`Symmetry` calibrated-law covariance theorems), the **analytic frontier**
-(`Trichotomy`/`AnalyticMain` quantitative deep-dip bounds + the tight numeric
-constants `e^{-5}`, `2.878716`, `64/63` — needing rigorous interval arithmetic, not
-`norm_num` on transcendentals), and the **certified frontier** (`Certified` §8
-Newton–Kantorovich over the 176-orbit Γ₅ transversal, plus the spectral
-`opNorm_le_trace_of_psd`).
+The remaining 16 are a single research frontier plus one isolated leaf
+(`Main.corollary_1_3_top`): the **certified frontier** (`Certified` §8 — the
+Newton–Kantorovich a-posteriori certification of `Theorem 8.3` over the 176-orbit
+Γ₅ transversal for `2 ≤ n ≤ 5`, plus the spectral `opNorm_le_trace_of_psd`).
+This is the exact-rational / interval-arithmetic computation that the paper does
+by machine; it is deliberately kept off `native_decide`, so it needs the finite
+computation reflected into `ℚ`/interval arithmetic with the Burnside completeness
+checksum formalized.
 
 ## How it was produced
 
@@ -74,14 +103,14 @@ kept).
 | Module | Formalizes (paper) | `sorry` |
 |---|---|---:|
 | `Basic` | §1.1 objects; §2 Pinsker (2.1) + ψ (2.2); canonical `IsDelta` | 1 |
-| `Calibration` | §3 Thm 3.1; canonical `mhat`, `Ddelta` | 14 |
-| `Symmetry` | §3 Lemmas 3.2 / 3.3 (covariance) | 4 |
-| `Delta` | §1.2 + §4 Prop 4.1 (delta law), Lemma 4.2 | 10 |
-| `Trichotomy` | §5 apparatus + §6 Thm 6.1 (deep-dip trichotomy) | 13 |
-| `AnalyticMain` | §7 Thm 7.1 / main theorem n≥6 / Cor 1.3 | 6 |
+| `Calibration` | **§3 Thm 3.1 — COMPLETE, kernel-verified (no `sorryAx`)** | **0** |
+| `Symmetry` | **§3 Lemmas 3.2 / 3.3 (covariance) — COMPLETE** | **0** |
+| `Delta` | **§1.2 + §4 Prop 4.1 (delta law), Lemma 4.2 — COMPLETE** | **0** |
+| `Trichotomy` | **§5 apparatus + §6 Thm 6.1 (deep-dip trichotomy) — COMPLETE** | **0** |
+| `AnalyticMain` | **§7 Thm 7.1 / main theorem n≥6 / Cor 1.3 — COMPLETE** | **0** |
 | `Certified` | §8 Lemmas 8.1/8.2 + Thm 8.3 (2≤n≤5, 176-orbit) | 15 |
 | `Main` | **Thm 1.2** (assembled, proof body sorry-free) + Cor 1.3 | 1 |
-| **total** | | **64** |
+| **total** | | **16** |
 
 (`sorry` counts are the tactic leaves; a couple more appear inside `def` bodies
 for scaffolding — e.g. `Certified.cGl`'s nonzero-preservation.)
