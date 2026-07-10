@@ -5,10 +5,11 @@ instantaneous states. Quantum phases, spacetime, gauge structure, and
 matter constraints emerge from which record distinctions can be sealed
 without silent, unrecorded structure.
 
-This repository is the program's **publishable batch**: fifteen papers
-(the thirteen-paper core arc C0/I–XI, plus the two standalone results
-XII and XIII) and six companion notes (markdown is the source of record
-throughout; LaTeX and compiled PDF are provided for all fifteen papers;
+This repository is the program's **publishable batch**: sixteen papers
+(the thirteen-paper core arc C0/I–XI, plus the three standalone results
+XII, XIII, and XIV) and six companion notes (markdown is the source of record
+throughout; LaTeX and compiled PDF are provided for the papers through
+XIII, with XIV's pending (see its note below);
 the six companion notes ship as markdown plus receipts), the two dated
 registration documents for the program's experimental claims, and the
 complete set of receipt scripts with their canonical outputs.
@@ -17,10 +18,10 @@ complete set of receipt scripts with their canonical outputs.
 [0009-0009-2017-4394](https://orcid.org/0009-0009-2017-4394);
 independent researcher)
 
-**Status:** preprints, not peer reviewed, version 2026-07-02. The
+**Status:** preprints, not peer reviewed, version 2026-07-10. The
 eleven core papers (C0 and I–IX) were **deposited to Zenodo on
-2026-06-13 with DOIs** (listed below). Papers X, XI, XII, XIII and the
-six companion notes are not yet deposited. The two registration
+2026-06-13 with DOIs** (listed below). Papers X, XI, XII, XIII, XIV and
+the six companion notes are not yet deposited. The two registration
 documents' claims are already third-party-timestamped via the deposited
 papers VII (the neutrino-step comparison, which explicitly supersedes
 the internal registration) and IX (the dressed-spectrum menu and seam
@@ -49,13 +50,14 @@ each record).
 
 **Not yet on Zenodo:** X (gravitational-decoherence), XI (sealed-record
 -gravity-no-go), XII (walsh-delta — self-contained, submission-ready),
-XIII (causal-tomography), the six companion notes, and the registration
+XIII (causal-tomography), XIV (stem-spectrum — LaTeX/PDF pending),
+the six companion notes, and the registration
 bundle.
 
 ## Layout
 
 ```
-papers/         the fourteen papers + six companion notes (markdown source of record)
+papers/         the fifteen papers + six companion notes (markdown source of record)
 tex/            LaTeX (generated from markdown by code/md2tex.py)
 pdf/            compiled PDFs (tectonic)
 registrations/  two dated registration documents (neutrino claims) + the frozen registration manifest (2026-07-02, with content hashes)
