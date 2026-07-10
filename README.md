@@ -103,11 +103,20 @@ the scale no-go on Newton's `G`, and X is its observational counterpart
 |---|---|---|
 | XII | `paper-XII-walsh-delta` | The delta orientation is the unique entropy minimizer for self-calibrated ±1 Walsh tilts on the Boolean cube: existence/uniqueness of the calibrated law, the deep-dip trichotomy, the full theorem for every n (analytic for n ≥ 6, certified computation for n ≤ 5), and the sharp-constant conjecture 4·log 4 |
 | XIII | `paper-XIII-causal-tomography` | Causal tomography: a per-order quantitative characterization of 2D volume-faithfulness (canonical rank embedding, iff with loss 3ε + 1/n), a poly-time-verifiable manifoldlikeness certificate for d ≥ 3 from 2D shadows with its soundness budget scoped exactly (Logan), an order-intrinsic finder, and the celestial sphere of a causal set from inversion counts |
+| XIV | `paper-XIV-stem-spectrum` | The stem spectrum: the causal-set sequential-growth history space is a light profinite set; the Boolean algebra of stem events has a Stone spectrum X onto which histories evaluate, with rogues exactly the non-trivial fibers (Θ = Γ imported as an exact fiber theorem), the covariant measure algebra of every covered dynamics isomorphic to Borel(X) mod null, automatic Radon extension of bounded charges by compactness (the quantum obstruction relocated to strong additivity), and covtree identified as the tower of finite quotients of X — the spectrum is the space of infinite covtree paths, with the published level-3 census (22 nodes) confirmed mechanically |
 
 Paper XIII is likewise self-contained (causal-set order theory +
 computation; no `[P]` tags, no SHARD constructions — the theorems are
 elementary given two named imports, and every quoted number ships with
 receipt code).
+
+Paper XIV is self-contained in the same sense as XIII (causal-set
+order theory + classical Stone/Priestley duality + computation; the
+host program appears only in its related-work and outlook sections).
+It was added 2026-07-10 after a three-pass hostile review in the
+development repository; not yet deposited; LaTeX/PDF pending.
+Receipts: `stem_spectrum_receipts` and `stem_spectrum_receipts_b` (see
+Code and receipts).
 
 Paper XII is **fully self-contained pure mathematics**: it carries no
 `[P]` tags, cites nothing in this repository, and depends on no SHARD
@@ -188,6 +197,7 @@ Per-paper receipt map (script names in `code/`, outputs in
 | X | `v6_pX_decoherence_undecidability_receipts` | `v6_pX_decoherence_undecidability_receipts.out` |
 | XI | `v6_pXI_sealed_record_gravity_nogo_receipts` | `v6_pXI_sealed_record_gravity_nogo_receipts.out` |
 | XII | `w1_cert_small_n` (exhaustive certified n ≤ 4; ~1 h), `w2_orbit_bfs.c` (orbit enumeration, compile with `cc -O2`; n = 5 takes ~40 min), `w3_cert_n5` (176-orbit certification), `w4_family_receipt` (in-regime inequality checks + the §9 table), `w5_burnside.c` (independent Burnside orbit count, compile with `cc -O2`) | `w1_cert_small_n.out`, `w2_orbit_bfs.out` + `w2_orbits_n5.txt`, `w3_cert_n5.out`, `w4_family_receipt.out`, `w5_burnside.out` |
+| XIV | `stem_spectrum_receipts` (the tower to n = 6, the separation table with the proto-rogue counts 5/11/37, Birkhoff mechanized, the within-six covtree census), `stem_spectrum_receipts_b` (all 96,428 labeled 7-causets independently recounted; the 22-node level-3 confirmation with explicit witness; the extension lemma mechanized; the interface state machine to n = 12) | `stem_spectrum_receipts.out`, `stem_spectrum_receipts_b.out` |
 | XIII | `i1_canonical_realizer`, `i2_characterization`, `i3_internal_prime_census` (the 2D engine), `k1_shadow_engine`, `k2_shadow_search`, `k3_decoration_probe` (2+1 tomography), `l1_ghost_budget`, `l2_intrinsic_finder`, `l3_four_dimensional`, `m1_intrinsic_4d` (soundness, the finder, 3+1) | `i1–i3_*.out`, `k1–k3_*.out`, `l1–l3_*.out`, `m1_intrinsic_4d.out` |
 
 Companion notes (scripts in `code/`, outputs in `receipts/`):

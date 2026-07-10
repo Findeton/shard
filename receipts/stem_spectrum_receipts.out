@@ -1,0 +1,20 @@
+[stem spectrum receipts]
+  [PASS] r1a (the tower): growth enumeration == independent upper-triangular recount, n = 1..6  (counts n1:1 n2:2 n3:7 n4:40 n5:357 n6:4824)
+  [PASS] r1b: end-deletion is surjective onto every lower stage
+      unlabeled causet counts: n4:16 n5:63 n6:318   [OEIS posets 16/63/318]
+  [PASS] r1c: unlabeled counts match the poset numbers 16/63/318
+      r2 (the separation table) — pairs of distinct unlabeled n-causets sharing ALL stems of size <= k:
+      n=4: k=1:120  k=2:35  k=3:5
+      n=5: k=1:1953  k=2:705  k=3:117  k=4:11
+      n=6: k=1:50403  k=2:21988  k=3:3223  k=4:416  k=5:37
+      PROTO-ROGUES (distinct n-causets, identical proper-stem sets): n=4,k=3: class of 2; n=4,k=3: class of 2; n=4,k=3: class of 2; n=4,k=3: class of 2; n=4,k=3: class of 2; n=5,k=4: class of 2; n=5,k=4: class of 2; n=5,k=4: class of 2; n=5,k=4: class of 2; n=5,k=4: class of 2; n=5,k=4: class of 2; n=5,k=4: class of 2; n=5,k=4: class of 2; n=5,k=4: class of 2; n=5,k=4: class of 2; n=5,k=4: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2; n=6,k=5: class of 2
+      r3 n=4, k<=2: |lattice| = 5, join-irreducibles = 3, down-sets of J = 5 [Birkhoff OK]
+      r3 n=5, k<=2: |lattice| = 5, join-irreducibles = 3, down-sets of J = 5 [Birkhoff OK]
+      r3 n=5, k<=3: |lattice| = 500, join-irreducibles = 17, down-sets of J = 500 [Birkhoff OK]
+  [PASS] r3 (Birkhoff mechanized): |L| == |Down(J(L))| at every tested truncation
+      r4 (covtree contact, within 6-element causets): exact-size-3 stem-set classes = 21; B_3 atoms (size-<=3 stem-set classes) = 21; exact-3 classes that determine the full <=3 signature: 21/21
+  [PASS] r4: the covtree-node approximations and B_3 atoms computed; the refinement relation printed (claim = what prints)
+
+PRE-REGISTERED GATE LEDGER: ALL HELD — r1 tower; r2 separation table; r3 Birkhoff; r4 covtree contact
+
+ALL CHECKS PASS (5/5)
